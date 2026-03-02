@@ -1,8 +1,9 @@
 import loggerEnvConfig from "@apk_common/config/logger-env.config";
-import { Inject, Injectable, OnModuleInit } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
 import type { ConfigType } from "@nestjs/config";
 import { existsSync, mkdirSync } from "fs";
 import { pid } from "process";
+import { inspect } from "util";
 import * as winston from "winston";
 
 const levels = {
@@ -24,15 +25,13 @@ const colors: Record<string, string> = {
 };
 
 @Injectable()
-export class WinstonEngineService implements OnModuleInit {
+export class WinstonEngineService {
 	private logger: winston.Logger;
 
 	constructor(
 		@Inject(loggerEnvConfig.KEY)
 		private readonly loggerConfig: ConfigType<typeof loggerEnvConfig>,
-	) {}
-
-	onModuleInit() {
+	) {
 		const { level, dir, activeFile } = this.loggerConfig;
 		this.initLogger(level, dir, activeFile);
 	}
@@ -46,9 +45,10 @@ export class WinstonEngineService implements OnModuleInit {
 
 		const ctx = context ? `[${context as string}] ` : "";
 		const msStr = ms ? ` (${ms as string})` : "";
-		const extra = Object.keys(meta).length > 0 ? ` ${JSON.stringify(meta)}` : "";
+		const extra = Object.keys(meta).length > 0 ? ` ${inspect(meta, { depth: 4, breakLength: 120 })}` : "";
 		const stackStr = stack ? `\n${stack as string}` : "";
 		const levelStr = level.toUpperCase().padEnd(7);
+
 		return `${pid} - ${timestamp as string}   ${levelStr} ${ctx}${message as string}${msStr}${extra}${stackStr}`;
 	}
 
@@ -75,11 +75,12 @@ export class WinstonEngineService implements OnModuleInit {
 
 		const ctx = context ? `${dim}[${context as string}]${reset} ` : "";
 		const msStr = ms ? ` ${dim}${ms as string}${reset}` : "";
-		const extra = Object.keys(meta).length > 0 ? ` \n ${JSON.stringify(meta)}` : "";
+		const extra = Object.keys(meta).length > 0 ? ` ${inspect(meta, { depth: 4, breakLength: 120 })}` : "";
 		const stackStr = stack ? `\n${stack as string}` : "";
 		const levelStr = `${color}${level.toUpperCase().padEnd(7)}${reset}`;
 		const appName = `${color}[App]${reset}`;
 		const pidStr = `${dim}${pid}${reset}`;
+
 		return `${appName} ${pidStr} - ${timestamp as string}   ${levelStr} ${ctx}${color}${message as string}${reset}${msStr}${extra}${stackStr}`;
 	}
 
