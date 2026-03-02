@@ -24,6 +24,6 @@ export default registerAs("logger", () => {
 	return {
 		level: config.LOGGER_LEVEL,
 		dir: config.LOGGER_DIR,
-		fileActive: config.LOGGER_ACTIVE_FILE,
+		activeFile: config.LOGGER_ACTIVE_FILE,
 	};
 });
