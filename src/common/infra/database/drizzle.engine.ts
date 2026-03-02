@@ -30,14 +30,12 @@ export class DrizzleEngineService implements OnModuleInit, OnModuleDestroy, OnAp
 		if (!user || !password || !host || !port || !name) {
 			throw new Error("Database configuration is missing required fields");
 		}
-	}
-
-	async onModuleInit() {
-		const { user, password, host, port, name } = this.databaseConfig;
 
 		this.pool = new Pool({ connectionString: `postgresql://${user}:${password}@${host}:${port}/${name}` });
 		this.db = drizzle({ client: this.pool, schema: allSchemas, relations: allRelations });
+	}
 
+	async onModuleInit() {
 		try {
 			await this.db.execute("SELECT 1");
 			this.logger.log("Database drizzle connection established successfully");

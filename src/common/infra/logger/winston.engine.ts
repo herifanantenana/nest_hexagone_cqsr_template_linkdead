@@ -36,10 +36,6 @@ export class WinstonEngineService {
 		this.initLogger(level, dir, activeFile);
 	}
 
-	getLogger(): winston.Logger {
-		return this.logger;
-	}
-
 	private buildFilePrintFormat(info: winston.Logform.TransformableInfo): string {
 		const { timestamp, level, message, context, ms, stack, ...meta } = info;
 
@@ -114,5 +110,9 @@ export class WinstonEngineService {
 
 		// create the logger
 		this.logger = winston.createLogger({ levels, level, transports });
+	}
+
+	getLogger(): winston.Logger {
+		return this.logger;
 	}
 }
