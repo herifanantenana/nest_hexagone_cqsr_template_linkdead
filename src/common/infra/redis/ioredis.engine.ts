@@ -9,12 +9,13 @@ export const REDIS_CLIENT = Symbol("REDIS_CLIENT");
 @Injectable()
 export class IoredisEngineService implements OnModuleInit, OnModuleDestroy, OnApplicationShutdown {
 	private redis: Redis;
+	private readonly logger: AppLogger;
 
 	constructor(
 		@Inject(redisEnvConfig.KEY) private readonly redisConfig: ConfigType<typeof redisEnvConfig>,
-		private logger: AppLogger,
+		private appLogger: AppLogger,
 	) {
-		this.logger = logger.withContext(IoredisEngineService.name);
+		this.logger = this.appLogger.withContext(IoredisEngineService.name);
 
 		this.redis = new Redis(`redis://${this.redisConfig.host}:${this.redisConfig.port}`, {
 			keyPrefix: this.redisConfig.prefix + ":",
@@ -34,7 +35,7 @@ export class IoredisEngineService implements OnModuleInit, OnModuleDestroy, OnAp
 
 	async onModuleInit() {
 		await this.redis.ping();
-		this.logger.log("Redis connected (PING ok)");
+		this.logger.log("Redis ioredis client engine initialized and connected to Redis");
 	}
 
 	async onModuleDestroy() {
@@ -42,7 +43,7 @@ export class IoredisEngineService implements OnModuleInit, OnModuleDestroy, OnAp
 			await this.redis.quit();
 			this.logger.log("Redis client disconnected");
 		} catch (error) {
-			this.logger.error(`Error disconnecting Redis client:${error}`);
+			this.logger.warn(`Error disconnecting Redis client:${error}`);
 			this.redis.disconnect();
 		}
 	}
@@ -52,7 +53,7 @@ export class IoredisEngineService implements OnModuleInit, OnModuleDestroy, OnAp
 			await this.redis.quit();
 			this.logger.log("Redis client disconnected on application shutdown");
 		} catch (error) {
-			this.logger.error(`Error disconnecting Redis client on shutdown:${error}`);
+			this.logger.warn(`Error disconnecting Redis client on shutdown:${error}`);
 			this.redis.disconnect();
 		}
 	}

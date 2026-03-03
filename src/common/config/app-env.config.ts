@@ -1,20 +1,36 @@
 import { registerAs } from "@nestjs/config";
 import Joi from "joi";
+import os from "os";
 
 interface IAppConfig {
 	NODE_ENV: "development" | "production" | "test";
-	PORT: number;
-	TRUST_PROXY: boolean;
-	CROSS_ORIGIN: boolean;
-	ALLOWED_ORIGINS: string;
+	APP_HOST: string;
+	APP_PORT: number;
+	APP_TRUST_PROXY: boolean;
+	APP_CROSS_ORIGIN: boolean;
+	APP_ALLOWED_ORIGINS: string;
+	APP_PREFIX: string;
+}
+
+function getLocalIp(): string {
+	const interfaces = os.networkInterfaces();
+	for (const name of Object.keys(interfaces)) {
+		for (const iface of interfaces[name]!) {
+			if (iface.family === "IPv4" && !iface.internal) {
+				return iface.address;
+			}
+		}
+	}
+	return "127.0.0.1";
 }
 
 export const appEnvConfigValidator = Joi.object({
 	NODE_ENV: Joi.string().valid("development", "production", "test").required(),
-	PORT: Joi.number().default(3000),
-	TRUST_PROXY: Joi.boolean().default(false),
-	CROSS_ORIGIN: Joi.boolean().default(false),
-	ALLOWED_ORIGINS: Joi.string().default("*"),
+	APP_PORT: Joi.number().default(3000),
+	APP_TRUST_PROXY: Joi.boolean().default(false),
+	APP_CROSS_ORIGIN: Joi.boolean().default(false),
+	APP_ALLOWED_ORIGINS: Joi.string().default("*"),
+	APP_PREFIX: Joi.string().default("dev-api"),
 });
 
 export default registerAs("app", () => {
@@ -30,9 +46,11 @@ export default registerAs("app", () => {
 		isDevelopment: config.NODE_ENV === "development",
 		isProduction: config.NODE_ENV === "production",
 		isTest: config.NODE_ENV === "test",
-		port: config.PORT,
-		trustProxy: config.TRUST_PROXY,
-		crossOrigin: config.CROSS_ORIGIN,
-		allowedOrigins: config.ALLOWED_ORIGINS.split(",").map((origin) => origin.trim()),
+		host: getLocalIp(),
+		port: config.APP_PORT,
+		trustProxy: config.APP_TRUST_PROXY,
+		crossOrigin: config.APP_CROSS_ORIGIN,
+		allowedOrigins: config.APP_ALLOWED_ORIGINS.split(",").map((origin) => origin.trim()),
+		prefix: config.APP_PREFIX,
 	};
 });
