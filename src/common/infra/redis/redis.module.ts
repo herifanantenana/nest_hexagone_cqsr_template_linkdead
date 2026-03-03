@@ -1,15 +1,15 @@
 import { Global, Module } from "@nestjs/common";
-import { IoredisEngineService, REDIS_CLIENT } from "./ioredis.engine";
+import { IoredisAdapter, REDIS_CLIENT } from "./ioredis.adapter";
 import { RedisService } from "./redis.service";
 
 @Global()
 @Module({
 	providers: [
-		IoredisEngineService,
+		IoredisAdapter,
 		{
 			provide: REDIS_CLIENT,
-			useFactory: (ioredisEngineService: IoredisEngineService) => ioredisEngineService.getClient(),
-			inject: [IoredisEngineService],
+			useFactory: (ioredisAdapter: IoredisAdapter) => ioredisAdapter.getClient(),
+			inject: [IoredisAdapter],
 		},
 		RedisService,
 	],

@@ -6,7 +6,7 @@ import nodemailer, { type Transporter } from "nodemailer";
 import { AppLogger } from "../logger/logger.service";
 
 @Injectable()
-export class NodemailerEngineService implements OnModuleInit {
+export class NodemailerAdapter implements OnModuleInit {
 	private transporter: Transporter;
 	private readonly logger: AppLogger;
 
@@ -15,7 +15,7 @@ export class NodemailerEngineService implements OnModuleInit {
 		@Inject(mailerEnvConfig.KEY) private readonly mailerConfig: ConfigType<typeof mailerEnvConfig>,
 		@Inject(appEnvConfig.KEY) private readonly appConfig: ConfigType<typeof appEnvConfig>,
 	) {
-		this.logger = this.appLogger.withContext(NodemailerEngineService.name);
+		this.logger = this.appLogger.withContext(NodemailerAdapter.name);
 		this.createTransporter();
 	}
 

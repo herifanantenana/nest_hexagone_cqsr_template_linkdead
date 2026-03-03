@@ -7,7 +7,7 @@ import path from "path";
 import { AppLogger } from "../logger/logger.service";
 
 @Injectable()
-export class HandlebarsEngineService implements OnModuleInit {
+export class HandlebarsAdapter implements OnModuleInit {
 	// to avoid compiling the same template
 	private cachedTemplates = new Map<string, handlebars.TemplateDelegate>();
 	private readonly logger: AppLogger;
@@ -16,7 +16,7 @@ export class HandlebarsEngineService implements OnModuleInit {
 		private appLogger: AppLogger,
 		@Inject(mailerEnvConfig.KEY) private mailerConfig: ConfigType<typeof mailerEnvConfig>,
 	) {
-		this.logger = this.appLogger.withContext(HandlebarsEngineService.name);
+		this.logger = this.appLogger.withContext(HandlebarsAdapter.name);
 	}
 
 	onModuleInit() {

@@ -7,7 +7,7 @@ import { AppLogger } from "../logger/logger.service";
 export const REDIS_CLIENT = Symbol("REDIS_CLIENT");
 
 @Injectable()
-export class IoredisEngineService implements OnModuleInit, OnModuleDestroy, OnApplicationShutdown {
+export class IoredisAdapter implements OnModuleInit, OnModuleDestroy, OnApplicationShutdown {
 	private redis: Redis;
 	private readonly logger: AppLogger;
 	private isShuttingDown = false;
@@ -16,7 +16,7 @@ export class IoredisEngineService implements OnModuleInit, OnModuleDestroy, OnAp
 		@Inject(redisEnvConfig.KEY) private readonly redisConfig: ConfigType<typeof redisEnvConfig>,
 		private appLogger: AppLogger,
 	) {
-		this.logger = this.appLogger.withContext(IoredisEngineService.name);
+		this.logger = this.appLogger.withContext(IoredisAdapter.name);
 
 		this.redis = new Redis(`redis://${this.redisConfig.host}:${this.redisConfig.port}`, {
 			keyPrefix: this.redisConfig.prefix + ":",

@@ -15,16 +15,17 @@ const allRelations = relations.reduce((acc, relation) => {
 export type DbTx = NodePgDatabase<typeof allSchemas, typeof allRelations>;
 
 @Injectable()
-export class DrizzleEngineService implements OnModuleInit, OnModuleDestroy, OnApplicationShutdown {
+export class DrizzleAdapter implements OnModuleInit, OnModuleDestroy, OnApplicationShutdown {
 	private db: DbTx;
 	private pool: Pool;
 	private readonly logger: AppLogger;
+	private isShuttingDown = false;
 
 	constructor(
 		@Inject(databaseEnvConfig.KEY) readonly databaseConfig: ConfigType<typeof databaseEnvConfig>,
 		private readonly appLogger: AppLogger,
 	) {
-		this.logger = appLogger.withContext(DrizzleEngineService.name);
+		this.logger = appLogger.withContext(DrizzleAdapter.name);
 
 		const { user, password, host, port, name } = databaseConfig;
 		if (!user || !password || !host || !port || !name) {
@@ -46,11 +47,23 @@ export class DrizzleEngineService implements OnModuleInit, OnModuleDestroy, OnAp
 	}
 
 	async onModuleDestroy() {
-		await this.pool.end();
+		await this.disconnectDrizzle("onModuleDestroy");
 	}
 
 	async onApplicationShutdown() {
+		await this.disconnectDrizzle("onApplicationShutdown");
+	}
+
+	private async disconnectDrizzle(source: string) {
+		if (this.isShuttingDown) {
+			this.logger.debug(`Drizzle already disconnecting/disconnected, skipping ${source}`);
+			return;
+		}
+
+		this.isShuttingDown = true;
+
 		await this.pool.end();
+		this.logger.log(`Drizzle connection pool ended (${source})`);
 	}
 
 	public getDb(tx?: unknown): DbTx {

@@ -4,16 +4,16 @@ import { type ConfigType } from "@nestjs/config";
 import nodemailer from "nodemailer";
 import type SMTPTransport from "nodemailer/lib/smtp-transport";
 import { AppLogger } from "../logger/logger.service";
-import { HandlebarsEngineService } from "./handlebars.engine";
-import { NodemailerEngineService } from "./nodemailer.engine";
+import { HandlebarsAdapter } from "./handlebars.adapter";
+import { NodemailerAdapter } from "./nodemailer.adapter";
 
 @Injectable()
 export class MailerService {
 	private readonly logger: AppLogger;
 
 	constructor(
-		private readonly nodemailerEngineService: NodemailerEngineService,
-		private readonly handlebarsEngineService: HandlebarsEngineService,
+		private readonly nodemailerAdapter: NodemailerAdapter,
+		private readonly handlebarsAdapter: HandlebarsAdapter,
 		private readonly appLogger: AppLogger,
 		@Inject(mailerEnvConfig.KEY) private readonly mailerConfig: ConfigType<typeof mailerEnvConfig>,
 	) {
@@ -21,9 +21,9 @@ export class MailerService {
 	}
 
 	private async sendTemplateEmail(to: string, subject: string, templateName: string, context: Record<string, unknown>) {
-		const transporter = this.nodemailerEngineService.getTransporter();
+		const transporter = this.nodemailerAdapter.getTransporter();
 		try {
-			const html: string = this.handlebarsEngineService.renderTemplate(templateName, context);
+			const html: string = this.handlebarsAdapter.renderTemplate(templateName, context);
 			const info = (await transporter.sendMail({
 				from: this.mailerConfig.from,
 				to,

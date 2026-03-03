@@ -1,16 +1,16 @@
 import { Global, Module } from "@nestjs/common";
 import { WINSTON_MODULE_PROVIDER } from "nest-winston";
 import { AppLogger } from "./logger.service";
-import { WinstonEngineService } from "./winston.engine";
+import { WinstonAdapter } from "./winston.adapter";
 
 @Global()
 @Module({
 	providers: [
-		WinstonEngineService,
+		WinstonAdapter,
 		{
 			provide: WINSTON_MODULE_PROVIDER,
-			inject: [WinstonEngineService],
-			useFactory: (winstonEngineService: WinstonEngineService) => winstonEngineService.getLogger(),
+			inject: [WinstonAdapter],
+			useFactory: (winstonAdapter: WinstonAdapter) => winstonAdapter.getLogger(),
 		},
 		AppLogger,
 	],

@@ -25,7 +25,7 @@ const colors: Record<string, string> = {
 };
 
 @Injectable()
-export class WinstonEngineService {
+export class WinstonAdapter {
 	private logger: winston.Logger;
 
 	constructor(
