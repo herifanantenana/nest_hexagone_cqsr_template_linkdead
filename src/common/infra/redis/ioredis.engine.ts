@@ -10,6 +10,7 @@ export const REDIS_CLIENT = Symbol("REDIS_CLIENT");
 export class IoredisEngineService implements OnModuleInit, OnModuleDestroy, OnApplicationShutdown {
 	private redis: Redis;
 	private readonly logger: AppLogger;
+	private isShuttingDown = false;
 
 	constructor(
 		@Inject(redisEnvConfig.KEY) private readonly redisConfig: ConfigType<typeof redisEnvConfig>,
@@ -39,21 +40,25 @@ export class IoredisEngineService implements OnModuleInit, OnModuleDestroy, OnAp
 	}
 
 	async onModuleDestroy() {
-		try {
-			await this.redis.quit();
-			this.logger.log("Redis client disconnected");
-		} catch (error) {
-			this.logger.warn(`Error disconnecting Redis client:${error}`);
-			this.redis.disconnect();
-		}
+		await this.disconnectRedis("onModuleDestroy");
 	}
 
 	async onApplicationShutdown() {
+		await this.disconnectRedis("onApplicationShutdown");
+	}
+
+	private async disconnectRedis(source: string) {
+		if (this.isShuttingDown) {
+			this.logger.debug(`Redis already disconnecting/disconnected, skipping ${source}`);
+			return;
+		}
+
+		this.isShuttingDown = true;
 		try {
 			await this.redis.quit();
-			this.logger.log("Redis client disconnected on application shutdown");
+			this.logger.log(`Redis client disconnected (${source})`);
 		} catch (error) {
-			this.logger.warn(`Error disconnecting Redis client on shutdown:${error}`);
+			this.logger.warn(`Error disconnecting Redis client (${source}): ${error}`);
 			this.redis.disconnect();
 		}
 	}

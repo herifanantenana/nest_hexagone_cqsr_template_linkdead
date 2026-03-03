@@ -4,10 +4,10 @@ import { DrizzleEngineService } from "./drizzle.engine";
 
 @Injectable()
 export class DrizzleUnitOfWorkAdapter implements IUnitOfWorkPort {
-	constructor(private readonly DrizzleEngineService: DrizzleEngineService) {}
+	constructor(private readonly drizzleEngineService: DrizzleEngineService) {}
 
 	async withTransaction<T>(fn: (tx: unknown) => Promise<T>): Promise<T> {
-		return this.DrizzleEngineService.getDb().transaction(async (tx) => {
+		return this.drizzleEngineService.getDb().transaction(async (tx) => {
 			return fn(tx);
 		});
 	}

@@ -2,7 +2,7 @@ import { registerAs } from "@nestjs/config";
 import Joi from "joi";
 
 interface IDatabaseConfig {
-	DATABASE_USER: string;
+	DATABASE_USERNAME: string;
 	DATABASE_PASSWORD: string;
 	DATABASE_HOST: string;
 	DATABASE_PORT: number;
@@ -10,7 +10,7 @@ interface IDatabaseConfig {
 }
 
 export const databaseEnvConfigValidator = Joi.object({
-	DATABASE_USER: Joi.string().required(),
+	DATABASE_USERNAME: Joi.string().required(),
 	DATABASE_PASSWORD: Joi.string().required(),
 	DATABASE_HOST: Joi.string().required(),
 	DATABASE_PORT: Joi.number().port().default(5432),
@@ -31,7 +31,7 @@ export default registerAs("database", () => {
 	const config = res.value as IDatabaseConfig;
 
 	return {
-		user: config.DATABASE_USER,
+		user: config.DATABASE_USERNAME,
 		password: config.DATABASE_PASSWORD,
 		host: config.DATABASE_HOST,
 		port: config.DATABASE_PORT,

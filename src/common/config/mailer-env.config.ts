@@ -4,7 +4,6 @@ import Joi from "joi";
 interface IMailerConfig {
 	MAILER_FROM: string;
 	MAILER_HOST: string;
-	MAILER_PORT: number;
 	MAILER_USER: string;
 	MAILER_PASSWORD: string;
 	MAILER_TEMPLATE_DIR: string;

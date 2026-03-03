@@ -36,11 +36,14 @@ export class NodemailerEngineService implements OnModuleInit {
 				},
 			});
 		} catch (error) {
-			this.logger.error(`Failed to initialize Nodemailer transporter: ${error}`);
+			throw new Error(`Nodemailer initialization failed: ${error}`);
 		}
 	}
 
 	public getTransporter() {
+		if (!this.transporter) {
+			throw new Error("Nodemailer transporter is not initialized");
+		}
 		return this.transporter;
 	}
 }
