@@ -3,8 +3,10 @@ import databaseEnvConfig from "@apk_common/config/database-env.config";
 import loggerEnvConfig from "@apk_common/config/logger-env.config";
 import mailerEnvConfig from "@apk_common/config/mailer-env.config";
 import redisEnvConfig from "@apk_common/config/redis-env.config";
+import { BullmqModule } from "@apk_common/infra/bullmq/bullmq.module";
 import { DatabaseModule } from "@apk_common/infra/database/database.module";
 import { LoggerModule } from "@apk_common/infra/logger/logger.module";
+import { AppLogger } from "@apk_common/infra/logger/logger.service";
 import { MailerModule } from "@apk_common/infra/mailer/mailer.module";
 import { RedisModule } from "@apk_common/infra/redis/redis.module";
 import { HttpTransactionInterceptor } from "@apk_common/interface/http/interceptors/http-transaction.interceptor";
@@ -14,7 +16,6 @@ import { ConfigModule } from "@nestjs/config";
 import { APP_INTERCEPTOR } from "@nestjs/core";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
-import { AppLogger } from "@apk_common/infra/logger/logger.service";
 
 @Module({
 	imports: [
@@ -27,6 +28,7 @@ import { AppLogger } from "@apk_common/infra/logger/logger.service";
 		DatabaseModule,
 		RedisModule,
 		MailerModule,
+		BullmqModule,
 	],
 	controllers: [AppController],
 	providers: [
