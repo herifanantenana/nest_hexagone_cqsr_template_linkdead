@@ -1,5 +1,6 @@
 import { accountsTable, accountStatusEnum, authProvidersEnum } from "./auth/accounts.schema";
 import { actorsTable, actorsTypesEnum } from "./auth/actors.schema";
+import { registrationsTable } from "./auth/registrations.schema";
 import { accountsRelations, actorsRelations, sessionsRelations, usersRelations } from "./auth/relations";
 import { sessionsStatusEnum, sessionsTable } from "./auth/sessions.schema";
 import { usersTable } from "./auth/users.schema";
@@ -19,7 +20,7 @@ export const enums = [
 	sessionsStatusEnum,
 ];
 
-export const schemas = [usersTable, accountsTable, organizationsTable, actorsTable, sessionsTable];
+export const schemas = [registrationsTable, usersTable, accountsTable, organizationsTable, actorsTable, sessionsTable];
 
 export const relations = [
 	usersRelations,

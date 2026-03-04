@@ -1,0 +1,14 @@
+import { integer, pgTable, varchar } from "drizzle-orm/pg-core";
+import { id } from "../_shared/id";
+import { createdAt, expiresAt, lastSentAt, updatedAt } from "../_shared/timestamps";
+
+export const registrationsTable = pgTable("registrations", {
+	id,
+	email: varchar("email", { length: 255 }).notNull().unique(),
+	hashedToken: varchar("hashed_verify_token", { length: 255 }).notNull().unique(),
+	sentCount: integer("sent_count").notNull().default(0),
+	lastSentAt,
+	expiresAt,
+	createdAt,
+	updatedAt,
+});

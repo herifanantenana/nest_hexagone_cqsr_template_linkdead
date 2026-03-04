@@ -5,3 +5,4 @@ export const updatedAt = timestamp("updated_at", { withTimezone: true }).notNull
 export const deletedAt = timestamp("deleted_at", { withTimezone: true });
 export const expiresAt = timestamp("expires_at", { withTimezone: true }).notNull();
 export const revokedAt = timestamp("revoked_at", { withTimezone: true });
+export const lastSentAt = timestamp("last_sent_at", { withTimezone: true }).notNull().defaultNow();
