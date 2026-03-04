@@ -1,14 +1,17 @@
 import { AppLogger } from "@apk_common/infra/logger/logger.service";
+import { BusinessLogicError } from "@apk_shared/errors/business-logic.error";
 import { IHttpSuccessResponse } from "@apk_shared/types/http-response";
 import { getField, hasField, isString, omitField } from "@apk_shared/types/utils";
-import { CallHandler, ExecutionContext, HttpException, Injectable, NestInterceptor } from "@nestjs/common";
+import { CallHandler, ExecutionContext, HttpException, HttpStatus, Injectable, NestInterceptor } from "@nestjs/common";
 import { Request, Response } from "express";
 import { catchError, map, Observable, tap, throwError } from "rxjs";
 
 @Injectable()
-export class HttpTransactionInterceptor implements NestInterceptor {
-	constructor(private readonly logger: AppLogger) {
-		this.logger = logger.withContext(HttpTransactionInterceptor.name);
+export class HttpEnvelopeInterceptor implements NestInterceptor {
+	private readonly logger: AppLogger;
+
+	constructor(private readonly appLogger: AppLogger) {
+		this.logger = appLogger.withContext(HttpEnvelopeInterceptor.name);
 	}
 
 	private buildResponseMessage(data: unknown): string {
@@ -18,37 +21,15 @@ export class HttpTransactionInterceptor implements NestInterceptor {
 		return "Operation completed successfully";
 	}
 
-	private buildHttpExceptionMessage(error: HttpException) {
-		const status = error.getStatus();
-		const response = error.getResponse();
-
-		let message: string | undefined;
-		if (isString(response) && response.length > 0) {
-			message = response;
-		} else if (hasField(response, "message")) {
-			const msgField = getField(response, "message");
-			if (isString(msgField) && msgField.length > 0) {
-				message = msgField;
-			} else if (Array.isArray(msgField)) {
-				const stringMessages = msgField.filter((m) => isString(m) && m.length > 0) as string[];
-				if (stringMessages.length > 0) {
-					message = stringMessages.join("; ");
-				}
-			}
-		}
-		if (!message) {
-			message = "An error occurred while processing the request";
-		}
-		const details = status >= 400 && status < 500 ? response : error.stack;
-
-		return { status, message, details };
+	private resolveErrorStatus(error: unknown): number {
+		if (error instanceof HttpException) return error.getStatus();
+		if (error instanceof BusinessLogicError) return HttpStatus.UNPROCESSABLE_ENTITY;
+		return HttpStatus.INTERNAL_SERVER_ERROR;
 	}
 
-	private mapErrorResponseMessage(error: unknown): { status: number; message: string; details?: unknown } {
-		if (error instanceof HttpException) {
-			return this.buildHttpExceptionMessage(error);
-		}
-		return { status: 500, message: "An unexpected error occurred", details: error };
+	private resolveErrorMessage(error: unknown): string {
+		if (error instanceof Error) return error.message;
+		return "An unexpected error occurred";
 	}
 
 	intercept<T>(context: ExecutionContext, next: CallHandler): Observable<IHttpSuccessResponse<T | Omit<T, string>>> {
@@ -56,19 +37,21 @@ export class HttpTransactionInterceptor implements NestInterceptor {
 		const request = httpContext.getRequest<Request>();
 		const response = httpContext.getResponse<Response>();
 
-		// ensure startTimeMs presence
 		if (!request.startTimeMs) request.startTimeMs = Date.now();
 
-		const { method, url, requestId, originalUrl, startTimeMs, ips, ip } = request;
+		const { method, requestId, originalUrl, url, startTimeMs, ips, ip } = request;
 		const path = originalUrl || url;
 		const ipAddress = ip || (ips && ips.length > 0 ? ips[0] : undefined);
 		const userAgent = request.headers["user-agent"] || "unknown-user-agent";
 
-		const logMessage = `Incoming REQUEST:\t ${requestId} <--- ${method} - ${path} \t from ${ipAddress} - ${userAgent}`;
-		this.logger.verbose(logMessage);
+		this.logger.verbose(
+			`Incoming REQUEST:\t\t ${requestId} <--- ${method} - ${path} \t from ${ipAddress} - ${userAgent}`,
+		);
+
+		// Marquer la request comme loggée par l'interceptor
+		request.isLoggedByInterceptor = true;
 
 		return next.handle().pipe(
-			// transform the response
 			map((rawData: T): IHttpSuccessResponse<Omit<T, string> | T> => {
 				let data = rawData;
 				const status = response.statusCode;
@@ -90,26 +73,25 @@ export class HttpTransactionInterceptor implements NestInterceptor {
 				};
 			}),
 
-			// log the success response
 			tap((rawData) => {
 				const duration = Date.now() - startTimeMs;
 				const logMessage = `Outgoing RESPONSE:\t ${requestId} ---> ${method} - [ ${rawData.status} ] - ${path} \t - { ${rawData.message} } - took ${duration}ms`;
 
-				if (rawData.status >= 500) this.logger.error(logMessage);
-				else if (rawData.status >= 400) this.logger.warn(logMessage);
+				if (rawData.status >= 400) this.logger.warn(logMessage);
 				else this.logger.log(logMessage);
-
-				return rawData;
+				response.isLoggedByInterceptor = true;
 			}),
 
-			// log the error response
 			catchError((error: unknown) => {
 				const duration = Date.now() - startTimeMs;
-				const { status, message, details } = this.mapErrorResponseMessage(error);
+				const status = this.resolveErrorStatus(error);
+				const message = this.resolveErrorMessage(error);
 
 				const logMessage = `Outgoing RESPONSE:\t ${requestId} ---> ${method} - [ ${status} ] - ${path} \t - { ${message} } - took ${duration}ms`;
-				if (status >= 500) this.logger.error(logMessage, { details, error });
-				else this.logger.warn(logMessage, { details, error });
+
+				if (status >= 500) this.logger.error(logMessage, { error });
+				else this.logger.warn(logMessage);
+				response.isLoggedByInterceptor = true;
 
 				return throwError(() => error);
 			}),

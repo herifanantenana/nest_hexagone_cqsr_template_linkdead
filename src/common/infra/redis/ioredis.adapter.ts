@@ -23,7 +23,7 @@ export class IoredisAdapter implements OnModuleInit, OnModuleDestroy, OnApplicat
 			db: this.redisConfig.appDb,
 			maxRetriesPerRequest: 2,
 			enableReadyCheck: true,
-			lazyConnect: false,
+			lazyConnect: true,
 		});
 
 		this.redis.on("error", (err) => {
@@ -36,6 +36,7 @@ export class IoredisAdapter implements OnModuleInit, OnModuleDestroy, OnApplicat
 	}
 
 	async onModuleInit() {
+		await this.redis.connect();
 		await this.redis.ping();
 		this.logger.log("Redis ioredis client engine initialized and connected to Redis");
 	}

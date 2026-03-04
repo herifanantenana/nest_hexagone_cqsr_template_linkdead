@@ -2,15 +2,16 @@ import appEnvConfig from "@apk_common/config/app-env.config";
 import databaseEnvConfig from "@apk_common/config/database-env.config";
 import loggerEnvConfig from "@apk_common/config/logger-env.config";
 import mailerEnvConfig from "@apk_common/config/mailer-env.config";
+import rateLimitEnvConfig from "@apk_common/config/rate-limit-env.config";
 import redisEnvConfig from "@apk_common/config/redis-env.config";
-import throttlerEnvConfig from "@apk_common/config/throttler-env.config";
 import { InfraModule } from "@apk_common/infra/infra.module";
 import { AppLogger } from "@apk_common/infra/logger/logger.service";
-import { HttpTransactionInterceptor } from "@apk_common/interface/http/interceptors/http-transaction.interceptor";
+import { AllHttpExceptionsFilter } from "@apk_common/interface/http/filters/all-http-exceptions.filter";
+import { HttpEnvelopeInterceptor } from "@apk_common/interface/http/interceptors/http-envelope.interceptor";
 import { RequestIdMiddleware } from "@apk_common/interface/http/middlewares/request-id.middleware";
 import { MiddlewareConsumer, Module, NestModule, RequestMethod } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
-import { APP_INTERCEPTOR } from "@nestjs/core";
+import { APP_FILTER, APP_INTERCEPTOR } from "@nestjs/core";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 
@@ -18,8 +19,8 @@ import { AppService } from "./app.service";
 	imports: [
 		ConfigModule.forRoot({
 			isGlobal: true,
-			envFilePath: `.env${process.env.NODE_ENV ? `.${process.env.NODE_ENV}` : ""}`,
-			load: [appEnvConfig, databaseEnvConfig, loggerEnvConfig, redisEnvConfig, mailerEnvConfig, throttlerEnvConfig],
+			envFilePath: `.env${process.env.NODE_ENV?.length ? `.${process.env.NODE_ENV}` : ""}`,
+			load: [appEnvConfig, databaseEnvConfig, loggerEnvConfig, redisEnvConfig, mailerEnvConfig, rateLimitEnvConfig],
 		}),
 		InfraModule,
 	],
@@ -27,8 +28,12 @@ import { AppService } from "./app.service";
 	providers: [
 		AppService,
 		{
+			provide: APP_FILTER,
+			useClass: AllHttpExceptionsFilter,
+		},
+		{
 			provide: APP_INTERCEPTOR,
-			useClass: HttpTransactionInterceptor,
+			useClass: HttpEnvelopeInterceptor,
 		},
 	],
 })

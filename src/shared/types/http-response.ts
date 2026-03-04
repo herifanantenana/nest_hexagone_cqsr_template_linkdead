@@ -6,10 +6,13 @@ interface IHttpBaseResponse {
 	timestamp: string;
 	path: string;
 }
+
+export type HttpErrorDetails = Record<string, unknown>;
+
 interface IHttpErrorFormatted {
 	error: string;
 	errorMessage: string;
-	details?: unknown;
+	details?: HttpErrorDetails;
 }
 
 export interface IHttpErrorResponse extends IHttpBaseResponse, IHttpErrorFormatted {}

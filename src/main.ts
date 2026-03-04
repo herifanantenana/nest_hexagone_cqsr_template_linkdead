@@ -5,6 +5,7 @@ import { ConfigService, type ConfigType } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
 import { NestExpressApplication } from "@nestjs/platform-express";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+import helmet from "helmet";
 import { AppModule } from "./app.module";
 
 async function bootstrap() {
@@ -22,7 +23,7 @@ async function bootstrap() {
 		logger.error("App configuration is missing");
 		process.exit(1);
 	}
-	const { isProduction, host, port, trustProxy, crossOrigin, allowedOrigins, prefix } = appConfig;
+	const { isProduction, host, port, trustProxy, crossOrigin, allowedOrigins, prefix, swaggerPrefix } = appConfig;
 
 	// trust proxy if enabled
 	if (trustProxy) {
@@ -30,12 +31,41 @@ async function bootstrap() {
 		logger.log("Trust proxy enabled");
 	} else logger.log("Trust proxy disabled");
 
+	// security headers — CSP configured to allow Swagger UI inline assets
+	app.use(
+		helmet({
+			contentSecurityPolicy: {
+				directives: {
+					...helmet.contentSecurityPolicy.getDefaultDirectives(),
+					"script-src": ["'self'", "'unsafe-inline'"],
+					"style-src": ["'self'", "'unsafe-inline'"],
+					"img-src": ["'self'", "data:", "validator.swagger.io"],
+					// ✅ important: ne jamais forcer upgrade si tu supportes HTTP
+					"upgrade-insecure-requests": null,
+				},
+			},
+			crossOriginOpenerPolicy: false,
+			originAgentCluster: false,
+			// ✅ je te conseille aussi false si tu veux éviter des surprises en HTTP
+			crossOriginEmbedderPolicy: false,
+		}),
+	);
+	logger.log("Helmet security headers enabled");
+
+	// allowedOrigins.push(`http://${host}:${port}`);
 	// enable CORS
 	app.enableCors({
-		origin: crossOrigin ? allowedOrigins : false,
+		origin: crossOrigin
+			? (origin, callback) => {
+					if (!origin) return callback(null, true);
+					if (allowedOrigins.includes("*")) return callback(null, true);
+					if (allowedOrigins.includes(origin)) return callback(null, true);
+
+					return callback(new Error(`CORS blocked for origin: ${origin}`), false);
+				}
+			: false,
 		methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 		credentials: true,
-		preflightContinue: false,
 		optionsSuccessStatus: 204,
 	});
 	logger.log(`CORS enabled for origin: ${allowedOrigins.length > 0 ? allowedOrigins.join(", ") : "to all origins"}`);
@@ -64,7 +94,6 @@ async function bootstrap() {
 		.setVersion("1.0.2")
 		.build();
 	const document = SwaggerModule.createDocument(app, swaggerConfig);
-	const swaggerPrefix = isProduction ? "docs" : "dev-docs";
 	SwaggerModule.setup(swaggerPrefix, app, document, {
 		swaggerOptions: {
 			withCredentials: true,

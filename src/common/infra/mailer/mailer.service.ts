@@ -22,8 +22,9 @@ export class MailerService {
 
 	private async sendTemplateEmail(to: string, subject: string, templateName: string, context: Record<string, unknown>) {
 		const transporter = this.nodemailerAdapter.getTransporter();
+		const html: string = this.handlebarsAdapter.renderTemplate(templateName, context);
+
 		try {
-			const html: string = this.handlebarsAdapter.renderTemplate(templateName, context);
 			const info = (await transporter.sendMail({
 				from: this.mailerConfig.from,
 				to,
@@ -38,6 +39,7 @@ export class MailerService {
 			this.logger.debug(`Email sent to ${to} with subject "${subject}"`);
 		} catch (error) {
 			this.logger.error(`Failed to send email to ${to}: ${(error as Error).message}`);
+			throw error;
 		}
 	}
 
