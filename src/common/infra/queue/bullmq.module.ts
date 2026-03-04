@@ -1,9 +1,8 @@
 import redisEnvConfig from "@apk_common/config/redis-env.config";
 import { BullModule } from "@nestjs/bullmq";
-import { Global, Module } from "@nestjs/common";
+import { Module } from "@nestjs/common";
 import { ConfigType } from "@nestjs/config";
 
-@Global()
 @Module({
 	imports: [
 		BullModule.forRootAsync({

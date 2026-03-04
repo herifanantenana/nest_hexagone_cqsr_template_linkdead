@@ -1,9 +1,8 @@
-import { Global, Module } from "@nestjs/common";
+import { Module } from "@nestjs/common";
 import { WINSTON_MODULE_PROVIDER } from "nest-winston";
 import { AppLogger } from "./logger.service";
 import { WinstonAdapter } from "./winston.adapter";
 
-@Global()
 @Module({
 	providers: [
 		WinstonAdapter,

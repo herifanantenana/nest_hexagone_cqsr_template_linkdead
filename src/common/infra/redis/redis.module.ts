@@ -1,9 +1,10 @@
-import { Global, Module } from "@nestjs/common";
+import { Module } from "@nestjs/common";
+import { LoggerModule } from "../logger/logger.module";
 import { IoredisAdapter, REDIS_CLIENT } from "./ioredis.adapter";
 import { RedisService } from "./redis.service";
 
-@Global()
 @Module({
+	imports: [LoggerModule],
 	providers: [
 		IoredisAdapter,
 		{

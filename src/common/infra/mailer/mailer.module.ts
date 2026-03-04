@@ -1,10 +1,11 @@
-import { Global, Module } from "@nestjs/common";
+import { Module } from "@nestjs/common";
+import { LoggerModule } from "../logger/logger.module";
 import { HandlebarsAdapter } from "./handlebars.adapter";
 import { MailerService } from "./mailer.service";
 import { NodemailerAdapter } from "./nodemailer.adapter";
 
-@Global()
 @Module({
+	imports: [LoggerModule],
 	providers: [HandlebarsAdapter, NodemailerAdapter, MailerService],
 	exports: [MailerService],
 })

@@ -3,12 +3,9 @@ import databaseEnvConfig from "@apk_common/config/database-env.config";
 import loggerEnvConfig from "@apk_common/config/logger-env.config";
 import mailerEnvConfig from "@apk_common/config/mailer-env.config";
 import redisEnvConfig from "@apk_common/config/redis-env.config";
-import { BullmqModule } from "@apk_common/infra/bullmq/bullmq.module";
-import { DatabaseModule } from "@apk_common/infra/database/database.module";
-import { LoggerModule } from "@apk_common/infra/logger/logger.module";
+import throttlerEnvConfig from "@apk_common/config/throttler-env.config";
+import { InfraModule } from "@apk_common/infra/infra.module";
 import { AppLogger } from "@apk_common/infra/logger/logger.service";
-import { MailerModule } from "@apk_common/infra/mailer/mailer.module";
-import { RedisModule } from "@apk_common/infra/redis/redis.module";
 import { HttpTransactionInterceptor } from "@apk_common/interface/http/interceptors/http-transaction.interceptor";
 import { RequestIdMiddleware } from "@apk_common/interface/http/middlewares/request-id.middleware";
 import { MiddlewareConsumer, Module, NestModule, RequestMethod } from "@nestjs/common";
@@ -22,13 +19,9 @@ import { AppService } from "./app.service";
 		ConfigModule.forRoot({
 			isGlobal: true,
 			envFilePath: `.env${process.env.NODE_ENV ? `.${process.env.NODE_ENV}` : ""}`,
-			load: [appEnvConfig, databaseEnvConfig, loggerEnvConfig, redisEnvConfig, mailerEnvConfig],
+			load: [appEnvConfig, databaseEnvConfig, loggerEnvConfig, redisEnvConfig, mailerEnvConfig, throttlerEnvConfig],
 		}),
-		LoggerModule,
-		DatabaseModule,
-		RedisModule,
-		MailerModule,
-		BullmqModule,
+		InfraModule,
 	],
 	controllers: [AppController],
 	providers: [
