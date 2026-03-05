@@ -15,7 +15,7 @@ export const sessionsTable = pgTable(
 		accountId: uuid("account_id").notNull(),
 		userId: uuid("user_id").notNull(),
 		actorId: uuid("actor_id").notNull(),
-		hashedRefreshToken: varchar("hashed_refresh_token", { length: 255 }).notNull(),
+		refreshTokenHash: varchar("refresh_token_hash", { length: 255 }).notNull(),
 		userAgent: varchar("user_agent", { length: 255 }),
 		ipAddress: varchar("ip_address", { length: 45 }),
 		deviceId: varchar("device_id", { length: 255 }),

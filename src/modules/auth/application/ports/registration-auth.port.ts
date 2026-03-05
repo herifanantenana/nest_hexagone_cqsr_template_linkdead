@@ -1,6 +1,6 @@
 export interface ICreateRegistrationInput {
 	email: string;
-	hashedToken: string;
+	tokenHash: string;
 	expiresAt: Date;
 }
 
@@ -11,11 +11,8 @@ export interface ICreateRegistrationOutput {
 }
 
 export abstract class RegistrationsAuthPort {
-	abstract findHashedTokenExpireAtByEmail(email: string, tx?: unknown): Promise<ICreateRegistrationOutput | null>;
-	abstract createRegistration(input: ICreateRegistrationInput, tx?: unknown): Promise<{ hashedToken: string }>;
-	abstract resetRegistrationByEmail(input: ICreateRegistrationInput, tx?: unknown): Promise<void>;
-	abstract updateCounterRegistrationByEmail(
-		input: Omit<ICreateRegistrationInput, "expiresAt">,
-		tx?: unknown,
-	): Promise<void>;
+	abstract findByEmail(email: string, tx?: unknown): Promise<ICreateRegistrationOutput | null>;
+	abstract create(input: ICreateRegistrationInput, tx?: unknown): Promise<{ tokenHash: string }>;
+	abstract resetByEmail(input: ICreateRegistrationInput, tx?: unknown): Promise<void>;
+	abstract rotateByEmail(input: Omit<ICreateRegistrationInput, "expiresAt">, tx?: unknown): Promise<void>;
 }

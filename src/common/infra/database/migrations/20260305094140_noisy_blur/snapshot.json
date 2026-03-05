@@ -1,7 +1,7 @@
 {
   "version": "8",
   "dialect": "postgres",
-  "id": "6c68977a-9f00-4b7b-979d-c5b1b35026ad",
+  "id": "40c733db-c81d-4e32-b083-0595d47da90e",
   "prevIds": [
     "00000000-0000-0000-0000-000000000000"
   ],
@@ -153,7 +153,7 @@
       "default": null,
       "generated": null,
       "identity": null,
-      "name": "provider_account_id",
+      "name": "provider_o_auth_id",
       "entityType": "columns",
       "schema": "public",
       "table": "accounts"
@@ -166,7 +166,7 @@
       "default": null,
       "generated": null,
       "identity": null,
-      "name": "hashed_password",
+      "name": "password_hash",
       "entityType": "columns",
       "schema": "public",
       "table": "accounts"
@@ -348,7 +348,7 @@
       "default": null,
       "generated": null,
       "identity": null,
-      "name": "hashed_verify_token",
+      "name": "token_hash",
       "entityType": "columns",
       "schema": "public",
       "table": "registrations"
@@ -478,7 +478,7 @@
       "default": null,
       "generated": null,
       "identity": null,
-      "name": "hashed_refresh_token",
+      "name": "refresh_token_hash",
       "entityType": "columns",
       "schema": "public",
       "table": "sessions"
@@ -1233,10 +1233,10 @@
     {
       "nameExplicit": false,
       "columns": [
-        "hashed_verify_token"
+        "token_hash"
       ],
       "nullsNotDistinct": false,
-      "name": "registrations_hashed_verify_token_key",
+      "name": "registrations_token_hash_key",
       "schema": "public",
       "table": "registrations",
       "entityType": "uniques"

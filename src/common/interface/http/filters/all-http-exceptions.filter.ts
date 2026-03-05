@@ -21,12 +21,12 @@ export class AllHttpExceptionsFilter implements ExceptionFilter {
 	constructor(private readonly appLogger: AppLogger) {
 		this.logger = appLogger.withContext("HttpEnvelopeInterceptor");
 	}
+
 	catch(exception: unknown, host: ArgumentsHost) {
 		const ctx = host.switchToHttp();
 		const request = ctx.getRequest<Request>();
 		const response = ctx.getResponse<Response>();
 
-		// Si c'est une ThrottlerException ET que l'interceptor n'a pas loggé, on log comme HttpEnvelopeInterceptor
 		if (
 			exception instanceof ThrottlerException &&
 			(!request.isLoggedByInterceptor || !response.isLoggedByInterceptor)
@@ -40,12 +40,12 @@ export class AllHttpExceptionsFilter implements ExceptionFilter {
 			success: false,
 			status: extracted.status,
 			message: extracted.message,
-			error: extracted.error,
-			errorMessage: extracted.message,
-			details: extracted.status >= 500 ? undefined : extracted.details,
 			requestId: request.requestId ?? "unknown",
 			timestamp: new Date().toISOString(),
 			path: request.originalUrl || request.url,
+			error: extracted.error,
+			errorMessage: extracted.message,
+			details: extracted.status >= 500 ? undefined : extracted.details,
 		};
 
 		response.status(extracted.status).json(body);
@@ -92,8 +92,8 @@ export class AllHttpExceptionsFilter implements ExceptionFilter {
 		if (exception instanceof BusinessLogicError) {
 			return this.extractFromBusinessLogicError(exception);
 		}
-
-		return this.extractFromUnknownException();
+		console.log("Unknown exception type caught by AllHttpExceptionsFilter:", exception);
+		return this.extractFromUnknownException(exception);
 	}
 
 	private extractFromHttpException(exception: HttpException): IExtractedError {
@@ -121,6 +121,13 @@ export class AllHttpExceptionsFilter implements ExceptionFilter {
 			message = exception.message;
 		}
 
+		if (status >= 500) {
+			this.logger.error(
+				`HttpException caught: status=${status}, message=${message}, details=${JSON.stringify(details)}`,
+				exception.stack,
+			);
+		}
+
 		return {
 			status,
 			error: HttpStatus[status] ?? "UNKNOWN_ERROR",
@@ -146,11 +153,12 @@ export class AllHttpExceptionsFilter implements ExceptionFilter {
 		};
 	}
 
-	private extractFromUnknownException(): IExtractedError {
+	private extractFromUnknownException(exception: unknown): IExtractedError {
 		return {
 			status: HttpStatus.INTERNAL_SERVER_ERROR,
 			error: "INTERNAL_SERVER_ERROR",
 			message: "An unexpected error occurred",
+			details: exception instanceof Error ? { stack: exception.stack } : undefined,
 		};
 	}
 }

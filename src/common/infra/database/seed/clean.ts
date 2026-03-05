@@ -6,7 +6,7 @@ import path from "path";
 
 const envFile = `.env${process.env.NODE_ENV ? `.${process.env.NODE_ENV}` : ""}`;
 dotenv.config({ path: envFile });
-const connString = `postgresql://${process.env.DATABASE_USERNAMENAME}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}/${process.env.DATABASE_NAME}`;
+const connString = `postgresql://${process.env.USERNAME}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}/${process.env.DATABASE_NAME}`;
 const db = drizzle(connString);
 const migrationsDir = path.resolve(__dirname, "../migrations");
 

@@ -21,7 +21,7 @@ export const RATE_LIMIT_ENABLED_KEY = "RATE_LIMIT_ENABLED_KEY";
 				throttlers: [
 					{
 						name: THROTTLER_REGISTER,
-						ttl: seconds(throttlerConfig.registerTtlSeconds),
+						ttl: seconds(throttlerConfig.registerTtlSec),
 						limit: throttlerConfig.registerLimit,
 					},
 				],

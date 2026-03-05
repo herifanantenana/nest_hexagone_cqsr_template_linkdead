@@ -2,17 +2,21 @@ import { registerAs } from "@nestjs/config";
 import Joi from "joi";
 
 interface IAuthEnvConfig {
-	AUTH_REGISTRATION_COOLDOWN_SEC: number;
+	AUTH_REGISTRATION_TOKEN_CLD_SEC: number;
 	AUTH_REGISTRATION_MAX_ATTEMPTS: number;
-	AUTH_REGISTRATION_TOKEN_DB_TTL_SEC: number;
+	AUTH_REGISTRATION_TOKEN_TTL_SEC: number;
 	AUTH_REGISTRATION_TOKEN_SECRET: string;
+	// ! not safe
+	AUTH_FRONT_VERIFICATION_URL: string;
 }
 
 export const authEnvConfigValidator = Joi.object({
-	AUTH_REGISTRATION_COOLDOWN_SEC: Joi.number().integer().positive().default(300), // 5 minutes
+	AUTH_REGISTRATION_TOKEN_CLD_SEC: Joi.number().integer().positive().default(300),
 	AUTH_REGISTRATION_MAX_ATTEMPTS: Joi.number().integer().positive().default(3),
-	AUTH_REGISTRATION_TOKEN_DB_TTL_SEC: Joi.number().integer().positive().default(1800), // 30 minutes
+	AUTH_REGISTRATION_TOKEN_TTL_SEC: Joi.number().integer().positive().default(900),
 	AUTH_REGISTRATION_TOKEN_SECRET: Joi.string().min(32).required(),
+	// ! not safe
+	AUTH_FRONT_VERIFICATION_URL: Joi.string().uri().required(),
 });
 
 export default registerAs("auth", () => {
@@ -25,9 +29,11 @@ export default registerAs("auth", () => {
 	const config = res.value as IAuthEnvConfig;
 
 	return {
-		registrationCooldownSec: config.AUTH_REGISTRATION_COOLDOWN_SEC,
+		registrationCooldownSec: config.AUTH_REGISTRATION_TOKEN_CLD_SEC,
 		registrationMaxAttempts: config.AUTH_REGISTRATION_MAX_ATTEMPTS,
-		registrationTokenDbTtlSec: config.AUTH_REGISTRATION_TOKEN_DB_TTL_SEC,
+		registrationTokenTtlSec: config.AUTH_REGISTRATION_TOKEN_TTL_SEC,
 		registrationTokenSecret: config.AUTH_REGISTRATION_TOKEN_SECRET,
+		// ! not safe
+		frontendBaseUrl: config.AUTH_FRONT_VERIFICATION_URL,
 	};
 });

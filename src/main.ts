@@ -23,7 +23,7 @@ async function bootstrap() {
 		logger.error("App configuration is missing");
 		process.exit(1);
 	}
-	const { isProduction, host, port, trustProxy, crossOrigin, allowedOrigins, prefix, swaggerPrefix } = appConfig;
+	const { isProduction, host, port, trustProxy, allowedOrigins, pathPrefix, swaggerPathPrefix } = appConfig;
 
 	// trust proxy if enabled
 	if (trustProxy) {
@@ -40,22 +40,19 @@ async function bootstrap() {
 					"script-src": ["'self'", "'unsafe-inline'"],
 					"style-src": ["'self'", "'unsafe-inline'"],
 					"img-src": ["'self'", "data:", "validator.swagger.io"],
-					// ✅ important: ne jamais forcer upgrade si tu supportes HTTP
 					"upgrade-insecure-requests": null,
 				},
 			},
 			crossOriginOpenerPolicy: false,
 			originAgentCluster: false,
-			// ✅ je te conseille aussi false si tu veux éviter des surprises en HTTP
 			crossOriginEmbedderPolicy: false,
 		}),
 	);
 	logger.log("Helmet security headers enabled");
 
-	// allowedOrigins.push(`http://${host}:${port}`);
 	// enable CORS
 	app.enableCors({
-		origin: crossOrigin
+		origin: allowedOrigins
 			? (origin, callback) => {
 					if (!origin) return callback(null, true);
 					if (allowedOrigins.includes("*")) return callback(null, true);
@@ -71,7 +68,7 @@ async function bootstrap() {
 	logger.log(`CORS enabled for origin: ${allowedOrigins.length > 0 ? allowedOrigins.join(", ") : "to all origins"}`);
 
 	// set global prefix
-	app.setGlobalPrefix(prefix);
+	app.setGlobalPrefix(pathPrefix);
 
 	// set up global validation pipe
 	app.useGlobalPipes(
@@ -94,7 +91,7 @@ async function bootstrap() {
 		.setVersion("1.0.2")
 		.build();
 	const document = SwaggerModule.createDocument(app, swaggerConfig);
-	SwaggerModule.setup(swaggerPrefix, app, document, {
+	SwaggerModule.setup(swaggerPathPrefix, app, document, {
 		swaggerOptions: {
 			withCredentials: true,
 		},
@@ -105,7 +102,7 @@ async function bootstrap() {
 	});
 
 	const appDomain = await app.getUrl();
-	logger.log(`API server available at: ${appDomain}/${prefix}`);
-	logger.log(`API documentation available at: ${appDomain}/${swaggerPrefix}`);
+	logger.log(`API server available at: ${appDomain}/${pathPrefix}`);
+	logger.log(`API documentation available at: ${appDomain}/${swaggerPathPrefix}`);
 }
 void bootstrap();

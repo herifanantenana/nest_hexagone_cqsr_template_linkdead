@@ -4,7 +4,7 @@ import { type ConfigType } from "@nestjs/config";
 import nodemailer from "nodemailer";
 import type SMTPTransport from "nodemailer/lib/smtp-transport";
 import { AppLogger } from "../logger/logger.service";
-import { HandlebarsAdapter } from "./handlebars.adapter";
+import { HandlebarsTemplateAdapter } from "./handlebars-template.adapter";
 import { NodemailerAdapter } from "./nodemailer.adapter";
 
 @Injectable()
@@ -12,21 +12,21 @@ export class MailerService {
 	private readonly logger: AppLogger;
 
 	constructor(
-		private readonly nodemailerAdapter: NodemailerAdapter,
-		private readonly handlebarsAdapter: HandlebarsAdapter,
 		private readonly appLogger: AppLogger,
+		private readonly nodemailerAdapter: NodemailerAdapter,
+		private readonly handlebarsAdapter: HandlebarsTemplateAdapter,
 		@Inject(mailerEnvConfig.KEY) private readonly mailerConfig: ConfigType<typeof mailerEnvConfig>,
 	) {
 		this.logger = appLogger.withContext(MailerService.name);
 	}
 
-	private async sendTemplateEmail(to: string, subject: string, templateName: string, context: Record<string, unknown>) {
+	private async sendTemplateEmail(templateName: string, subject: string, to: string, context: Record<string, unknown>) {
 		const transporter = this.nodemailerAdapter.getTransporter();
 		const html: string = this.handlebarsAdapter.renderTemplate(templateName, context);
 
 		try {
 			const info = (await transporter.sendMail({
-				from: this.mailerConfig.from,
+				from: this.mailerConfig.fromSupport,
 				to,
 				subject,
 				html,
@@ -44,9 +44,17 @@ export class MailerService {
 	}
 
 	public async sendTestEmail() {
-		await this.sendTemplateEmail("herifanantenana17@gmail.com", "Test Email", "verify-email", {
+		await this.sendTemplateEmail("verify-email", "Test Email", "herifanantenana17@gmail.com", {
 			username: "Herifananatanana",
 			verifyUrl: "https://example.com/verify",
+		});
+	}
+
+	// ! not safe
+	public async sendVerificationEmail(to: string, username: string, verifyUrl: string) {
+		await this.sendTemplateEmail("verify-email", "Please verify your email", to, {
+			username,
+			verifyUrl,
 		});
 	}
 }

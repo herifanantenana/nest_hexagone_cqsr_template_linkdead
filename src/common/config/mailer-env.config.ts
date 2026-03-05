@@ -2,7 +2,7 @@ import { registerAs } from "@nestjs/config";
 import Joi from "joi";
 
 interface IMailerConfig {
-	MAILER_FROM: string;
+	MAILER_FROM_SUPPORT: string;
 	MAILER_HOST: string;
 	MAILER_USER: string;
 	MAILER_PASSWORD: string;
@@ -10,7 +10,7 @@ interface IMailerConfig {
 }
 
 export const mailerEnvConfigValidator = Joi.object({
-	MAILER_FROM: Joi.string().required(),
+	MAILER_FROM_SUPPORT: Joi.string().required(),
 	MAILER_HOST: Joi.string().hostname().required(),
 	MAILER_USER: Joi.string().email().required(),
 	MAILER_PASSWORD: Joi.string().required(),
@@ -26,7 +26,7 @@ export default registerAs("mailer", () => {
 
 	const config = res.value as IMailerConfig;
 	return {
-		from: config.MAILER_FROM,
+		fromSupport: config.MAILER_FROM_SUPPORT,
 		host: config.MAILER_HOST,
 		user: config.MAILER_USER,
 		password: config.MAILER_PASSWORD,

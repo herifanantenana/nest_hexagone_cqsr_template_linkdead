@@ -8,7 +8,7 @@ interface ILoggerConfig {
 }
 
 export const loggerEnvConfigValidator = Joi.object({
-	LOGGER_LEVEL: Joi.string().valid("error", "warn", "info", "debug", "verbose").default("info"),
+	LOGGER_LEVEL: Joi.string().valid("error", "warn", "info", "debug", "verbose").default("verbose"),
 	LOGGER_DIR: Joi.string().default("./logs"),
 	LOGGER_ACTIVE_FILE: Joi.boolean().default(false),
 });

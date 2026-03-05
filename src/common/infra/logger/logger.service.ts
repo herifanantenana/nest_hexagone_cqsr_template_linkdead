@@ -5,14 +5,14 @@ import * as winston from "winston";
 @Injectable()
 export class AppLogger implements LoggerService {
 	private context = "";
-	constructor(@Inject(WINSTON_MODULE_PROVIDER) private readonly winstonLoggerInstance: winston.Logger) {}
+	constructor(@Inject(WINSTON_MODULE_PROVIDER) private readonly winstonInstance: winston.Logger) {}
 
 	setContext(context: string): void {
 		this.context = context;
 	}
 
 	withContext(context: string): AppLogger {
-		const child = new AppLogger(this.winstonLoggerInstance);
+		const child = new AppLogger(this.winstonInstance);
 		child.setContext(context);
 		return child;
 	}
@@ -33,22 +33,22 @@ export class AppLogger implements LoggerService {
 	}
 
 	error(message: string, ...optionalParams: unknown[]) {
-		this.winstonLoggerInstance.error(message, this.buildParams(optionalParams));
+		this.winstonInstance.error(message, this.buildParams(optionalParams));
 	}
 
 	warn(message: string, ...optionalParams: unknown[]) {
-		this.winstonLoggerInstance.warn(message, this.buildParams(optionalParams));
+		this.winstonInstance.warn(message, this.buildParams(optionalParams));
 	}
 
 	log(message: string, ...optionalParams: unknown[]): void {
-		this.winstonLoggerInstance.info(message, this.buildParams(optionalParams));
+		this.winstonInstance.info(message, this.buildParams(optionalParams));
 	}
 
 	debug(message: string, ...optionalParams: unknown[]): void {
-		this.winstonLoggerInstance.debug(message, this.buildParams(optionalParams));
+		this.winstonInstance.debug(message, this.buildParams(optionalParams));
 	}
 
 	verbose(message: string, ...optionalParams: unknown[]): void {
-		this.winstonLoggerInstance.verbose(message, this.buildParams(optionalParams));
+		this.winstonInstance.verbose(message, this.buildParams(optionalParams));
 	}
 }

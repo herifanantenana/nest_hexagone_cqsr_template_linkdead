@@ -19,9 +19,9 @@ export class IoredisAdapter implements OnModuleInit, OnModuleDestroy, OnApplicat
 		this.logger = this.appLogger.withContext(IoredisAdapter.name);
 
 		this.redis = new Redis(`redis://${this.redisConfig.host}:${this.redisConfig.port}`, {
-			keyPrefix: this.redisConfig.appPrefix + ":",
+			keyPrefix: `${this.redisConfig.appPrefix}:`,
 			db: this.redisConfig.appDb,
-			maxRetriesPerRequest: 2,
+			maxRetriesPerRequest: 3,
 			enableReadyCheck: true,
 			lazyConnect: true,
 		});

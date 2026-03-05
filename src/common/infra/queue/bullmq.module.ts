@@ -11,9 +11,9 @@ import { ConfigType } from "@nestjs/config";
 				connection: {
 					host: redisConfig.host,
 					port: redisConfig.port,
-					db: redisConfig.jobDb,
+					db: redisConfig.jobsDb,
 				},
-				prefix: redisConfig.jobPrefix + ":",
+				prefix: `${redisConfig.jobsPrefix}:`,
 			}),
 		}),
 	],

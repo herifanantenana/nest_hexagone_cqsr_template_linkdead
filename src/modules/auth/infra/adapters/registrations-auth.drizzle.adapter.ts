@@ -12,12 +12,12 @@ import { eq, sql } from "drizzle-orm";
 export class RegistrationsAuthDrizzleAdapter implements RegistrationsAuthPort {
 	constructor(private readonly drizzleAdapter: DrizzleAdapter) {}
 
-	async findHashedTokenExpireAtByEmail(email: string, tx?: unknown): Promise<ICreateRegistrationOutput | null> {
+	async findByEmail(email: string, tx?: unknown): Promise<ICreateRegistrationOutput | null> {
 		const db = this.drizzleAdapter.getDb(tx);
 		const rows = await db
 			.select({
 				id: registrationsTable.id,
-				hashedToken: registrationsTable.hashedToken,
+				tokenHash: registrationsTable.tokenHash,
 				expiresAt: registrationsTable.expiresAt,
 				lastSentAt: registrationsTable.lastSentAt,
 				sentCount: registrationsTable.sentCount,
@@ -27,29 +27,29 @@ export class RegistrationsAuthDrizzleAdapter implements RegistrationsAuthPort {
 		return rows[0] ?? null;
 	}
 
-	async createRegistration(input: ICreateRegistrationInput, tx?: unknown): Promise<{ hashedToken: string }> {
+	async create(input: ICreateRegistrationInput, tx?: unknown): Promise<{ tokenHash: string }> {
 		const db = this.drizzleAdapter.getDb(tx);
-		const { email, hashedToken, expiresAt } = input;
+		const { email, tokenHash, expiresAt } = input;
 		const [row] = await db
 			.insert(registrationsTable)
 			.values({
 				email,
-				hashedToken,
+				tokenHash,
 				expiresAt,
 			})
 			.returning({
-				hashedToken: registrationsTable.hashedToken,
+				tokenHash: registrationsTable.tokenHash,
 			});
 		return row;
 	}
 
-	async resetRegistrationByEmail(input: ICreateRegistrationInput, tx?: unknown): Promise<void> {
+	async resetByEmail(input: ICreateRegistrationInput, tx?: unknown): Promise<void> {
 		const db = this.drizzleAdapter.getDb(tx);
-		const { email, hashedToken, expiresAt } = input;
+		const { email, tokenHash, expiresAt } = input;
 		await db
 			.update(registrationsTable)
 			.set({
-				hashedToken,
+				tokenHash,
 				expiresAt,
 				lastSentAt: new Date(),
 				sentCount: 1,
@@ -57,16 +57,13 @@ export class RegistrationsAuthDrizzleAdapter implements RegistrationsAuthPort {
 			.where(eq(registrationsTable.email, email));
 	}
 
-	async updateCounterRegistrationByEmail(
-		input: Omit<ICreateRegistrationInput, "expiresAt">,
-		tx?: unknown,
-	): Promise<void> {
+	async rotateByEmail(input: Omit<ICreateRegistrationInput, "expiresAt">, tx?: unknown): Promise<void> {
 		const db = this.drizzleAdapter.getDb(tx);
-		const { email, hashedToken } = input;
+		const { email, tokenHash } = input;
 		await db
 			.update(registrationsTable)
 			.set({
-				hashedToken,
+				tokenHash,
 				lastSentAt: new Date(),
 				sentCount: sql`${registrationsTable.sentCount} + 1`,
 			})

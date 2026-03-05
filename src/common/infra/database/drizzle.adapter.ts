@@ -39,7 +39,7 @@ export class DrizzleAdapter implements OnModuleInit, OnModuleDestroy, OnApplicat
 	async onModuleInit() {
 		try {
 			await this.db.execute("SELECT 1");
-			this.logger.log("Database drizzle connection established successfully");
+			this.logger.log("Database drizzle connection SELECT 1 established successfully");
 		} catch (error) {
 			this.logger.error("Failed to connect to the database:", error);
 			throw error;

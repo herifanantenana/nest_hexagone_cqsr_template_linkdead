@@ -4,21 +4,19 @@ import Joi from "joi";
 interface IRedisConfig {
 	REDIS_HOST: string;
 	REDIS_PORT: number;
-	REDIS_APP_PREFIX: string;
-	REDIS_JOB_PREFIX: string;
 	REDIS_APP_DB: number;
-	REDIS_JOB_DB: number;
-	REDIS_PENDING_REGISTER_TTL_SECONDS: number;
+	REDIS_APP_PREFIX: string;
+	REDIS_JOBS_DB: number;
+	REDIS_JOBS_PREFIX: string;
 }
 
 export const redisEnvConfigValidator = Joi.object({
 	REDIS_HOST: Joi.string().hostname().required(),
 	REDIS_PORT: Joi.number().port().required(),
-	REDIS_APP_PREFIX: Joi.string().default("linkdead_v3_app"),
-	REDIS_JOB_PREFIX: Joi.string().default("linkdead_v3_jobs"),
+	REDIS_APP_PREFIX: Joi.string().default("app"),
+	REDIS_JOBS_PREFIX: Joi.string().default("jobs"),
 	REDIS_APP_DB: Joi.number().integer().min(0).default(0),
-	REDIS_JOB_DB: Joi.number().integer().min(0).default(1),
-	REDIS_PENDING_REGISTER_TTL_SECONDS: Joi.number().positive().default(3600),
+	REDIS_JOBS_DB: Joi.number().integer().min(0).default(1),
 });
 
 export default registerAs("redis", () => {
@@ -33,9 +31,8 @@ export default registerAs("redis", () => {
 		host: config.REDIS_HOST,
 		port: config.REDIS_PORT,
 		appPrefix: config.REDIS_APP_PREFIX,
-		jobPrefix: config.REDIS_JOB_PREFIX,
+		jobsPrefix: config.REDIS_JOBS_PREFIX,
 		appDb: config.REDIS_APP_DB,
-		jobDb: config.REDIS_JOB_DB,
-		pendingRegisterTtlSeconds: config.REDIS_PENDING_REGISTER_TTL_SECONDS,
+		jobsDb: config.REDIS_JOBS_DB,
 	};
 });
