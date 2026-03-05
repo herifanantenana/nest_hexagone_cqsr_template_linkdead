@@ -27,6 +27,17 @@ CREATE TABLE "actors" (
 	CONSTRAINT "only_one_id" CHECK (((user_id IS NOT NULL AND organization_id IS NULL AND type = 'user') OR (user_id IS NULL AND organization_id IS NOT NULL AND type = 'organization')))
 );
 --> statement-breakpoint
+CREATE TABLE "registrations" (
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+	"email" varchar(255) NOT NULL UNIQUE,
+	"hashed_verify_token" varchar(255) NOT NULL UNIQUE,
+	"sent_count" integer DEFAULT 1 NOT NULL,
+	"last_sent_at" timestamp with time zone DEFAULT now() NOT NULL,
+	"expires_at" timestamp with time zone NOT NULL,
+	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
+	"updated_at" timestamp with time zone DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE "sessions" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
 	"account_id" uuid NOT NULL,

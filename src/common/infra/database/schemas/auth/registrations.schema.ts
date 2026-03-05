@@ -6,7 +6,7 @@ export const registrationsTable = pgTable("registrations", {
 	id,
 	email: varchar("email", { length: 255 }).notNull().unique(),
 	hashedToken: varchar("hashed_verify_token", { length: 255 }).notNull().unique(),
-	sentCount: integer("sent_count").notNull().default(0),
+	sentCount: integer("sent_count").notNull().default(1),
 	lastSentAt,
 	expiresAt,
 	createdAt,

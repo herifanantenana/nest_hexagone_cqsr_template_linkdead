@@ -23,7 +23,7 @@ export class HttpEnvelopeInterceptor implements NestInterceptor {
 
 	private resolveErrorStatus(error: unknown): number {
 		if (error instanceof HttpException) return error.getStatus();
-		if (error instanceof BusinessLogicError) return HttpStatus.UNPROCESSABLE_ENTITY;
+		if (error instanceof BusinessLogicError) return error.statusCode;
 		return HttpStatus.INTERNAL_SERVER_ERROR;
 	}
 

@@ -1,7 +1,7 @@
 {
   "version": "8",
   "dialect": "postgres",
-  "id": "28f5838a-2041-466c-ae9a-4090d7f83d7d",
+  "id": "6c68977a-9f00-4b7b-979d-c5b1b35026ad",
   "prevIds": [
     "00000000-0000-0000-0000-000000000000"
   ],
@@ -79,6 +79,12 @@
     {
       "isRlsEnabled": false,
       "name": "actors",
+      "entityType": "tables",
+      "schema": "public"
+    },
+    {
+      "isRlsEnabled": false,
+      "name": "registrations",
       "entityType": "tables",
       "schema": "public"
     },
@@ -307,6 +313,110 @@
       "entityType": "columns",
       "schema": "public",
       "table": "actors"
+    },
+    {
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "name": "id",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "registrations"
+    },
+    {
+      "type": "varchar(255)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "email",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "registrations"
+    },
+    {
+      "type": "varchar(255)",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "hashed_verify_token",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "registrations"
+    },
+    {
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "1",
+      "generated": null,
+      "identity": null,
+      "name": "sent_count",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "registrations"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "last_sent_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "registrations"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "name": "expires_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "registrations"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "registrations"
+    },
+    {
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "name": "updated_at",
+      "entityType": "columns",
+      "schema": "public",
+      "table": "registrations"
     },
     {
       "type": "uuid",
@@ -1074,6 +1184,16 @@
         "id"
       ],
       "nameExplicit": false,
+      "name": "registrations_pkey",
+      "schema": "public",
+      "table": "registrations",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
       "name": "sessions_pkey",
       "schema": "public",
       "table": "sessions",
@@ -1098,6 +1218,28 @@
       "schema": "public",
       "table": "organizations",
       "entityType": "pks"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "email"
+      ],
+      "nullsNotDistinct": false,
+      "name": "registrations_email_key",
+      "schema": "public",
+      "table": "registrations",
+      "entityType": "uniques"
+    },
+    {
+      "nameExplicit": false,
+      "columns": [
+        "hashed_verify_token"
+      ],
+      "nullsNotDistinct": false,
+      "name": "registrations_hashed_verify_token_key",
+      "schema": "public",
+      "table": "registrations",
+      "entityType": "uniques"
     },
     {
       "nameExplicit": false,

@@ -1,5 +1,5 @@
 import { registerAs } from "@nestjs/config";
-import * as Joi from "joi";
+import Joi from "joi";
 
 interface ILoggerConfig {
 	LOGGER_LEVEL: "error" | "warn" | "info" | "debug" | "verbose";

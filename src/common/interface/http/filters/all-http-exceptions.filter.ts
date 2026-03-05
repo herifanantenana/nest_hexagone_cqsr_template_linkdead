@@ -139,7 +139,7 @@ export class AllHttpExceptionsFilter implements ExceptionFilter {
 
 	private extractFromBusinessLogicError(exception: BusinessLogicError): IExtractedError {
 		return {
-			status: HttpStatus.UNPROCESSABLE_ENTITY,
+			status: exception.statusCode,
 			error: exception.name,
 			message: exception.message,
 			details: exception.details,

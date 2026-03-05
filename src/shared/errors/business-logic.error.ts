@@ -3,6 +3,7 @@ import { HttpErrorDetails } from "@apk_shared/types/http-response";
 export class BusinessLogicError extends Error {
 	constructor(
 		readonly message: string,
+		readonly statusCode: number,
 		readonly details?: HttpErrorDetails,
 	) {
 		super(message, { cause: details });
