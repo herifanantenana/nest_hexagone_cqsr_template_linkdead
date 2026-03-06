@@ -7,3 +7,19 @@ export class InvalidEmailFormatException extends BusinessLogicError {
 		super(message, 400, details);
 	}
 }
+
+export class InvalidAuthNameException extends BusinessLogicError {
+	constructor(name: string, reasons: string | string[]) {
+		const message = `The name "${name}" is invalid.`;
+		const details = { name, reasons };
+		super(message, 400, details);
+	}
+}
+
+export class InvalidAuthPasswordException extends BusinessLogicError {
+	constructor(reasons: string | string[]) {
+		const message = `The provided password is invalid.`;
+		const details = { reasons };
+		super(message, 400, details);
+	}
+}

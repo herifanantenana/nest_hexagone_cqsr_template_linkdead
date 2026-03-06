@@ -15,4 +15,6 @@ export abstract class RegistrationsAuthPort {
 	abstract create(input: ICreateRegistrationInput, tx?: unknown): Promise<{ tokenHash: string }>;
 	abstract resetByEmail(input: ICreateRegistrationInput, tx?: unknown): Promise<void>;
 	abstract rotateByEmail(input: Omit<ICreateRegistrationInput, "expiresAt">, tx?: unknown): Promise<void>;
+	abstract findByTokenHash(tokenHash: string, tx?: unknown): Promise<{ id: string; email: string } | null>;
+	abstract deleteById(id: string, tx?: unknown): Promise<void>;
 }

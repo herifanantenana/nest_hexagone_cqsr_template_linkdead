@@ -1,6 +1,7 @@
 import appEnvConfig from "@apk_common/config/app-env.config";
 import authEnvConfig from "@apk_common/config/auth-env.config";
 import databaseEnvConfig from "@apk_common/config/database-env.config";
+import jwtEnvConfig from "@apk_common/config/jwt-env.config";
 import loggerEnvConfig from "@apk_common/config/logger-env.config";
 import mailerEnvConfig from "@apk_common/config/mailer-env.config";
 import rateLimitEnvConfig from "@apk_common/config/rate-limit-env.config";
@@ -31,6 +32,7 @@ import { AppService } from "./app.service";
 				mailerEnvConfig,
 				rateLimitEnvConfig,
 				authEnvConfig,
+				jwtEnvConfig,
 			],
 		}),
 		InfraModule,

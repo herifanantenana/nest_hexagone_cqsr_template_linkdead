@@ -28,4 +28,9 @@ export class RegisterCooldownRedisAdapter implements RegisterCooldownPort {
 		const key = `${REGISTER_COOLDOWN}:${email}`;
 		return await this.redisClient.get(key);
 	}
+
+	async delete(email: string): Promise<void> {
+		const key = `${REGISTER_COOLDOWN}:${email}`;
+		await this.redisClient.del(key);
+	}
 }

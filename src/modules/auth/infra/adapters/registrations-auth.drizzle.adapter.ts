@@ -69,4 +69,21 @@ export class RegistrationsAuthDrizzleAdapter implements RegistrationsAuthPort {
 			})
 			.where(eq(registrationsTable.email, email));
 	}
+
+	async findByTokenHash(tokenHash: string, tx?: unknown): Promise<{ id: string; email: string } | null> {
+		const db = this.drizzleAdapter.getDb(tx);
+		const rows = await db
+			.select({
+				id: registrationsTable.id,
+				email: registrationsTable.email,
+			})
+			.from(registrationsTable)
+			.where(eq(registrationsTable.tokenHash, tokenHash));
+		return rows[0] ?? null;
+	}
+
+	async deleteById(id: string, tx?: unknown): Promise<void> {
+		const db = this.drizzleAdapter.getDb(tx);
+		await db.delete(registrationsTable).where(eq(registrationsTable.id, id));
+	}
 }
