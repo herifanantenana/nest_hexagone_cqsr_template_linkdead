@@ -54,16 +54,17 @@ export class HttpEnvelopeInterceptor implements NestInterceptor {
 		return next.handle().pipe(
 			map((rawData: T): IHttpSuccessResponse<Omit<T, string> | T> => {
 				let data = rawData;
-				const status = response.statusCode;
 				const message = this.buildResponseMessage(rawData);
 				const metadata = hasField(rawData, "metadata") ? getField(rawData, "metadata") : undefined;
 
+				const statusCode = hasField(rawData, "statusCode") ? getField(rawData, "statusCode") : response.statusCode;
+				response.status(statusCode as number);
 				data = omitField(data, "metadata");
 				data = omitField(data, "message");
 
 				return {
 					success: true,
-					status,
+					status: statusCode as number,
 					message,
 					requestId,
 					timestamp: new Date().toISOString(),

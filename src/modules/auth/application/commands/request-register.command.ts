@@ -12,7 +12,10 @@ import { TokenHasherPort } from "../ports/token-hasher.port";
 import { UsersAuthPort } from "../ports/users-auth.port";
 
 export class RequestRegisterCommand {
-	constructor(public readonly email: string) {}
+	constructor(
+		public readonly email: string,
+		public readonly ipAddress: string,
+	) {}
 }
 
 export interface IRequestRegisterCommandResult {
@@ -43,8 +46,8 @@ export class RequestRegisterCommandHandler implements ICommandHandler<
 
 	// execute command
 	async execute(command: RequestRegisterCommand): Promise<IRequestRegisterCommandResult> {
-		const { email } = command;
-		this.logger.debug(`Handling RequestRegisterCommand: email: ${email}`);
+		const { email, ipAddress } = command;
+		this.logger.debug(`Handling RequestRegisterCommand: email: ${email}, ip: ${ipAddress}`);
 
 		// validate business
 		this.authValidator.validateEmail(email);
@@ -74,7 +77,7 @@ export class RequestRegisterCommandHandler implements ICommandHandler<
 			// register cooldown in Redis
 			await this.registerCooldownPort.start(email, token, this.authConfig.registrationCooldownSec);
 			// todo: send email with newToken
-			const verifyUrl = `${this.authConfig.frontendBaseUrl}?token=${token}&email=${encodeURIComponent(email)}`;
+			const verifyUrl = `http://${ipAddress}:${this.authConfig.frontendPort}/${this.authConfig.frontendBasePath}?token=${token}&email=${encodeURIComponent(email)}`;
 			await this.mailerService.sendVerificationEmail(email, email.split("@")[0], verifyUrl);
 			return {
 				statusCode: 201,
@@ -91,7 +94,7 @@ export class RequestRegisterCommandHandler implements ICommandHandler<
 			// start a new cooldown in Redis
 			await this.registerCooldownPort.start(email, token, this.authConfig.registrationCooldownSec);
 			// todo: send email with newToken
-			const verifyUrl = `${this.authConfig.frontendBaseUrl}/verify-email?token=${token}&email=${encodeURIComponent(email)}`;
+			const verifyUrl = `http://${ipAddress}:${this.authConfig.frontendPort}/${this.authConfig.frontendBasePath}?token=${token}&email=${encodeURIComponent(email)}`;
 			await this.mailerService.sendVerificationEmail(email, email.split("@")[0], verifyUrl);
 			return {
 				statusCode: 200,
@@ -118,7 +121,7 @@ export class RequestRegisterCommandHandler implements ICommandHandler<
 		// register cooldown in Redis
 		await this.registerCooldownPort.start(email, token, this.authConfig.registrationCooldownSec);
 		// todo: send email with newToken
-		const verifyUrl = `${this.authConfig.frontendBaseUrl}/verify-email?token=${token}&email=${encodeURIComponent(email)}`;
+		const verifyUrl = `http://${ipAddress}:${this.authConfig.frontendPort}/${this.authConfig.frontendBasePath}?token=${token}&email=${encodeURIComponent(email)}`;
 		await this.mailerService.sendVerificationEmail(email, email.split("@")[0], verifyUrl);
 		return {
 			statusCode: 200,

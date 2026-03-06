@@ -7,7 +7,8 @@ interface IAuthEnvConfig {
 	AUTH_REGISTRATION_TOKEN_TTL_SEC: number;
 	AUTH_REGISTRATION_TOKEN_SECRET: string;
 	// ! not safe
-	AUTH_FRONT_VERIFICATION_URL: string;
+	AUTH_FRONT_VERIFICATION_PATH: string;
+	AUTH_FRONT_PORT: number;
 }
 
 export const authEnvConfigValidator = Joi.object({
@@ -16,7 +17,8 @@ export const authEnvConfigValidator = Joi.object({
 	AUTH_REGISTRATION_TOKEN_TTL_SEC: Joi.number().integer().positive().default(900),
 	AUTH_REGISTRATION_TOKEN_SECRET: Joi.string().min(32).required(),
 	// ! not safe
-	AUTH_FRONT_VERIFICATION_URL: Joi.string().uri().required(),
+	AUTH_FRONT_VERIFICATION_PATH: Joi.string().required(),
+	AUTH_FRONT_PORT: Joi.number().integer().positive().default(3000),
 });
 
 export default registerAs("auth", () => {
@@ -34,6 +36,7 @@ export default registerAs("auth", () => {
 		registrationTokenTtlSec: config.AUTH_REGISTRATION_TOKEN_TTL_SEC,
 		registrationTokenSecret: config.AUTH_REGISTRATION_TOKEN_SECRET,
 		// ! not safe
-		frontendBaseUrl: config.AUTH_FRONT_VERIFICATION_URL,
+		frontendBasePath: config.AUTH_FRONT_VERIFICATION_PATH,
+		frontendPort: config.AUTH_FRONT_PORT,
 	};
 });

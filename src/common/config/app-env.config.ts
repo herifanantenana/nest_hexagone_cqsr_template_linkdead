@@ -53,7 +53,8 @@ export default registerAs("app", () => {
 		isTest: config.NODE_ENV === "test",
 		name: config.APP_NAME,
 		version: config.APP_VERSION,
-		host: config.NODE_ENV === "production" ? getLocalIp("127.0.0.1") : "127.0.0.1",
+		// todo: make the host to allowed origins in production
+		host: getLocalIp("127.0.0.1"),
 		port: config.APP_PORT,
 		trustProxy: config.APP_TRUST_PROXY,
 		allowedOrigins: allowedOrigins.length > 0 ? allowedOrigins : ["*"],

@@ -3,6 +3,7 @@ import { UserModule } from "@apk_modules/user/user.module";
 import { Module } from "@nestjs/common";
 import { CqrsModule } from "@nestjs/cqrs";
 import { RequestRegisterCommandHandler } from "./application/commands/request-register.command";
+import { VerifyTokenRegisterCommandHandler } from "./application/commands/verify-token-register.command";
 import { RegisterCooldownPort } from "./application/ports/register-cooldown.port";
 import { RegistrationsAuthPort } from "./application/ports/registration-auth.port";
 import { TokenHasherPort } from "./application/ports/token-hasher.port";
@@ -23,7 +24,7 @@ const adapters = [
 	},
 ];
 
-const commands = [RequestRegisterCommandHandler];
+const commands = [RequestRegisterCommandHandler, VerifyTokenRegisterCommandHandler];
 
 @Module({
 	imports: [CqrsModule, InfraModule, UserModule],
