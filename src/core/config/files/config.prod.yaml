@@ -1,0 +1,17 @@
+app:
+  name: "linkdead"
+  version: "v1"
+  mode: "production"
+
+server:
+  port: 5001
+  trustProxy: true
+  allowedCorsOrigins:
+    - "*"
+  apiPrefix: "prod:api"
+  docsPrefix: "prod:docs"
+
+logger:
+  level: "debug"
+  dir: "./logs"
+  activeFiles: true
