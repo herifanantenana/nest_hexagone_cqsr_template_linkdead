@@ -16,10 +16,10 @@
 		"rootDir": "./",
 		"baseUrl": "./",
 		"paths": {
-			"@apk_core/*": ["./src/core/*"],
+			"@apk_core/*": ["./src/core//*"],
 			"@apk_modules/*": ["./src/modules/*"],
 			"@apk_shared/*": ["./src/shared/*"],
-			"@apk_infra/*": ["./src/core/infra/*"]
+			"@apk_infra/*": ["./src/core//infra/*"]
 		},
 		"incremental": true,
 		"skipLibCheck": true,

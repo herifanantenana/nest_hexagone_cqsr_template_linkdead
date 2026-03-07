@@ -74,10 +74,10 @@ pnpm run db:reset       # Reset database (clean + migrate)
 Use these aliases instead of relative imports:
 
 ```typescript
-import { ... } from '@apk_common/*'   // ./src/common/*
+import { ... } from '@apk_core*'   // ./src/core/*
 import { ... } from '@apk_modules/*'  // ./src/modules/*
 import { ... } from '@apk_shared/*'   // ./src/shared/*
-import { ... } from '@apk_common_infra/*'  // ./src/common/infra/*
+import { ... } from '@apk_common_infra/*'  // ./src/core/infra/*
 ```
 
 ### Naming Conventions
@@ -111,7 +111,7 @@ import { User } from "@apk_modules/users/domain/user.entity";
 ### Error Handling
 
 - Use NestJS built-in exceptions (`BadRequestException`, `NotFoundException`, etc.)
-- Create custom exceptions in `@apk_common/exceptions`
+- Create custom exceptions in `@apk_coreexceptions`
 - Use class-validator for DTO validation with `@IsString()`, `@IsEmail()`, etc.
 - Always validate input with pipes (`ValidationPipe`)
 
@@ -141,7 +141,7 @@ export class CreateUserDto {
 ### Database Schema Conventions
 
 - Define schemas in `@apk_modules/*/infra/database/schemas`
-- Use shared utilities from `src/core/infra/database/schemas/_shared/`:
+- Use shared utilities from `src/core//infra/database/schemas/_shared/`:
   - `id` for UUID primary keys
   - `createdAt`, `updatedAt`, `deletedAt` for timestamps
 - Table names in snake_case, exports as `*Table`
@@ -150,7 +150,7 @@ export class CreateUserDto {
 
 ```
 src/
-├── common/           # Shared utilities, guards, interceptors, pipes
+├── core           # Shared utilities, guards, interceptors, pipes
 ├── core/             # Core infrastructure (config, database, auth)
 ├── modules/          # Feature modules (hexagonal architecture)
 │   └── [feature]/
@@ -172,7 +172,7 @@ src/
 
 - Development: `.env.dev`
 - Production: `.env.prod`
-- Config loaded in `src/core/config/`
+- Config loaded in `src/core//config/`
 
 ### Git Conventions
 

@@ -4,7 +4,7 @@ import { sql } from "drizzle-orm/sql/sql";
 import fs from "fs";
 import path from "path";
 
-const envFile = `.env${process.env.NODE_ENV ? `.${process.env.NODE_ENV}` : ""}`;
+const envFile = `.env${process.env.NODE_ENV === "production" ? ".prod" : ".dev"}`;
 dotenv.config({ path: envFile });
 const connString = `postgresql://${process.env.USERNAME}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}/${process.env.DATABASE_NAME}`;
 const db = drizzle(connString);

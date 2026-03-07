@@ -2,7 +2,7 @@ import { Inject, Injectable } from "@nestjs/common";
 import type { ConfigType } from "@nestjs/config";
 import { existsSync, mkdirSync } from "fs";
 import { pid } from "process";
-import { loggerConfig } from "src/core/config";
+import { loggerConfig } from "src/core//config";
 import { inspect } from "util";
 import * as winston from "winston";
 
