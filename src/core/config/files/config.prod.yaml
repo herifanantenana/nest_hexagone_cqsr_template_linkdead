@@ -29,6 +29,7 @@ redis:
 
 mailer:
   engine: "Nodemailer"
+  host: "smtp.gmail.com"
   fromSupport: "Linkdead <support@arakotom.com>"
   fromNoReply: "Linkdead <noreply@arakotom.com>"
   templatesDir: "src/core/infra/mailer/adapters/templates"

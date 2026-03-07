@@ -1,5 +1,5 @@
 import { redisConfig } from "@apk_core/config/root.config";
-import { AppLogger } from "@apk_core/infra/logger/logger.service";
+import { AppLogger } from "@apk_infra/logger/logger.service";
 import { Inject, Injectable, OnApplicationShutdown, OnModuleDestroy, OnModuleInit } from "@nestjs/common";
 import { type ConfigType } from "@nestjs/config";
 import Redis from "ioredis";
@@ -9,14 +9,13 @@ export const REDIS_CLIENT = Symbol("REDIS_CLIENT");
 @Injectable()
 export class IoredisAdapter implements OnModuleInit, OnModuleDestroy, OnApplicationShutdown {
 	private redis: Redis;
-	private readonly logger: AppLogger;
 	private isShuttingDown = false;
 
 	constructor(
+		private readonly logger: AppLogger,
 		@Inject(redisConfig.KEY) private readonly redisCfg: ConfigType<typeof redisConfig>,
-		private readonly appLogger: AppLogger,
 	) {
-		this.logger = this.appLogger.withContext(this.redisCfg.engine);
+		this.logger = this.logger.withContext(this.redisCfg.engine);
 
 		this.redis = new Redis(`redis://${this.redisCfg.host}:${this.redisCfg.port}`, {
 			keyPrefix: `${this.redisCfg.appKeyPrefix}:`,

@@ -48,6 +48,7 @@ type TYamlConfig = {
 
 	mailer: {
 		engine: string;
+		host: string;
 		fromSupport: string;
 		fromNoReply: string;
 		templatesDir: string;
@@ -90,6 +91,7 @@ const yamlSchema = Joi.object({
 
 	mailer: Joi.object({
 		engine: Joi.string().required(),
+		host: Joi.string().hostname().required(),
 		fromSupport: Joi.string().required(),
 		fromNoReply: Joi.string().required(),
 		templatesDir: Joi.string().required(),
@@ -203,3 +205,17 @@ export const redisConfig = registerAs("redis", () => {
 	};
 });
 export type TRedisConfig = ConfigType<typeof redisConfig>;
+
+export const mailerConfig = registerAs("mailer", () => {
+	const config = loadConfig();
+	return {
+		engine: config.mailer.engine,
+		host: config.mailer.host,
+		user: process.env.MAILER_USER,
+		password: process.env.MAILER_PASSWORD,
+		fromSupport: config.mailer.fromSupport,
+		fromNoReply: config.mailer.fromNoReply,
+		templateDir: config.mailer.templatesDir,
+	};
+});
+export type TMailerConfig = ConfigType<typeof mailerConfig>;

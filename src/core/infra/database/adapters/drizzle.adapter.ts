@@ -19,14 +19,13 @@ export type TDbTx = NodePgDatabase<typeof allSchemas, typeof allRelations>;
 export class DrizzleAdapter implements OnModuleInit, OnModuleDestroy, OnApplicationShutdown {
 	private db: TDbTx;
 	private pool: Pool;
-	private readonly logger: AppLogger;
 	private isShuttingDown = false;
 
 	constructor(
+		private readonly logger: AppLogger,
 		@Inject(databaseConfig.KEY) readonly databaseCfg: TDatabaseConfig,
-		appLogger: AppLogger,
 	) {
-		this.logger = appLogger.withContext(this.databaseCfg.engine);
+		this.logger = logger.withContext(this.databaseCfg.engine);
 
 		const { user, password, host, port, name } = databaseCfg;
 		if (!user || !password || !host || !port || !name) {
