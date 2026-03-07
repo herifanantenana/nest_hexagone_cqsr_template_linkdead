@@ -3,7 +3,7 @@ import { AppLogger } from "@apk_infra/logger/logger.service";
 import { Inject, Injectable, OnModuleInit } from "@nestjs/common";
 import fs from "fs";
 import handlebars from "handlebars";
-import path from "path/win32";
+import path from "path";
 @Injectable()
 export class HandlebarsTemplateAdapter implements OnModuleInit {
 	private readonly cachedTemplates: Map<string, handlebars.TemplateDelegate> = new Map();
@@ -16,7 +16,7 @@ export class HandlebarsTemplateAdapter implements OnModuleInit {
 	}
 	onModuleInit() {
 		this.registerPartials();
-		this.logger.log("Handlebars template engine initialized and partials registered");
+		this.logger.log(`${this.constructor.name} render and partials established`);
 	}
 
 	// Register partials on initialization
