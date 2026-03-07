@@ -121,7 +121,7 @@ function loadConfig(): TRootConfig {
 
 	const parsed = yaml.load(fs.readFileSync(filePath, "utf-8")) as TRootConfig;
 
-	const { error } = yamlSchema.validate(parsed, { abortEarly: false });
+	const { error } = yamlSchema.validate(parsed, { abortEarly: false, allowUnknown: true });
 	if (error) {
 		throw new Error(`Invalid config file: ${error.message}`);
 	}
