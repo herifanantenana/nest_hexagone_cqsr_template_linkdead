@@ -24,6 +24,15 @@ type TRootConfig = {
 		dir: string;
 		activeFiles: boolean;
 	};
+
+	database: {
+		type: string;
+		host: string;
+		port: number;
+		username: string;
+		password: string;
+		database: string;
+	};
 };
 
 const yamlSchema = Joi.object({
@@ -46,14 +55,40 @@ const yamlSchema = Joi.object({
 		dir: Joi.string().required(),
 		activeFiles: Joi.boolean().required(),
 	}).required(),
+
+	database: Joi.object({
+		type: Joi.string().required(),
+		host: Joi.string().hostname().required(),
+		port: Joi.number().port().required(),
+		username: Joi.string().required(),
+		password: Joi.string().required(),
+		database: Joi.string().required(),
+	}).required(),
 });
 
 let cachedConfig: TRootConfig | null = null;
+
+const envSchema = Joi.object({
+	DATABASE_HOST: Joi.string().hostname().required(),
+	DATABASE_PORT: Joi.number().port().required(),
+	DATABASE_NAME: Joi.string().required(),
+	DATABASE_USERNAME: Joi.string().required(),
+	DATABASE_PASSWORD: Joi.string().required(),
+});
+
+function validateEnv() {
+	const { error } = envSchema.validate(process.env, { abortEarly: false, allowUnknown: true });
+	if (error) {
+		throw new Error(`Invalid environment variables: ${error.message}`);
+	}
+}
 
 function loadConfig(): TRootConfig {
 	if (cachedConfig) {
 		return cachedConfig;
 	}
+
+	validateEnv();
 
 	const modeEnv = process.env.NODE_ENV === "production" ? "prod" : "dev";
 	const fileName = `config.${modeEnv}.yaml`;
@@ -91,3 +126,9 @@ export const loggerConfig = registerAs("logger", () => {
 	return config.logger;
 });
 export type TLoggerConfig = ConfigType<typeof loggerConfig>;
+
+export const databaseConfig = registerAs("database", () => {
+	const config = loadConfig();
+	return config.database;
+});
+export type TDatabaseConfig = ConfigType<typeof databaseConfig>;

@@ -1,5 +1,5 @@
 app:
-  name: "linkdead"
+  name: "Linkdead"
   version: "v1"
   mode: "production"
 
@@ -15,3 +15,11 @@ logger:
   level: "debug"
   dir: "./logs"
   activeFiles: true
+
+database:
+  type: "postgres"
+  host: "localhost"
+  port: 5432
+  username: "arakotom"
+  password: "arakotom"
+  database: "linkdead_prod"
