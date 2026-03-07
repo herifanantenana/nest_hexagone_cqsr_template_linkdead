@@ -31,14 +31,14 @@ export class IoredisAdapter implements OnModuleInit, OnModuleDestroy, OnApplicat
 		});
 
 		this.redis.on("ready", () => {
-			this.logger.log("Redis client ready");
+			this.logger.log(`${this.constructor.name} connection established`);
 		});
 	}
 
 	async onModuleInit() {
 		await this.redis.connect();
 		await this.redis.ping();
-		this.logger.log("Redis ioredis client engine initialized and connected to Redis");
+		this.logger.log(`${this.constructor.name} ready and ping successful`);
 	}
 
 	async onModuleDestroy() {
