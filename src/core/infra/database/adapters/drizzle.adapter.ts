@@ -23,17 +23,17 @@ export class DrizzleAdapter implements OnModuleInit, OnModuleDestroy, OnApplicat
 	private isShuttingDown = false;
 
 	constructor(
-		@Inject(databaseConfig.KEY) readonly databaseConfig: TDatabaseConfig,
+		@Inject(databaseConfig.KEY) readonly databaseCfg: TDatabaseConfig,
 		appLogger: AppLogger,
 	) {
-		this.logger = appLogger.withContext(DrizzleAdapter.name);
+		this.logger = appLogger.withContext(this.databaseCfg.engine);
 
-		const { username, password, host, port, database } = databaseConfig;
-		if (!username || !password || !host || !port || !database) {
+		const { user, password, host, port, name } = databaseCfg;
+		if (!user || !password || !host || !port || !name) {
 			throw new Error("Database configuration is missing required fields");
 		}
 
-		this.pool = new Pool({ connectionString: `postgresql://${username}:${password}@${host}:${port}/${database}` });
+		this.pool = new Pool({ connectionString: `postgresql://${user}:${password}@${host}:${port}/${name}` });
 		this.db = drizzle({ client: this.pool, schema: drizzleSchemas, relations: allRelations });
 	}
 

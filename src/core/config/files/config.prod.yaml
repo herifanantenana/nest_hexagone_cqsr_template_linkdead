@@ -1,25 +1,28 @@
 app:
   name: "Linkdead"
   version: "v1"
-  mode: "production"
 
 server:
+  host: "localhost"
   port: 5001
-  trustProxy: true
+  trustProxy: false
   allowedCorsOrigins:
-    - "*"
-  apiPrefix: "prod:api"
-  docsPrefix: "prod:docs"
+    - "http://localhost:3000"
+  apiPathPrefix: "api:prod"
+  docsPathPrefix: "docs:prod"
 
 logger:
+  adapter: "Winston"
   level: "debug"
-  dir: "./logs"
-  activeFiles: true
+  dir: "logs"
+  activeLogFiles: false
 
 database:
-  type: "postgres"
-  host: "localhost"
-  port: 5432
-  username: "arakotom"
-  password: "arakotom"
-  database: "linkdead_prod"
+  adapter: "PostgreSQl"
+
+redis:
+  adapter: "IORedis"
+  appDb: 0
+  appKeyPrefix: "linkdead_prod"
+  jobsDb: 1
+  jobsKeyPrefix: "linkdead_prod_jobs"

@@ -1,1 +1,1 @@
-export { appConfig, databaseConfig, loggerConfig, serverConfig } from "./root.config";
+export { appConfig, databaseConfig, loggerConfig, redisConfig, serverConfig } from "./root.config";

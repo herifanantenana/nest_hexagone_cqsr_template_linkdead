@@ -1,5 +1,5 @@
+import { type TLoggerConfig } from "@apk_core/config/root.config";
 import { Inject, Injectable } from "@nestjs/common";
-import type { ConfigType } from "@nestjs/config";
 import { existsSync, mkdirSync } from "fs";
 import { pid } from "process";
 import { loggerConfig } from "src/core//config";
@@ -30,10 +30,10 @@ export class WinstonAdapter {
 
 	constructor(
 		@Inject(loggerConfig.KEY)
-		private readonly loggerCfg: ConfigType<typeof loggerConfig>,
+		private readonly loggerCfg: TLoggerConfig,
 	) {
-		const { level, dir, activeFiles } = this.loggerCfg;
-		this.initLogger(level, dir, activeFiles);
+		const { level, dir, activeLogFiles } = this.loggerCfg;
+		this.initLogger(level, dir, activeLogFiles);
 	}
 
 	private buildFilePrintFormat(info: winston.Logform.TransformableInfo): string {

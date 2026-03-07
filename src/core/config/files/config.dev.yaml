@@ -1,25 +1,28 @@
 app:
   name: "Linkdead"
   version: "v1"
-  mode: "development"
 
 server:
+  host: "localhost"
   port: 5000
   trustProxy: false
   allowedCorsOrigins:
     - "*"
-  apiPrefix: "dev:api"
-  docsPrefix: "dev:docs"
+  apiPathPrefix: "api:dev"
+  docsPathPrefix: "docs:dev"
 
 logger:
-  level: "verbose"
-  dir: "./logs"
-  activeFiles: false
+  engine: "Winston"
+  level: "debug"
+  dir: "logs"
+  activeLogFiles: false
 
 database:
-  type: "postgres"
-  host: "localhost"
-  port: 5432
-  username: "arakotom"
-  password: "arakotom"
-  database: "linkdead_dev"
+  engine: "PostgreSQl"
+
+redis:
+  engine: "IORedis"
+  appDb: 0
+  appKeyPrefix: "linkdead_dev"
+  jobsDb: 1
+  jobsKeyPrefix: "linkdead_dev_jobs"

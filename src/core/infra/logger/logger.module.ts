@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { WINSTON_MODULE_PROVIDER } from "nest-winston";
-import { AppLogger } from "./logger.service";
 import { WinstonAdapter } from "./adapters/winston.adapter";
+import { AppLogger } from "./logger.service";
 
 @Module({
 	providers: [
