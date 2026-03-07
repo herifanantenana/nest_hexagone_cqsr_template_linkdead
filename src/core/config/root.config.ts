@@ -4,11 +4,11 @@ import Joi from "joi";
 import yaml from "js-yaml";
 import path from "path";
 
-type TRootConfig = {
+type TYamlConfig = {
 	app: {
 		name: string;
 		version: string;
-		env: "development" | "production";
+		// env: "development" | "production";
 	};
 
 	server: {
@@ -29,21 +29,28 @@ type TRootConfig = {
 
 	database: {
 		engine: string;
-		host: string;
-		port: number;
-		name: string;
-		user: string;
-		password: string;
+		// host: string;
+		// port: number;
+		// name: string;
+		// user: string;
+		// password: string;
 	};
 
 	redis: {
 		engine: string;
-		host: string;
-		port: number;
+		// host: string;
+		// port: number;
 		appDb: number;
 		appKeyPrefix: string;
 		jobsDb: number;
 		jobsKeyPrefix: string;
+	};
+
+	mailer: {
+		engine: string;
+		fromSupport: string;
+		fromNoReply: string;
+		templatesDir: string;
 	};
 };
 
@@ -80,9 +87,16 @@ const yamlSchema = Joi.object({
 		jobsDb: Joi.number().min(0).required(),
 		jobsKeyPrefix: Joi.string().required(),
 	}).required(),
-});
 
-let cachedConfig: TRootConfig | null = null;
+	mailer: Joi.object({
+		engine: Joi.string().required(),
+		fromSupport: Joi.string().required(),
+		fromNoReply: Joi.string().required(),
+		templatesDir: Joi.string().required(),
+	}).required(),
+}).required();
+
+let cachedConfig: TYamlConfig | null = null;
 
 const envSchema = Joi.object({
 	NODE_ENV: Joi.string().valid("development", "production").required(),
@@ -95,6 +109,9 @@ const envSchema = Joi.object({
 
 	REDIS_HOST: Joi.string().hostname().required(),
 	REDIS_PORT: Joi.number().port().required(),
+
+	MAILER_USER: Joi.string().email().required(),
+	MAILER_PASSWORD: Joi.string().required(),
 });
 
 function validateEnv() {
@@ -104,7 +121,7 @@ function validateEnv() {
 	}
 }
 
-function loadConfig(): TRootConfig {
+function loadConfig(): TYamlConfig {
 	if (cachedConfig) {
 		return cachedConfig;
 	}
@@ -119,7 +136,7 @@ function loadConfig(): TRootConfig {
 		throw new Error(`Config file not found: ${filePath}`);
 	}
 
-	const parsed = yaml.load(fs.readFileSync(filePath, "utf-8")) as TRootConfig;
+	const parsed = yaml.load(fs.readFileSync(filePath, "utf-8")) as TYamlConfig;
 
 	const { error } = yamlSchema.validate(parsed, { abortEarly: false, allowUnknown: true });
 	if (error) {

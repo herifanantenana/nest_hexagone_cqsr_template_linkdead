@@ -12,17 +12,23 @@ server:
   docsPathPrefix: "docs:prod"
 
 logger:
-  adapter: "Winston"
+  engine: "Winston"
   level: "debug"
   dir: "logs"
   activeLogFiles: false
 
 database:
-  adapter: "PostgreSQl"
+  engine: "PostgreSQl"
 
 redis:
-  adapter: "IORedis"
+  engine: "IORedis"
   appDb: 0
   appKeyPrefix: "linkdead_prod"
   jobsDb: 1
   jobsKeyPrefix: "linkdead_prod_jobs"
+
+mailer:
+  engine: "Nodemailer"
+  fromSupport: "Linkdead <support@arakotom.com>"
+  fromNoReply: "Linkdead <noreply@arakotom.com>"
+  templatesDir: "src/core/infra/mailer/adapters/templates"

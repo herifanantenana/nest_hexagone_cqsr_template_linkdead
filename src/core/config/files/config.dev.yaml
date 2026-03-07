@@ -26,3 +26,9 @@ redis:
   appKeyPrefix: "linkdead_dev"
   jobsDb: 1
   jobsKeyPrefix: "linkdead_dev_jobs"
+
+mailer:
+  engine: "Nodemailer"
+  fromSupport: "Linkdead <support@arakotom.com>"
+  fromNoReply: "Linkdead <noreply@arakotom.com>"
+  templatesDir: "src/core/infra/mailer/adapters/templates"
