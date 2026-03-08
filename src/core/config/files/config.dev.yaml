@@ -3,13 +3,13 @@ app:
   version: "v1"
 
 server:
-  host: "localhost"
+  host: "0.0.0.0"
   port: 5000
-  trustProxy: false
+  trustProxy: true
   allowedCorsOrigins:
     - "*"
-  apiPathPrefix: "api:dev"
-  docsPathPrefix: "docs:dev"
+  apiPathPrefix: "api-dev"
+  docsPathPrefix: "docs-dev"
 
 logger:
   engine: "Winston"
@@ -18,7 +18,7 @@ logger:
   activeLogFiles: false
 
 database:
-  engine: "PostgreSQl"
+  engine: "PostgreSQL"
 
 redis:
   engine: "IORedis"
@@ -33,3 +33,8 @@ mailer:
   fromSupport: "Linkdead <support@arakotom.com>"
   fromNoReply: "Linkdead <noreply@arakotom.com>"
   templatesDir: "./src/core/infra/mailer/adapters/templates"
+
+rateLimiter:
+  registerRequest:
+    limit: 3
+    ttlSec: 30

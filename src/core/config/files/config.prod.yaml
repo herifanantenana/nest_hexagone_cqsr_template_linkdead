@@ -3,13 +3,13 @@ app:
   version: "v1"
 
 server:
-  host: "localhost"
+  host: "0.0.0.0"
   port: 5001
-  trustProxy: false
+  trustProxy: true
   allowedCorsOrigins:
-    - "http://localhost:3000"
-  apiPathPrefix: "api:prod"
-  docsPathPrefix: "docs:prod"
+    - "https://localhost:3000"
+  apiPathPrefix: "api-prod"
+  docsPathPrefix: "docs-prod"
 
 logger:
   engine: "Winston"
@@ -18,7 +18,7 @@ logger:
   activeLogFiles: false
 
 database:
-  engine: "PostgreSQl"
+  engine: "PostgreSQL"
 
 redis:
   engine: "IORedis"
@@ -32,4 +32,9 @@ mailer:
   host: "smtp.gmail.com"
   fromSupport: "Linkdead <support@arakotom.com>"
   fromNoReply: "Linkdead <noreply@arakotom.com>"
-  templatesDir: "src/core/infra/mailer/adapters/templates"
+  templatesDir: "./src/core/infra/mailer/adapters/templates"
+
+rateLimiter:
+  registerRequest:
+    limit: 5
+    ttlSec: 60

@@ -2,6 +2,7 @@ import { ConfigType, registerAs } from "@nestjs/config";
 import fs from "fs";
 import Joi from "joi";
 import yaml from "js-yaml";
+import os from "os";
 import path from "path";
 
 type TYamlConfig = {
@@ -53,6 +54,12 @@ type TYamlConfig = {
 		fromNoReply: string;
 		templatesDir: string;
 	};
+
+	rateLimiter: {
+		name: string;
+		limit: number;
+		ttlSec: number;
+	}[];
 };
 
 const yamlSchema = Joi.object({
@@ -96,12 +103,23 @@ const yamlSchema = Joi.object({
 		fromNoReply: Joi.string().required(),
 		templatesDir: Joi.string().required(),
 	}).required(),
+
+	rateLimiter: Joi.object({
+		registerRequest: Joi.object({
+			limit: Joi.number().min(1).required(),
+			ttlSec: Joi.number().min(1).required(),
+		}).required(),
+	}).required(),
 }).required();
 
 let cachedConfig: TYamlConfig | null = null;
 
 const envSchema = Joi.object({
 	NODE_ENV: Joi.string().valid("development", "production").required(),
+
+	CLIENT_APP_PROTOCOL: Joi.string().valid("http", "https"),
+	CLIENT_APP_HOST: Joi.string().hostname(),
+	CLIENT_APP_PORT: Joi.number().port(),
 
 	DATABASE_HOST: Joi.string().hostname().required(),
 	DATABASE_PORT: Joi.number().port().required(),
@@ -121,6 +139,18 @@ function validateEnv() {
 	if (error) {
 		throw new Error(`Invalid environment variables: ${error.message}`);
 	}
+}
+
+function getLocalIp(fallback: string): string {
+	const interfaces = os.networkInterfaces();
+	for (const name of Object.keys(interfaces)) {
+		for (const iface of interfaces[name]!) {
+			if (iface.family === "IPv4" && !iface.internal) {
+				return iface.address;
+			}
+		}
+	}
+	return fallback;
 }
 
 function loadConfig(): TYamlConfig {
@@ -159,6 +189,16 @@ export const appConfig = registerAs("app", () => {
 	};
 });
 export type TAppConfig = ConfigType<typeof appConfig>;
+
+export const clientAppConfig = registerAs("clientApp", () => {
+	const ip = process.env.CLIENT_APP_HOST ?? getLocalIp("localhost");
+	return {
+		protocol: process.env.CLIENT_APP_PROTOCOL || "http",
+		host: ip,
+		port: Number(process.env.CLIENT_APP_PORT) || 5173,
+		clientAppUrl: `${process.env.CLIENT_APP_PROTOCOL || "http"}://${ip}:${Number(process.env.CLIENT_APP_PORT) || 5173}`,
+	};
+});
 
 export const serverConfig = registerAs("server", () => {
 	const config = loadConfig();
@@ -219,3 +259,8 @@ export const mailerConfig = registerAs("mailer", () => {
 	};
 });
 export type TMailerConfig = ConfigType<typeof mailerConfig>;
+
+export const rateLimiterConfig = registerAs("rateLimiter", () => {
+	const config = loadConfig();
+	return config.rateLimiter;
+});
