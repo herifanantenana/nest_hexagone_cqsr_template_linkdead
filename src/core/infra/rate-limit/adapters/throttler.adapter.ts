@@ -1,6 +1,6 @@
 import { type TRateLimiterConfig } from "@apk_core/config/root.config";
-import { RedisService } from "@apk_core/infra/redis/redis.service";
 import { AppLogger } from "@apk_infra/logger/logger.service";
+import { RedisService } from "@apk_infra/redis/redis.service";
 import { ThrottlerStorageRedisService } from "@nest-lab/throttler-storage-redis";
 import { Inject, Injectable } from "@nestjs/common";
 import { rateLimiterConfig } from "./../../../config/root.config";

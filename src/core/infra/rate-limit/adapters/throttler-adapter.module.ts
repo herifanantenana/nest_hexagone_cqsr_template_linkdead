@@ -1,5 +1,5 @@
-import { LoggerModule } from "@apk_core/infra/logger/logger.module";
-import { RedisModule } from "@apk_core/infra/redis/redis.module";
+import { LoggerModule } from "@apk_infra/logger/logger.module";
+import { RedisModule } from "@apk_infra/redis/redis.module";
 import { Module } from "@nestjs/common";
 import { ThrottlerAdapter } from "./throttler.adapter";
 
