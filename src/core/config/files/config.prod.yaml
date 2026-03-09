@@ -34,7 +34,7 @@ mailer:
   host: "smtp.gmail.com"
   fromSupport: "Linkdead <support@arakotom.com>"
   fromNoReply: "Linkdead <noreply@arakotom.com>"
-  templatesDir: "./dist/core/infra/mailer/adapters/templates"
+  templatesDir: "./dist/src/core/infra/mailer/adapters/templates"
 
 rateLimiter:
   engine: "Throttler"
