@@ -7,17 +7,17 @@ interface IHttpBaseResponse {
 	path: string;
 }
 
-export type HttpErrorDetails = Record<string, unknown>;
+export type THttpErrorDetails = Record<string, unknown>;
 
 interface IHttpErrorFormatted {
 	error: string;
 	errorMessage: string;
-	details?: HttpErrorDetails;
+	details?: THttpErrorDetails;
 }
 
-export interface IHttpErrorResponse extends IHttpBaseResponse, IHttpErrorFormatted {}
+export type THttpErrorResponse = IHttpBaseResponse & IHttpErrorFormatted;
 
-export interface IHttpSuccessResponse<T, M = unknown> extends IHttpBaseResponse {
+export type THttpSuccessResponse<T, M = unknown> = IHttpBaseResponse & {
 	data: T;
 	metadata?: M;
-}
+};

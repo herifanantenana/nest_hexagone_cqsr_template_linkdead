@@ -46,7 +46,7 @@ rateLimiter:
       limit: 20
     - name: "AUTH_REGISTER"
       ttlSec: 15
-      limit: 10 
+      limit: 10
     - name: "AUTH_PASSWORD_RESET"
       ttlSec: 15
       limit: 10
