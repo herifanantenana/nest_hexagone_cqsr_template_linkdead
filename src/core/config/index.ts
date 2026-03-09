@@ -1,5 +1,6 @@
 export {
 	appConfig,
+	clientAppConfig,
 	databaseConfig,
 	loggerConfig,
 	mailerConfig,

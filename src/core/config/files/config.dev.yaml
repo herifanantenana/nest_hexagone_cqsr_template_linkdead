@@ -5,7 +5,7 @@ app:
 server:
   host: "0.0.0.0"
   port: 5000
-  trustProxy: true
+  trustProxy: false
   allowedCorsOrigins:
     - "*"
   apiPathPrefix: "api-dev"
@@ -13,7 +13,7 @@ server:
 
 logger:
   engine: "Winston"
-  level: "debug"
+  level: "verbose"
   dir: "logs"
   activeLogFiles: false
 

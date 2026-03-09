@@ -202,11 +202,13 @@ export const clientAppConfig = registerAs("clientApp", () => {
 		clientAppUrl: `${process.env.CLIENT_APP_PROTOCOL || "http"}://${ip}:${Number(process.env.CLIENT_APP_PORT) || 5173}`,
 	};
 });
+export type TClientAppConfig = ConfigType<typeof clientAppConfig>;
 
 export const serverConfig = registerAs("server", () => {
 	const config = loadConfig();
 	return {
-		host: config.server.host,
+		protocol: "https",
+		host: getLocalIp("127.0.0.1"),
 		port: config.server.port,
 		trustProxy: config.server.trustProxy,
 		allowedCorsOrigins: config.server.allowedCorsOrigins,

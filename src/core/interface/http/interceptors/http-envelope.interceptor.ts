@@ -91,7 +91,7 @@ export class HttpEnvelopeInterceptor implements NestInterceptor, OnModuleInit {
 				const logMessage = `Outgoing RESPONSE:\t ${requestId} ---> ${method} - [ ${rawData.status} ] - ${path} \t - { ${rawData.message} } - took ${duration}ms`;
 
 				if (rawData.status >= 400) this.logger.warn(logMessage);
-				else this.logger.log(logMessage);
+				else this.logger.verbose(logMessage);
 				response.isLogged = true;
 			}),
 
