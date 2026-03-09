@@ -1,6 +1,6 @@
 import { AppLogger } from "@apk_infra/logger/logger.service";
 import { BusinessLogicException } from "@apk_shared/exceptions/business-logic.exception";
-import { IHttpSuccessResponse } from "@apk_shared/types/http-response";
+import { THttpSuccessResponse } from "@apk_shared/types/http-response";
 import { getField, hasField, isString, omitField } from "@apk_shared/types/utils";
 import {
 	CallHandler,
@@ -44,7 +44,7 @@ export class HttpEnvelopeInterceptor implements NestInterceptor, OnModuleInit {
 		return "An unexpected error occurred";
 	}
 
-	intercept<T>(context: ExecutionContext, next: CallHandler): Observable<IHttpSuccessResponse<T | Omit<T, string>>> {
+	intercept<T>(context: ExecutionContext, next: CallHandler): Observable<THttpSuccessResponse<T | Omit<T, string>>> {
 		const httpContext = context.switchToHttp();
 		const request = httpContext.getRequest<Request>();
 		const response = httpContext.getResponse<Response>();
@@ -64,7 +64,7 @@ export class HttpEnvelopeInterceptor implements NestInterceptor, OnModuleInit {
 		request.isLogged = true;
 
 		return next.handle().pipe(
-			map((rawData: T): IHttpSuccessResponse<Omit<T, string> | T> => {
+			map((rawData: T): THttpSuccessResponse<Omit<T, string> | T> => {
 				let data = rawData;
 				const message = this.buildResponseMessage(rawData);
 				const metadata = hasField(rawData, "metadata") ? getField(rawData, "metadata") : undefined;

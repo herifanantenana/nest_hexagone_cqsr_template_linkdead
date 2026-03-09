@@ -15,9 +15,9 @@ interface IHttpErrorFormatted {
 	details?: HttpErrorDetails;
 }
 
-export interface IHttpErrorResponse extends IHttpBaseResponse, IHttpErrorFormatted {}
+export type THttpErrorResponse = IHttpBaseResponse & IHttpErrorFormatted;
 
-export interface IHttpSuccessResponse<T, M = unknown> extends IHttpBaseResponse {
+export type THttpSuccessResponse<T, M = unknown> = IHttpBaseResponse & {
 	data: T;
 	metadata?: M;
-}
+};

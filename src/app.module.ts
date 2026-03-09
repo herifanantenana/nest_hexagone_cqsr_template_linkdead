@@ -1,6 +1,6 @@
 import { AllHttpExceptionsFilter } from "@apk_core/interface/http/filters/all-http-exceptions.filter";
 import { HttpEnvelopeInterceptor } from "@apk_core/interface/http/interceptors/http-envelope.interceptor";
-import { IncomingRequestMiddleware } from "@apk_modules/incoming-request.middleware";
+import { IncomingRequestMiddleware } from "@apk_core/interface/http/middlewares/incoming-request.middleware";
 import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { APP_FILTER, APP_INTERCEPTOR } from "@nestjs/core";

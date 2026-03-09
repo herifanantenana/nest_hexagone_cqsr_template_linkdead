@@ -1,6 +1,6 @@
 import { AppLogger } from "@apk_infra/logger/logger.service";
 import { BusinessLogicException } from "@apk_shared/exceptions/business-logic.exception";
-import { HttpErrorDetails, IHttpErrorResponse } from "@apk_shared/types/http-response";
+import { HttpErrorDetails, THttpErrorResponse } from "@apk_shared/types/http-response";
 import { isString } from "@apk_shared/types/utils";
 import {
 	ArgumentsHost,
@@ -45,7 +45,7 @@ export class AllHttpExceptionsFilter implements ExceptionFilter, OnModuleInit {
 
 		const extracted = this.extractErrorInfo(exception);
 
-		const body: IHttpErrorResponse = {
+		const body: THttpErrorResponse = {
 			success: false,
 			status: extracted.status,
 			message: extracted.message,
