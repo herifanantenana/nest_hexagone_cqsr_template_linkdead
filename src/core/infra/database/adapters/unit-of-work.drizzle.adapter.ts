@@ -6,9 +6,9 @@ import { DrizzleAdapter } from "./drizzle.adapter";
 export class DrizzleUnitOfWorkAdapter implements IUnitOfWorkPort {
 	constructor(private readonly drizzleAdapter: DrizzleAdapter) {}
 
-	async withTransaction<T>(fn: (tx: unknown) => Promise<T>): Promise<T> {
+	async withTransaction<T>(work: (tx: unknown) => Promise<T>): Promise<T> {
 		return this.drizzleAdapter.getDb().transaction(async (tx) => {
-			return fn(tx);
+			return work(tx);
 		});
 	}
 }

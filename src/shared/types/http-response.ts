@@ -7,12 +7,12 @@ interface IHttpBaseResponse {
 	path: string;
 }
 
-export type HttpErrorDetails = Record<string, unknown>;
+export type THttpErrorDetails = Record<string, unknown>;
 
 interface IHttpErrorFormatted {
 	error: string;
 	errorMessage: string;
-	details?: HttpErrorDetails;
+	details?: THttpErrorDetails;
 }
 
 export type THttpErrorResponse = IHttpBaseResponse & IHttpErrorFormatted;

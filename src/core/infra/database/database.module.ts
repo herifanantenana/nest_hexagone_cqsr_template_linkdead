@@ -3,6 +3,7 @@ import { Module } from "@nestjs/common";
 import { LoggerModule } from "../logger/logger.module";
 import { DrizzleAdapter } from "./adapters/drizzle.adapter";
 import { DrizzleUnitOfWorkAdapter } from "./adapters/unit-of-work.drizzle.adapter";
+import { DatabaseSafeAction } from "./database-safe-action";
 
 @Module({
 	imports: [LoggerModule],
@@ -12,7 +13,8 @@ import { DrizzleUnitOfWorkAdapter } from "./adapters/unit-of-work.drizzle.adapte
 			provide: UNIT_OF_WORK,
 			useClass: DrizzleUnitOfWorkAdapter,
 		},
+		DatabaseSafeAction,
 	],
-	exports: [DrizzleAdapter, UNIT_OF_WORK],
+	exports: [DrizzleAdapter, UNIT_OF_WORK, DatabaseSafeAction],
 })
 export class DatabaseModule {}
