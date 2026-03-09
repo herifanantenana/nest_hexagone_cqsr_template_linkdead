@@ -35,6 +35,7 @@ mailer:
   templatesDir: "./src/core/infra/mailer/adapters/templates"
 
 rateLimiter:
+  engine: "Throttler"
   registerRequest:
     limit: 3
     ttlSec: 30
