@@ -57,10 +57,11 @@ type TYamlConfig = {
 
 	rateLimiter: {
 		engine: string;
-		registerRequest: {
-			limit: number;
+		policies: Array<{
+			name: string;
 			ttlSec: number;
-		};
+			limit: number;
+		}>;
 	};
 };
 
@@ -108,10 +109,16 @@ const yamlSchema = Joi.object({
 
 	rateLimiter: Joi.object({
 		engine: Joi.string().required(),
-		registerRequest: Joi.object({
-			limit: Joi.number().min(1).required(),
-			ttlSec: Joi.number().min(1).required(),
-		}).required(),
+		policies: Joi.array()
+			.items(
+				Joi.object({
+					name: Joi.string().required(),
+					ttlSec: Joi.number().min(1).required(),
+					limit: Joi.number().min(1).required(),
+				}),
+			)
+			.min(1)
+			.required(),
 	}).required(),
 }).required();
 
@@ -265,14 +272,16 @@ export const mailerConfig = registerAs("mailer", () => {
 });
 export type TMailerConfig = ConfigType<typeof mailerConfig>;
 
+export type TRateLimitPolicy = {
+	name: string;
+	ttlSec: number;
+	limit: number;
+};
 export const rateLimiterConfig = registerAs("rateLimiter", () => {
 	const config = loadConfig();
 	return {
 		engine: config.rateLimiter.engine,
-		registerRequest: {
-			limit: config.rateLimiter.registerRequest.limit,
-			ttlSec: config.rateLimiter.registerRequest.ttlSec,
-		},
+		policies: config.rateLimiter.policies as TRateLimitPolicy[],
 	};
 });
 export type TRateLimiterConfig = ConfigType<typeof rateLimiterConfig>;

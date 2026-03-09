@@ -36,6 +36,23 @@ mailer:
 
 rateLimiter:
   engine: "Throttler"
-  registerRequest:
-    limit: 3
-    ttlSec: 30
+  policies:
+    # Short windows (15s) + generous limits
+    - name: "GLOBAL"
+      ttlSec: 15
+      limit: 200
+    - name: "AUTH_LOGIN"
+      ttlSec: 15
+      limit: 20
+    - name: "AUTH_REGISTER"
+      ttlSec: 15
+      limit: 10 
+    - name: "AUTH_PASSWORD_RESET"
+      ttlSec: 15
+      limit: 10
+    - name: "AUTH_EMAIL_VERIFY"
+      ttlSec: 15
+      limit: 15
+    - name: "API_HEAVY"
+      ttlSec: 15
+      limit: 30

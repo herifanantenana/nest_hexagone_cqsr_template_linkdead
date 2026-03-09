@@ -1,6 +1,7 @@
+import { AppThrottlerGuard } from "@apk_core/interface/http/guards/rate-limiter/app-throttler.guard";
 import { Module } from "@nestjs/common";
 import { APP_GUARD } from "@nestjs/core";
-import { ThrottlerGuard, ThrottlerModule } from "@nestjs/throttler";
+import { ThrottlerModule } from "@nestjs/throttler";
 import { ThrottlerAdapterModule } from "./adapters/throttler-adapter.module";
 import { ThrottlerAdapter } from "./adapters/throttler.adapter";
 
@@ -15,7 +16,7 @@ import { ThrottlerAdapter } from "./adapters/throttler.adapter";
 	providers: [
 		{
 			provide: APP_GUARD,
-			useClass: ThrottlerGuard,
+			useClass: AppThrottlerGuard,
 		},
 	],
 	exports: [ThrottlerModule],
