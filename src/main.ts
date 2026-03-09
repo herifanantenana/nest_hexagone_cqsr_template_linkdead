@@ -88,7 +88,7 @@ async function bootstrap() {
 		},
 	});
 
-	await app.listen(serverCfg.port, serverCfg.host, () => {
+	await app.listen(serverCfg.port, serverCfg.listenHost, () => {
 		logger.log(`${appCfg.name} is running on ${appCfg.isProd ? "production" : "development"} mode`);
 	});
 

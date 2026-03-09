@@ -4,7 +4,8 @@ import { join } from "path";
 import { Client } from "pg";
 
 function getClient() {
-	const envFile = `.env${process.env.NODE_ENV === "production" ? ".prod" : ".dev"}`;
+	const runtime = process.env.APP_RUNTIME ?? "dev";
+	const envFile = `.env.${runtime}`;
 	dotenv.config({ path: envFile });
 
 	const connectionString = `postgresql://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}/${process.env.DATABASE_NAME}`;

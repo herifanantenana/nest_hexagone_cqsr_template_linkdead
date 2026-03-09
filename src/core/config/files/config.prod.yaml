@@ -3,19 +3,21 @@ app:
   version: "v1"
 
 server:
-  host: "10.11.200.229"
-  port: 5001
+  port: 5000
   trustProxy: true
   allowedCorsOrigins:
-    - "https://localhost:3000"
-  apiPathPrefix: "api-prod"
-  docsPathPrefix: "docs-prod"
+    - "https://app.linkdead.com"
+  apiPathPrefix: "api"
+  docsPathPrefix: "docs"
+
+client:
+  registerVerifyEmailPath: "auth/verify-email"
 
 logger:
   engine: "Winston"
-  level: "debug"
+  level: "info"
   dir: "logs"
-  activeLogFiles: false
+  activeLogFiles: true
 
 database:
   engine: "PostgreSQL"
@@ -32,7 +34,7 @@ mailer:
   host: "smtp.gmail.com"
   fromSupport: "Linkdead <support@arakotom.com>"
   fromNoReply: "Linkdead <noreply@arakotom.com>"
-  templatesDir: "./src/core/infra/mailer/adapters/templates"
+  templatesDir: "./dist/core/infra/mailer/adapters/templates"
 
 rateLimiter:
   engine: "Throttler"
@@ -55,3 +57,10 @@ rateLimiter:
     - name: "API_HEAVY"
       ttlSec: 60
       limit: 20
+
+auth:
+  registration:
+    tokenTtlSec: 1800
+    tokenCooldown:
+      ttlSec: 600
+      maxAttempts: 3

@@ -1,5 +1,6 @@
 export {
 	appConfig,
+	authConfig,
 	clientAppConfig,
 	databaseConfig,
 	loggerConfig,

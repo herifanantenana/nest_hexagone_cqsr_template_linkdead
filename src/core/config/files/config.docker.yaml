@@ -4,9 +4,9 @@ app:
 
 server:
   port: 5000
-  trustProxy: false
+  trustProxy: true
   allowedCorsOrigins:
-    - "http://localhost:5173"
+    - "https://10.11.200.229:4000"
   apiPathPrefix: "api"
   docsPathPrefix: "docs"
 
@@ -15,7 +15,7 @@ client:
 
 logger:
   engine: "Winston"
-  level: "verbose"
+  level: "debug"
   dir: "logs"
   activeLogFiles: false
 
@@ -25,38 +25,38 @@ database:
 redis:
   engine: "IORedis"
   appDb: 0
-  appKeyPrefix: "linkdead_dev"
+  appKeyPrefix: "linkdead_docker"
   jobsDb: 1
-  jobsKeyPrefix: "linkdead_dev_jobs"
+  jobsKeyPrefix: "linkdead_docker_jobs"
 
 mailer:
   engine: "Nodemailer"
   host: "smtp.gmail.com"
   fromSupport: "Linkdead <support@arakotom.com>"
   fromNoReply: "Linkdead <noreply@arakotom.com>"
-  templatesDir: "./src/core/infra/mailer/adapters/templates"
+  templatesDir: "./dist/core/infra/mailer/adapters/templates"
 
 rateLimiter:
   engine: "Throttler"
   policies:
     - name: "GLOBAL"
-      ttlSec: 15
-      limit: 200
+      ttlSec: 60
+      limit: 300
     - name: "AUTH_LOGIN"
-      ttlSec: 15
-      limit: 20
+      ttlSec: 900
+      limit: 10
     - name: "AUTH_REGISTER"
-      ttlSec: 15
-      limit: 10
+      ttlSec: 3600
+      limit: 5
     - name: "AUTH_PASSWORD_RESET"
-      ttlSec: 15
-      limit: 10
+      ttlSec: 900
+      limit: 3
     - name: "AUTH_EMAIL_VERIFY"
-      ttlSec: 15
-      limit: 15
+      ttlSec: 300
+      limit: 5
     - name: "API_HEAVY"
-      ttlSec: 15
-      limit: 30
+      ttlSec: 60
+      limit: 20
 
 auth:
   registration:

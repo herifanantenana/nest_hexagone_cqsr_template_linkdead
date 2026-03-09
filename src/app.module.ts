@@ -1,6 +1,7 @@
 import { AllHttpExceptionsFilter } from "@apk_core/interface/http/filters/all-http-exceptions.filter";
 import { HttpEnvelopeInterceptor } from "@apk_core/interface/http/interceptors/http-envelope.interceptor";
 import { IncomingRequestMiddleware } from "@apk_core/interface/http/middlewares/incoming-request.middleware";
+import { AuthModule } from "@apk_modules/auth/auth.module";
 import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { APP_FILTER, APP_INTERCEPTOR } from "@nestjs/core";
@@ -14,10 +15,11 @@ import { InfraModule } from "./core/infra/infra.module";
 		ConfigModule.forRoot({
 			isGlobal: true,
 			cache: true,
-			envFilePath: process.env.NODE_ENV === "production" ? ".env.prod" : ".env.dev",
+			envFilePath: `.env.${process.env.APP_RUNTIME ?? "dev"}`,
 			load: [...Object.values(config)],
 		}),
 		InfraModule,
+		AuthModule,
 	],
 	controllers: [AppController],
 	providers: [
