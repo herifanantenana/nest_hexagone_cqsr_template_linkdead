@@ -80,7 +80,6 @@ async function bootstrap() {
 		.setTitle("Linkdead API")
 		.setDescription("API documentation for Linkdead application")
 		.setVersion("1.0.2")
-		.addServer(`http://localhost:${serverCfg.port}/${serverCfg.apiPathPrefix}`, "Local development server")
 		.build();
 	const document = SwaggerModule.createDocument(app, swaggerConfig);
 	SwaggerModule.setup(serverCfg.docsPathPrefix, app, document, {
