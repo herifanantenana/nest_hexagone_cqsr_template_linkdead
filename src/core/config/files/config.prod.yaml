@@ -3,7 +3,7 @@ app:
   version: "v1"
 
 server:
-  host: "0.0.0.0"
+  host: "10.11.200.229"
   port: 5001
   trustProxy: true
   allowedCorsOrigins:

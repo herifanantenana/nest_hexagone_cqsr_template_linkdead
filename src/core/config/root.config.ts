@@ -208,7 +208,7 @@ export const serverConfig = registerAs("server", () => {
 	const config = loadConfig();
 	return {
 		protocol: "https",
-		host: getLocalIp("127.0.0.1"),
+		host: process.env.NODE_ENV === "production" ? getLocalIp(config.server.host) : "127.0.0.1",
 		port: config.server.port,
 		trustProxy: config.server.trustProxy,
 		allowedCorsOrigins: config.server.allowedCorsOrigins,
