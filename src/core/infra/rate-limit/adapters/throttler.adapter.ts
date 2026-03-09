@@ -17,13 +17,6 @@ export class ThrottlerAdapter {
 		this.logger.setContext(this.rateLimiterCfg.engine);
 	}
 
-	private get gatePateLimiterConfig() {
-		return {
-			limit: this.rateLimiterCfg.registerRequest.limit,
-			ttlSec: this.rateLimiterCfg.registerRequest.ttlSec,
-		};
-	}
-
 	public buildThrottlers() {
 		const throttlers: Array<{
 			name: string;
