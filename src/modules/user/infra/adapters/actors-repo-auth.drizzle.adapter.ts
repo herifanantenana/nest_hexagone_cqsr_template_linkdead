@@ -4,6 +4,7 @@ import { actorsTable } from "@apk_infra/database/schemas/authentications/actors.
 import { EActorTypes } from "@apk_infra/database/schemas/database.type";
 import { ActorsRepoAuthPort } from "@apk_modules/auth/application/ports/actors-repo-auth.port";
 import { Injectable } from "@nestjs/common";
+import { eq } from "drizzle-orm";
 
 @Injectable()
 export class ActorsRepoAuthDrizzleAdapter implements ActorsRepoAuthPort {
@@ -23,6 +24,15 @@ export class ActorsRepoAuthDrizzleAdapter implements ActorsRepoAuthPort {
 				})
 				.returning({ id: actorsTable.id });
 			return createdActor;
+		});
+		return result;
+	}
+
+	async findIdByUserId(userId: string, tx?: unknown): Promise<{ id: string } | null> {
+		const db = this.drizzleAdapter.getDb(tx);
+		const result = await this.databaseSafeAction.withSafeAsyncOrThrow(async () => {
+			const rows = await db.select({ id: actorsTable.id }).from(actorsTable).where(eq(actorsTable.userId, userId));
+			return rows[0] ?? null;
 		});
 		return result;
 	}

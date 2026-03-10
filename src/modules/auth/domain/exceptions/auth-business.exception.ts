@@ -27,3 +27,13 @@ export class RegistrationTokenCooldownExpiredException extends BusinessLogicExce
 		super(message, 400, details);
 	}
 }
+
+export class InvalidCredentialsException extends BusinessLogicException {
+	constructor() {
+		const message = "Invalid email or password.";
+		const details = {
+			reasons: "The provided email does not exist or the password is incorrect.",
+		};
+		super(message, 401, details);
+	}
+}

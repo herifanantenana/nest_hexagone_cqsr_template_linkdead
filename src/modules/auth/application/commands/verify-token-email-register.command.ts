@@ -33,6 +33,8 @@ export class VerifyTokenEmailRegisterCommandHandler implements ICommandHandler<
 	async execute(command: VerifyTokenEmailRegisterCommand): Promise<IVerifyTokenEmailRegisterCommandResult> {
 		const { tokenEncrypted } = command;
 
+		this.logger.debug(`Processing verification token email command for: ${JSON.stringify(command)}`);
+
 		// decrypt the token and get the email
 		const decrypted = this.encryptionDecryptionPort.decryptFromSecret<{ email: string; token: string }>(
 			tokenEncrypted,

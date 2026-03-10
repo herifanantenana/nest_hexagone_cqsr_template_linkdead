@@ -15,7 +15,7 @@ import { SessionsRepoAuthPort } from "../ports/sessions-repo-auth.port";
 import { TokenizerPort } from "../ports/tokenizer.port";
 import { UsersRepoAuthPort } from "../ports/users-repo-auth.port";
 
-export class VerifyTokenEmailCommand {
+export class CompleteRegisterCommand {
 	constructor(
 		public readonly tokenEncrypted: string,
 		public readonly firstName: string,
@@ -26,7 +26,7 @@ export class VerifyTokenEmailCommand {
 	) {}
 }
 
-export interface IVerifyTokenEmailCommandResult {
+export interface ICompleteRegisterCommandResult {
 	userId: string;
 	accountId: string;
 	actorId: string;
@@ -37,10 +37,10 @@ export interface IVerifyTokenEmailCommandResult {
 	refreshTokenExpiresAt: Date;
 }
 
-@CommandHandler(VerifyTokenEmailCommand)
-export class VerifyTokenEmailCommandHandler implements ICommandHandler<
-	VerifyTokenEmailCommand,
-	IVerifyTokenEmailCommandResult
+@CommandHandler(CompleteRegisterCommand)
+export class CompleteRegisterCommandHandler implements ICommandHandler<
+	CompleteRegisterCommand,
+	ICompleteRegisterCommandResult
 > {
 	private readonly authValidatorService = new AuthValidatorService();
 
@@ -59,13 +59,13 @@ export class VerifyTokenEmailCommandHandler implements ICommandHandler<
 		@Inject(jwtConfig.KEY) private readonly jwtCfg: TJwtConfig,
 		private readonly sessionsRepoAuthPort: SessionsRepoAuthPort,
 	) {
-		this.logger = this.logger.withContext(VerifyTokenEmailCommandHandler.name);
+		this.logger = this.logger.withContext(CompleteRegisterCommandHandler.name);
 	}
 
-	async execute(command: VerifyTokenEmailCommand): Promise<IVerifyTokenEmailCommandResult> {
+	async execute(command: CompleteRegisterCommand): Promise<ICompleteRegisterCommandResult> {
 		const { tokenEncrypted, firstName, lastName, password, userAgent, ipAddress } = command;
 
-		this.logger.debug(`Processing registration completion for command: ${JSON.stringify(command)}`);
+		this.logger.debug(`Processing registration completion command for: ${JSON.stringify(command)}`);
 
 		// validate the input
 		this.authValidatorService.validateName(firstName);

@@ -5,24 +5,26 @@ import {
 	POLICY_AUTH_REGISTER_CONFIRM_TOKEN,
 } from "@apk_core/interface/http/guards/rate-limiter/rate-limiter.policies";
 import {
-	IVerifyTokenEmailCommandResult,
-	VerifyTokenEmailCommand,
+	CompleteRegisterCommand,
+	ICompleteRegisterCommandResult,
 } from "@apk_modules/auth/application/commands/complete-register.command";
-import {
-	IVerifyTokenEmailRegisterCommandResult,
-	VerifyTokenEmailRegisterCommand,
-} from "@apk_modules/auth/application/commands/confirm-token-register.command";
+import { ILoginCommandResult, LoginCommand } from "@apk_modules/auth/application/commands/login.command";
 import {
 	IRequestRegisterCommandResult,
 	RequestRegisterCommand,
 } from "@apk_modules/auth/application/commands/request-register.command";
+import {
+	IVerifyTokenEmailRegisterCommandResult,
+	VerifyTokenEmailRegisterCommand,
+} from "@apk_modules/auth/application/commands/verify-token-email-register.command";
 import { Body, Controller, Inject, Post, Req, Res } from "@nestjs/common";
 import { CommandBus } from "@nestjs/cqrs";
 import { ApiBody, ApiOperation } from "@nestjs/swagger";
 import type { Request, Response } from "express";
 import { CompleteRegisterDto } from "../dtos/complete-register.dto";
-import { VerifyTokenEmailRegisterDto } from "../dtos/confirm-token-register.dto";
+import { LoginDto } from "../dtos/login.dto";
 import { RequestRegisterDto } from "../dtos/request-register.dto";
+import { VerifyTokenEmailRegisterDto } from "../dtos/verify-token-email-register.dto";
 
 @Controller("auth")
 export class AuthController {
@@ -65,8 +67,8 @@ export class AuthController {
 		const { token, firstName, lastName, password } = body;
 		const ipAddress = request.ip || request.get("x-forwarded-for")?.[0] || "unknown";
 		const userAgent = request.get("user-agent") || "unknown";
-		const result: IVerifyTokenEmailCommandResult = await this.commandBus.execute(
-			new VerifyTokenEmailCommand(token, firstName, lastName, password, userAgent, ipAddress),
+		const result: ICompleteRegisterCommandResult = await this.commandBus.execute(
+			new CompleteRegisterCommand(token, firstName, lastName, password, userAgent, ipAddress),
 		);
 
 		// setup the cookie options
@@ -87,5 +89,36 @@ export class AuthController {
 		});
 
 		return "Registration completed successfully";
+	}
+
+	@Post("login")
+	@ApiOperation({ summary: "Login a user" })
+	@ApiBody({ type: LoginDto })
+	async login(@Body() body: LoginDto, @Req() request: Request, @Res({ passthrough: true }) response: Response) {
+		const { email, password } = body;
+		const ipAddress = request.ip || request.get("x-forwarded-for")?.[0] || "unknown";
+		const userAgent = request.get("user-agent") || "unknown";
+		const result: ILoginCommandResult = await this.commandBus.execute(
+			new LoginCommand(email, password, userAgent, ipAddress),
+		);
+
+		// setup the cookie options
+		const cookieOptions = {
+			httpOnly: true,
+			secure: this.serverCfg.trustProxy,
+			sameSite: "lax" as const,
+		};
+
+		// set the refresh token cookie
+		response.cookie("refreshToken", result.refreshToken, {
+			...cookieOptions,
+			maxAge: result.refreshTokenExpiresAt.getTime() - Date.now(),
+		});
+		response.cookie("accessToken", result.accessToken, {
+			...cookieOptions,
+			maxAge: result.accessTokenExpiresAt.getTime() - Date.now(),
+		});
+
+		return "Login successful";
 	}
 }

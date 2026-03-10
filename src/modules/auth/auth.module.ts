@@ -5,8 +5,8 @@ import { UserModule } from "@apk_modules/user/user.module";
 import { Module } from "@nestjs/common";
 import { CqrsModule } from "@nestjs/cqrs";
 import { JwtModule } from "@nestjs/jwt";
-import { VerifyTokenEmailCommandHandler } from "./application/commands/complete-register.command";
-import { VerifyTokenEmailRegisterCommand } from "./application/commands/confirm-token-register.command";
+import { CompleteRegisterCommandHandler } from "./application/commands/complete-register.command";
+import { LoginCommandHandler } from "./application/commands/login.command";
 import { RequestRegisterCommandHandler } from "./application/commands/request-register.command";
 import { AccountsRepoAuthPort } from "./application/ports/accounts-repo-auth.port";
 import { ActorsRepoAuthPort } from "./application/ports/actors-repo-auth.port";
@@ -26,6 +26,7 @@ import { RegistrationsRepoAuthDrizzleAdapter } from "./infra/adapters/registrati
 import { SessionsRepoAuthDrizzleAdapter } from "./infra/adapters/sessions-repo-auth.drizzle.adapter";
 import { TokenizerJwtAdapter } from "./infra/adapters/tokenizer.jwt.adapter";
 import { AuthController } from "./interface/http/controllers/auth.controller";
+import { VerifyTokenEmailRegisterCommandHandler } from "./application/commands/verify-token-email-register.command";
 
 const adapters = [
 	{ provide: RegisterCooldownPort, useClass: RegisterCooldownRedisAdapter },
@@ -39,7 +40,12 @@ const adapters = [
 	{ provide: SessionsRepoAuthPort, useClass: SessionsRepoAuthDrizzleAdapter },
 ];
 
-const commands = [RequestRegisterCommandHandler, VerifyTokenEmailRegisterCommand, VerifyTokenEmailCommandHandler];
+const commands = [
+	RequestRegisterCommandHandler,
+	VerifyTokenEmailRegisterCommandHandler,
+	CompleteRegisterCommandHandler,
+	LoginCommandHandler,
+];
 
 @Module({
 	imports: [
