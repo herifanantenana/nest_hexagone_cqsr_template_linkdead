@@ -65,7 +65,7 @@ export class AuthController {
 		@Res({ passthrough: true }) response: Response,
 	) {
 		const { token, firstName, lastName, password } = body;
-		const ipAddress = request.ip || request.get("x-forwarded-for")?.[0] || "unknown";
+		const ipAddress = request.ip || "unknown";
 		const userAgent = request.get("user-agent") || "unknown";
 		const result: ICompleteRegisterCommandResult = await this.commandBus.execute(
 			new CompleteRegisterCommand(token, firstName, lastName, password, userAgent, ipAddress),
@@ -96,7 +96,7 @@ export class AuthController {
 	@ApiBody({ type: LoginDto })
 	async login(@Body() body: LoginDto, @Req() request: Request, @Res({ passthrough: true }) response: Response) {
 		const { email, password } = body;
-		const ipAddress = request.ip || request.get("x-forwarded-for")?.[0] || "unknown";
+		const ipAddress = request.ip || "unknown";
 		const userAgent = request.get("user-agent") || "unknown";
 		const result: ILoginCommandResult = await this.commandBus.execute(
 			new LoginCommand(email, password, userAgent, ipAddress),

@@ -26,8 +26,8 @@ export class NodemailerAdapter implements OnModuleInit {
 		try {
 			this.transporter = nodemailer.createTransport({
 				host,
-				port: this.appCfg.isProd ? 465 : 587,
-				secure: this.appCfg.isProd,
+				port: this.appCfg.isDev ? 587 : 465,
+				secure: !this.appCfg.isDev,
 				auth: {
 					user,
 					pass: password,

@@ -1,6 +1,4 @@
-import { serverConfig } from "@apk_core/config";
-import { type TServerConfig } from "@apk_core/config/root.config";
-import { ExecutionContext, Inject, Injectable } from "@nestjs/common";
+import { ExecutionContext, Injectable } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
 import {
 	InjectThrottlerOptions,
@@ -14,16 +12,12 @@ import { NO_THROTTLE_KEY, POLICY_GLOBAL, RATE_LIMIT_POLICIES_KEY } from "./rate-
 
 @Injectable()
 export class AppThrottlerGuard extends ThrottlerGuard {
-	private trustProxy: boolean;
-
 	constructor(
 		@InjectThrottlerOptions() options: ThrottlerModuleOptions,
 		@InjectThrottlerStorage() storageService: ThrottlerStorage,
 		reflector: Reflector,
-		@Inject(serverConfig.KEY) private readonly serverCfg: TServerConfig,
 	) {
 		super(options, storageService, reflector);
-		this.trustProxy = this.serverCfg.trustProxy;
 	}
 
 	// Allow skipping rate limiting by setting, checked first in canActivate()
@@ -56,22 +50,14 @@ export class AppThrottlerGuard extends ThrottlerGuard {
 	}
 
 	// Get the user ID if authenticated, otherwise fallback to IP address (with optional trust proxy support)
+	// trust proxy is configured globally in main.ts, so request.ip already resolves correctly
 	protected getTracker(req: Record<string, any>): Promise<string> {
 		const userId = (req.user as { id?: string } | undefined)?.id;
 		if (userId) {
 			return Promise.resolve(`user:${userId}`);
 		}
 
-		let ip: string;
-		if (this.trustProxy) {
-			const headers = req.headers as Record<string, string | string[] | undefined> | undefined;
-			const forwarded = headers?.["x-forwarded-for"];
-			if (forwarded) {
-				ip = Array.isArray(forwarded) ? forwarded[0] : forwarded.split(",")[0]?.trim() || "unknown";
-			}
-		}
-
-		ip = (req.ip as string) || (req.socket as { remoteAddress?: string })?.remoteAddress || "unknown";
+		const ip = (req.ip as string) || "unknown";
 		return Promise.resolve(`ip:${ip}`);
 	}
 

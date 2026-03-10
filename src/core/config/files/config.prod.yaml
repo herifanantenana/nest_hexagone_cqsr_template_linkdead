@@ -6,7 +6,7 @@ server:
   port: 5000
   trustProxy: true
   allowedCorsOrigins:
-    - "https://app.linkdead.com"
+    - "https://10.11.200.229:4000"
   apiPathPrefix: "api"
   docsPathPrefix: "docs"
 

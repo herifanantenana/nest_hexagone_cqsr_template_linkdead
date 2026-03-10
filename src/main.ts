@@ -41,7 +41,7 @@ async function bootstrap() {
 					"script-src": ["'self'", "'unsafe-inline'"],
 					"style-src": ["'self'", "'unsafe-inline'"],
 					"img-src": ["'self'", "data:", "validator.swagger.io"],
-					"upgrade-insecure-requests": null,
+					"upgrade-insecure-requests": appCfg.isDev ? null : [],
 				},
 			},
 			crossOriginOpenerPolicy: false,
@@ -89,7 +89,7 @@ async function bootstrap() {
 	});
 
 	await app.listen(serverCfg.port, serverCfg.listenHost, () => {
-		logger.log(`${appCfg.name} is running on ${appCfg.isProd ? "production" : "development"} mode`);
+		logger.log(`${appCfg.name} is running on ${appCfg.runtime} mode`);
 	});
 
 	const appDomain = await app.getUrl();
