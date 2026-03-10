@@ -7,7 +7,7 @@ import { type IUnitOfWorkPort, UNIT_OF_WORK } from "@apk_shared/ports/unit-of-wo
 import { Inject } from "@nestjs/common";
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
 import { BoxMailerPort } from "../ports/box-mailer.port";
-import { HasherTokenPort } from "../ports/hasher-token.port";
+import { EncryptionDecryptionPort } from "../ports/encryption-decryption.port";
 import { RegisterCooldownPort } from "../ports/register-cooldown.port";
 import { RegistrationsRepoAuthPort } from "../ports/registrations-repo-auth.port";
 import { UsersRepoAuthPort } from "../ports/users-repo-auth.port";
@@ -32,7 +32,7 @@ export class RequestRegisterCommandHandler implements ICommandHandler<
 		private readonly logger: AppLogger,
 		private readonly usersRepoPort: UsersRepoAuthPort,
 		private readonly registerCooldownPort: RegisterCooldownPort,
-		private readonly hasherTokenPort: HasherTokenPort,
+		private readonly encryptionDecryptionPort: EncryptionDecryptionPort,
 		@Inject(authConfig.KEY) private readonly authConfig: TAuthConfig,
 		private readonly registrationsRepoAuthPort: RegistrationsRepoAuthPort,
 		@Inject(UNIT_OF_WORK) private readonly unitOfWork: IUnitOfWorkPort,
@@ -57,8 +57,8 @@ export class RequestRegisterCommandHandler implements ICommandHandler<
 		}
 
 		// generate token
-		const token = this.hasherTokenPort.generateRandomToken(64);
-		const tokenHash = this.hasherTokenPort.hashFormSecret(token, this.authConfig.registerTokenSecret);
+		const token = this.encryptionDecryptionPort.generateRandomToken(64);
+		const tokenHash = this.encryptionDecryptionPort.encryptFromSecret(token, this.authConfig.registerTokenSecret);
 		const expiresAt = new Date(Date.now() + this.authConfig.registration.tokenTtlSec * 1000);
 
 		const registration = await this.registrationsRepoAuthPort.findByEmail(email);

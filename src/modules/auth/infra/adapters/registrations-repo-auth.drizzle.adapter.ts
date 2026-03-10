@@ -60,6 +60,7 @@ export class RegistrationsRepoAuthDrizzleAdapter implements RegistrationsRepoAut
 					expiresAt,
 					lastSentAt: new Date(),
 					sentCount: 1,
+					updatedAt: new Date(),
 				})
 				.where(eq(registrationsTable.email, email));
 		});
