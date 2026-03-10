@@ -8,6 +8,7 @@ import { AccountsRepoAuthPort } from "../ports/accounts-repo-auth.port";
 import { ActorsRepoAuthPort } from "../ports/actors-repo-auth.port";
 import { EncryptionDecryptionPort } from "../ports/encryption-decryption.port";
 import { PasswordHasherPort } from "../ports/password-hasher.port";
+import { SessionsCachePort } from "../ports/sessions-cache.port";
 import { SessionsRepoAuthPort } from "../ports/sessions-repo-auth.port";
 import { TokenizerPort } from "../ports/tokenizer.port";
 import { UsersRepoAuthPort } from "../ports/users-repo-auth.port";
@@ -44,6 +45,7 @@ export class LoginCommandHandler implements ICommandHandler<LoginCommand, ILogin
 		private readonly tokenizerPort: TokenizerPort,
 		private readonly sessionsRepoAuthPort: SessionsRepoAuthPort,
 		@Inject(jwtConfig.KEY) private readonly jwtCfg: TJwtConfig,
+		private readonly sessionsCachePort: SessionsCachePort,
 	) {
 		this.logger = this.logger.withContext(LoginCommandHandler.name);
 	}
@@ -91,6 +93,17 @@ export class LoginCommandHandler implements ICommandHandler<LoginCommand, ILogin
 			accountId: account.id,
 			actorId: actor.id,
 			sessionId: session.id,
+		});
+
+		// add token cache
+		await this.sessionsCachePort.setSession({
+			sessionId: session.id,
+			userId: user.id,
+			accountId: account.id,
+			actorId: actor.id,
+			deviceId,
+			refreshToken: refreshTokenHash,
+			expiresAt: refreshTokenExpiresAt,
 		});
 
 		return {

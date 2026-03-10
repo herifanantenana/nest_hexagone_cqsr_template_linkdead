@@ -11,6 +11,7 @@ import { EncryptionDecryptionPort } from "../ports/encryption-decryption.port";
 import { PasswordHasherPort } from "../ports/password-hasher.port";
 import { RegisterCooldownPort } from "../ports/register-cooldown.port";
 import { RegistrationsRepoAuthPort } from "../ports/registrations-repo-auth.port";
+import { SessionsCachePort } from "../ports/sessions-cache.port";
 import { SessionsRepoAuthPort } from "../ports/sessions-repo-auth.port";
 import { TokenizerPort } from "../ports/tokenizer.port";
 import { UsersRepoAuthPort } from "../ports/users-repo-auth.port";
@@ -58,6 +59,7 @@ export class CompleteRegisterCommandHandler implements ICommandHandler<
 		private readonly tokenizerPort: TokenizerPort,
 		@Inject(jwtConfig.KEY) private readonly jwtCfg: TJwtConfig,
 		private readonly sessionsRepoAuthPort: SessionsRepoAuthPort,
+		private readonly sessionsCachePort: SessionsCachePort,
 	) {
 		this.logger = this.logger.withContext(CompleteRegisterCommandHandler.name);
 	}
@@ -133,6 +135,17 @@ export class CompleteRegisterCommandHandler implements ICommandHandler<
 				accountId: accountCreated.id,
 				actorId: actorCreated.id,
 				sessionId: sessionCreated.id,
+			});
+
+			// add token cache
+			await this.sessionsCachePort.setSession({
+				sessionId: sessionCreated.id,
+				userId: userCreated.id,
+				accountId: accountCreated.id,
+				actorId: actorCreated.id,
+				deviceId,
+				refreshToken: refreshTokenHash,
+				expiresAt: refreshTokenExpiresAt,
 			});
 
 			// delete the registration and cooldown

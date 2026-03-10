@@ -8,6 +8,7 @@ import { JwtModule } from "@nestjs/jwt";
 import { CompleteRegisterCommandHandler } from "./application/commands/complete-register.command";
 import { LoginCommandHandler } from "./application/commands/login.command";
 import { RequestRegisterCommandHandler } from "./application/commands/request-register.command";
+import { VerifyTokenEmailRegisterCommandHandler } from "./application/commands/verify-token-email-register.command";
 import { AccountsRepoAuthPort } from "./application/ports/accounts-repo-auth.port";
 import { ActorsRepoAuthPort } from "./application/ports/actors-repo-auth.port";
 import { BoxMailerPort } from "./application/ports/box-mailer.port";
@@ -15,6 +16,7 @@ import { EncryptionDecryptionPort } from "./application/ports/encryption-decrypt
 import { PasswordHasherPort } from "./application/ports/password-hasher.port";
 import { RegisterCooldownPort } from "./application/ports/register-cooldown.port";
 import { RegistrationsRepoAuthPort } from "./application/ports/registrations-repo-auth.port";
+import { SessionsCachePort } from "./application/ports/sessions-cache.port";
 import { SessionsRepoAuthPort } from "./application/ports/sessions-repo-auth.port";
 import { TokenizerPort } from "./application/ports/tokenizer.port";
 import { AccountsRepoDrizzleAdapter } from "./infra/adapters/accounts-repo-auth.drizzle.adapter";
@@ -23,10 +25,10 @@ import { EncryptionDecryptionCryptoAdapter } from "./infra/adapters/encryption-d
 import { PasswordHasherBcryptAdapter } from "./infra/adapters/password-hasher.bcrypt.adapter";
 import { RegisterCooldownRedisAdapter } from "./infra/adapters/register-cooldown.redis.adapter";
 import { RegistrationsRepoAuthDrizzleAdapter } from "./infra/adapters/registrations-repo-auth.drizzle.adapter";
+import { SessionCacheRedisAdapter } from "./infra/adapters/session-cache.redis.adapter";
 import { SessionsRepoAuthDrizzleAdapter } from "./infra/adapters/sessions-repo-auth.drizzle.adapter";
 import { TokenizerJwtAdapter } from "./infra/adapters/tokenizer.jwt.adapter";
 import { AuthController } from "./interface/http/controllers/auth.controller";
-import { VerifyTokenEmailRegisterCommandHandler } from "./application/commands/verify-token-email-register.command";
 
 const adapters = [
 	{ provide: RegisterCooldownPort, useClass: RegisterCooldownRedisAdapter },
@@ -38,6 +40,7 @@ const adapters = [
 	{ provide: ActorsRepoAuthPort, useClass: ActorsRepoAuthDrizzleAdapter },
 	{ provide: TokenizerPort, useClass: TokenizerJwtAdapter },
 	{ provide: SessionsRepoAuthPort, useClass: SessionsRepoAuthDrizzleAdapter },
+	{ provide: SessionsCachePort, useClass: SessionCacheRedisAdapter },
 ];
 
 const commands = [
