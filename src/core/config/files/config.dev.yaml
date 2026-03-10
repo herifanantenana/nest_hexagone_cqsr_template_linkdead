@@ -45,9 +45,12 @@ rateLimiter:
     - name: "AUTH_LOGIN"
       ttlSec: 15
       limit: 20
-    - name: "AUTH_REGISTER"
+    - name: "AUTH_REGISTER_REQUEST"
       ttlSec: 15
       limit: 10
+    - name: "AUTH_REGISTER_CONFIRM_TOKEN"
+      ttlSec: 15
+      limit: 5
     - name: "AUTH_PASSWORD_RESET"
       ttlSec: 15
       limit: 10

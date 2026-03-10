@@ -1,6 +1,7 @@
 import { UserModule } from "@apk_modules/user/user.module";
 import { Module } from "@nestjs/common";
 import { CqrsModule } from "@nestjs/cqrs";
+import { ConfirmTokenRegisterHandler } from "./application/commands/confirm-token-register.command";
 import { RequestRegisterCommandHandler } from "./application/commands/request-register.command";
 import { BoxMailerPort } from "./application/ports/box-mailer.port";
 import { EncryptionDecryptionPort } from "./application/ports/encryption-decryption.port";
@@ -19,7 +20,7 @@ const adapters = [
 	{ provide: BoxMailerPort, useClass: BoxMailerNodemailerAdapter },
 ];
 
-const commands = [RequestRegisterCommandHandler];
+const commands = [RequestRegisterCommandHandler, ConfirmTokenRegisterHandler];
 
 @Module({
 	imports: [CqrsModule, UserModule],

@@ -44,7 +44,6 @@ export class HandlebarsTemplateAdapter implements OnModuleInit {
 
 		const newTemplate = handlebars.compile(fs.readFileSync(path, "utf-8"));
 		this.cachedTemplates.set(path, newTemplate);
-		this.logger.debug(`Loaded and cached template: ${path}`);
 		return newTemplate;
 	}
 

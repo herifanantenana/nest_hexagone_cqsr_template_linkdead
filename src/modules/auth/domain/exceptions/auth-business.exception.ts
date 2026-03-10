@@ -17,3 +17,13 @@ export class InvalidRegistrationTokenException extends BusinessLogicException {
 		super(message, 400, details);
 	}
 }
+
+export class RegistrationTokenCooldownExpiredException extends BusinessLogicException {
+	constructor() {
+		const message = "Invalid registration token. Please request a new registration.";
+		const details = {
+			reasons: "The provided registration token on cooldown et expired. Please request a new registration.",
+		};
+		super(message, 400, details);
+	}
+}

@@ -32,4 +32,14 @@ export class RegisterCooldownRedisAdapter implements RegisterCooldownPort {
 			await this.redisClient.set(key, token, "EX", ttlSec);
 		});
 	}
+
+	async getCooldownToken(email: string): Promise<string | null> {
+		const key = `${REGISTER_COOLDOWN_PREFIX}:${email}`;
+		const result = await this.redisSafeAction.withSafeAsync(async () => {
+			const value = await this.redisClient.get(key);
+			return value;
+		});
+		if (!result.ok) return null;
+		return result.data;
+	}
 }

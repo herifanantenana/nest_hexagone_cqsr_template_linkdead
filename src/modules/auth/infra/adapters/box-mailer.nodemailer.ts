@@ -20,8 +20,9 @@ export class BoxMailerNodemailerAdapter implements BoxMailerPort {
 	async sendVerificationRegisterEmail(to: string, token: string): Promise<void> {
 		const verificationUrl = this.buildUrlClient(`${this.clientAppCfg.registerVerifyEmailPath}?token=${token}`);
 
+		const username = to.split("@")[0];
 		await this.mailerSafeAction.withSafeAsyncOrThrow(
-			async () => await this.mailerService.sendVerificationEmail(to, to, verificationUrl),
+			async () => await this.mailerService.sendVerificationEmail(to, username, verificationUrl),
 		);
 	}
 }

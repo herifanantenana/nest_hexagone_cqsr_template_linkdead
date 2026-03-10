@@ -1,7 +1,7 @@
 import { AppLogger } from "@apk_infra/logger/logger.service";
 import { EncryptionDecryptionPort } from "@apk_modules/auth/application/ports/encryption-decryption.port";
 import { Injectable } from "@nestjs/common";
-import { createCipheriv, createDecipheriv, randomBytes } from "crypto";
+import { createCipheriv, createDecipheriv, createHmac, randomBytes } from "crypto";
 
 @Injectable()
 export class EncryptionDecryptionCryptoAdapter implements EncryptionDecryptionPort {
@@ -11,8 +11,12 @@ export class EncryptionDecryptionCryptoAdapter implements EncryptionDecryptionPo
 		this.logger = this.logger.withContext(EncryptionDecryptionCryptoAdapter.name);
 	}
 
-	encryptFromSecret(value: string, secret: string): string {
-		const payload = { value };
+	hashFromSecret(value: string, secret: string): string {
+		return createHmac("sha256", secret).update(value).digest("base64url");
+	}
+
+	encryptFromSecret<T>(value: T, secret: string): string {
+		const payload = { ...value } as object;
 		return this.encrypt(payload, secret);
 	}
 
@@ -38,7 +42,8 @@ export class EncryptionDecryptionCryptoAdapter implements EncryptionDecryptionPo
 		const encrypted = Buffer.concat([cipher.update(plainText), cipher.final()]);
 		const authTag = cipher.getAuthTag();
 
-		return [iv.toString("base64url"), authTag.toString("base64url"), encrypted.toString("base64url")].join(".");
+		const token = [iv.toString("base64url"), authTag.toString("base64url"), encrypted.toString("base64url")].join(".");
+		return token;
 	}
 
 	private decrypt<T>(token: string, secret: string): T {

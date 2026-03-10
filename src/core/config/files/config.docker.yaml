@@ -45,8 +45,11 @@ rateLimiter:
     - name: "AUTH_LOGIN"
       ttlSec: 900
       limit: 10
-    - name: "AUTH_REGISTER"
+    - name: "AUTH_REGISTER_REQUEST"
       ttlSec: 3600
+      limit: 5
+    - name: "AUTH_REGISTER_CONFIRM_TOKEN"
+      ttlSec: 600
       limit: 5
     - name: "AUTH_PASSWORD_RESET"
       ttlSec: 900
@@ -60,7 +63,7 @@ rateLimiter:
 
 auth:
   registration:
-    tokenTtlSec: 1800
+    tokenTtlSec: 3600
     tokenCooldown:
-      ttlSec: 600
-      maxAttempts: 3
+      ttlSec: 1800
+      maxAttempts: 5
