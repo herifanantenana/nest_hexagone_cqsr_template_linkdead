@@ -1,8 +1,9 @@
+import { AppLogger } from "@apk_infra/logger/logger.service";
 import { RedisSafeAction } from "@apk_infra/redis/redis-safe-action";
+import { RedisService } from "@apk_infra/redis/redis.service";
 import { RegisterCooldownPort } from "@apk_modules/auth/application/ports/register-cooldown.port";
 import { Injectable } from "@nestjs/common";
 import Redis from "ioredis";
-import { RedisService } from "../../../../core/infra/redis/redis.service";
 
 const REGISTER_COOLDOWN_PREFIX = "register:cooldown";
 
@@ -11,10 +12,12 @@ export class RegisterCooldownRedisAdapter implements RegisterCooldownPort {
 	private readonly redisClient: Redis;
 
 	constructor(
-		private readonly RedisService: RedisService,
+		private readonly logger: AppLogger,
+		private readonly redisService: RedisService,
 		private readonly redisSafeAction: RedisSafeAction,
 	) {
-		this.redisClient = this.RedisService.getClient();
+		this.logger = this.logger.withContext(RegisterCooldownRedisAdapter.name);
+		this.redisClient = this.redisService.getClient();
 	}
 
 	async isOnEmailCooldown(email: string): Promise<boolean> {
@@ -41,5 +44,15 @@ export class RegisterCooldownRedisAdapter implements RegisterCooldownPort {
 		});
 		if (!result.ok) return null;
 		return result.data;
+	}
+
+	async deleteCooldown(email: string): Promise<void> {
+		const key = `${REGISTER_COOLDOWN_PREFIX}:${email}`;
+		const result = await this.redisSafeAction.withSafeAsync(async () => {
+			await this.redisClient.del(key);
+		});
+		if (!result.ok) {
+			this.logger.error("Failed to delete register cooldown", { email, error: result.error });
+		}
 	}
 }

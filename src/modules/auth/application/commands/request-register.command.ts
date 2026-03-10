@@ -43,6 +43,7 @@ export class RequestRegisterCommandHandler implements ICommandHandler<
 
 	async execute(command: RequestRegisterCommand): Promise<IRequestRegisterCommandResult> {
 		const { email } = command;
+		this.logger.debug(`Processing registration request for command: ${JSON.stringify(command)}`);
 
 		// validate email format
 		this.authValidator.validateEmail(email);

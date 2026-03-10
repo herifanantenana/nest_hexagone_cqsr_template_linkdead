@@ -3,6 +3,7 @@ import { DatabaseSafeAction } from "@apk_infra/database/database-safe-action";
 import { registrationsTable } from "@apk_infra/database/schemas/authentications/registrations.schema";
 import {
 	ICreateRegistrationsInput,
+	IRegistrationsFindOutput,
 	RegistrationsRepoAuthPort,
 } from "@apk_modules/auth/application/ports/registrations-repo-auth.port";
 import { Injectable } from "@nestjs/common";
@@ -15,11 +16,14 @@ export class RegistrationsRepoAuthDrizzleAdapter implements RegistrationsRepoAut
 		private readonly databaseSafeAction: DatabaseSafeAction,
 	) {}
 
-	async findByEmail(email: string, tx?: unknown): Promise<{ expiresAt: Date; sentCount: number } | null> {
+	async findByEmail(email: string, tx?: unknown): Promise<IRegistrationsFindOutput | null> {
 		const db = this.drizzleAdapter.getDb(tx);
 		const result = await this.databaseSafeAction.withSafeAsyncOrThrow(async () => {
 			const rows = await db
 				.select({
+					id: registrationsTable.id,
+					email: registrationsTable.email,
+					tokenHash: registrationsTable.tokenHash,
 					expiresAt: registrationsTable.expiresAt,
 					sentCount: registrationsTable.sentCount,
 				})

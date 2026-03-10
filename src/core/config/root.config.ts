@@ -67,6 +67,11 @@ type TYamlConfig = {
 			};
 		};
 	};
+
+	jwt: {
+		accessTokenTtlSec: number;
+		refreshTokenTtlSec: number;
+	};
 };
 
 const yamlSchema = Joi.object<TYamlConfig>({
@@ -137,6 +142,11 @@ const yamlSchema = Joi.object<TYamlConfig>({
 			}).required(),
 		}).required(),
 	}).required(),
+
+	jwt: Joi.object({
+		accessTokenTtlSec: Joi.number().min(1).required(),
+		refreshTokenTtlSec: Joi.number().min(1).required(),
+	}).required(),
 });
 
 const envSchema = Joi.object({
@@ -160,6 +170,9 @@ const envSchema = Joi.object({
 	MAILER_PASSWORD: Joi.string().required(),
 
 	AUTH_REGISTER_TOKEN_SECRET: Joi.string().required(),
+
+	JWT_ACCESS_TOKEN_SECRET: Joi.string().required(),
+	JWT_REFRESH_TOKEN_SECRET: Joi.string().required(),
 });
 
 let cachedConfig: TYamlConfig | null = null;
@@ -341,3 +354,15 @@ export const authConfig = registerAs("auth", () => {
 	};
 });
 export type TAuthConfig = ConfigType<typeof authConfig>;
+
+export const jwtConfig = registerAs("jwt", () => {
+	const config = loadConfig();
+
+	return {
+		accessTokenSecret: process.env.JWT_ACCESS_TOKEN_SECRET as string,
+		refreshTokenSecret: process.env.JWT_REFRESH_TOKEN_SECRET as string,
+		accessTokenTtlSec: config.jwt.accessTokenTtlSec,
+		refreshTokenTtlSec: config.jwt.refreshTokenTtlSec,
+	};
+});
+export type TJwtConfig = ConfigType<typeof jwtConfig>;

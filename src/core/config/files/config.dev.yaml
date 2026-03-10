@@ -67,3 +67,7 @@ auth:
     tokenCooldown:
       ttlSec: 600
       maxAttempts: 3
+
+jwt:
+  accessTokenTtlSec: 900
+  refreshTokenTtlSec: 604800

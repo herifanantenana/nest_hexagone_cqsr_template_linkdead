@@ -3,6 +3,7 @@ export {
 	authConfig,
 	clientAppConfig,
 	databaseConfig,
+	jwtConfig,
 	loggerConfig,
 	mailerConfig,
 	rateLimiterConfig,
