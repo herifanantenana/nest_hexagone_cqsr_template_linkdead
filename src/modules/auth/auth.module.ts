@@ -6,7 +6,7 @@ import { Module } from "@nestjs/common";
 import { CqrsModule } from "@nestjs/cqrs";
 import { JwtModule } from "@nestjs/jwt";
 import { VerifyTokenEmailCommandHandler } from "./application/commands/complete-register.command";
-import { ConfirmTokenRegisterHandler } from "./application/commands/confirm-token-register.command";
+import { VerifyTokenEmailRegisterCommand } from "./application/commands/confirm-token-register.command";
 import { RequestRegisterCommandHandler } from "./application/commands/request-register.command";
 import { AccountsRepoAuthPort } from "./application/ports/accounts-repo-auth.port";
 import { ActorsRepoAuthPort } from "./application/ports/actors-repo-auth.port";
@@ -39,7 +39,7 @@ const adapters = [
 	{ provide: SessionsRepoAuthPort, useClass: SessionsRepoAuthDrizzleAdapter },
 ];
 
-const commands = [RequestRegisterCommandHandler, ConfirmTokenRegisterHandler, VerifyTokenEmailCommandHandler];
+const commands = [RequestRegisterCommandHandler, VerifyTokenEmailRegisterCommand, VerifyTokenEmailCommandHandler];
 
 @Module({
 	imports: [

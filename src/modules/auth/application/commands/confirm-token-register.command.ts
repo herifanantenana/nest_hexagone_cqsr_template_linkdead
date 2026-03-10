@@ -7,19 +7,19 @@ import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
 import { EncryptionDecryptionPort } from "../ports/encryption-decryption.port";
 import { RegisterCooldownPort } from "../ports/register-cooldown.port";
 
-export class ConfirmTokenRegisterCommand {
+export class VerifyTokenEmailRegisterCommand {
 	constructor(public readonly tokenEncrypted: string) {}
 }
 
-export interface IConfirmTokenRegisterCommandResult {
+export interface IVerifyTokenEmailRegisterCommandResult {
 	statuscode: number;
 	message: string;
 }
 
-@CommandHandler(ConfirmTokenRegisterCommand)
-export class ConfirmTokenRegisterHandler implements ICommandHandler<
-	ConfirmTokenRegisterCommand,
-	IConfirmTokenRegisterCommandResult
+@CommandHandler(VerifyTokenEmailRegisterCommand)
+export class VerifyTokenEmailRegisterCommandHandler implements ICommandHandler<
+	VerifyTokenEmailRegisterCommand,
+	IVerifyTokenEmailRegisterCommandResult
 > {
 	constructor(
 		private readonly logger: AppLogger,
@@ -27,10 +27,10 @@ export class ConfirmTokenRegisterHandler implements ICommandHandler<
 		@Inject(authConfig.KEY) private readonly authCfg: TAuthConfig,
 		private readonly registerCooldownPort: RegisterCooldownPort,
 	) {
-		this.logger = this.logger.withContext(ConfirmTokenRegisterHandler.name);
+		this.logger = this.logger.withContext(VerifyTokenEmailRegisterCommandHandler.name);
 	}
 
-	async execute(command: ConfirmTokenRegisterCommand): Promise<IConfirmTokenRegisterCommandResult> {
+	async execute(command: VerifyTokenEmailRegisterCommand): Promise<IVerifyTokenEmailRegisterCommandResult> {
 		const { tokenEncrypted } = command;
 
 		// decrypt the token and get the email

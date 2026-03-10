@@ -9,8 +9,8 @@ import {
 	VerifyTokenEmailCommand,
 } from "@apk_modules/auth/application/commands/complete-register.command";
 import {
-	ConfirmTokenRegisterCommand,
-	IConfirmTokenRegisterCommandResult,
+	IVerifyTokenEmailRegisterCommandResult,
+	VerifyTokenEmailRegisterCommand,
 } from "@apk_modules/auth/application/commands/confirm-token-register.command";
 import {
 	IRequestRegisterCommandResult,
@@ -21,8 +21,8 @@ import { CommandBus } from "@nestjs/cqrs";
 import { ApiBody, ApiOperation } from "@nestjs/swagger";
 import type { Request, Response } from "express";
 import { CompleteRegisterDto } from "../dtos/complete-register.dto";
-import { VerifyTokenRegisterRequestDto } from "../dtos/confirm-token-register.dto";
-import { RegisterRequestDto } from "../dtos/request-register.dto";
+import { VerifyTokenEmailRegisterDto } from "../dtos/confirm-token-register.dto";
+import { RequestRegisterDto } from "../dtos/request-register.dto";
 
 @Controller("auth")
 export class AuthController {
@@ -34,8 +34,8 @@ export class AuthController {
 	@RateLimiter(POLICY_AUTH_REGISTER)
 	@Post("register/request")
 	@ApiOperation({ summary: "Request a user registration" })
-	@ApiBody({ type: RegisterRequestDto })
-	async requestRegister(@Body() body: RegisterRequestDto) {
+	@ApiBody({ type: RequestRegisterDto })
+	async requestRegister(@Body() body: RequestRegisterDto) {
 		const { email } = body;
 		const result: IRequestRegisterCommandResult = await this.commandBus.execute(new RequestRegisterCommand(email));
 		return result;
@@ -44,11 +44,11 @@ export class AuthController {
 	@RateLimiter(POLICY_AUTH_REGISTER_CONFIRM_TOKEN)
 	@Post("register/verify-token-email")
 	@ApiOperation({ summary: "Confirm the registration token" })
-	@ApiBody({ type: VerifyTokenRegisterRequestDto })
-	async confirmRegisterToken(@Body() body: VerifyTokenRegisterRequestDto) {
+	@ApiBody({ type: VerifyTokenEmailRegisterDto })
+	async confirmRegisterToken(@Body() body: VerifyTokenEmailRegisterDto) {
 		const { token } = body;
-		const result: IConfirmTokenRegisterCommandResult = await this.commandBus.execute(
-			new ConfirmTokenRegisterCommand(token),
+		const result: IVerifyTokenEmailRegisterCommandResult = await this.commandBus.execute(
+			new VerifyTokenEmailRegisterCommand(token),
 		);
 		return result;
 	}
