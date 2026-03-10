@@ -65,8 +65,6 @@ export class CompleteRegisterCommandHandler implements ICommandHandler<
 	async execute(command: CompleteRegisterCommand): Promise<ICompleteRegisterCommandResult> {
 		const { tokenEncrypted, firstName, lastName, password, userAgent, ipAddress } = command;
 
-		this.logger.debug(`Processing registration completion command for: ${JSON.stringify(command)}`);
-
 		// validate the input
 		this.authValidatorService.validateName(firstName);
 		this.authValidatorService.validateName(lastName);
@@ -77,7 +75,6 @@ export class CompleteRegisterCommandHandler implements ICommandHandler<
 			tokenEncrypted,
 			this.authCfg.registerTokenSecret,
 		);
-		this.logger.debug(`Decrypted token email: ${decrypted?.email} , token ${decrypted?.token}`);
 		if (!decrypted) throw new InvalidRegistrationTokenException();
 
 		// check if the token is valid and not cooled down
@@ -96,10 +93,6 @@ export class CompleteRegisterCommandHandler implements ICommandHandler<
 		// hash password
 		const passwordHash = await this.passwordHasherPort.hash(password);
 		const deviceId = this.encryptionDecryptionPort.generateRandomToken(16);
-
-		this.logger.debug(`Password email: ${decrypted.email}`);
-		this.logger.debug(`Password hashed: ${passwordHash}`);
-		this.logger.debug(`Generated device ID: ${deviceId}`);
 
 		return this.unitOfWork.withTransaction(async (tx) => {
 			// create the user

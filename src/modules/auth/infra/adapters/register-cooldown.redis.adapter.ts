@@ -52,7 +52,7 @@ export class RegisterCooldownRedisAdapter implements RegisterCooldownPort {
 			await this.redisClient.del(key);
 		});
 		if (!result.ok) {
-			this.logger.error("Failed to delete register cooldown", { email, error: result.error });
+			this.logger.error("Failed to delete register cooldown", { error: result.error });
 		}
 	}
 }

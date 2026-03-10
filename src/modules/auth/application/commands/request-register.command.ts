@@ -43,7 +43,6 @@ export class RequestRegisterCommandHandler implements ICommandHandler<
 
 	async execute(command: RequestRegisterCommand): Promise<IRequestRegisterCommandResult> {
 		const { email } = command;
-		this.logger.debug(`Processing registration request command for: ${JSON.stringify(command)}`);
 
 		// validate email format
 		this.authValidator.validateEmail(email);
@@ -53,7 +52,7 @@ export class RequestRegisterCommandHandler implements ICommandHandler<
 
 		// check redis cooldown
 		if (await this.registerCooldownPort.isOnEmailCooldown(email)) {
-			this.logger.warn(`Registration attempt for email ${email} is on cooldown.`);
+			this.logger.warn("Registration attempt is on cooldown");
 			return { statusCode: 200, message: "Please check your inbox." };
 		}
 
@@ -64,10 +63,6 @@ export class RequestRegisterCommandHandler implements ICommandHandler<
 			{ email, token },
 			this.authConfig.registerTokenSecret,
 		);
-		this.logger.debug(`Generated token: ${token}`);
-		this.logger.debug(`Generated token hash: ${tokenHash}`);
-		this.logger.debug(`Generated encrypted token: ${tokenEncrypted}`);
-
 		const expiresAt = new Date(Date.now() + this.authConfig.registration.tokenTtlSec * 1000);
 
 		const registration = await this.registrationsRepoAuthPort.findByEmail(email);
@@ -96,7 +91,7 @@ export class RequestRegisterCommandHandler implements ICommandHandler<
 
 		// if sent count exceeds max attempts, return too many requests
 		if (sentCount >= this.authConfig.registration.tokenCooldown.maxAttempts) {
-			this.logger.warn(`Maximum registration attempts exceeded for email ${email}.`);
+			this.logger.warn("Maximum registration attempts exceeded");
 			return { statusCode: 429, message: "Maximum registration attempts exceeded. Please try again later." };
 		}
 

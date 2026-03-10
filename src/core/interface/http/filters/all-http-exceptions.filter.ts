@@ -107,7 +107,7 @@ export class AllHttpExceptionsFilter implements ExceptionFilter, OnModuleInit {
 			return this.extractFromInfraException(exception);
 		}
 
-		console.log("Unknown exception type caught by AllHttpExceptionsFilter:", exception);
+		this.logger.error("Unknown exception type caught by AllHttpExceptionsFilter", { error: exception });
 		return this.extractFromUnknownException(exception);
 	}
 

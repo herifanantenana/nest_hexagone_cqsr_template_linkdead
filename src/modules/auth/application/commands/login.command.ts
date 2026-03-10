@@ -51,8 +51,6 @@ export class LoginCommandHandler implements ICommandHandler<LoginCommand, ILogin
 	async execute(command: LoginCommand): Promise<ILoginCommandResult> {
 		const { email, password, userAgent, ipAddress } = command;
 
-		this.logger.debug(`Processing login command for: ${JSON.stringify(command)}`);
-
 		// find the user by email
 		const user = await this.usersRepoAuthPort.findIdByEmail(email);
 		if (!user) throw new InvalidCredentialsException();
