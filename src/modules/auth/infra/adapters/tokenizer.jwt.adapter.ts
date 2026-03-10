@@ -28,6 +28,7 @@ export class TokenizerJwtAdapter implements TokenizerPort {
 			acid: accountId,
 			atid: actorId,
 			sid: sessionId,
+			expAtSec: expiresAt.getTime() / 1000,
 		});
 		return { value: token, expiresAt };
 	}
