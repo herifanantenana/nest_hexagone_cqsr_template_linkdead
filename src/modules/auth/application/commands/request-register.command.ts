@@ -58,40 +58,43 @@ export class RequestRegisterCommandHandler implements ICommandHandler<
 
 		// generate token
 		const token = this.hasherTokenPort.generateRandomToken(64);
-		const tokenHash = this.hasherTokenPort.hashFormSecret(token, this.authConfig.registerTokenSecret!);
+		const tokenHash = this.hasherTokenPort.hashFormSecret(token, this.authConfig.registerTokenSecret);
 		const expiresAt = new Date(Date.now() + this.authConfig.registration.tokenTtlSec * 1000);
 
 		const registration = await this.registrationsRepoAuthPort.findByEmail(email);
+
+		// * if no registration, create new one and send email
 		if (!registration) {
 			return this.unitOfWork.withTransaction(async (tx) => {
 				await this.registrationsRepoAuthPort.create({ email, tokenHash, expiresAt }, tx);
 				await this.registerCooldownPort.start(email, token, this.authConfig.registration.tokenCooldown.ttlSec);
-				// todo add send email service
 				await this.boxMailerPort.sendVerificationRegisterEmail(email, token);
 				return { statusCode: 201, message: "Request Registration link sent. Please check your inbox." };
 			});
 		}
 
 		const { expiresAt: registrationExpiresAt, sentCount } = registration;
+
+		// * if registration expired, reset token and send email
 		if (registrationExpiresAt.getTime() <= Date.now()) {
 			return this.unitOfWork.withTransaction(async (tx) => {
 				await this.registrationsRepoAuthPort.resetByEmail({ email, tokenHash, expiresAt }, tx);
 				await this.registerCooldownPort.start(email, token, this.authConfig.registration.tokenCooldown.ttlSec);
-				// todo add send email service
 				await this.boxMailerPort.sendVerificationRegisterEmail(email, token);
 				return { statusCode: 200, message: "Registration token reset. Please check your inbox." };
 			});
 		}
 
+		// * if sent count exceeds max attempts, return too many requests
 		if (sentCount >= this.authConfig.registration.tokenCooldown.maxAttempts) {
 			this.logger.warn(`Maximum registration attempts exceeded for email ${email}.`);
 			return { statusCode: 429, message: "Maximum registration attempts exceeded. Please try again later." };
 		}
 
+		// * if registration valid and cooldown expired, rotate token and send email
 		return await this.unitOfWork.withTransaction(async (tx) => {
 			await this.registrationsRepoAuthPort.rotateByEmail({ email, tokenHash }, tx);
 			await this.registerCooldownPort.start(email, token, this.authConfig.registration.tokenCooldown.ttlSec);
-			// todo add send email service
 			await this.boxMailerPort.sendVerificationRegisterEmail(email, token);
 			return { statusCode: 200, message: "Registration token rotated. Please check your inbox." };
 		});
