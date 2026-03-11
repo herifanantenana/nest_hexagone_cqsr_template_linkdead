@@ -10,6 +10,7 @@ import {
 	ICompleteRegisterCommandResult,
 } from "@apk_modules/auth/application/commands/complete-register.command";
 import { ILoginCommandResult, LoginCommand } from "@apk_modules/auth/application/commands/login.command";
+import { LogoutCommand } from "@apk_modules/auth/application/commands/logout.command";
 import {
 	IRequestRegisterCommandResult,
 	RequestRegisterCommand,
@@ -18,7 +19,7 @@ import {
 	IVerifyTokenEmailRegisterCommandResult,
 	VerifyTokenEmailRegisterCommand,
 } from "@apk_modules/auth/application/commands/verify-token-email-register.command";
-import { Body, Controller, Inject, Post, Req, Res } from "@nestjs/common";
+import { Body, Controller, HttpCode, HttpStatus, Inject, Post, Req, Res } from "@nestjs/common";
 import { CommandBus } from "@nestjs/cqrs";
 import { ApiBody, ApiOperation } from "@nestjs/swagger";
 import type { Request, Response } from "express";
@@ -26,7 +27,7 @@ import { CompleteRegisterDto } from "../dtos/complete-register.dto";
 import { LoginDto } from "../dtos/login.dto";
 import { RequestRegisterDto } from "../dtos/request-register.dto";
 import { VerifyTokenEmailRegisterDto } from "../dtos/verify-token-email-register.dto";
-import { AuthPublic } from "../guards/auth.decorators";
+import { AuthOptional, AuthPublic, Cookies, SessionId } from "../guards/auth.decorators";
 
 @Controller("auth")
 export class AuthController {
@@ -36,9 +37,18 @@ export class AuthController {
 		@Inject(jwtConfig.KEY) private readonly jwtCfg: TJwtConfig,
 	) {}
 
+	private buildCookieOptions() {
+		return {
+			httpOnly: true,
+			secure: this.appCfg.isProd,
+			sameSite: "lax" as const,
+		};
+	}
+
 	@RateLimiter(POLICY_AUTH_REGISTER)
 	@AuthPublic()
 	@Post("register/request")
+	@HttpCode(HttpStatus.OK)
 	@ApiOperation({ summary: "Request a user registration" })
 	@ApiBody({ type: RequestRegisterDto })
 	async requestRegister(@Body() body: RequestRegisterDto) {
@@ -50,6 +60,7 @@ export class AuthController {
 	@RateLimiter(POLICY_AUTH_REGISTER_VERIFY_TOKEN_EMAIL)
 	@AuthPublic()
 	@Post("register/verify-token-email")
+	@HttpCode(HttpStatus.OK)
 	@ApiOperation({ summary: "Confirm the registration token" })
 	@ApiBody({ type: VerifyTokenEmailRegisterDto })
 	async confirmRegisterToken(@Body() body: VerifyTokenEmailRegisterDto) {
@@ -77,20 +88,13 @@ export class AuthController {
 			new CompleteRegisterCommand(token, firstName, lastName, password, userAgent, ipAddress),
 		);
 
-		// setup the cookie options
-		const cookieOptions = {
-			httpOnly: true,
-			secure: this.appCfg.isProd,
-			sameSite: "lax" as const,
-		};
-
 		// set the refresh token cookie
 		response.cookie(this.jwtCfg.refreshTokenKey, result.refreshToken, {
-			...cookieOptions,
+			...this.buildCookieOptions(),
 			maxAge: result.refreshTokenExpiresAt.getTime() - Date.now(),
 		});
 		response.cookie(this.jwtCfg.accessTokenKey, result.accessToken, {
-			...cookieOptions,
+			...this.buildCookieOptions(),
 			maxAge: result.accessTokenExpiresAt.getTime() - Date.now(),
 		});
 
@@ -100,6 +104,7 @@ export class AuthController {
 	@RateLimiter(POLICY_AUTH_LOGIN)
 	@AuthPublic()
 	@Post("login")
+	@HttpCode(HttpStatus.OK)
 	@ApiOperation({ summary: "Login a user" })
 	@ApiBody({ type: LoginDto })
 	async login(@Body() body: LoginDto, @Req() request: Request, @Res({ passthrough: true }) response: Response) {
@@ -110,23 +115,38 @@ export class AuthController {
 			new LoginCommand(email, password, userAgent, ipAddress),
 		);
 
-		// setup the cookie options
-		const cookieOptions = {
-			httpOnly: true,
-			secure: this.appCfg.isProd,
-			sameSite: "lax" as const,
-		};
-
 		// set the refresh token cookie
 		response.cookie(this.jwtCfg.refreshTokenKey, result.refreshToken, {
-			...cookieOptions,
+			...this.buildCookieOptions(),
 			maxAge: result.refreshTokenExpiresAt.getTime() - Date.now(),
 		});
 		response.cookie(this.jwtCfg.accessTokenKey, result.accessToken, {
-			...cookieOptions,
+			...this.buildCookieOptions(),
 			maxAge: result.accessTokenExpiresAt.getTime() - Date.now(),
 		});
 
 		return "Login successful";
+	}
+	@AuthOptional()
+	@Post("logout")
+	@HttpCode(HttpStatus.OK)
+	@ApiOperation({ summary: "Logout a user" })
+	async logout(
+		@Res({ passthrough: true }) response: Response,
+		@SessionId() sessionId?: string,
+		@Cookies() cookies?: Record<string, string>,
+	) {
+		const refreshToken = cookies?.[this.jwtCfg.refreshTokenKey];
+		await this.commandBus.execute(new LogoutCommand(sessionId, refreshToken));
+
+		// Clear the cookies
+		response.clearCookie(this.jwtCfg.refreshTokenKey, {
+			...this.buildCookieOptions(),
+		});
+		response.clearCookie(this.jwtCfg.accessTokenKey, {
+			...this.buildCookieOptions(),
+		});
+
+		return "Logout successful";
 	}
 }

@@ -38,6 +38,7 @@ export class RequestAuthResolverService {
 			};
 		}
 
+		this.logger.debug(`Session data not found in cache for sessionId ${sessionId}, trying to resolve from db...`);
 		// session data not found in cache, try to get it from db
 		const sessionDb = await this.sessionsRepoAuthPort.findById(sessionId);
 		if (!sessionDb) {

@@ -1,6 +1,5 @@
-import { authConfig, jwtConfig, type TAuthConfig, type TJwtConfig } from "@apk_core/config/root.config";
+import { jwtConfig, type TJwtConfig } from "@apk_core/config/root.config";
 import { AppLogger } from "@apk_infra/logger/logger.service";
-import { InvalidRegistrationTokenException } from "@apk_modules/auth/domain/exceptions/auth-business.exception";
 import { type IUnitOfWorkPort, UNIT_OF_WORK } from "@apk_shared/ports/unit-of-work.port";
 import { Inject } from "@nestjs/common";
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
@@ -15,6 +14,7 @@ import { SessionsCachePort } from "../ports/sessions-cache.port";
 import { SessionsRepoAuthPort } from "../ports/sessions-repo-auth.port";
 import { TokenizerPort } from "../ports/tokenizer.port";
 import { UsersRepoAuthPort } from "../ports/users-repo-auth.port";
+import { RegisterTokenValidatorService } from "../services/register-token-validator.service";
 
 export class CompleteRegisterCommand {
 	constructor(
@@ -28,10 +28,6 @@ export class CompleteRegisterCommand {
 }
 
 export interface ICompleteRegisterCommandResult {
-	userId: string;
-	accountId: string;
-	actorId: string;
-	sessionId: string;
 	accessToken: string;
 	accessTokenExpiresAt: Date;
 	refreshToken: string;
@@ -48,7 +44,7 @@ export class CompleteRegisterCommandHandler implements ICommandHandler<
 	constructor(
 		private readonly logger: AppLogger,
 		private readonly encryptionDecryptionPort: EncryptionDecryptionPort,
-		@Inject(authConfig.KEY) private readonly authCfg: TAuthConfig,
+		private readonly registerTokenValidatorService: RegisterTokenValidatorService,
 		private readonly registerCooldownPort: RegisterCooldownPort,
 		private readonly registrationsRepoAuthPort: RegistrationsRepoAuthPort,
 		private readonly passwordHasherPort: PasswordHasherPort,
@@ -72,28 +68,8 @@ export class CompleteRegisterCommandHandler implements ICommandHandler<
 		this.authValidatorService.validateName(lastName);
 		this.authValidatorService.validatePassword(password);
 
-		/// decrypt the token and get the email
-		const decrypted = this.encryptionDecryptionPort.decryptFromSecret<{ email: string; token: string }>(
-			tokenEncrypted,
-			this.authCfg.registerTokenSecret,
-		);
-		if (!decrypted) throw new InvalidRegistrationTokenException();
-
-		// check if the token is valid and not cooled down
-		const isOnCooldown = await this.registerCooldownPort.isOnEmailCooldown(decrypted.email);
-		if (!isOnCooldown) throw new InvalidRegistrationTokenException();
-
-		// check if the token matches the one on cooldown
-		const tokenOnCooldown = await this.registerCooldownPort.getCooldownToken(decrypted.email);
-		if (tokenOnCooldown !== tokenEncrypted) throw new InvalidRegistrationTokenException();
-
-		// check if token is valid on database
-		const registration = await this.registrationsRepoAuthPort.findByEmail(decrypted.email);
-		const tokenHash = this.encryptionDecryptionPort.hashFromSecret(decrypted.token, this.authCfg.registerTokenSecret);
-		if (!registration || registration.tokenHash !== tokenHash) throw new InvalidRegistrationTokenException();
-
-		// check if toke expiration still under the session
-		if (registration.expiresAt.getTime() <= Date.now()) throw new InvalidRegistrationTokenException();
+		// validate registration token (decrypt, cooldown, DB match, expiration)
+		const { decrypted, registration } = await this.registerTokenValidatorService.validate(tokenEncrypted);
 
 		// hash password
 		const passwordHash = await this.passwordHasherPort.hash(password);
@@ -169,10 +145,6 @@ export class CompleteRegisterCommandHandler implements ICommandHandler<
 
 		// No need to delete refreshTokenHash from result
 		return {
-			userId: result.userId,
-			accountId: result.accountId,
-			actorId: result.actorId,
-			sessionId: result.sessionId,
 			accessToken: result.accessToken,
 			accessTokenExpiresAt: result.accessTokenExpiresAt,
 			refreshToken: result.refreshToken,

@@ -25,8 +25,8 @@ export class SessionsRepoAuthDrizzleAdapter implements SessionsRepoAuthPort {
 		return result;
 	}
 
-	async findById(sessionId: string): Promise<ISessionDbData | null> {
-		const db = this.drizzleAdapter.getDb();
+	async findById(sessionId: string, tx?: unknown): Promise<ISessionDbData | null> {
+		const db = this.drizzleAdapter.getDb(tx);
 		const result = await this.databaseSafeAction.withSafeAsyncOrThrow(async () => {
 			const [row] = await db
 				.select({
@@ -43,5 +43,32 @@ export class SessionsRepoAuthDrizzleAdapter implements SessionsRepoAuthPort {
 			return row;
 		});
 		return result;
+	}
+
+	async findByRefreshTokenHash(refreshTokenHash: string, tx?: unknown): Promise<ISessionDbData | null> {
+		const db = this.drizzleAdapter.getDb(tx);
+		const result = await this.databaseSafeAction.withSafeAsyncOrThrow(async () => {
+			const [row] = await db
+				.select({
+					id: sessionsTable.id,
+					userId: sessionsTable.userId,
+					accountId: sessionsTable.accountId,
+					actorId: sessionsTable.actorId,
+					refreshTokenHash: sessionsTable.refreshTokenHash,
+					expiresAt: sessionsTable.expiresAt,
+					revokedAt: sessionsTable.revokedAt,
+				})
+				.from(sessionsTable)
+				.where(eq(sessionsTable.refreshTokenHash, refreshTokenHash));
+			return row;
+		});
+		return result;
+	}
+
+	async revokeById(sessionId: string, tx?: unknown): Promise<void> {
+		const db = this.drizzleAdapter.getDb(tx);
+		await this.databaseSafeAction.withSafeAsyncOrThrow(async () => {
+			await db.update(sessionsTable).set({ revokedAt: new Date() }).where(eq(sessionsTable.id, sessionId));
+		});
 	}
 }

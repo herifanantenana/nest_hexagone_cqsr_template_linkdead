@@ -7,6 +7,7 @@ import { CqrsModule } from "@nestjs/cqrs";
 import { JwtModule } from "@nestjs/jwt";
 import { CompleteRegisterCommandHandler } from "./application/commands/complete-register.command";
 import { LoginCommandHandler } from "./application/commands/login.command";
+import { LogoutCommandHandler } from "./application/commands/logout.command";
 import { RequestRegisterCommandHandler } from "./application/commands/request-register.command";
 import { VerifyTokenEmailRegisterCommandHandler } from "./application/commands/verify-token-email-register.command";
 import { AccountsRepoAuthPort } from "./application/ports/accounts-repo-auth.port";
@@ -19,6 +20,7 @@ import { RegistrationsRepoAuthPort } from "./application/ports/registrations-rep
 import { SessionsCachePort } from "./application/ports/sessions-cache.port";
 import { SessionsRepoAuthPort } from "./application/ports/sessions-repo-auth.port";
 import { TokenizerPort } from "./application/ports/tokenizer.port";
+import { RegisterTokenValidatorService } from "./application/services/register-token-validator.service";
 import { RequestAuthResolverService } from "./application/services/request-auth-resolver.service";
 import { AccountsRepoDrizzleAdapter } from "./infra/adapters/accounts-repo-auth.drizzle.adapter";
 import { BoxMailerNodemailerAdapter } from "./infra/adapters/box-mailer.nodemailer";
@@ -51,6 +53,7 @@ const commands = [
 	VerifyTokenEmailRegisterCommandHandler,
 	CompleteRegisterCommandHandler,
 	LoginCommandHandler,
+	LogoutCommandHandler,
 ];
 
 @Module({
@@ -65,7 +68,14 @@ const commands = [
 			}),
 		}),
 	],
-	providers: [...adapters, ...commands, RequestAuthResolverService, JwtCookieStrategy, JwtAuthGuard],
+	providers: [
+		...adapters,
+		...commands,
+		RegisterTokenValidatorService,
+		RequestAuthResolverService,
+		JwtCookieStrategy,
+		JwtAuthGuard,
+	],
 	controllers: [AuthController],
 	exports: [JwtAuthGuard],
 })

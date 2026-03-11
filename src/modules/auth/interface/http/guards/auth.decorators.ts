@@ -26,3 +26,7 @@ export const ActorId = createParamDecorator((_data: unknown, ctx: ExecutionConte
 
 // get session id from auth context
 export const SessionId = createParamDecorator((_data: unknown, ctx: ExecutionContext) => getReq(ctx).auth?.sessionId);
+
+export const Cookies = createParamDecorator(
+	(_data: string, ctx: ExecutionContext) => getReq(ctx).cookies as Record<string, string> | undefined,
+);

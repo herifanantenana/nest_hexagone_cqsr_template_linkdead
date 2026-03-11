@@ -70,7 +70,7 @@ auth:
       maxAttempts: 3
 
 jwt:
-  accessTokenKey: "linkdead_dev_access_token"
-  refreshTokenKey: "linkdead_dev_refresh_token"
+  accessTokenKey: "11nkd34d_4cc355_70k3n"
+  refreshTokenKey: "11nkd34d_r3fr35h_70k3n"
   accessTokenTtlSec: 900
   refreshTokenTtlSec: 604800

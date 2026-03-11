@@ -93,10 +93,10 @@ CREATE TABLE "organizations" (
 CREATE INDEX "sessions_account_id_idx" ON "sessions" ("account_id");--> statement-breakpoint
 CREATE INDEX "sessions_user_id_idx" ON "sessions" ("user_id");--> statement-breakpoint
 CREATE INDEX "sessions_actor_id_idx" ON "sessions" ("actor_id");--> statement-breakpoint
-ALTER TABLE "accounts" ADD CONSTRAINT "accounts_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "users"("id");--> statement-breakpoint
-ALTER TABLE "actors" ADD CONSTRAINT "actors_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "users"("id");--> statement-breakpoint
-ALTER TABLE "actors" ADD CONSTRAINT "actors_organization_id_fk" FOREIGN KEY ("organization_id") REFERENCES "organizations"("id");--> statement-breakpoint
-ALTER TABLE "sessions" ADD CONSTRAINT "sessions_account_id_fk" FOREIGN KEY ("account_id") REFERENCES "accounts"("id");--> statement-breakpoint
-ALTER TABLE "sessions" ADD CONSTRAINT "sessions_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "users"("id");--> statement-breakpoint
-ALTER TABLE "sessions" ADD CONSTRAINT "sessions_actor_id_fk" FOREIGN KEY ("actor_id") REFERENCES "actors"("id");--> statement-breakpoint
-ALTER TABLE "organizations" ADD CONSTRAINT "organizations_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "users"("id");
+ALTER TABLE "accounts" ADD CONSTRAINT "accounts_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;--> statement-breakpoint
+ALTER TABLE "actors" ADD CONSTRAINT "actors_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;--> statement-breakpoint
+ALTER TABLE "actors" ADD CONSTRAINT "actors_organization_id_fk" FOREIGN KEY ("organization_id") REFERENCES "organizations"("id") ON DELETE CASCADE ON UPDATE CASCADE;--> statement-breakpoint
+ALTER TABLE "sessions" ADD CONSTRAINT "sessions_account_id_fk" FOREIGN KEY ("account_id") REFERENCES "accounts"("id") ON DELETE CASCADE ON UPDATE CASCADE;--> statement-breakpoint
+ALTER TABLE "sessions" ADD CONSTRAINT "sessions_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;--> statement-breakpoint
+ALTER TABLE "sessions" ADD CONSTRAINT "sessions_actor_id_fk" FOREIGN KEY ("actor_id") REFERENCES "actors"("id") ON DELETE CASCADE ON UPDATE CASCADE;--> statement-breakpoint
+ALTER TABLE "organizations" ADD CONSTRAINT "organizations_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;

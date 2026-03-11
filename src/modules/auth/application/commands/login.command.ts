@@ -23,10 +23,6 @@ export class LoginCommand {
 }
 
 export interface ILoginCommandResult {
-	userId: string;
-	accountId: string;
-	actorId: string;
-	sessionId: string;
 	accessToken: string;
 	accessTokenExpiresAt: Date;
 	refreshToken: string;
@@ -106,10 +102,6 @@ export class LoginCommandHandler implements ICommandHandler<LoginCommand, ILogin
 		});
 
 		return {
-			userId: user.id,
-			accountId: account.id,
-			actorId: actor.id,
-			sessionId: session.id,
 			accessToken,
 			accessTokenExpiresAt,
 			refreshToken,

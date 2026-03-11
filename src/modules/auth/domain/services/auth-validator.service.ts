@@ -15,7 +15,7 @@ export class AuthValidatorService {
 	validateName(name: string): void {
 		const reasons: string[] = [];
 		if (name.length < 3 || name.length > 50) {
-			reasons.push("Name must be between 3 and 20 characters long.");
+			reasons.push("Name must be between 3 and 50 characters long.");
 		}
 		const nameRegex = /^[a-zA-Z0-9_]+$/;
 		if (!nameRegex.test(name)) {

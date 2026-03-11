@@ -41,7 +41,7 @@ export class AccountsRepoDrizzleAdapter implements AccountsRepoAuthPort {
 				.select({
 					id: accountsTable.id,
 					passwordHash: accountsTable.passwordHash,
-					twoFaEnable: accountsTable.twoFaEnabled,
+					twoFaEnabled: accountsTable.twoFaEnabled,
 				})
 				.from(accountsTable)
 				.where(eq(accountsTable.userId, userId));

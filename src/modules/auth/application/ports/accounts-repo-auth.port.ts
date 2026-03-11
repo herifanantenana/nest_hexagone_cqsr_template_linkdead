@@ -5,7 +5,7 @@ export interface ICreateInput {
 export interface IFindAuthOutput {
 	id: string;
 	passwordHash: string | null;
-	twoFaEnable: boolean;
+	twoFaEnabled: boolean;
 }
 
 export abstract class AccountsRepoAuthPort {

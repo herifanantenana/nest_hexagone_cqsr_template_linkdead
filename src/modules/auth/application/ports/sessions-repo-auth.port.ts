@@ -21,5 +21,7 @@ export interface ISessionDbData {
 
 export abstract class SessionsRepoAuthPort {
 	abstract create(input: ICreateSessionsInput, tx?: unknown): Promise<{ id: string }>;
-	abstract findById(sessionId: string): Promise<ISessionDbData | null>;
+	abstract findById(sessionId: string, tx?: unknown): Promise<ISessionDbData | null>;
+	abstract findByRefreshTokenHash(refreshTokenHash: string, tx?: unknown): Promise<ISessionDbData | null>;
+	abstract revokeById(sessionId: string, tx?: unknown): Promise<void>;
 }
