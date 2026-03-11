@@ -3,6 +3,7 @@ import { DatabaseSafeAction } from "@apk_infra/database/database-safe-action";
 import { sessionsTable } from "@apk_infra/database/schemas/authentications/sessions.schema";
 import {
 	ICreateSessionsInput,
+	IRotateRefreshTokenInput,
 	ISessionDbData,
 	SessionsRepoAuthPort,
 } from "@apk_modules/auth/application/ports/sessions-repo-auth.port";
@@ -35,6 +36,9 @@ export class SessionsRepoAuthDrizzleAdapter implements SessionsRepoAuthPort {
 					accountId: sessionsTable.accountId,
 					actorId: sessionsTable.actorId,
 					refreshTokenHash: sessionsTable.refreshTokenHash,
+					deviceId: sessionsTable.deviceId,
+					userAgent: sessionsTable.userAgent,
+					ipAddress: sessionsTable.ipAddress,
 					expiresAt: sessionsTable.expiresAt,
 					revokedAt: sessionsTable.revokedAt,
 				})
@@ -55,6 +59,9 @@ export class SessionsRepoAuthDrizzleAdapter implements SessionsRepoAuthPort {
 					accountId: sessionsTable.accountId,
 					actorId: sessionsTable.actorId,
 					refreshTokenHash: sessionsTable.refreshTokenHash,
+					deviceId: sessionsTable.deviceId,
+					userAgent: sessionsTable.userAgent,
+					ipAddress: sessionsTable.ipAddress,
 					expiresAt: sessionsTable.expiresAt,
 					revokedAt: sessionsTable.revokedAt,
 				})
@@ -69,6 +76,17 @@ export class SessionsRepoAuthDrizzleAdapter implements SessionsRepoAuthPort {
 		const db = this.drizzleAdapter.getDb(tx);
 		await this.databaseSafeAction.withSafeAsyncOrThrow(async () => {
 			await db.update(sessionsTable).set({ revokedAt: new Date() }).where(eq(sessionsTable.id, sessionId));
+		});
+	}
+
+	async rotateRefreshToken(input: IRotateRefreshTokenInput, tx?: unknown): Promise<void> {
+		const db = this.drizzleAdapter.getDb(tx);
+		const { sessionId, newRefreshTokenHash, newExpiresAt } = input;
+		await this.databaseSafeAction.withSafeAsyncOrThrow(async () => {
+			await db
+				.update(sessionsTable)
+				.set({ refreshTokenHash: newRefreshTokenHash, expiresAt: newExpiresAt })
+				.where(eq(sessionsTable.id, sessionId));
 		});
 	}
 }

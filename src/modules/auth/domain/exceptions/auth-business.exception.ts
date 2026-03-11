@@ -22,7 +22,7 @@ export class RegistrationTokenCooldownExpiredException extends BusinessLogicExce
 	constructor() {
 		const message = "Invalid registration token. Please request a new registration.";
 		const details = {
-			reasons: "The provided registration token on cooldown et expired. Please request a new registration.",
+			reasons: "The provided registration token has expired. Please request a new registration.",
 		};
 		super(message, 400, details);
 	}

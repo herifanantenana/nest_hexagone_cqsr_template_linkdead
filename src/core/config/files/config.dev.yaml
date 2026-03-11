@@ -55,7 +55,7 @@ rateLimiter:
     - name: "AUTH_PASSWORD_RESET"
       ttlSec: 15
       limit: 10
-    - name: "AUTH_EMAIL_VERIFY"
+    - name: "AUTH_REFRESH_TOKEN"
       ttlSec: 15
       limit: 15
     - name: "API_HEAVY"

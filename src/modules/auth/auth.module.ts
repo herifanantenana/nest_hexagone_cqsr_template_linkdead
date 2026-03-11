@@ -8,6 +8,7 @@ import { JwtModule } from "@nestjs/jwt";
 import { CompleteRegisterCommandHandler } from "./application/commands/complete-register.command";
 import { LoginCommandHandler } from "./application/commands/login.command";
 import { LogoutCommandHandler } from "./application/commands/logout.command";
+import { RefreshAccessTokenCommandHandler } from "./application/commands/refresh-access-token.command";
 import { RequestRegisterCommandHandler } from "./application/commands/request-register.command";
 import { VerifyTokenEmailRegisterCommandHandler } from "./application/commands/verify-token-email-register.command";
 import { AccountsRepoAuthPort } from "./application/ports/accounts-repo-auth.port";
@@ -54,6 +55,7 @@ const commands = [
 	CompleteRegisterCommandHandler,
 	LoginCommandHandler,
 	LogoutCommandHandler,
+	RefreshAccessTokenCommandHandler,
 ];
 
 @Module({

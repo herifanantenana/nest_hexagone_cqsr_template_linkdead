@@ -21,7 +21,9 @@ export class LogoutCommandHandler implements ICommandHandler<LogoutCommand, void
 		@Inject(jwtConfig.KEY) private readonly jwtCfg: TJwtConfig,
 		private readonly sessionsRepoAuthPort: SessionsRepoAuthPort,
 		private readonly sessionsCachePort: SessionsCachePort,
-	) {}
+	) {
+		this.logger = this.logger.withContext(LogoutCommandHandler.name);
+	}
 
 	async execute(command: LogoutCommand): Promise<void> {
 		const { sessionId, refreshToken } = command;

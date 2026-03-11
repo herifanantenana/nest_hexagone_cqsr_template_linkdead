@@ -2,6 +2,7 @@ import { appConfig, jwtConfig, type TAppConfig, type TJwtConfig } from "@apk_cor
 import { NoThrottle, RateLimiter } from "@apk_core/interface/http/guards/rate-limiter/rate-limiter.decorator";
 import {
 	POLICY_AUTH_LOGIN,
+	POLICY_AUTH_REFRESH_TOKEN,
 	POLICY_AUTH_REGISTER,
 	POLICY_AUTH_REGISTER_VERIFY_TOKEN_EMAIL,
 } from "@apk_core/interface/http/guards/rate-limiter/rate-limiter.policies";
@@ -12,6 +13,10 @@ import {
 import { ILoginCommandResult, LoginCommand } from "@apk_modules/auth/application/commands/login.command";
 import { LogoutCommand } from "@apk_modules/auth/application/commands/logout.command";
 import {
+	IRefreshAccessTokenCommandResult,
+	RefreshAccessTokenCommand,
+} from "@apk_modules/auth/application/commands/refresh-access-token.command";
+import {
 	IRequestRegisterCommandResult,
 	RequestRegisterCommand,
 } from "@apk_modules/auth/application/commands/request-register.command";
@@ -19,7 +24,7 @@ import {
 	IVerifyTokenEmailRegisterCommandResult,
 	VerifyTokenEmailRegisterCommand,
 } from "@apk_modules/auth/application/commands/verify-token-email-register.command";
-import { Body, Controller, HttpCode, HttpStatus, Inject, Post, Req, Res } from "@nestjs/common";
+import { Body, Controller, HttpCode, HttpStatus, Inject, Post, Req, Res, UnauthorizedException } from "@nestjs/common";
 import { CommandBus } from "@nestjs/cqrs";
 import { ApiBody, ApiOperation } from "@nestjs/swagger";
 import type { Request, Response } from "express";
@@ -42,6 +47,7 @@ export class AuthController {
 			httpOnly: true,
 			secure: this.appCfg.isProd,
 			sameSite: "lax" as const,
+			path: "/",
 		};
 	}
 
@@ -148,5 +154,38 @@ export class AuthController {
 		});
 
 		return "Logout successful";
+	}
+
+	@RateLimiter(POLICY_AUTH_REFRESH_TOKEN)
+	@AuthOptional()
+	@Post("refresh-token")
+	@HttpCode(HttpStatus.OK)
+	@ApiOperation({ summary: "Refresh access token" })
+	async refreshToken(
+		@Res({ passthrough: true }) response: Response,
+		@Cookies() cookies?: Record<string, string>,
+		@Req() request?: Request,
+	) {
+		const refreshToken = cookies?.[this.jwtCfg.refreshTokenKey];
+		if (!refreshToken) throw new UnauthorizedException("Refresh token is required");
+
+		const ipAddress = request?.ip || "unknown";
+		const userAgent = request?.get("user-agent") || "unknown";
+
+		const result: IRefreshAccessTokenCommandResult = await this.commandBus.execute(
+			new RefreshAccessTokenCommand(refreshToken, userAgent, ipAddress),
+		);
+
+		// set the refresh token cookie
+		response.cookie(this.jwtCfg.refreshTokenKey, result.refreshToken, {
+			...this.buildCookieOptions(),
+			maxAge: result.refreshTokenExpiresAt.getTime() - Date.now(),
+		});
+		response.cookie(this.jwtCfg.accessTokenKey, result.accessToken, {
+			...this.buildCookieOptions(),
+			maxAge: result.accessTokenExpiresAt.getTime() - Date.now(),
+		});
+
+		return "Token refreshed successfully";
 	}
 }

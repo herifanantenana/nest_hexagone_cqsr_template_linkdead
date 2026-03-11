@@ -44,9 +44,9 @@ CREATE TABLE "sessions" (
 	"user_id" uuid NOT NULL,
 	"actor_id" uuid NOT NULL,
 	"refresh_token_hash" varchar(255) NOT NULL,
-	"user_agent" varchar(255),
-	"ip_address" varchar(45),
-	"device_id" varchar(255),
+	"user_agent" varchar(255) NOT NULL,
+	"ip_address" varchar(45) NOT NULL,
+	"device_id" varchar(255) NOT NULL,
 	"status" "sessions_status" DEFAULT 'active'::"sessions_status" NOT NULL,
 	"revoked_at" timestamp with time zone,
 	"expires_at" timestamp with time zone NOT NULL,
@@ -93,6 +93,7 @@ CREATE TABLE "organizations" (
 CREATE INDEX "sessions_account_id_idx" ON "sessions" ("account_id");--> statement-breakpoint
 CREATE INDEX "sessions_user_id_idx" ON "sessions" ("user_id");--> statement-breakpoint
 CREATE INDEX "sessions_actor_id_idx" ON "sessions" ("actor_id");--> statement-breakpoint
+CREATE INDEX "sessions_refresh_token_hash_idx" ON "sessions" ("refresh_token_hash");--> statement-breakpoint
 ALTER TABLE "accounts" ADD CONSTRAINT "accounts_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;--> statement-breakpoint
 ALTER TABLE "actors" ADD CONSTRAINT "actors_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;--> statement-breakpoint
 ALTER TABLE "actors" ADD CONSTRAINT "actors_organization_id_fk" FOREIGN KEY ("organization_id") REFERENCES "organizations"("id") ON DELETE CASCADE ON UPDATE CASCADE;--> statement-breakpoint

@@ -56,7 +56,7 @@ rateLimiter:
     - name: "AUTH_PASSWORD_RESET"
       ttlSec: 900
       limit: 3
-    - name: "AUTH_EMAIL_VERIFY"
+    - name: "AUTH_REFRESH_TOKEN"
       ttlSec: 300
       limit: 5
     - name: "API_HEAVY"

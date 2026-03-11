@@ -65,16 +65,4 @@ export class SessionCacheRedisAdapter implements SessionsCachePort {
 			this.logger.error("Failed to delete session cache", { sessionId, error: result.error });
 		}
 	}
-
-	async rotateSession(sessionId: string, newRefreshTokenHash: string, newExpiresAt: Date): Promise<void> {
-		const result = await this.redisSafeAction.withSafeAsync(async () => {
-			const existing = await this.getSession(sessionId);
-			if (!existing) return null;
-
-			await this.setSession({ ...existing, refreshTokenHash: newRefreshTokenHash, expiresAt: newExpiresAt });
-		});
-		if (!result.ok) {
-			this.logger.error("Failed to rotate session cache", { sessionId, error: result.error });
-		}
-	}
 }

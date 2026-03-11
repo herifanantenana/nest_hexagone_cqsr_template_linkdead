@@ -26,7 +26,7 @@ export class RequestRegisterCommandHandler implements ICommandHandler<
 	RequestRegisterCommand,
 	IRequestRegisterCommandResult
 > {
-	private readonly authValidator = new AuthValidatorService();
+	private readonly authValidatorService = new AuthValidatorService();
 
 	constructor(
 		private readonly logger: AppLogger,
@@ -45,7 +45,7 @@ export class RequestRegisterCommandHandler implements ICommandHandler<
 		const { email } = command;
 
 		// validate email format
-		this.authValidator.validateEmail(email);
+		this.authValidatorService.validateEmail(email);
 
 		// check email uniqueness
 		if (await this.usersRepoPort.findIdByEmail(email)) throw new EmailAlreadyInUseRegisterException(email);
