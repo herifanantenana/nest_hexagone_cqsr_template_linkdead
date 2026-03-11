@@ -7,11 +7,13 @@ server:
   trustProxy: true
   allowedCorsOrigins:
     - "https://10.11.200.229:4000" # * for docker, use host machine IP with exposed port
+    - "https://localhost:4000"
+    - "https://127.0.0.1:4000"
   apiPathPrefix: "api"
   docsPathPrefix: "docs"
 
 client:
-  registerVerifyEmailPath: "auth/verify-email"
+  registerVerifyEmailPath: "auth/register/finalize"
 
 logger:
   engine: "Winston"

@@ -89,6 +89,7 @@ async function bootstrap() {
 	SwaggerModule.setup(serverCfg.docsPathPrefix, app, document, {
 		swaggerOptions: {
 			withCredentials: true,
+			deepLinking: false,
 		},
 	});
 
