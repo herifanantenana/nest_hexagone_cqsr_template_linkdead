@@ -30,17 +30,23 @@ export const sessionsTable = pgTable(
 			name: "sessions_account_id_fk",
 			columns: [t.accountId],
 			foreignColumns: [accountsTable.id],
-		}),
+		})
+			.onDelete("cascade")
+			.onUpdate("cascade"),
 		foreignKey({
 			name: "sessions_user_id_fk",
 			columns: [t.userId],
 			foreignColumns: [usersTable.id],
-		}),
+		})
+			.onDelete("cascade")
+			.onUpdate("cascade"),
 		foreignKey({
 			name: "sessions_actor_id_fk",
 			columns: [t.actorId],
 			foreignColumns: [actorsTable.id],
-		}),
+		})
+			.onDelete("cascade")
+			.onUpdate("cascade"),
 		index("sessions_account_id_idx").on(t.accountId),
 		index("sessions_user_id_idx").on(t.userId),
 		index("sessions_actor_id_idx").on(t.actorId),
