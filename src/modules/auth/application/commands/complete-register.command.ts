@@ -88,15 +88,18 @@ export class CompleteRegisterCommandHandler implements ICommandHandler<
 		if (tokenOnCooldown !== tokenEncrypted) throw new InvalidRegistrationTokenException();
 
 		// check if token is valid on database
-		const tokenHash = this.encryptionDecryptionPort.hashFromSecret(decrypted.token, this.authCfg.registerTokenSecret);
 		const registration = await this.registrationsRepoAuthPort.findByEmail(decrypted.email);
+		const tokenHash = this.encryptionDecryptionPort.hashFromSecret(decrypted.token, this.authCfg.registerTokenSecret);
 		if (!registration || registration.tokenHash !== tokenHash) throw new InvalidRegistrationTokenException();
+
+		// check if toke expiration still under the session
+		if (registration.expiresAt.getTime() <= Date.now()) throw new InvalidRegistrationTokenException();
 
 		// hash password
 		const passwordHash = await this.passwordHasherPort.hash(password);
 		const deviceId = this.encryptionDecryptionPort.generateRandomToken(16);
 
-		return this.unitOfWork.withTransaction(async (tx) => {
+		const result = await this.unitOfWork.withTransaction(async (tx) => {
 			// create the user
 			const userCreated = await this.usersRepoAuthPort.create({ email: registration.email, firstName, lastName }, tx);
 
@@ -137,21 +140,6 @@ export class CompleteRegisterCommandHandler implements ICommandHandler<
 				sessionId: sessionCreated.id,
 			});
 
-			// add token cache
-			await this.sessionsCachePort.setSession({
-				sessionId: sessionCreated.id,
-				userId: userCreated.id,
-				accountId: accountCreated.id,
-				actorId: actorCreated.id,
-				deviceId,
-				refreshToken: refreshTokenHash,
-				expiresAt: refreshTokenExpiresAt,
-			});
-
-			// delete the registration and cooldown
-			await this.registrationsRepoAuthPort.deleteById(registration.id, tx);
-			await this.registerCooldownPort.deleteCooldown(decrypted.email, tx);
-
 			return {
 				userId: userCreated.id,
 				accountId: accountCreated.id,
@@ -160,8 +148,35 @@ export class CompleteRegisterCommandHandler implements ICommandHandler<
 				accessToken,
 				accessTokenExpiresAt,
 				refreshToken,
+				refreshTokenHash,
 				refreshTokenExpiresAt,
 			};
 		});
+
+		// delete the registration and cooldown
+		await this.registrationsRepoAuthPort.deleteById(registration.id);
+		await this.registerCooldownPort.deleteCooldown(decrypted.email);
+
+		// add token cache
+		await this.sessionsCachePort.setSession({
+			sessionId: result.sessionId,
+			userId: result.userId,
+			accountId: result.accountId,
+			actorId: result.actorId,
+			refreshTokenHash: result.refreshTokenHash,
+			expiresAt: result.refreshTokenExpiresAt,
+		});
+
+		// No need to delete refreshTokenHash from result
+		return {
+			userId: result.userId,
+			accountId: result.accountId,
+			actorId: result.actorId,
+			sessionId: result.sessionId,
+			accessToken: result.accessToken,
+			accessTokenExpiresAt: result.accessTokenExpiresAt,
+			refreshToken: result.refreshToken,
+			refreshTokenExpiresAt: result.refreshTokenExpiresAt,
+		};
 	}
 }

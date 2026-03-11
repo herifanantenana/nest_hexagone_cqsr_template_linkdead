@@ -6,13 +6,14 @@ import { Inject } from "@nestjs/common";
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
 import { EncryptionDecryptionPort } from "../ports/encryption-decryption.port";
 import { RegisterCooldownPort } from "../ports/register-cooldown.port";
+import { RegistrationsRepoAuthPort } from "../ports/registrations-repo-auth.port";
 
 export class VerifyTokenEmailRegisterCommand {
 	constructor(public readonly tokenEncrypted: string) {}
 }
 
 export interface IVerifyTokenEmailRegisterCommandResult {
-	statuscode: number;
+	statusCode: number;
 	message: string;
 }
 
@@ -26,6 +27,7 @@ export class VerifyTokenEmailRegisterCommandHandler implements ICommandHandler<
 		private readonly encryptionDecryptionPort: EncryptionDecryptionPort,
 		@Inject(authConfig.KEY) private readonly authCfg: TAuthConfig,
 		private readonly registerCooldownPort: RegisterCooldownPort,
+		private readonly registrationsRepoAuthPort: RegistrationsRepoAuthPort,
 	) {
 		this.logger = this.logger.withContext(VerifyTokenEmailRegisterCommandHandler.name);
 	}
@@ -48,8 +50,19 @@ export class VerifyTokenEmailRegisterCommandHandler implements ICommandHandler<
 		const tokenOnCooldown = await this.registerCooldownPort.getCooldownToken(decrypted.email);
 		if (tokenOnCooldown !== tokenEncrypted) throw new InvalidRegistrationTokenException();
 
+		// check if token expiration still under the session
+		const registration = await this.registrationsRepoAuthPort.findByEmail(decrypted.email);
+		if (!registration) throw new InvalidRegistrationTokenException();
+
+		// check if the token hash matches the one in database
+		const tokenHash = this.encryptionDecryptionPort.hashFromSecret(decrypted.token, this.authCfg.registerTokenSecret);
+		if (registration.tokenHash !== tokenHash) throw new InvalidRegistrationTokenException();
+
+		// check if toke expiration still under the session
+		if (registration.expiresAt.getTime() <= Date.now()) throw new InvalidRegistrationTokenException();
+
 		return {
-			statuscode: 200,
+			statusCode: 200,
 			message: "Registration token confirmed successfully",
 		};
 	}

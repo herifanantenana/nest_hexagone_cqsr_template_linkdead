@@ -69,24 +69,24 @@ export class RequestRegisterCommandHandler implements ICommandHandler<
 
 		// if no registration, create new one and send email
 		if (!registration) {
-			return this.unitOfWork.withTransaction(async (tx) => {
+			await this.unitOfWork.withTransaction(async (tx) => {
 				await this.registrationsRepoAuthPort.create({ email, tokenHash, expiresAt }, tx);
 				await this.registerCooldownPort.start(email, tokenEncrypted, this.authConfig.registration.tokenCooldown.ttlSec);
-				await this.boxMailerPort.sendVerificationRegisterEmail(email, tokenEncrypted);
-				return { statusCode: 201, message: "Request Registration link sent. Please check your inbox." };
 			});
+			await this.boxMailerPort.sendVerificationRegisterEmail(email, tokenEncrypted);
+			return { statusCode: 201, message: "Request Registration link sent. Please check your inbox." };
 		}
 
 		const { expiresAt: registrationExpiresAt, sentCount } = registration;
 
 		// if registration expired, reset token and send email
 		if (registrationExpiresAt.getTime() <= Date.now()) {
-			return this.unitOfWork.withTransaction(async (tx) => {
+			await this.unitOfWork.withTransaction(async (tx) => {
 				await this.registrationsRepoAuthPort.resetByEmail({ email, tokenHash, expiresAt }, tx);
 				await this.registerCooldownPort.start(email, tokenEncrypted, this.authConfig.registration.tokenCooldown.ttlSec);
-				await this.boxMailerPort.sendVerificationRegisterEmail(email, tokenEncrypted);
-				return { statusCode: 200, message: "Registration token reset. Please check your inbox." };
 			});
+			await this.boxMailerPort.sendVerificationRegisterEmail(email, tokenEncrypted);
+			return { statusCode: 200, message: "Registration token reset. Please check your inbox." };
 		}
 
 		// if sent count exceeds max attempts, return too many requests
@@ -96,11 +96,11 @@ export class RequestRegisterCommandHandler implements ICommandHandler<
 		}
 
 		// if registration valid and cooldown expired, rotate token and send email
-		return await this.unitOfWork.withTransaction(async (tx) => {
+		await this.unitOfWork.withTransaction(async (tx) => {
 			await this.registrationsRepoAuthPort.rotateByEmail({ email, tokenHash }, tx);
 			await this.registerCooldownPort.start(email, tokenEncrypted, this.authConfig.registration.tokenCooldown.ttlSec);
-			await this.boxMailerPort.sendVerificationRegisterEmail(email, tokenEncrypted);
-			return { statusCode: 200, message: "Registration token rotated. Please check your inbox." };
 		});
+		await this.boxMailerPort.sendVerificationRegisterEmail(email, tokenEncrypted);
+		return { statusCode: 200, message: "Registration token rotated. Please check your inbox." };
 	}
 }

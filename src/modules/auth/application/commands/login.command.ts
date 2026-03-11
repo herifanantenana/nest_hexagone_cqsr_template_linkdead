@@ -101,8 +101,7 @@ export class LoginCommandHandler implements ICommandHandler<LoginCommand, ILogin
 			userId: user.id,
 			accountId: account.id,
 			actorId: actor.id,
-			deviceId,
-			refreshToken: refreshTokenHash,
+			refreshTokenHash,
 			expiresAt: refreshTokenExpiresAt,
 		});
 

@@ -19,6 +19,7 @@ import { RegistrationsRepoAuthPort } from "./application/ports/registrations-rep
 import { SessionsCachePort } from "./application/ports/sessions-cache.port";
 import { SessionsRepoAuthPort } from "./application/ports/sessions-repo-auth.port";
 import { TokenizerPort } from "./application/ports/tokenizer.port";
+import { RequestAuthResolverService } from "./application/services/request-auth-resolver.service";
 import { AccountsRepoDrizzleAdapter } from "./infra/adapters/accounts-repo-auth.drizzle.adapter";
 import { BoxMailerNodemailerAdapter } from "./infra/adapters/box-mailer.nodemailer";
 import { EncryptionDecryptionCryptoAdapter } from "./infra/adapters/encryption-decryption.crypto.adapter";
@@ -29,6 +30,8 @@ import { SessionCacheRedisAdapter } from "./infra/adapters/session-cache.redis.a
 import { SessionsRepoAuthDrizzleAdapter } from "./infra/adapters/sessions-repo-auth.drizzle.adapter";
 import { TokenizerJwtAdapter } from "./infra/adapters/tokenizer.jwt.adapter";
 import { AuthController } from "./interface/http/controllers/auth.controller";
+import { JwtAuthGuard } from "./interface/http/guards/jwt-auth-cookie.guard";
+import { JwtCookieStrategy } from "./interface/http/strategies/jwt-cookie.strategy";
 
 const adapters = [
 	{ provide: RegisterCooldownPort, useClass: RegisterCooldownRedisAdapter },
@@ -62,7 +65,8 @@ const commands = [
 			}),
 		}),
 	],
-	providers: [...adapters, ...commands],
+	providers: [...adapters, ...commands, RequestAuthResolverService, JwtCookieStrategy, JwtAuthGuard],
 	controllers: [AuthController],
+	exports: [JwtAuthGuard],
 })
 export class AuthModule {}

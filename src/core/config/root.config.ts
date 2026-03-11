@@ -69,6 +69,8 @@ type TYamlConfig = {
 	};
 
 	jwt: {
+		accessTokenKey: string;
+		refreshTokenKey: string;
 		accessTokenTtlSec: number;
 		refreshTokenTtlSec: number;
 	};
@@ -144,6 +146,8 @@ const yamlSchema = Joi.object<TYamlConfig>({
 	}).required(),
 
 	jwt: Joi.object({
+		accessTokenKey: Joi.string().required(),
+		refreshTokenKey: Joi.string().required(),
 		accessTokenTtlSec: Joi.number().min(1).required(),
 		refreshTokenTtlSec: Joi.number().min(1).required(),
 	}).required(),
@@ -361,6 +365,8 @@ export const jwtConfig = registerAs("jwt", () => {
 	return {
 		accessTokenSecret: process.env.JWT_ACCESS_TOKEN_SECRET as string,
 		refreshTokenSecret: process.env.JWT_REFRESH_TOKEN_SECRET as string,
+		accessTokenKey: config.jwt.accessTokenKey,
+		refreshTokenKey: config.jwt.refreshTokenKey,
 		accessTokenTtlSec: config.jwt.accessTokenTtlSec,
 		refreshTokenTtlSec: config.jwt.refreshTokenTtlSec,
 	};

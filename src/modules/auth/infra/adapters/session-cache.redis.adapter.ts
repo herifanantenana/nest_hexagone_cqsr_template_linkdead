@@ -33,7 +33,7 @@ export class SessionCacheRedisAdapter implements SessionsCachePort {
 		const key = this.key(input.sessionId);
 		const value = JSON.stringify({ ...input, expiresAt: input.expiresAt.toISOString() });
 		const ttlSec = this.ttlSeconds(input.expiresAt);
-		await this.redisSafeAction.withSafeAsyncOrThrow(async () => {
+		await this.redisSafeAction.withSafeAsync(async () => {
 			await this.redisClient.set(key, value, "EX", ttlSec);
 		});
 	}
@@ -44,7 +44,11 @@ export class SessionCacheRedisAdapter implements SessionsCachePort {
 			const value = await this.redisClient.get(key);
 			return value;
 		});
-		if (!result.ok || !result.data) return null;
+		if (!result.ok) {
+			this.logger.warn("Redis session cache read failed (fallback to DB)", { key, sessionId, err: result.error });
+			return null;
+		}
+		if (!result.data) return null;
 		const parsed = JSON.parse(result.data) as ISessionCacheData;
 		return {
 			...parsed,
@@ -62,12 +66,12 @@ export class SessionCacheRedisAdapter implements SessionsCachePort {
 		}
 	}
 
-	async rotateSession(sessionId: string, newRefreshToken: string, newExpiresAt: Date): Promise<void> {
+	async rotateSession(sessionId: string, newRefreshTokenHash: string, newExpiresAt: Date): Promise<void> {
 		const result = await this.redisSafeAction.withSafeAsync(async () => {
 			const existing = await this.getSession(sessionId);
 			if (!existing) return null;
 
-			await this.setSession({ ...existing, refreshToken: newRefreshToken, expiresAt: newExpiresAt });
+			await this.setSession({ ...existing, refreshTokenHash: newRefreshTokenHash, expiresAt: newExpiresAt });
 		});
 		if (!result.ok) {
 			this.logger.error("Failed to rotate session cache", { sessionId, error: result.error });

@@ -19,7 +19,6 @@ export class AppThrottlerGuard extends ThrottlerGuard {
 	) {
 		super(options, storageService, reflector);
 	}
-
 	// Allow skipping rate limiting by setting, checked first in canActivate()
 	protected shouldSkip(context: ExecutionContext): Promise<boolean> {
 		const noThrottle = this.reflector.getAllAndOverride<boolean>(NO_THROTTLE_KEY, [

@@ -5,6 +5,7 @@ import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
 import { NestExpressApplication } from "@nestjs/platform-express";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import { AppModule } from "./app.module";
 
@@ -12,6 +13,9 @@ async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule, {
 		bufferLogs: true,
 	});
+
+	// set cookies parser
+	app.use(cookieParser());
 
 	// get app, server config
 	const appCfg = app.get(ConfigService).get<TAppConfig>("app");

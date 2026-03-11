@@ -1,8 +1,9 @@
-import { serverConfig, type TServerConfig } from "@apk_core/config/root.config";
+import { appConfig, jwtConfig, type TAppConfig, type TJwtConfig } from "@apk_core/config/root.config";
 import { NoThrottle, RateLimiter } from "@apk_core/interface/http/guards/rate-limiter/rate-limiter.decorator";
 import {
+	POLICY_AUTH_LOGIN,
 	POLICY_AUTH_REGISTER,
-	POLICY_AUTH_REGISTER_CONFIRM_TOKEN,
+	POLICY_AUTH_REGISTER_VERIFY_TOKEN_EMAIL,
 } from "@apk_core/interface/http/guards/rate-limiter/rate-limiter.policies";
 import {
 	CompleteRegisterCommand,
@@ -25,15 +26,18 @@ import { CompleteRegisterDto } from "../dtos/complete-register.dto";
 import { LoginDto } from "../dtos/login.dto";
 import { RequestRegisterDto } from "../dtos/request-register.dto";
 import { VerifyTokenEmailRegisterDto } from "../dtos/verify-token-email-register.dto";
+import { AuthPublic } from "../guards/auth.decorators";
 
 @Controller("auth")
 export class AuthController {
 	constructor(
 		private readonly commandBus: CommandBus,
-		@Inject(serverConfig.KEY) private readonly serverCfg: TServerConfig,
+		@Inject(appConfig.KEY) private readonly appCfg: TAppConfig,
+		@Inject(jwtConfig.KEY) private readonly jwtCfg: TJwtConfig,
 	) {}
 
 	@RateLimiter(POLICY_AUTH_REGISTER)
+	@AuthPublic()
 	@Post("register/request")
 	@ApiOperation({ summary: "Request a user registration" })
 	@ApiBody({ type: RequestRegisterDto })
@@ -43,7 +47,8 @@ export class AuthController {
 		return result;
 	}
 
-	@RateLimiter(POLICY_AUTH_REGISTER_CONFIRM_TOKEN)
+	@RateLimiter(POLICY_AUTH_REGISTER_VERIFY_TOKEN_EMAIL)
+	@AuthPublic()
 	@Post("register/verify-token-email")
 	@ApiOperation({ summary: "Confirm the registration token" })
 	@ApiBody({ type: VerifyTokenEmailRegisterDto })
@@ -56,6 +61,7 @@ export class AuthController {
 	}
 
 	@NoThrottle()
+	@AuthPublic()
 	@Post("register/complete")
 	@ApiOperation({ summary: "Complete the user registration" })
 	@ApiBody({ type: CompleteRegisterDto })
@@ -74,16 +80,16 @@ export class AuthController {
 		// setup the cookie options
 		const cookieOptions = {
 			httpOnly: true,
-			secure: this.serverCfg.trustProxy,
+			secure: this.appCfg.isProd,
 			sameSite: "lax" as const,
 		};
 
 		// set the refresh token cookie
-		response.cookie("refreshToken", result.refreshToken, {
+		response.cookie(this.jwtCfg.refreshTokenKey, result.refreshToken, {
 			...cookieOptions,
 			maxAge: result.refreshTokenExpiresAt.getTime() - Date.now(),
 		});
-		response.cookie("accessToken", result.accessToken, {
+		response.cookie(this.jwtCfg.accessTokenKey, result.accessToken, {
 			...cookieOptions,
 			maxAge: result.accessTokenExpiresAt.getTime() - Date.now(),
 		});
@@ -91,6 +97,8 @@ export class AuthController {
 		return "Registration completed successfully";
 	}
 
+	@RateLimiter(POLICY_AUTH_LOGIN)
+	@AuthPublic()
 	@Post("login")
 	@ApiOperation({ summary: "Login a user" })
 	@ApiBody({ type: LoginDto })
@@ -105,16 +113,16 @@ export class AuthController {
 		// setup the cookie options
 		const cookieOptions = {
 			httpOnly: true,
-			secure: this.serverCfg.trustProxy,
+			secure: this.appCfg.isProd,
 			sameSite: "lax" as const,
 		};
 
 		// set the refresh token cookie
-		response.cookie("refreshToken", result.refreshToken, {
+		response.cookie(this.jwtCfg.refreshTokenKey, result.refreshToken, {
 			...cookieOptions,
 			maxAge: result.refreshTokenExpiresAt.getTime() - Date.now(),
 		});
-		response.cookie("accessToken", result.accessToken, {
+		response.cookie(this.jwtCfg.accessTokenKey, result.accessToken, {
 			...cookieOptions,
 			maxAge: result.accessTokenExpiresAt.getTime() - Date.now(),
 		});

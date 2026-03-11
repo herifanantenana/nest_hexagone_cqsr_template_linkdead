@@ -48,7 +48,7 @@ rateLimiter:
     - name: "AUTH_REGISTER_REQUEST"
       ttlSec: 3600
       limit: 5
-    - name: "AUTH_REGISTER_CONFIRM_TOKEN"
+    - name: "AUTH_REGISTER_VERIFY_TOKEN_EMAIL"
       ttlSec: 600
       limit: 5
     - name: "AUTH_PASSWORD_RESET"
@@ -69,5 +69,7 @@ auth:
       maxAttempts: 5
 
 jwt:
+  accessTokenKey: "linkdead_dev_access_token"
+  refreshTokenKey: "linkdead_dev_refresh_token"
   accessTokenTtlSec: 900
   refreshTokenTtlSec: 604800
