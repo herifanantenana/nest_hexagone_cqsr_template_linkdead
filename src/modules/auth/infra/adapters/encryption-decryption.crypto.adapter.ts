@@ -1,5 +1,6 @@
 import { AppLogger } from "@apk_infra/logger/logger.service";
 import { EncryptionDecryptionPort } from "@apk_modules/auth/application/ports/encryption-decryption.port";
+import { isArray, isObject } from "@apk_shared/types/utils";
 import { Injectable } from "@nestjs/common";
 import { createCipheriv, createDecipheriv, createHmac, randomBytes } from "crypto";
 
@@ -16,8 +17,13 @@ export class EncryptionDecryptionCryptoAdapter implements EncryptionDecryptionPo
 	}
 
 	encryptFromSecret<T>(value: T, secret: string): string {
-		const payload = { ...value } as object;
-		return this.encrypt(payload, secret);
+		if (isArray(value)) {
+			return this.encrypt({ values: value }, secret);
+		}
+		if (isObject(value)) {
+			return this.encrypt(value, secret);
+		}
+		return this.encrypt({ value }, secret);
 	}
 
 	generateRandomToken(length = 32): string {
@@ -46,10 +52,10 @@ export class EncryptionDecryptionCryptoAdapter implements EncryptionDecryptionPo
 		return token;
 	}
 
-	private decrypt<T>(token: string, secret: string): T {
+	private decrypt<T>(token: string, secret: string): T | null {
 		const parts = token.split(".");
 		if (parts.length !== 3) {
-			return null as T;
+			return null;
 		}
 		const [ivPart, authTagPart, encryptedPart] = parts;
 		const iv = Buffer.from(ivPart, "base64url");

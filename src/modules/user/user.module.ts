@@ -13,6 +13,6 @@ const adapters = [
 @Module({
 	imports: [CqrsModule],
 	providers: [...adapters],
-	exports: [UsersRepoAuthPort],
+	exports: [UsersRepoAuthPort, ActorsRepoAuthPort],
 })
 export class UserModule {}

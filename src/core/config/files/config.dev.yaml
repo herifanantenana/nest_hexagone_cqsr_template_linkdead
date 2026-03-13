@@ -52,7 +52,7 @@ rateLimiter:
     - name: "AUTH_REGISTER_VERIFY_TOKEN_EMAIL"
       ttlSec: 15
       limit: 5
-    - name: "AUTH_PASSWORD_RESET"
+    - name: "AUTH_COMPLETE_REGISTER"
       ttlSec: 15
       limit: 10
     - name: "AUTH_REFRESH_TOKEN"

@@ -3,6 +3,7 @@ import {
 	TAuthConfig,
 	TClientAppConfig,
 	TDatabaseConfig,
+	TJwtConfig,
 	TLoggerConfig,
 	TMailerConfig,
 	TRateLimiterConfig,
@@ -25,7 +26,7 @@ export class AppService {
 		const mailerConfig = this.configService.get<TMailerConfig>("mailer");
 		const rateLimiterConfig = this.configService.get<TRateLimiterConfig>("rateLimiter");
 		const authConfig = this.configService.get<TAuthConfig>("auth");
-		const jwtConfig = this.configService.get<TAuthConfig>("jwt");
+		const jwtConfig = this.configService.get<TJwtConfig>("jwt");
 
 		return {
 			appConfig,

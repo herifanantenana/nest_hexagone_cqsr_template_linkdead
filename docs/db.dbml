@@ -1,0 +1,748 @@
+Table domains as Domain {
+  id uuid [pk]
+  name varchar [not null, note: "High-level area (e.g., IT, Marketing, Finance, Health)."]
+  slug varchar [not null, unique, note: "URL identifier (global unique)."]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table categories as Category {
+  id uuid [pk]
+  name varchar [not null, note: "Category inside a domain (e.g., Backend, Frontend, DevOps)."]
+  slug varchar [not null, note: "URL identifier (unique within the same domain)."]
+  domain_id uuid [not null, note: "Parent domain."]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+
+  indexes {
+    (domain_id, slug) [unique, note: "Category slug unique per domain."]
+  }
+}
+
+Ref domain_has_categories__category_requires_domain {
+  Domain.id < Category.domain_id
+}
+
+Table skills as Skill {
+  id uuid [pk]
+  name varchar [not null, note: "Skill label (e.g., Python, AWS, SEO, Accounting)."]
+  slug varchar [not null, unique, note: "URL identifier (global unique)."]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Table domain_skills as DomainSkill {
+  domain_id uuid [not null, note: "Domain side of the mapping."]
+  skill_id uuid [not null, note: "Skill side of the mapping."]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+
+  Primary Key (domain_id, skill_id)
+}
+
+Ref domain_can_include_skills__mapping_requires_domain {
+  Domain.id < DomainSkill.domain_id
+}
+
+Ref skill_can_belong_to_many_domains__mapping_requires_skill {
+  Skill.id < DomainSkill.skill_id
+}
+
+Enum auth_provider {
+  local
+  google
+  facebook
+}
+
+Enum account_status {
+  active
+  inactive
+  suspended
+  banned
+}
+
+Table accounts as Account {
+	id uuid [pk]
+	user_id uuid [not null, unique, note: "One-to-one with users table."]
+	provider auth_provider [not null, default: 'local', note: "Auth method used by the account."]
+	provider_id varchar [note: "Provider user id (only if provider != local)."]
+	password_hash varchar [note: "Only if provider = local."]
+	created_at timestamp [default: `now()`]
+	updated_at timestamp [default: `now()`]
+
+	checks {
+		`(provider = 'local' AND password_hash IS NOT NULL AND provider_id IS NULL) OR (provider != 'local' AND provider_id IS NOT NULL AND password_hash IS NULL)` [name: "valid_account_credentials"]
+	}
+}
+
+Table users as User {
+  id uuid [pk]
+  username varchar [not null, unique]
+  full_name varchar [not null]
+  email varchar [not null, unique]
+  bio text
+  avatar_url varchar
+  location varchar
+  website_url varchar
+  status account_status [not null, default: 'active']
+  preferences jsonb
+  metadata jsonb
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+  deleted_at timestamp
+}
+
+Ref account_belongs_to_user__user_requires_account {
+	User.id < Account.user_id
+}
+
+Table exploits as Exploit {
+  id uuid [pk]
+  author_user_id uuid [not null, note: "User who created the exploit."]
+  domain_id uuid [not null, note: "Domain classification of the exploit."]
+  title varchar [not null, note: "Searchable title."]
+  slug varchar [not null, unique, note: "URL identifier."]
+  description text
+  content_lexical jsonb [note: "Lexical rich text JSON."]
+  content_text text [note: "Plain text for indexing/search."]
+  metadata jsonb
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+  deleted_at timestamp
+}
+
+Ref user_creates_exploits__exploit_requires_author {
+  User.id < Exploit.author_user_id
+}
+
+Ref domain_classifies_exploits__exploit_requires_domain {
+  Domain.id < Exploit.domain_id
+}
+
+Table exploit_categories as ExploitCategory {
+  id uuid [pk]
+  exploit_id uuid [not null]
+  category_id uuid [not null, note: "Rule: category must belong to the exploit domain (enforced in app logic)."]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+
+  indexes {
+    (exploit_id, category_id) [unique, note: "Unique category per exploit."]
+  }
+}
+
+Ref exploit_has_categories__mapping_requires_exploit {
+  Exploit.id < ExploitCategory.exploit_id
+}
+
+Ref category_can_tag_exploit__mapping_requires_category {
+  Category.id < ExploitCategory.category_id
+}
+
+Table exploit_skills as ExploitSkill {
+  id uuid [pk]
+  exploit_id uuid [not null]
+  skill_id uuid [not null, note: "Rule: skill must be allowed in exploit domain (enforced in app logic)."]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+
+  indexes {
+    (exploit_id, skill_id) [unique, note: "Unique skill per exploit."]
+  }
+}
+
+Ref exploit_has_skills__mapping_requires_exploit {
+  Exploit.id < ExploitSkill.exploit_id
+}
+
+Ref skill_can_describe_exploit__mapping_requires_skill {
+  Skill.id < ExploitSkill.skill_id
+}
+
+Enum evidence_type {
+  image
+  video
+  document
+}
+
+Table exploit_evidences as ExploitEvidence {
+  id uuid [pk]
+  exploit_id uuid [not null, note: "Exploit this evidence belongs to."]
+  evidence_type evidence_type [not null]
+  url varchar [not null, note: "Evidence URL (image/video/document)."]
+  metadata jsonb
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Ref exploit_requires_evidences__evidence_requires_exploit {
+  Exploit.id < ExploitEvidence.exploit_id
+}
+
+Table exploit_approvals as ExploitApproval {
+  id uuid [pk]
+  exploit_id uuid [not null, note: "Approved exploit (positive approval only)."]
+  user_id uuid [not null, note: "User who approved."]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+
+  indexes {
+    (exploit_id, user_id) [unique, note: "One approval per user per exploit."]
+  }
+}
+
+Ref exploit_collects_approvals__approval_requires_exploit {
+  Exploit.id < ExploitApproval.exploit_id
+}
+
+Ref user_can_approve_exploit_once__approval_requires_user {
+  User.id < ExploitApproval.user_id
+}
+
+Enum collaboration_request_status {
+  pending
+  accepted
+  rejected
+  canceled
+}
+
+Table collaboration_requests as CollaborationRequest {
+  id uuid [pk]
+  sender_user_id uuid [not null, note: "User who sends the request."]
+  receiver_user_id uuid [not null, note: "User who receives the request."]
+  message text [not null, note: "Context message for the request."]
+  status collaboration_request_status [not null, default: 'pending']
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+
+  checks {
+    `sender_user_id != receiver_user_id` [name: "no_self_request"]
+  }
+
+  indexes {
+    (sender_user_id, receiver_user_id) [unique, note: "Only one active request per pair. Prefer status updates over new rows."]
+  }
+}
+
+Ref user_sends_collab_request__request_requires_sender {
+  User.id < CollaborationRequest.sender_user_id
+}
+
+Ref user_receives_collab_request__request_requires_receiver {
+  User.id < CollaborationRequest.receiver_user_id
+}
+
+Table collaborations as Collaboration {
+  id uuid [pk]
+  user_min_id uuid [not null, note: "Canonical ordering: store min(user1,user2)."]
+  user_max_id uuid [not null, note: "Canonical ordering: store max(user1,user2)."]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+
+  checks {
+    `user_min_id != user_max_id` [name: "no_self_collaboration"]
+  }
+
+  indexes {
+    (user_min_id, user_max_id) [unique, name: "uniq_collaboration_pair", note: "No duplicate collaborations thanks to canonical ordering."]
+  }
+}
+
+Ref user_is_collaborator_min__collaboration_requires_user {
+  User.id < Collaboration.user_min_id
+}
+
+Ref user_is_collaborator_max__collaboration_requires_user {
+  User.id < Collaboration.user_max_id
+}
+
+Enum organization_type {
+  non_profit
+  company
+  startup
+  community
+  educational
+  freelance
+  school
+}
+
+Enum organization_status {
+  active
+  inactive
+  suspended
+  banned
+}
+
+Table organizations as Organization {
+  id uuid [pk]
+  owner_user_id uuid [not null, unique, note: "User who owns/created the organization."]
+  name varchar [not null]
+	email varchar [not null, unique]
+  slug varchar [not null, unique]
+  description text
+  logo_url varchar
+  organization_type organization_type [not null, default: 'non_profit']
+  status organization_status [not null, default: 'active']
+  location varchar
+  website_url varchar
+  preferences jsonb
+  metadata jsonb
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+  deleted_at timestamp
+}
+
+Ref user_owns_one_organization__organization_requires_owner {
+  User.id - Organization.owner_user_id
+}
+
+Enum actor_type {
+  user
+  organization
+}
+
+Table actors as Actor {
+  id uuid [pk]
+  actor_type actor_type [not null]
+  user_id uuid [note: "Filled only if actor_type=user."]
+  organization_id uuid [note: "Filled only if actor_type=organization."]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+
+  indexes {
+    (user_id) [unique, note: "One actor per user."]
+    (organization_id) [unique, note: "One actor per organization."]
+  }
+
+  checks {
+    `(actor_type = 'user' AND user_id IS NOT NULL AND organization_id IS NULL) OR (actor_type = 'organization' AND organization_id IS NOT NULL AND user_id IS NULL)` [name: "valid_actor_type"]
+  }
+}
+
+Ref actor_can_point_to_user {
+  User.id < Actor.user_id
+}
+
+Ref actor_can_point_to_organization {
+  Organization.id < Actor.organization_id
+}
+
+Enum session_status {
+  active
+  expired
+  revoked
+}
+
+Table sessions as Session {
+  id uuid [pk]
+  user_id uuid [not null]
+  active_actor_id uuid [not null, note: "Actor currently active in the session (user or org). Validation rules enforced in app logic (must belong to user or to user's owned org)."]
+  refresh_token_hash varchar [not null, unique, note: "Store hash only (never store raw refresh token)."]
+  user_agent text
+  device_id varchar [note: "Stable server-issued device identifier (cookie HttpOnly)."]
+  ip_address varchar
+  status session_status [not null, default: 'active']
+  metadata jsonb
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+  last_seen_at timestamp
+  revoked_at timestamp
+  expires_at timestamp
+
+  indexes {
+    (user_id) [name: "idx_sessions_user_id"]
+    (active_actor_id) [name: "idx_sessions_active_actor_id"]
+    (refresh_token_hash) [name: "uniq_sessions_refresh_token_hash"]
+    (user_id, device_id) [unique, name: "uniq_sessions_user_device", note: "One session row per user+device. Rotate by revoking/updating rather than inserting duplicates."]
+  }
+}
+
+Ref session_belongs_to_user__session_requires_user {
+  User.id < Session.user_id
+}
+
+Ref session_belongs_to_active_actor__session_requires_active_actor {
+  Actor.id < Session.active_actor_id
+}
+
+Table actor_blocks as ActorBlock {
+  id uuid [pk]
+  blocker_actor_id uuid [not null, note: "Actor who blocks."]
+  blocked_actor_id uuid [not null, note: "Actor being blocked."]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+
+  indexes {
+    (blocker_actor_id, blocked_actor_id) [unique, note: "One block per actor pair."]
+  }
+
+  checks {
+    `blocker_actor_id != blocked_actor_id` [name: "no_self_block"]
+  }
+}
+
+Ref block_requires_blocker_actor {
+  Actor.id < ActorBlock.blocker_actor_id
+}
+
+Ref block_requires_blocked_actor {
+  Actor.id < ActorBlock.blocked_actor_id
+}
+
+Enum comment_type {
+  feedback
+  suggestion
+  question
+}
+
+Table comments as Comment {
+  id uuid [pk]
+  actor_id uuid [not null, note: "Actor (user/org) who wrote the comment."]
+  exploit_id uuid [not null, note: "Exploit being commented."]
+  content text [not null, note: "Text only."]
+  comment_type comment_type [not null, default: 'feedback']
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+  deleted_at timestamp
+}
+
+Ref exploit_has_comments__comment_requires_exploit {
+  Exploit.id < Comment.exploit_id
+}
+
+Ref actor_writes_comments__comment_requires_actor {
+  Actor.id < Comment.actor_id
+}
+
+Enum opportunity_type {
+  full_time
+  part_time
+  freelance
+  internship
+  volunteer
+  contract
+}
+
+Table opportunities as Opportunity {
+  id uuid [pk]
+  organization_id uuid [not null, note: "Organization that publishes the opportunity."]
+  slug varchar [not null, unique, note: "URL identifier."]
+  title varchar [not null]
+  opportunity_type opportunity_type [not null, default: 'full_time']
+  description text
+  content_lexical jsonb [note: "Lexical rich text JSON."]
+  content_text text [note: "Plain text for indexing/search."]
+  domain_id uuid [not null, note: "Domain classification."]
+  poster_url varchar
+  metadata jsonb
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+  deleted_at timestamp
+}
+
+Ref organization_publishes_opportunities__opportunity_requires_org {
+  Organization.id < Opportunity.organization_id
+}
+
+Ref domain_classifies_opportunities__opportunity_requires_domain {
+  Domain.id < Opportunity.domain_id
+}
+
+Table opportunity_categories as OpportunityCategory {
+  id uuid [pk]
+  opportunity_id uuid [not null]
+  category_id uuid [not null, note: "Rule: category must belong to opportunity domain (enforced in app logic)."]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+
+  indexes {
+    (opportunity_id, category_id) [unique, note: "Unique category per opportunity."]
+  }
+}
+
+Ref opportunity_has_categories__mapping_requires_opportunity {
+  Opportunity.id < OpportunityCategory.opportunity_id
+}
+
+Ref category_can_tag_opportunity__mapping_requires_category {
+  Category.id < OpportunityCategory.category_id
+}
+
+Table opportunity_skills as OpportunitySkill {
+  id uuid [pk]
+  opportunity_id uuid [not null]
+  skill_id uuid [not null, note: "Rule: skill must be allowed in opportunity domain (enforced in app logic)."]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+
+  indexes {
+    (opportunity_id, skill_id) [unique, note: "Unique skill per opportunity."]
+  }
+}
+
+Ref opportunity_requires_skills__mapping_requires_opportunity {
+  Opportunity.id < OpportunitySkill.opportunity_id
+}
+
+Ref skill_can_be_required_by_opportunity__mapping_requires_skill {
+  Skill.id < OpportunitySkill.skill_id
+}
+
+Enum application_status {
+  pending
+  accepted
+  canceled
+  rejected
+}
+
+Table applications as Application {
+  id uuid [pk]
+  applicant_user_id uuid [not null, note: "User who applies."]
+  opportunity_id uuid [not null, note: "Opportunity being applied to."]
+  status application_status [not null, default: 'pending']
+  cover_letter text
+  metadata jsonb
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+
+  indexes {
+    (opportunity_id, applicant_user_id) [unique, note: "One application per user per opportunity (update status instead of new rows)."]
+  }
+}
+
+Ref opportunity_receives_applications__application_requires_opportunity {
+  Opportunity.id < Application.opportunity_id
+}
+
+Ref user_submits_applications__application_requires_user {
+  User.id < Application.applicant_user_id
+}
+
+Table application_exploits as ApplicationExploit {
+  id uuid [pk]
+  application_id uuid [not null]
+  exploit_id uuid [not null, note: "Rule: exploit should match opportunity domain (enforced in app logic)."]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+
+  indexes {
+    (application_id, exploit_id) [unique, note: "Unique exploit per application."]
+  }
+}
+
+Ref application_links_exploits__mapping_requires_application {
+  Application.id < ApplicationExploit.application_id
+}
+
+Ref exploit_can_support_applications__mapping_requires_exploit {
+  Exploit.id < ApplicationExploit.exploit_id
+}
+
+Enum hunt_status {
+  pending
+  accepted
+  canceled
+  rejected
+}
+
+Table hunts as Hunt {
+  id uuid [pk]
+  title varchar [not null, note: "Short label for the hunt (UI)."]
+  target_user_id uuid [not null, note: "User targeted by the hunt."]
+  organization_id uuid [not null, note: "Organization initiating the hunt."]
+  opportunity_id uuid [not null, note: "Opportunity attached to the hunt."]
+  status hunt_status [not null, default: 'pending']
+  content text [note: "Initial hunt message/context."]
+  metadata jsonb
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Ref organization_creates_hunts__hunt_requires_org {
+  Organization.id < Hunt.organization_id
+}
+
+Ref user_is_target_of_hunts__hunt_requires_user {
+  User.id < Hunt.target_user_id
+}
+
+Ref opportunity_context_for_hunt__hunt_requires_opportunity {
+  Opportunity.id < Hunt.opportunity_id
+}
+
+Table discussions as Discussion {
+  id uuid [pk]
+  preferences jsonb
+  metadata jsonb
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Enum discussion_source_type {
+  exploit
+  application
+  hunt
+}
+
+Table discussion_sources as DiscussionSource {
+  id uuid [pk]
+  discussion_id uuid [not null, unique, note: "Exactly one source row per discussion."]
+  source_type discussion_source_type [not null, note: "What created/justifies the discussion."]
+  hunt_id uuid [note: "Filled only when source_type=hunt."]
+  application_id uuid [note: "Filled only when source_type=application."]
+  exploit_id uuid [note: "Filled only when source_type=exploit."]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+
+  checks {
+    `(source_type = 'exploit' AND exploit_id IS NOT NULL AND application_id IS NULL AND hunt_id IS NULL)
+     OR (source_type = 'application' AND application_id IS NOT NULL AND exploit_id IS NULL AND hunt_id IS NULL)
+     OR (source_type = 'hunt' AND hunt_id IS NOT NULL AND exploit_id IS NULL AND application_id IS NULL)` [name: "valid_discussion_source"]
+  }
+}
+
+Ref discussion_has_one_source__source_requires_discussion {
+  Discussion.id - DiscussionSource.discussion_id
+}
+
+Ref source_can_reference_exploit {
+  Exploit.id < DiscussionSource.exploit_id
+}
+
+Ref source_can_reference_application {
+  Application.id < DiscussionSource.application_id
+}
+
+Ref source_can_reference_hunt {
+  Hunt.id < DiscussionSource.hunt_id
+}
+
+Table discussion_participants as DiscussionParticipant {
+  id uuid [pk]
+  discussion_id uuid [not null]
+  actor_id uuid [not null]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+
+  indexes {
+    (discussion_id, actor_id) [unique, note: "Same actor cannot join twice."]
+  }
+}
+
+Ref discussion_has_participants__participant_requires_discussion {
+  Discussion.id < DiscussionParticipant.discussion_id
+}
+
+Ref actor_joins_discussions__participant_requires_actor {
+  Actor.id < DiscussionParticipant.actor_id
+}
+
+Table discussion_messages as DiscussionMessage {
+  id uuid [pk]
+  discussion_id uuid [not null]
+  sender_actor_id uuid [not null, note: "Actor who sends the message."]
+  content text [not null]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+}
+
+Ref discussion_has_messages__message_requires_discussion {
+  Discussion.id < DiscussionMessage.discussion_id
+}
+
+Ref actor_sends_messages__message_requires_actor {
+  Actor.id < DiscussionMessage.sender_actor_id
+}
+
+Enum attachment_type {
+  exploit
+  opportunity
+}
+
+Table message_attachments as MessageAttachment {
+  id uuid [pk]
+  discussion_message_id uuid [not null, unique, note: "One attachment row per message (relax later if needed)."]
+  attachment_type attachment_type [not null]
+  exploit_id uuid [note: "Filled only when attachment_type=exploit."]
+  opportunity_id uuid [note: "Filled only when attachment_type=opportunity."]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+
+  checks {
+    `(attachment_type = 'exploit' AND exploit_id IS NOT NULL AND opportunity_id IS NULL)
+     OR (attachment_type = 'opportunity' AND opportunity_id IS NOT NULL AND exploit_id IS NULL)` [name: "valid_message_attachment"]
+  }
+}
+
+Ref message_can_have_one_attachment__attachment_requires_message {
+  DiscussionMessage.id - MessageAttachment.discussion_message_id
+}
+
+Ref attachment_can_point_to_exploit {
+  Exploit.id < MessageAttachment.exploit_id
+}
+
+Ref attachment_can_point_to_opportunity {
+  Opportunity.id < MessageAttachment.opportunity_id
+}
+
+Enum report_target_type {
+  user
+  organization
+  exploit
+  opportunity
+  comment
+}
+
+Enum report_status {
+  pending
+  resolved
+  rejected
+}
+
+Table reports as Report {
+id uuid [pk]
+reporter_actor_id uuid [not null, note: "Actor (user/org) who reports."]
+target_type report_target_type [not null]
+reported_user_id uuid [note: "Filled only when target_type=user."]
+reported_organization_id uuid [note: "Filled only when target_type=organization."]
+reported_comment_id uuid [note: "Filled only when target_type=comment."]
+reported_exploit_id uuid [note: "Filled only when target_type=exploit."]
+reported_opportunity_id uuid [note: "Filled only when target_type=opportunity."]
+reason text [not null]
+status report_status [not null, default: 'pending']
+created_at timestamp [default: `now()`]
+updated_at timestamp [default: `now()`]
+
+checks {
+`(target_type = 'user' AND reported_user_id IS NOT NULL AND reported_organization_id IS NULL AND reported_exploit_id IS NULL AND reported_opportunity_id IS NULL AND reported_comment_id IS NULL)
+OR (target_type = 'organization' AND reported_organization_id IS NOT NULL AND reported_user_id IS NULL AND reported_exploit_id IS NULL AND reported_opportunity_id IS NULL AND reported_comment_id IS NULL)
+OR (target_type = 'exploit' AND reported_exploit_id IS NOT NULL AND reported_user_id IS NULL AND reported_organization_id IS NULL AND reported_opportunity_id IS NULL AND reported_comment_id IS NULL)
+OR (target_type = 'opportunity' AND reported_opportunity_id IS NOT NULL AND reported_user_id IS NULL AND reported_organization_id IS NULL AND reported_exploit_id IS NULL AND reported_comment_id IS NULL)
+OR (target_type = 'comment' AND reported_comment_id IS NOT NULL AND reported_user_id IS NULL AND reported_organization_id IS NULL AND reported_exploit_id IS NULL AND reported_opportunity_id IS NULL)` [name: "valid_report_target"]
+}
+}
+
+Ref actor_creates_reports__report_requires_actor {
+Actor.id < Report.reporter_actor_id
+}
+
+Ref report_can_target_user {
+User.id < Report.reported_user_id
+}
+
+Ref report_can_target_organization {
+Organization.id < Report.reported_organization_id
+}
+
+Ref report_can_target_exploit {
+Exploit.id < Report.reported_exploit_id
+}
+
+Ref report_can_target_opportunity {
+Opportunity.id < Report.reported_opportunity_id
+}
+
+Ref report_can_target_comment {
+Comment.id < Report.reported_comment_id
+}

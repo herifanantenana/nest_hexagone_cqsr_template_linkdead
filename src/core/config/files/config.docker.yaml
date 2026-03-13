@@ -53,7 +53,7 @@ rateLimiter:
     - name: "AUTH_REGISTER_VERIFY_TOKEN_EMAIL"
       ttlSec: 600
       limit: 5
-    - name: "AUTH_PASSWORD_RESET"
+    - name: "AUTH_COMPLETE_REGISTER"
       ttlSec: 900
       limit: 3
     - name: "AUTH_REFRESH_TOKEN"
@@ -71,7 +71,7 @@ auth:
       maxAttempts: 5
 
 jwt:
-  accessTokenKey: "11nkd34d:4cc355_70k3n"
+  accessTokenKey: "11nkd34d_4cc355_70k3n"
   refreshTokenKey: "11nkd34d_r3fr35h_70k3n"
   accessTokenTtlSec: 900
   refreshTokenTtlSec: 604800

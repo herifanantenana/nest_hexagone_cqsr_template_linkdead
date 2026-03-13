@@ -1,6 +1,7 @@
 import { appConfig, jwtConfig, type TAppConfig, type TJwtConfig } from "@apk_core/config/root.config";
 import { NoThrottle, RateLimiter } from "@apk_core/interface/http/guards/rate-limiter/rate-limiter.decorator";
 import {
+	POLICY_AUTH_COMPLETE_REGISTER,
 	POLICY_AUTH_LOGIN,
 	POLICY_AUTH_REFRESH_TOKEN,
 	POLICY_AUTH_REGISTER,
@@ -24,7 +25,7 @@ import {
 	IVerifyTokenEmailRegisterCommandResult,
 	VerifyTokenEmailRegisterCommand,
 } from "@apk_modules/auth/application/commands/verify-token-email-register.command";
-import { Body, Controller, HttpCode, HttpStatus, Inject, Post, Req, Res, UnauthorizedException } from "@nestjs/common";
+import { Body, Controller, Inject, Post, Req, Res, UnauthorizedException } from "@nestjs/common";
 import { CommandBus } from "@nestjs/cqrs";
 import { ApiBody, ApiOperation } from "@nestjs/swagger";
 import type { Request, Response } from "express";
@@ -54,7 +55,6 @@ export class AuthController {
 	@RateLimiter(POLICY_AUTH_REGISTER)
 	@AuthPublic()
 	@Post("register/request")
-	@HttpCode(HttpStatus.OK)
 	@ApiOperation({ summary: "Request a user registration" })
 	@ApiBody({ type: RequestRegisterDto })
 	async requestRegister(@Body() body: RequestRegisterDto) {
@@ -66,7 +66,6 @@ export class AuthController {
 	@RateLimiter(POLICY_AUTH_REGISTER_VERIFY_TOKEN_EMAIL)
 	@AuthPublic()
 	@Post("register/verify-token-email")
-	@HttpCode(HttpStatus.OK)
 	@ApiOperation({ summary: "Confirm the registration token" })
 	@ApiBody({ type: VerifyTokenEmailRegisterDto })
 	async confirmRegisterToken(@Body() body: VerifyTokenEmailRegisterDto) {
@@ -78,6 +77,7 @@ export class AuthController {
 	}
 
 	@NoThrottle()
+	@RateLimiter(POLICY_AUTH_COMPLETE_REGISTER)
 	@AuthPublic()
 	@Post("register/complete")
 	@ApiOperation({ summary: "Complete the user registration" })
@@ -110,7 +110,6 @@ export class AuthController {
 	@RateLimiter(POLICY_AUTH_LOGIN)
 	@AuthPublic()
 	@Post("login")
-	@HttpCode(HttpStatus.OK)
 	@ApiOperation({ summary: "Login a user" })
 	@ApiBody({ type: LoginDto })
 	async login(@Body() body: LoginDto, @Req() request: Request, @Res({ passthrough: true }) response: Response) {
@@ -135,7 +134,6 @@ export class AuthController {
 	}
 	@AuthOptional()
 	@Post("logout")
-	@HttpCode(HttpStatus.OK)
 	@ApiOperation({ summary: "Logout a user" })
 	async logout(
 		@Res({ passthrough: true }) response: Response,
@@ -159,18 +157,17 @@ export class AuthController {
 	@RateLimiter(POLICY_AUTH_REFRESH_TOKEN)
 	@AuthOptional()
 	@Post("refresh-token")
-	@HttpCode(HttpStatus.OK)
 	@ApiOperation({ summary: "Refresh access token" })
 	async refreshToken(
 		@Res({ passthrough: true }) response: Response,
+		@Req() request: Request,
 		@Cookies() cookies?: Record<string, string>,
-		@Req() request?: Request,
 	) {
 		const refreshToken = cookies?.[this.jwtCfg.refreshTokenKey];
 		if (!refreshToken) throw new UnauthorizedException("Refresh token is required");
 
-		const ipAddress = request?.ip || "unknown";
-		const userAgent = request?.get("user-agent") || "unknown";
+		const ipAddress = request.ip || "unknown";
+		const userAgent = request.get("user-agent") || "unknown";
 
 		const result: IRefreshAccessTokenCommandResult = await this.commandBus.execute(
 			new RefreshAccessTokenCommand(refreshToken, userAgent, ipAddress),
