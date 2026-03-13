@@ -43,3 +43,11 @@ export enum ESessionStatus {
 	REVOKED = "revoked",
 }
 export const SessionStatus = Object.values(ESessionStatus) as [string, ...string[]];
+
+export enum ESkillTypes {
+	TECHNICAL = "technical",
+	HARD = "hard",
+	SOFT = "soft",
+	OTHER = "other",
+}
+export const SkillTypes = Object.values(ESkillTypes) as [string, ...string[]];

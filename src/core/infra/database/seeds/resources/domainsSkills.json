@@ -1,0 +1,58 @@
+[
+	{ "domainKey": "information-technology", "skillKey": "git" },
+	{ "domainKey": "information-technology", "skillKey": "testing" },
+	{ "domainKey": "information-technology", "skillKey": "agile" },
+	{ "domainKey": "information-technology", "skillKey": "api-design" },
+
+	{ "domainKey": "finance", "skillKey": "financial-reporting" },
+	{ "domainKey": "finance", "skillKey": "budgeting" },
+	{ "domainKey": "finance", "skillKey": "tax-compliance" },
+
+	{ "domainKey": "healthcare", "skillKey": "patient-care" },
+	{ "domainKey": "healthcare", "skillKey": "medical-records-management" },
+
+	{ "domainKey": "education", "skillKey": "lesson-planning" },
+	{ "domainKey": "education", "skillKey": "classroom-management" },
+
+	{ "domainKey": "manufacturing", "skillKey": "process-control" },
+	{ "domainKey": "manufacturing", "skillKey": "quality-inspection" },
+
+	{ "domainKey": "retail", "skillKey": "customer-engagement" },
+	{ "domainKey": "retail", "skillKey": "stock-control" },
+
+	{ "domainKey": "transportation", "skillKey": "logistics-planning" },
+	{ "domainKey": "transportation", "skillKey": "warehouse-management" },
+
+	{ "domainKey": "energy", "skillKey": "power-distribution" },
+	{ "domainKey": "energy", "skillKey": "energy-maintenance" },
+
+	{ "domainKey": "telecommunications", "skillKey": "network-monitoring" },
+	{ "domainKey": "telecommunications", "skillKey": "telecom-support" },
+
+	{ "domainKey": "agriculture", "skillKey": "field-observation" },
+	{ "domainKey": "agriculture", "skillKey": "farm-planning" },
+
+	{ "domainKey": "hospitality", "skillKey": "guest-service" },
+	{ "domainKey": "hospitality", "skillKey": "reservation-handling" },
+
+	{ "domainKey": "legal", "skillKey": "legal-drafting" },
+	{ "domainKey": "legal", "skillKey": "regulatory-compliance" },
+
+	{ "domainKey": "consulting", "skillKey": "stakeholder-analysis" },
+	{ "domainKey": "consulting", "skillKey": "business-process-analysis" },
+
+	{ "domainKey": "marketing-and-advertising", "skillKey": "seo" },
+	{ "domainKey": "marketing-and-advertising", "skillKey": "campaign-management" },
+
+	{ "domainKey": "human-resources", "skillKey": "candidate-sourcing" },
+	{ "domainKey": "human-resources", "skillKey": "training-design" },
+
+	{ "domainKey": "construction", "skillKey": "construction-estimation" },
+	{ "domainKey": "construction", "skillKey": "site-supervision" },
+
+	{ "domainKey": "real-estate", "skillKey": "property-leasing" },
+	{ "domainKey": "real-estate", "skillKey": "real-estate-negotiation" },
+
+	{ "domainKey": "non-profit", "skillKey": "community-outreach" },
+	{ "domainKey": "non-profit", "skillKey": "fundraising-campaigns" }
+]

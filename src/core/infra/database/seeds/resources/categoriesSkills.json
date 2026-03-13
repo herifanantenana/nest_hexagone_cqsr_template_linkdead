@@ -1,0 +1,119 @@
+[
+	{ "categoryKey": "frontend-development", "skillKey": "react" },
+	{ "categoryKey": "frontend-development", "skillKey": "next-js" },
+	{ "categoryKey": "frontend-development", "skillKey": "css" },
+	{ "categoryKey": "frontend-development", "skillKey": "typescript" },
+
+	{ "categoryKey": "backend-development", "skillKey": "nestjs" },
+	{ "categoryKey": "backend-development", "skillKey": "postgresql" },
+	{ "categoryKey": "backend-development", "skillKey": "redis" },
+	{ "categoryKey": "backend-development", "skillKey": "jwt" },
+
+	{ "categoryKey": "devops-and-cloud", "skillKey": "docker" },
+	{ "categoryKey": "devops-and-cloud", "skillKey": "kubernetes" },
+	{ "categoryKey": "devops-and-cloud", "skillKey": "ci-cd" },
+	{ "categoryKey": "devops-and-cloud", "skillKey": "cloud-infrastructure" },
+
+	{ "categoryKey": "cybersecurity", "skillKey": "network-security" },
+	{ "categoryKey": "cybersecurity", "skillKey": "penetration-testing" },
+
+	{ "categoryKey": "data-and-ai", "skillKey": "data-analysis" },
+	{ "categoryKey": "data-and-ai", "skillKey": "machine-learning" },
+
+	{ "categoryKey": "accounting", "skillKey": "financial-reporting" },
+	{ "categoryKey": "accounting", "skillKey": "tax-compliance" },
+
+	{ "categoryKey": "financial-analysis", "skillKey": "budgeting" },
+
+	{ "categoryKey": "auditing", "skillKey": "audit-management" },
+
+	{ "categoryKey": "nursing", "skillKey": "patient-care" },
+	{ "categoryKey": "medical-administration", "skillKey": "medical-records-management" },
+	{ "categoryKey": "laboratory-services", "skillKey": "laboratory-testing" },
+	{ "categoryKey": "pharmacy-operations", "skillKey": "dispensing" },
+
+	{ "categoryKey": "teaching-and-instruction", "skillKey": "lesson-planning" },
+	{ "categoryKey": "teaching-and-instruction", "skillKey": "classroom-management" },
+	{ "categoryKey": "student-support", "skillKey": "student-advising" },
+
+	{ "categoryKey": "production-operations", "skillKey": "process-control" },
+	{ "categoryKey": "quality-control", "skillKey": "quality-inspection" },
+	{ "categoryKey": "maintenance", "skillKey": "preventive-maintenance" },
+	{ "categoryKey": "supply-chain", "skillKey": "inventory-planning" },
+
+	{ "categoryKey": "sales", "skillKey": "customer-engagement" },
+	{ "categoryKey": "merchandising", "skillKey": "visual-merchandising" },
+	{ "categoryKey": "inventory-management", "skillKey": "stock-control" },
+
+	{ "categoryKey": "logistics", "skillKey": "logistics-planning" },
+	{ "categoryKey": "fleet-management", "skillKey": "fleet-scheduling" },
+	{ "categoryKey": "warehouse-operations", "skillKey": "warehouse-management" },
+
+	{ "categoryKey": "renewable-energy", "skillKey": "solar-systems" },
+	{ "categoryKey": "energy-distribution", "skillKey": "power-distribution" },
+
+	{ "categoryKey": "network-operations", "skillKey": "network-monitoring" },
+	{ "categoryKey": "telecom-support", "skillKey": "telecom-support" },
+
+	{ "categoryKey": "crop-production", "skillKey": "irrigation" },
+	{ "categoryKey": "crop-production", "skillKey": "soil-analysis" },
+	{ "categoryKey": "livestock-management", "skillKey": "animal-care" },
+	{ "categoryKey": "farm-operations", "skillKey": "farm-planning" },
+
+	{ "categoryKey": "hotel-operations", "skillKey": "guest-service" },
+	{ "categoryKey": "food-service", "skillKey": "food-preparation" },
+	{ "categoryKey": "guest-relations", "skillKey": "reservation-handling" },
+
+	{ "categoryKey": "legal-research", "skillKey": "legal-drafting" },
+	{ "categoryKey": "compliance", "skillKey": "regulatory-compliance" },
+	{ "categoryKey": "contract-management", "skillKey": "contract-review" },
+
+	{ "categoryKey": "business-strategy", "skillKey": "stakeholder-analysis" },
+	{ "categoryKey": "operations-consulting", "skillKey": "business-process-analysis" },
+	{ "categoryKey": "digital-transformation", "skillKey": "cloud-infrastructure" },
+
+	{ "categoryKey": "digital-marketing", "skillKey": "seo" },
+	{ "categoryKey": "content-marketing", "skillKey": "content-writing" },
+	{ "categoryKey": "brand-management", "skillKey": "brand-strategy" },
+	{ "categoryKey": "paid-media", "skillKey": "campaign-management" },
+
+	{ "categoryKey": "recruitment", "skillKey": "candidate-sourcing" },
+	{ "categoryKey": "learning-and-development", "skillKey": "training-design" },
+	{ "categoryKey": "employee-relations", "skillKey": "employee-support" },
+
+	{ "categoryKey": "avionics", "skillKey": "avionics-systems" },
+	{ "categoryKey": "defense-operations", "skillKey": "defense-logistics" },
+
+	{ "categoryKey": "vehicle-maintenance", "skillKey": "vehicle-diagnostics" },
+	{ "categoryKey": "vehicle-maintenance", "skillKey": "mechanical-repair" },
+
+	{ "categoryKey": "drug-production", "skillKey": "good-manufacturing-practices" },
+	{ "categoryKey": "clinical-research", "skillKey": "clinical-documentation" },
+
+	{ "categoryKey": "food-production", "skillKey": "food-safety" },
+	{ "categoryKey": "restaurant-operations", "skillKey": "kitchen-operations" },
+
+	{ "categoryKey": "fashion-design", "skillKey": "fashion-sketching" },
+	{ "categoryKey": "apparel-production", "skillKey": "garment-construction" },
+
+	{ "categoryKey": "fitness-coaching", "skillKey": "fitness-program-design" },
+	{ "categoryKey": "sports-management", "skillKey": "sports-event-planning" },
+
+	{ "categoryKey": "travel-operations", "skillKey": "tour-planning" },
+	{ "categoryKey": "reservation-management", "skillKey": "booking-management" },
+
+	{ "categoryKey": "project-estimation", "skillKey": "construction-estimation" },
+	{ "categoryKey": "building-supervision", "skillKey": "site-supervision" },
+
+	{ "categoryKey": "property-management", "skillKey": "property-leasing" },
+	{ "categoryKey": "real-estate-sales", "skillKey": "real-estate-negotiation" },
+
+	{ "categoryKey": "video-production", "skillKey": "video-editing" },
+	{ "categoryKey": "content-production", "skillKey": "media-production" },
+
+	{ "categoryKey": "policy-implementation", "skillKey": "policy-execution" },
+	{ "categoryKey": "public-administration", "skillKey": "public-program-administration" },
+
+	{ "categoryKey": "community-programs", "skillKey": "community-outreach" },
+	{ "categoryKey": "fundraising", "skillKey": "fundraising-campaigns" }
+]

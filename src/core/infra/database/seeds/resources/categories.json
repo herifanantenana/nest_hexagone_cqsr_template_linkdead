@@ -1,0 +1,116 @@
+[
+	{ "key": "frontend-development", "name": "Frontend Development", "domainKey": "information-technology" },
+	{ "key": "backend-development", "name": "Backend Development", "domainKey": "information-technology" },
+	{ "key": "devops-and-cloud", "name": "DevOps and Cloud", "domainKey": "information-technology" },
+	{ "key": "cybersecurity", "name": "Cybersecurity", "domainKey": "information-technology" },
+	{ "key": "data-and-ai", "name": "Data and AI", "domainKey": "information-technology" },
+
+	{ "key": "accounting", "name": "Accounting", "domainKey": "finance" },
+	{ "key": "financial-analysis", "name": "Financial Analysis", "domainKey": "finance" },
+	{ "key": "auditing", "name": "Auditing", "domainKey": "finance" },
+	{ "key": "treasury", "name": "Treasury", "domainKey": "finance" },
+
+	{ "key": "nursing", "name": "Nursing", "domainKey": "healthcare" },
+	{ "key": "medical-administration", "name": "Medical Administration", "domainKey": "healthcare" },
+	{ "key": "laboratory-services", "name": "Laboratory Services", "domainKey": "healthcare" },
+	{ "key": "pharmacy-operations", "name": "Pharmacy Operations", "domainKey": "healthcare" },
+
+	{ "key": "teaching-and-instruction", "name": "Teaching and Instruction", "domainKey": "education" },
+	{ "key": "curriculum-design", "name": "Curriculum Design", "domainKey": "education" },
+	{ "key": "student-support", "name": "Student Support", "domainKey": "education" },
+
+	{ "key": "production-operations", "name": "Production Operations", "domainKey": "manufacturing" },
+	{ "key": "quality-control", "name": "Quality Control", "domainKey": "manufacturing" },
+	{ "key": "maintenance", "name": "Maintenance", "domainKey": "manufacturing" },
+	{ "key": "supply-chain", "name": "Supply Chain", "domainKey": "manufacturing" },
+
+	{ "key": "sales", "name": "Sales", "domainKey": "retail" },
+	{ "key": "merchandising", "name": "Merchandising", "domainKey": "retail" },
+	{ "key": "inventory-management", "name": "Inventory Management", "domainKey": "retail" },
+	{ "key": "customer-service", "name": "Customer Service", "domainKey": "retail" },
+
+	{ "key": "logistics", "name": "Logistics", "domainKey": "transportation" },
+	{ "key": "fleet-management", "name": "Fleet Management", "domainKey": "transportation" },
+	{ "key": "warehouse-operations", "name": "Warehouse Operations", "domainKey": "transportation" },
+
+	{ "key": "power-generation", "name": "Power Generation", "domainKey": "energy" },
+	{ "key": "renewable-energy", "name": "Renewable Energy", "domainKey": "energy" },
+	{ "key": "energy-distribution", "name": "Energy Distribution", "domainKey": "energy" },
+
+	{ "key": "network-operations", "name": "Network Operations", "domainKey": "telecommunications" },
+	{ "key": "telecom-support", "name": "Telecom Support", "domainKey": "telecommunications" },
+	{ "key": "infrastructure-management", "name": "Infrastructure Management", "domainKey": "telecommunications" },
+
+	{ "key": "crop-production", "name": "Crop Production", "domainKey": "agriculture" },
+	{ "key": "livestock-management", "name": "Livestock Management", "domainKey": "agriculture" },
+	{ "key": "farm-operations", "name": "Farm Operations", "domainKey": "agriculture" },
+
+	{ "key": "hotel-operations", "name": "Hotel Operations", "domainKey": "hospitality" },
+	{ "key": "food-service", "name": "Food Service", "domainKey": "hospitality" },
+	{ "key": "guest-relations", "name": "Guest Relations", "domainKey": "hospitality" },
+
+	{ "key": "legal-research", "name": "Legal Research", "domainKey": "legal" },
+	{ "key": "compliance", "name": "Compliance", "domainKey": "legal" },
+	{ "key": "contract-management", "name": "Contract Management", "domainKey": "legal" },
+
+	{ "key": "business-strategy", "name": "Business Strategy", "domainKey": "consulting" },
+	{ "key": "operations-consulting", "name": "Operations Consulting", "domainKey": "consulting" },
+	{ "key": "digital-transformation", "name": "Digital Transformation", "domainKey": "consulting" },
+
+	{ "key": "digital-marketing", "name": "Digital Marketing", "domainKey": "marketing-and-advertising" },
+	{ "key": "content-marketing", "name": "Content Marketing", "domainKey": "marketing-and-advertising" },
+	{ "key": "brand-management", "name": "Brand Management", "domainKey": "marketing-and-advertising" },
+	{ "key": "paid-media", "name": "Paid Media", "domainKey": "marketing-and-advertising" },
+
+	{ "key": "recruitment", "name": "Recruitment", "domainKey": "human-resources" },
+	{ "key": "learning-and-development", "name": "Learning and Development", "domainKey": "human-resources" },
+	{ "key": "employee-relations", "name": "Employee Relations", "domainKey": "human-resources" },
+
+	{ "key": "aircraft-systems", "name": "Aircraft Systems", "domainKey": "aerospace-and-defense" },
+	{ "key": "defense-operations", "name": "Defense Operations", "domainKey": "aerospace-and-defense" },
+	{ "key": "avionics", "name": "Avionics", "domainKey": "aerospace-and-defense" },
+
+	{ "key": "vehicle-maintenance", "name": "Vehicle Maintenance", "domainKey": "automotive" },
+	{ "key": "automotive-engineering", "name": "Automotive Engineering", "domainKey": "automotive" },
+	{ "key": "after-sales-service", "name": "After Sales Service", "domainKey": "automotive" },
+
+	{ "key": "drug-production", "name": "Drug Production", "domainKey": "pharmaceuticals" },
+	{ "key": "clinical-research", "name": "Clinical Research", "domainKey": "pharmaceuticals" },
+	{ "key": "regulatory-affairs", "name": "Regulatory Affairs", "domainKey": "pharmaceuticals" },
+
+	{ "key": "food-production", "name": "Food Production", "domainKey": "food-and-beverage" },
+	{ "key": "quality-assurance", "name": "Quality Assurance", "domainKey": "food-and-beverage" },
+	{ "key": "restaurant-operations", "name": "Restaurant Operations", "domainKey": "food-and-beverage" },
+
+	{ "key": "fashion-design", "name": "Fashion Design", "domainKey": "fashion-and-apparel" },
+	{ "key": "apparel-production", "name": "Apparel Production", "domainKey": "fashion-and-apparel" },
+	{ "key": "retail-fashion-sales", "name": "Retail Fashion Sales", "domainKey": "fashion-and-apparel" },
+
+	{ "key": "fitness-coaching", "name": "Fitness Coaching", "domainKey": "sports-and-recreation" },
+	{ "key": "sports-management", "name": "Sports Management", "domainKey": "sports-and-recreation" },
+	{ "key": "recreation-services", "name": "Recreation Services", "domainKey": "sports-and-recreation" },
+
+	{ "key": "travel-operations", "name": "Travel Operations", "domainKey": "travel-and-tourism" },
+	{ "key": "tour-guiding", "name": "Tour Guiding", "domainKey": "travel-and-tourism" },
+	{ "key": "reservation-management", "name": "Reservation Management", "domainKey": "travel-and-tourism" },
+
+	{ "key": "site-construction", "name": "Site Construction", "domainKey": "construction" },
+	{ "key": "project-estimation", "name": "Project Estimation", "domainKey": "construction" },
+	{ "key": "building-supervision", "name": "Building Supervision", "domainKey": "construction" },
+
+	{ "key": "property-management", "name": "Property Management", "domainKey": "real-estate" },
+	{ "key": "real-estate-sales", "name": "Real Estate Sales", "domainKey": "real-estate" },
+	{ "key": "real-estate-development", "name": "Real Estate Development", "domainKey": "real-estate" },
+
+	{ "key": "content-production", "name": "Content Production", "domainKey": "media-and-entertainment" },
+	{ "key": "video-production", "name": "Video Production", "domainKey": "media-and-entertainment" },
+	{ "key": "event-management", "name": "Event Management", "domainKey": "media-and-entertainment" },
+
+	{ "key": "public-administration", "name": "Public Administration", "domainKey": "government" },
+	{ "key": "policy-implementation", "name": "Policy Implementation", "domainKey": "government" },
+	{ "key": "public-service-delivery", "name": "Public Service Delivery", "domainKey": "government" },
+
+	{ "key": "community-programs", "name": "Community Programs", "domainKey": "non-profit" },
+	{ "key": "fundraising", "name": "Fundraising", "domainKey": "non-profit" },
+	{ "key": "volunteer-coordination", "name": "Volunteer Coordination", "domainKey": "non-profit" }
+]

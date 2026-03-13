@@ -19,6 +19,7 @@ logger:
   level: "verbose"
   dir: "logs"
   activeLogFiles: false
+  logstashEnabled: false
 
 database:
   engine: "PostgreSQL"

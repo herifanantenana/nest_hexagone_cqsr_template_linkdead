@@ -20,6 +20,7 @@ logger:
   level: "debug"
   dir: "logs"
   activeLogFiles: false
+  logstashEnabled: true
 
 database:
   engine: "PostgreSQL"
