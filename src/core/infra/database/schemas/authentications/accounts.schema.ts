@@ -27,6 +27,8 @@ export const accountsTable = pgTable(
 			name: "accounts_user_id_fk",
 			columns: [t.userId],
 			foreignColumns: [usersTable.id],
-		}),
+		})
+			.onDelete("cascade")
+			.onUpdate("cascade"),
 	],
 );

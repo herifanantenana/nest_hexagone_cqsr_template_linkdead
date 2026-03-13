@@ -3,19 +3,23 @@ app:
   version: "v1"
 
 server:
-  host: "10.11.200.229"
-  port: 5001
+  port: 5000
   trustProxy: true
   allowedCorsOrigins:
-    - "https://localhost:3000"
-  apiPathPrefix: "api-prod"
-  docsPathPrefix: "docs-prod"
+    - "http://10.11.200.229:4000" # * use host machine IP with exposed port
+    - "http://localhost:4000"
+    - "http://127.0.0.1:4000"
+  apiPathPrefix: "api"
+  docsPathPrefix: "docs"
+
+client:
+  registerVerifyEmailPath: "auth/register/finalize"
 
 logger:
   engine: "Winston"
-  level: "debug"
+  level: "info"
   dir: "logs"
-  activeLogFiles: false
+  activeLogFiles: true
 
 database:
   engine: "PostgreSQL"
@@ -32,7 +36,7 @@ mailer:
   host: "smtp.gmail.com"
   fromSupport: "Linkdead <support@arakotom.com>"
   fromNoReply: "Linkdead <noreply@arakotom.com>"
-  templatesDir: "./src/core/infra/mailer/adapters/templates"
+  templatesDir: "./dist/src/core/infra/mailer/adapters/templates"
 
 rateLimiter:
   engine: "Throttler"
@@ -43,15 +47,31 @@ rateLimiter:
     - name: "AUTH_LOGIN"
       ttlSec: 900
       limit: 10
-    - name: "AUTH_REGISTER"
+    - name: "AUTH_REGISTER_REQUEST"
       ttlSec: 3600
       limit: 5
-    - name: "AUTH_PASSWORD_RESET"
+    - name: "AUTH_REGISTER_VERIFY_TOKEN_EMAIL"
+      ttlSec: 600
+      limit: 5
+    - name: "AUTH_COMPLETE_REGISTER"
       ttlSec: 900
       limit: 3
-    - name: "AUTH_EMAIL_VERIFY"
+    - name: "AUTH_REFRESH_TOKEN"
       ttlSec: 300
       limit: 5
     - name: "API_HEAVY"
       ttlSec: 60
       limit: 20
+
+auth:
+  registration:
+    tokenTtlSec: 3600
+    tokenCooldown:
+      ttlSec: 1800
+      maxAttempts: 5
+
+jwt:
+  accessTokenKey: "11nkd34d_4cc355_70k3n"
+  refreshTokenKey: "11nkd34d_r3fr35h_70k3n"
+  accessTokenTtlSec: 900
+  refreshTokenTtlSec: 604800

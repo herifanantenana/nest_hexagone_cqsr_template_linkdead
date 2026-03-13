@@ -1,6 +1,6 @@
 import { InfraException } from "@apk_shared/exceptions/infra.exception";
-import { THttpErrorDetails } from "@apk_shared/types/http-response";
 import { SafeAction } from "@apk_shared/infra/safe-action";
+import { THttpErrorDetails } from "@apk_shared/types/http-response";
 import { Injectable } from "@nestjs/common";
 
 type TPostgresLikeError = Error & {

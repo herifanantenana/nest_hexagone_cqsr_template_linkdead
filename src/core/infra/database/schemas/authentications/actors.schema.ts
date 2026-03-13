@@ -22,12 +22,16 @@ export const actorsTable = pgTable(
 			name: "actors_user_id_fk",
 			columns: [t.userId],
 			foreignColumns: [usersTable.id],
-		}),
+		})
+			.onDelete("cascade")
+			.onUpdate("cascade"),
 		foreignKey({
 			name: "actors_organization_id_fk",
 			columns: [t.organizationId],
 			foreignColumns: [organizationsTable.id],
-		}),
+		})
+			.onDelete("cascade")
+			.onUpdate("cascade"),
 		check(
 			"only_one_id",
 			sql`((user_id IS NOT NULL AND organization_id IS NULL AND type = 'user') OR (user_id IS NULL AND organization_id IS NOT NULL AND type = 'organization'))`,

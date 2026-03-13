@@ -1,7 +1,9 @@
 import {
 	TAppConfig,
+	TAuthConfig,
 	TClientAppConfig,
 	TDatabaseConfig,
+	TJwtConfig,
 	TLoggerConfig,
 	TMailerConfig,
 	TRateLimiterConfig,
@@ -23,6 +25,8 @@ export class AppService {
 		const redisConfig = this.configService.get<TRedisConfig>("redis");
 		const mailerConfig = this.configService.get<TMailerConfig>("mailer");
 		const rateLimiterConfig = this.configService.get<TRateLimiterConfig>("rateLimiter");
+		const authConfig = this.configService.get<TAuthConfig>("auth");
+		const jwtConfig = this.configService.get<TJwtConfig>("jwt");
 
 		return {
 			appConfig,
@@ -33,6 +37,8 @@ export class AppService {
 			redisConfig,
 			mailerConfig,
 			rateLimiterConfig,
+			authConfig,
+			jwtConfig,
 		};
 	}
 }

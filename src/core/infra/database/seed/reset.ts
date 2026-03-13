@@ -2,7 +2,8 @@ import dotenv from "dotenv";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { sql } from "drizzle-orm/sql/sql";
 
-const envFile = `.env${process.env.NODE_ENV === "production" ? ".prod" : ".dev"}`;
+const runtime = process.env.APP_RUNTIME ?? "dev";
+const envFile = `.env.${runtime}`;
 
 dotenv.config({ path: envFile });
 const connString = `postgresql://${process.env.DATABASE_USERNAME}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}/${process.env.DATABASE_NAME}`;

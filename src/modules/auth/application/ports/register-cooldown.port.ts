@@ -1,0 +1,6 @@
+export abstract class RegisterCooldownPort {
+	abstract isOnEmailCooldown(email: string): Promise<boolean>;
+	abstract start(email: string, token: string, ttlSec: number): Promise<void>;
+	abstract getCooldownToken(email: string): Promise<string | null>;
+	abstract deleteCooldown(email: string, tx?: unknown): Promise<void>;
+}

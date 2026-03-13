@@ -8,6 +8,10 @@
 			{
 				"include": "core/config/files/*.yaml",
 				"outDir": "dist/src"
+			},
+			{
+				"include": "core/infra/mailer/adapters/templates/**/*.hbs",
+				"outDir": "dist/src"
 			}
 		],
 		"watchAssets": true

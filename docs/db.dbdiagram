@@ -1,0 +1,1383 @@
+{
+  "version": "1.0.0",
+  "darkMode": true,
+  "gridEnabling": false,
+  "detailLevel": "All",
+  "tablePositions": [
+    {
+      "name": "domains",
+      "schemaName": "public",
+      "x": 718.425824514198,
+      "y": 2132.6249335265384
+    },
+    {
+      "name": "categories",
+      "schemaName": "public",
+      "x": -165.58574283286612,
+      "y": 2571.95633566609
+    },
+    {
+      "name": "skills",
+      "schemaName": "public",
+      "x": 1379.642071224761,
+      "y": 2112.040819429721
+    },
+    {
+      "name": "domain_skills",
+      "schemaName": "public",
+      "x": 1149.200437162961,
+      "y": 2356.8926890265516
+    },
+    {
+      "name": "accounts",
+      "schemaName": "public",
+      "x": -1223.3196179845038,
+      "y": 725.1693473638487
+    },
+    {
+      "name": "users",
+      "schemaName": "public",
+      "x": -864.0465811095108,
+      "y": 444.8692579982447
+    },
+    {
+      "name": "exploits",
+      "schemaName": "public",
+      "x": 942.5896735480521,
+      "y": -434.520374076508
+    },
+    {
+      "name": "exploit_categories",
+      "schemaName": "public",
+      "x": 1883.9537235472699,
+      "y": 2507.1539476679363
+    },
+    {
+      "name": "exploit_skills",
+      "schemaName": "public",
+      "x": 1306.8833177282077,
+      "y": 736.5780624478909
+    },
+    {
+      "name": "exploit_evidences",
+      "schemaName": "public",
+      "x": 942.5896735480521,
+      "y": -872.3003667353045
+    },
+    {
+      "name": "exploit_approvals",
+      "schemaName": "public",
+      "x": 390.8287251380467,
+      "y": -242.19170476376416
+    },
+    {
+      "name": "collaboration_requests",
+      "schemaName": "public",
+      "x": -1106.2674305778191,
+      "y": 16.05864244216059
+    },
+    {
+      "name": "collaborations",
+      "schemaName": "public",
+      "x": -260.10614070215007,
+      "y": -152.1901359879863
+    },
+    {
+      "name": "organizations",
+      "schemaName": "public",
+      "x": -897.4821388686628,
+      "y": 1294.0875836654154
+    },
+    {
+      "name": "actors",
+      "schemaName": "public",
+      "x": 403.9898164966211,
+      "y": 603.7871371353872
+    },
+    {
+      "name": "sessions",
+      "schemaName": "public",
+      "x": -281.60614070215007,
+      "y": 79.34294265750691
+    },
+    {
+      "name": "actor_blocks",
+      "schemaName": "public",
+      "x": 403.9898164966211,
+      "y": 257.93211017853855
+    },
+    {
+      "name": "comments",
+      "schemaName": "public",
+      "x": 368.354493126957,
+      "y": 922.2780878091521
+    },
+    {
+      "name": "opportunities",
+      "schemaName": "public",
+      "x": -234.70804527616997,
+      "y": 1870.7621307337781
+    },
+    {
+      "name": "opportunity_categories",
+      "schemaName": "public",
+      "x": -774.2514622609551,
+      "y": 2341.287173986252
+    },
+    {
+      "name": "opportunity_skills",
+      "schemaName": "public",
+      "x": 915.3590503931198,
+      "y": 1602.704146773462
+    },
+    {
+      "name": "applications",
+      "schemaName": "public",
+      "x": -1699.1679217601509,
+      "y": 91.00256323703161
+    },
+    {
+      "name": "application_exploits",
+      "schemaName": "public",
+      "x": -697.4041788051695,
+      "y": -311.27683498827196
+    },
+    {
+      "name": "hunts",
+      "schemaName": "public",
+      "x": -2464.068776967789,
+      "y": 1688.3551191899571
+    },
+    {
+      "name": "discussions",
+      "schemaName": "public",
+      "x": -1137.8380720698888,
+      "y": -948.68266734287
+    },
+    {
+      "name": "discussion_sources",
+      "schemaName": "public",
+      "x": -1854.5469960821379,
+      "y": -650.217085501345
+    },
+    {
+      "name": "discussion_participants",
+      "schemaName": "public",
+      "x": -519.0515177894673,
+      "y": -733.6725266619894
+    },
+    {
+      "name": "discussion_messages",
+      "schemaName": "public",
+      "x": 980.7224116172213,
+      "y": -1214.6277515702368
+    },
+    {
+      "name": "message_attachments",
+      "schemaName": "public",
+      "x": 2082.993699905004,
+      "y": 1627.8466449119935
+    },
+    {
+      "name": "reports",
+      "schemaName": "public",
+      "x": -217.2575016484759,
+      "y": 988.1654347000718
+    }
+  ],
+  "tableGroupCollapseStates": [],
+  "stickyNoteLayouts": [],
+  "referencePaths": [
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "domains",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "domain_id"
+      ],
+      "secondTableName": "categories",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": 433.1325511853049,
+          "y": 2180.6249335265384
+        },
+        {
+          "x": 433.1325511853049,
+          "y": 2715.95633566609
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "domains",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "domain_id"
+      ],
+      "secondTableName": "domain_skills",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "skills",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "skill_id"
+      ],
+      "secondTableName": "domain_skills",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "users",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "user_id"
+      ],
+      "secondTableName": "accounts",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "users",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "author_user_id"
+      ],
+      "secondTableName": "exploits",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": 152.86424195586926,
+          "y": 500.8692579982446
+        },
+        {
+          "x": 152.86424195586926,
+          "y": -354.520374076508
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "domains",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "domain_id"
+      ],
+      "secondTableName": "exploits",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "exploits",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "exploit_id"
+      ],
+      "secondTableName": "exploit_categories",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": 1766.045892243459,
+          "y": -378.520374076508
+        },
+        {
+          "x": 1766.045892243459,
+          "y": 2587.1539476679363
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "categories",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "category_id"
+      ],
+      "secondTableName": "exploit_categories",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "exploits",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "exploit_id"
+      ],
+      "secondTableName": "exploit_skills",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "skills",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "skill_id"
+      ],
+      "secondTableName": "exploit_skills",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "exploits",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "exploit_id"
+      ],
+      "secondTableName": "exploit_evidences",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "exploits",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "exploit_id"
+      ],
+      "secondTableName": "exploit_approvals",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": 727.2394708462182,
+          "y": -378.520374076508
+        },
+        {
+          "x": 727.2394708462182,
+          "y": -162.19170476376416
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "users",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "user_id"
+      ],
+      "secondTableName": "exploit_approvals",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": -455.03917278807955,
+          "y": 500.8692579982446
+        },
+        {
+          "x": -455.03917278807955,
+          "y": -174.67538179358394
+        },
+        {
+          "x": 370.8287251380467,
+          "y": -174.67538179358394
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "users",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "sender_user_id"
+      ],
+      "secondTableName": "collaboration_requests",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "users",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "receiver_user_id"
+      ],
+      "secondTableName": "collaboration_requests",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "firstEndpointSide": "left",
+      "secondEndpointSide": "left",
+      "checkPoints": [
+        {
+          "x": -919.9422705129773,
+          "y": 492.8692579982447
+        },
+        {
+          "x": -919.9422705129773,
+          "y": 370.37197766965545
+        },
+        {
+          "x": -1151.0155060164295,
+          "y": 370.37197766965545
+        },
+        {
+          "x": -1151.0155060164295,
+          "y": 128.0586424421606
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "users",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "user_min_id"
+      ],
+      "secondTableName": "collaborations",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": -379.41870468634977,
+          "y": 500.86925799824473
+        },
+        {
+          "x": -379.41870468634977,
+          "y": 83.57740084321142
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "users",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "user_max_id"
+      ],
+      "secondTableName": "collaborations",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "secondEndpointSide": "right",
+      "checkPoints": [
+        {
+          "x": 10.142252265239108,
+          "y": 500.86925799824473
+        },
+        {
+          "x": 10.142252265239108,
+          "y": 115.57740084321142
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "users",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "owner_user_id"
+      ],
+      "secondTableName": "organizations",
+      "secondSchemaName": "public",
+      "secondRelation": "1",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "users",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "user_id"
+      ],
+      "secondTableName": "actors",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "firstEndpointSide": "right",
+      "checkPoints": [
+        {
+          "x": -574.6950186095108,
+          "y": 719.6214384025279
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "organizations",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "organization_id"
+      ],
+      "secondTableName": "actors",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": -451.03332688769575,
+          "y": 1334.0875836654154
+        },
+        {
+          "x": -451.03332688769575,
+          "y": 751.6214384025279
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "users",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "user_id"
+      ],
+      "secondTableName": "sessions",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "actors",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "active_actor_id"
+      ],
+      "secondTableName": "sessions",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "actors",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "blocker_actor_id"
+      ],
+      "secondTableName": "actor_blocks",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": 730.4728424751537,
+          "y": 655.6214384025279
+        },
+        {
+          "x": 730.4728424751537,
+          "y": 337.93211017853855
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "actors",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "blocked_actor_id"
+      ],
+      "secondTableName": "actor_blocks",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "firstEndpointSide": "left",
+      "secondEndpointSide": "left",
+      "checkPoints": [
+        {
+          "x": 311.719158484438,
+          "y": 655.6214384025279
+        },
+        {
+          "x": 311.719158484438,
+          "y": 369.93211017853855
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "exploits",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "exploit_id"
+      ],
+      "secondTableName": "comments",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": 801.4240305893882,
+          "y": -378.520374076508
+        },
+        {
+          "x": 801.4240305893882,
+          "y": 1034.278087809152
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "actors",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "actor_id"
+      ],
+      "secondTableName": "comments",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": 731.3306543490893,
+          "y": 655.6214384025279
+        },
+        {
+          "x": 731.3306543490893,
+          "y": 1002.2780878091521
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "organizations",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "organization_id"
+      ],
+      "secondTableName": "opportunities",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "firstEndpointSide": "left",
+      "checkPoints": [
+        {
+          "x": -940.2006456093151,
+          "y": 1350.0875836654154
+        },
+        {
+          "x": -940.2006456093151,
+          "y": 1950.7621307337781
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "domains",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "domain_id"
+      ],
+      "secondTableName": "opportunities",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": 244.16296901262422,
+          "y": 2176.550062145673
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "opportunities",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "opportunity_id"
+      ],
+      "secondTableName": "opportunity_categories",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": -390.8493915836841,
+          "y": 1918.7621307337781
+        },
+        {
+          "x": -390.8493915836841,
+          "y": 2417.4967134250455
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "categories",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "category_id"
+      ],
+      "secondTableName": "opportunity_categories",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": -389.54143260765113,
+          "y": 2619.95633566609
+        },
+        {
+          "x": -389.54143260765113,
+          "y": 2449.4967134250455
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "opportunities",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "opportunity_id"
+      ],
+      "secondTableName": "opportunity_skills",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "skills",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "skill_id"
+      ],
+      "secondTableName": "opportunity_skills",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "opportunities",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "opportunity_id"
+      ],
+      "secondTableName": "applications",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": -1298.365320125871,
+          "y": 1918.7621307337781
+        },
+        {
+          "x": -1298.365320125871,
+          "y": 195.2409034639545
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "users",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "applicant_user_id"
+      ],
+      "secondTableName": "applications",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": -1199.960353720305,
+          "y": 492.8692579982447
+        },
+        {
+          "x": -1199.960353720305,
+          "y": 156.58287895739386
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "applications",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "application_id"
+      ],
+      "secondTableName": "application_exploits",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": -1254.0906587168647,
+          "y": 124.58287895739386
+        },
+        {
+          "x": -1254.0906587168647,
+          "y": -231.27683498827196
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "exploits",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "exploit_id"
+      ],
+      "secondTableName": "application_exploits",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": -270.75523706191916,
+          "y": -378.520374076508
+        },
+        {
+          "x": -270.75523706191916,
+          "y": -276.6042116638805
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "organizations",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "organization_id"
+      ],
+      "secondTableName": "hunts",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": -1383.6570330645266,
+          "y": 1342.0875836654154
+        },
+        {
+          "x": -1383.6570330645266,
+          "y": 1832.3551191899571
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "users",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "target_user_id"
+      ],
+      "secondTableName": "hunts",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "opportunities",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "opportunity_id"
+      ],
+      "secondTableName": "hunts",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": -320.6395726629455,
+          "y": 1918.7621307337781
+        },
+        {
+          "x": -320.6395726629455,
+          "y": 1864.3551191899571
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "discussions",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "discussion_id"
+      ],
+      "secondTableName": "discussion_sources",
+      "secondSchemaName": "public",
+      "secondRelation": "1",
+      "checkPoints": [
+        {
+          "x": -1246.5091778967153,
+          "y": -900.68266734287
+        },
+        {
+          "x": -1246.5091778967153,
+          "y": -600.1600893271377
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "exploits",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "exploit_id"
+      ],
+      "secondTableName": "discussion_sources",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": 922.5896735480524,
+          "y": -442.21708550134497
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "applications",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "application_id"
+      ],
+      "secondTableName": "discussion_sources",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "secondEndpointSide": "left",
+      "checkPoints": [
+        {
+          "x": -1924.4078339732785,
+          "y": 131.0025632370316
+        },
+        {
+          "x": -1924.4078339732785,
+          "y": -474.21708550134497
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "hunts",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "hunt_id"
+      ],
+      "secondTableName": "discussion_sources",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "discussions",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "discussion_id"
+      ],
+      "secondTableName": "discussion_participants",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": -809.1096176821297,
+          "y": -900.68266734287
+        },
+        {
+          "x": -809.1096176821297,
+          "y": -653.6725266619894
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "actors",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "actor_id"
+      ],
+      "secondTableName": "discussion_participants",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": 77.1746316909447,
+          "y": 655.6214384025279
+        },
+        {
+          "x": 77.1746316909447,
+          "y": -621.6725266619894
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "discussions",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "discussion_id"
+      ],
+      "secondTableName": "discussion_messages",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": -809.1096176821284,
+          "y": -900.68266734287
+        },
+        {
+          "x": -809.1096176821284,
+          "y": -1134.6277515702368
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "actors",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "sender_actor_id"
+      ],
+      "secondTableName": "discussion_messages",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "firstEndpointSide": "left",
+      "checkPoints": [
+        {
+          "x": 229.76038412770572,
+          "y": 651.7871371353872
+        },
+        {
+          "x": 229.76038412770572,
+          "y": -1102.6277515702368
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "discussion_messages",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "discussion_message_id"
+      ],
+      "secondTableName": "message_attachments",
+      "secondSchemaName": "public",
+      "secondRelation": "1",
+      "checkPoints": [
+        {
+          "x": 2005.7824966935227,
+          "y": -1166.6277515702368
+        },
+        {
+          "x": 2005.7824966935227,
+          "y": 1707.8466449119933
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "exploits",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "exploit_id"
+      ],
+      "secondTableName": "message_attachments",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": 1919.303242668046,
+          "y": -394.520374076508
+        },
+        {
+          "x": 1919.303242668046,
+          "y": 1771.8466449119935
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "opportunities",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "opportunity_id"
+      ],
+      "secondTableName": "message_attachments",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": 1919.3395718432466,
+          "y": 1910.7621307337781
+        },
+        {
+          "x": 1919.3395718432466,
+          "y": 1803.8466449119935
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "actors",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "reporter_actor_id"
+      ],
+      "secondTableName": "reports",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": 231.60114523041221,
+          "y": 655.6214384025279
+        },
+        {
+          "x": 231.60114523041221,
+          "y": 1068.1654347000717
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "users",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "reported_user_id"
+      ],
+      "secondTableName": "reports",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": -321.0828942819392,
+          "y": 484.8692579982447
+        },
+        {
+          "x": -321.0828942819392,
+          "y": 1132.1654347000717
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "organizations",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "reported_organization_id"
+      ],
+      "secondTableName": "reports",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "exploits",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "reported_exploit_id"
+      ],
+      "secondTableName": "reports",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": 867.118599346439,
+          "y": -394.520374076508
+        },
+        {
+          "x": 867.118599346439,
+          "y": 1196.1654347000717
+        }
+      ]
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "opportunities",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "reported_opportunity_id"
+      ],
+      "secondTableName": "reports",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": []
+    },
+    {
+      "firstFieldNames": [
+        "id"
+      ],
+      "firstTableName": "comments",
+      "firstSchemaName": "public",
+      "firstRelation": "1",
+      "secondFieldNames": [
+        "reported_comment_id"
+      ],
+      "secondTableName": "reports",
+      "secondSchemaName": "public",
+      "secondRelation": "*",
+      "checkPoints": [
+        {
+          "x": 311.8340557271801,
+          "y": 970.2780878091521
+        },
+        {
+          "x": 311.8340557271801,
+          "y": 1196.1654347000717
+        }
+      ]
+    }
+  ]
+}

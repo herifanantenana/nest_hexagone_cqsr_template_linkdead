@@ -2,23 +2,24 @@ import { ConfigType, registerAs } from "@nestjs/config";
 import fs from "fs";
 import Joi from "joi";
 import yaml from "js-yaml";
-import os from "os";
 import path from "path";
 
 type TYamlConfig = {
 	app: {
 		name: string;
 		version: string;
-		// env: "development" | "production";
 	};
 
 	server: {
-		host: string;
 		port: number;
 		trustProxy: boolean;
 		allowedCorsOrigins: string[];
 		apiPathPrefix: string;
 		docsPathPrefix: string;
+	};
+
+	client: {
+		registerVerifyEmailPath: string;
 	};
 
 	logger: {
@@ -30,17 +31,10 @@ type TYamlConfig = {
 
 	database: {
 		engine: string;
-		// host: string;
-		// port: number;
-		// name: string;
-		// user: string;
-		// password: string;
 	};
 
 	redis: {
 		engine: string;
-		// host: string;
-		// port: number;
 		appDb: number;
 		appKeyPrefix: string;
 		jobsDb: number;
@@ -63,21 +57,41 @@ type TYamlConfig = {
 			limit: number;
 		}>;
 	};
+
+	auth: {
+		registration: {
+			tokenTtlSec: number;
+			tokenCooldown: {
+				ttlSec: number;
+				maxAttempts: number;
+			};
+		};
+	};
+
+	jwt: {
+		accessTokenKey: string;
+		refreshTokenKey: string;
+		accessTokenTtlSec: number;
+		refreshTokenTtlSec: number;
+	};
 };
 
-const yamlSchema = Joi.object({
+const yamlSchema = Joi.object<TYamlConfig>({
 	app: Joi.object({
 		name: Joi.string().required(),
 		version: Joi.string().required(),
 	}).required(),
 
 	server: Joi.object({
-		host: Joi.string().hostname().required(),
-		port: Joi.number().required(),
+		port: Joi.number().port().required(),
 		trustProxy: Joi.boolean().required(),
 		allowedCorsOrigins: Joi.array().items(Joi.string()).required(),
 		apiPathPrefix: Joi.string().required(),
 		docsPathPrefix: Joi.string().required(),
+	}).required(),
+
+	client: Joi.object({
+		registerVerifyEmailPath: Joi.string().required(),
 	}).required(),
 
 	logger: Joi.object({
@@ -101,7 +115,7 @@ const yamlSchema = Joi.object({
 
 	mailer: Joi.object({
 		engine: Joi.string().required(),
-		host: Joi.string().hostname().required(),
+		host: Joi.string().required(),
 		fromSupport: Joi.string().required(),
 		fromNoReply: Joi.string().required(),
 		templatesDir: Joi.string().required(),
@@ -120,47 +134,77 @@ const yamlSchema = Joi.object({
 			.min(1)
 			.required(),
 	}).required(),
-}).required();
 
-let cachedConfig: TYamlConfig | null = null;
+	auth: Joi.object({
+		registration: Joi.object({
+			tokenTtlSec: Joi.number().min(1).required(),
+			tokenCooldown: Joi.object({
+				ttlSec: Joi.number().min(1).required(),
+				maxAttempts: Joi.number().min(1).required(),
+			}).required(),
+		}).required(),
+	}).required(),
+
+	jwt: Joi.object({
+		accessTokenKey: Joi.string().required(),
+		refreshTokenKey: Joi.string().required(),
+		accessTokenTtlSec: Joi.number().min(1).required(),
+		refreshTokenTtlSec: Joi.number().min(1).required(),
+	}).required(),
+});
 
 const envSchema = Joi.object({
 	NODE_ENV: Joi.string().valid("development", "production").required(),
+	APP_RUNTIME: Joi.string().valid("dev", "docker", "prod").required(),
 
-	CLIENT_APP_PROTOCOL: Joi.string().valid("http", "https"),
-	CLIENT_APP_HOST: Joi.string().hostname(),
-	CLIENT_APP_PORT: Joi.number().port(),
+	CLIENT_APP_URL: Joi.string()
+		.uri({ scheme: ["http", "https"] })
+		.required(),
 
-	DATABASE_HOST: Joi.string().hostname().required(),
+	DATABASE_HOST: Joi.string().required(),
 	DATABASE_PORT: Joi.number().port().required(),
 	DATABASE_NAME: Joi.string().required(),
 	DATABASE_USERNAME: Joi.string().required(),
 	DATABASE_PASSWORD: Joi.string().required(),
 
-	REDIS_HOST: Joi.string().hostname().required(),
+	REDIS_HOST: Joi.string().required(),
 	REDIS_PORT: Joi.number().port().required(),
 
 	MAILER_USER: Joi.string().email().required(),
 	MAILER_PASSWORD: Joi.string().required(),
+
+	AUTH_REGISTER_TOKEN_SECRET: Joi.string().required(),
+
+	JWT_ACCESS_TOKEN_SECRET: Joi.string().required(),
+	JWT_REFRESH_TOKEN_SECRET: Joi.string().required(),
 });
 
-function validateEnv() {
-	const { error } = envSchema.validate(process.env, { abortEarly: false, allowUnknown: true });
+let cachedConfig: TYamlConfig | null = null;
+
+function validateEnv(): void {
+	const { error } = envSchema.validate(process.env, {
+		abortEarly: false,
+		allowUnknown: true,
+	});
+
 	if (error) {
 		throw new Error(`Invalid environment variables: ${error.message}`);
 	}
 }
 
-function getLocalIp(fallback: string): string {
-	const interfaces = os.networkInterfaces();
-	for (const name of Object.keys(interfaces)) {
-		for (const iface of interfaces[name]!) {
-			if (iface.family === "IPv4" && !iface.internal) {
-				return iface.address;
-			}
-		}
-	}
-	return fallback;
+function parseClientAppUrl(url: string) {
+	const parsed = new URL(url);
+
+	return {
+		protocol: parsed.protocol.replace(":", ""),
+		host: parsed.hostname,
+		port: parsed.port || (parsed.protocol === "https:" ? "443" : "80"),
+		url: parsed.origin,
+	};
+}
+
+function resolveListenHost(runtime: string): string {
+	return runtime === "dev" ? "127.0.0.1" : "0.0.0.0";
 }
 
 function loadConfig(): TYamlConfig {
@@ -170,9 +214,9 @@ function loadConfig(): TYamlConfig {
 
 	validateEnv();
 
-	const modeEnv = process.env.NODE_ENV === "production" ? "prod" : "dev";
-	const fileName = `config.${modeEnv}.yaml`;
-	const filePath = path.join(__dirname, "files", fileName);
+	const runtime = process.env.APP_RUNTIME ?? "dev";
+	const fileName = `config.${runtime}.yaml`;
+	const filePath = path.resolve(__dirname, "files", fileName);
 
 	if (!fs.existsSync(filePath)) {
 		throw new Error(`Config file not found: ${filePath}`);
@@ -180,7 +224,11 @@ function loadConfig(): TYamlConfig {
 
 	const parsed = yaml.load(fs.readFileSync(filePath, "utf-8")) as TYamlConfig;
 
-	const { error } = yamlSchema.validate(parsed, { abortEarly: false, allowUnknown: true });
+	const { error } = yamlSchema.validate(parsed, {
+		abortEarly: false,
+		allowUnknown: false,
+	});
+
 	if (error) {
 		throw new Error(`Invalid config file: ${error.message}`);
 	}
@@ -191,31 +239,26 @@ function loadConfig(): TYamlConfig {
 
 export const appConfig = registerAs("app", () => {
 	const config = loadConfig();
+	const runtime = process.env.APP_RUNTIME ?? "dev";
+
 	return {
 		name: config.app.name,
 		version: config.app.version,
-		isProd: process.env.NODE_ENV === "production",
-		isDev: process.env.NODE_ENV === "development",
+		runtime,
+		isDev: runtime === "dev",
+		isDocker: runtime === "docker",
+		isProd: runtime === "prod",
+		nodeEnv: process.env.NODE_ENV,
 	};
 });
 export type TAppConfig = ConfigType<typeof appConfig>;
 
-export const clientAppConfig = registerAs("clientApp", () => {
-	const ip = process.env.CLIENT_APP_HOST ?? getLocalIp("localhost");
-	return {
-		protocol: process.env.CLIENT_APP_PROTOCOL || "http",
-		host: ip,
-		port: Number(process.env.CLIENT_APP_PORT) || 5173,
-		clientAppUrl: `${process.env.CLIENT_APP_PROTOCOL || "http"}://${ip}:${Number(process.env.CLIENT_APP_PORT) || 5173}`,
-	};
-});
-export type TClientAppConfig = ConfigType<typeof clientAppConfig>;
-
 export const serverConfig = registerAs("server", () => {
 	const config = loadConfig();
+	const runtime = process.env.APP_RUNTIME ?? "dev";
+
 	return {
-		protocol: "https",
-		host: process.env.NODE_ENV === "production" ? getLocalIp(config.server.host) : "127.0.0.1",
+		listenHost: resolveListenHost(runtime),
 		port: config.server.port,
 		trustProxy: config.server.trustProxy,
 		allowedCorsOrigins: config.server.allowedCorsOrigins,
@@ -225,6 +268,21 @@ export const serverConfig = registerAs("server", () => {
 });
 export type TServerConfig = ConfigType<typeof serverConfig>;
 
+export const clientAppConfig = registerAs("clientApp", () => {
+	const config = loadConfig();
+	const clientAppUrl = process.env.CLIENT_APP_URL as string;
+	const parsed = parseClientAppUrl(clientAppUrl);
+
+	return {
+		protocol: parsed.protocol,
+		host: parsed.host,
+		port: Number(parsed.port),
+		clientAppUrl: parsed.url,
+		registerVerifyEmailPath: config.client.registerVerifyEmailPath,
+	};
+});
+export type TClientAppConfig = ConfigType<typeof clientAppConfig>;
+
 export const loggerConfig = registerAs("logger", () => {
 	const config = loadConfig();
 	return config.logger;
@@ -233,22 +291,24 @@ export type TLoggerConfig = ConfigType<typeof loggerConfig>;
 
 export const databaseConfig = registerAs("database", () => {
 	const config = loadConfig();
+
 	return {
 		engine: config.database.engine,
-		host: process.env.DATABASE_HOST,
+		host: process.env.DATABASE_HOST as string,
 		port: Number(process.env.DATABASE_PORT),
-		name: process.env.DATABASE_NAME,
-		user: process.env.DATABASE_USERNAME,
-		password: process.env.DATABASE_PASSWORD,
+		name: process.env.DATABASE_NAME as string,
+		user: process.env.DATABASE_USERNAME as string,
+		password: process.env.DATABASE_PASSWORD as string,
 	};
 });
 export type TDatabaseConfig = ConfigType<typeof databaseConfig>;
 
 export const redisConfig = registerAs("redis", () => {
 	const config = loadConfig();
+
 	return {
 		engine: config.redis.engine,
-		host: process.env.REDIS_HOST,
+		host: process.env.REDIS_HOST as string,
 		port: Number(process.env.REDIS_PORT),
 		appDb: config.redis.appDb,
 		appKeyPrefix: config.redis.appKeyPrefix,
@@ -260,11 +320,12 @@ export type TRedisConfig = ConfigType<typeof redisConfig>;
 
 export const mailerConfig = registerAs("mailer", () => {
 	const config = loadConfig();
+
 	return {
 		engine: config.mailer.engine,
 		host: config.mailer.host,
-		user: process.env.MAILER_USER,
-		password: process.env.MAILER_PASSWORD,
+		user: process.env.MAILER_USER as string,
+		password: process.env.MAILER_PASSWORD as string,
 		fromSupport: config.mailer.fromSupport,
 		fromNoReply: config.mailer.fromNoReply,
 		templateDir: config.mailer.templatesDir,
@@ -277,11 +338,37 @@ export type TRateLimitPolicy = {
 	ttlSec: number;
 	limit: number;
 };
+
 export const rateLimiterConfig = registerAs("rateLimiter", () => {
 	const config = loadConfig();
+
 	return {
 		engine: config.rateLimiter.engine,
 		policies: config.rateLimiter.policies as TRateLimitPolicy[],
 	};
 });
 export type TRateLimiterConfig = ConfigType<typeof rateLimiterConfig>;
+
+export const authConfig = registerAs("auth", () => {
+	const config = loadConfig();
+
+	return {
+		registerTokenSecret: process.env.AUTH_REGISTER_TOKEN_SECRET as string,
+		registration: config.auth.registration,
+	};
+});
+export type TAuthConfig = ConfigType<typeof authConfig>;
+
+export const jwtConfig = registerAs("jwt", () => {
+	const config = loadConfig();
+
+	return {
+		accessTokenSecret: process.env.JWT_ACCESS_TOKEN_SECRET as string,
+		refreshTokenSecret: process.env.JWT_REFRESH_TOKEN_SECRET as string,
+		accessTokenKey: config.jwt.accessTokenKey,
+		refreshTokenKey: config.jwt.refreshTokenKey,
+		accessTokenTtlSec: config.jwt.accessTokenTtlSec,
+		refreshTokenTtlSec: config.jwt.refreshTokenTtlSec,
+	};
+});
+export type TJwtConfig = ConfigType<typeof jwtConfig>;

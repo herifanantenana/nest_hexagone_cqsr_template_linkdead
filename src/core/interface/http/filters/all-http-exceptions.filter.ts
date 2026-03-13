@@ -40,11 +40,12 @@ export class AllHttpExceptionsFilter implements ExceptionFilter, OnModuleInit {
 		const request = ctx.getRequest<Request>();
 		const response = ctx.getResponse<Response>();
 
-		if (exception instanceof ThrottlerException && (!request.isLogged || !response.isLogged)) {
-			this.logThrottlerException(request, response);
-		}
-
 		const extracted = this.extractErrorInfo(exception);
+
+		// Log the exception if the interceptor didn't get a chance to (e.g. guard throws before interceptor runs)
+		if (!request.isLogged || !response.isLogged) {
+			this.logHttpException(request, response, extracted);
+		}
 
 		const body: THttpErrorResponse = {
 			success: false,
@@ -61,7 +62,7 @@ export class AllHttpExceptionsFilter implements ExceptionFilter, OnModuleInit {
 		response.status(extracted.status).json(body);
 	}
 
-	private logThrottlerException(request: Request, response: Response) {
+	private logHttpException(request: Request, response: Response, extracted: IExtractedError) {
 		if (!request.startTimeMs) request.startTimeMs = Date.now();
 
 		const { method, requestId, originalUrl, url, startTimeMs, ips, ip } = request;
@@ -71,7 +72,6 @@ export class AllHttpExceptionsFilter implements ExceptionFilter, OnModuleInit {
 			const ipAddress = ip || (ips && ips.length > 0 ? ips[0] : undefined);
 			const userAgent = request.headers["user-agent"] || "unknown-user-agent";
 
-			// Log "Incoming REQUEST" like HttpEnvelopeInterceptor
 			this.logger.verbose(
 				`Incoming REQUEST:\t\t ${requestId} <--- ${method} - ${path} \t from ${ipAddress} - ${userAgent}`,
 			);
@@ -79,13 +79,11 @@ export class AllHttpExceptionsFilter implements ExceptionFilter, OnModuleInit {
 		}
 
 		if (!response.isLogged) {
-			const status = HttpStatus.TOO_MANY_REQUESTS;
-			const message = "Too Many Requests";
 			const duration = Date.now() - startTimeMs;
+			const logMessage = `Outgoing RESPONSE:\t ${requestId} ---> ${method} - [ ${extracted.status} ] - ${path} \t - { ${extracted.message} } - took ${duration}ms`;
 
-			// Log "Outgoing RESPONSE" with error 429 like HttpEnvelopeInterceptor
-			const logMessage = `Outgoing RESPONSE:\t ${requestId} ---> ${method} - [ ${status} ] - ${path} \t - { ${message} } - took ${duration}ms`;
-			this.logger.warn(logMessage);
+			if (extracted.status >= 500) this.logger.error(logMessage);
+			else this.logger.warn(logMessage);
 			response.isLogged = true;
 		}
 	}
@@ -107,7 +105,7 @@ export class AllHttpExceptionsFilter implements ExceptionFilter, OnModuleInit {
 			return this.extractFromInfraException(exception);
 		}
 
-		console.log("Unknown exception type caught by AllHttpExceptionsFilter:", exception);
+		this.logger.error("Unknown exception type caught by AllHttpExceptionsFilter", { error: exception });
 		return this.extractFromUnknownException(exception);
 	}
 

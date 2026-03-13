@@ -5,6 +5,7 @@ import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
 import { NestExpressApplication } from "@nestjs/platform-express";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import { AppModule } from "./app.module";
 
@@ -12,6 +13,9 @@ async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule, {
 		bufferLogs: true,
 	});
+
+	// set cookies parser
+	app.use(cookieParser());
 
 	// get app, server config
 	const appCfg = app.get(ConfigService).get<TAppConfig>("app");
@@ -41,7 +45,7 @@ async function bootstrap() {
 					"script-src": ["'self'", "'unsafe-inline'"],
 					"style-src": ["'self'", "'unsafe-inline'"],
 					"img-src": ["'self'", "data:", "validator.swagger.io"],
-					"upgrade-insecure-requests": null,
+					"upgrade-insecure-requests": appCfg.isDev ? null : [],
 				},
 			},
 			crossOriginOpenerPolicy: false,
@@ -85,11 +89,12 @@ async function bootstrap() {
 	SwaggerModule.setup(serverCfg.docsPathPrefix, app, document, {
 		swaggerOptions: {
 			withCredentials: true,
+			deepLinking: false,
 		},
 	});
 
-	await app.listen(serverCfg.port, serverCfg.host, () => {
-		logger.log(`${appCfg.name} is running on ${appCfg.isProd ? "production" : "development"} mode`);
+	await app.listen(serverCfg.port, serverCfg.listenHost, () => {
+		logger.log(`${appCfg.name} is running on ${appCfg.runtime} mode`);
 	});
 
 	const appDomain = await app.getUrl();

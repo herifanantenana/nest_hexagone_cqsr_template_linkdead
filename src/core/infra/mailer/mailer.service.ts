@@ -34,14 +34,12 @@ export class MailerService {
 			if (previewUrl) {
 				this.logger.debug(`Email preview URL: ${previewUrl}`);
 			}
-			this.logger.debug(`Email sent to ${to} with subject "${subject}"`);
 		} catch (error) {
 			this.logger.error(`Failed to send email to ${to}: ${(error as Error).message}`);
 			throw error;
 		}
 	}
 
-	// ! not safe
 	public async sendVerificationEmail(to: string, username: string, verifyUrl: string) {
 		await this.sendTemplateEmail("verify-email", "Please verify your email", to, {
 			username,
