@@ -9,7 +9,7 @@ export const skillsTable = pgTable("skills", {
 	id,
 	name: varchar("name", { length: 50 }).notNull(),
 	slug: varchar("slug", { length: 100 }).unique().notNull(),
-	skillType: skillsTypesEnum("skill_type").notNull().default(ESkillTypes.HARD),
+	type: skillsTypesEnum("type").notNull().default(ESkillTypes.HARD),
 	isGlobal: boolean("is_global").notNull().default(false),
 	createdAt,
 	updatedAt,

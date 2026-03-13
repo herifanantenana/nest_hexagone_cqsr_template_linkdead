@@ -1,5 +1,5 @@
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
-import { DomainReadPort } from "../ports/domain-read.port";
+import { DomainsRepoPort } from "../ports/domains-repo.port";
 
 export class ListDomainsQuery {}
 
@@ -10,10 +10,10 @@ export interface IListDomainsQueryResult {
 
 @QueryHandler(ListDomainsQuery)
 export class ListDomainsQueryHandler implements IQueryHandler<ListDomainsQuery, IListDomainsQueryResult[]> {
-	constructor(private readonly domainReadPort: DomainReadPort) {}
+	constructor(private readonly DomainsRepoPort: DomainsRepoPort) {}
 
 	async execute(): Promise<IListDomainsQueryResult[]> {
-		const domains = await this.domainReadPort.listDomains();
+		const domains = await this.DomainsRepoPort.listDomains();
 		return domains.map((domain) => ({
 			id: domain.id,
 			name: domain.name,

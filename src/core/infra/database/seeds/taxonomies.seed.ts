@@ -170,7 +170,7 @@ async function upsertSkills(skill: TSkillsJson): Promise<string> {
 	const slug = generateSlug(skill.name);
 	const [row] = await db
 		.insert(skillsTable)
-		.values({ name: skill.name, slug, skillType: skill.skillType, isGlobal: skill.isGlobal })
+		.values({ name: skill.name, slug, type: skill.skillType, isGlobal: skill.isGlobal })
 		.onConflictDoUpdate({
 			target: skillsTable.slug,
 			set: { name: skill.name, isGlobal: skill.isGlobal, updatedAt: new Date() },

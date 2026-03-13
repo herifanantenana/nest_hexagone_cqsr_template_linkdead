@@ -3,6 +3,6 @@ export interface IDomainItem {
 	name: string;
 }
 
-export abstract class DomainReadPort {
+export abstract class DomainsRepoPort {
 	abstract listDomains(): Promise<IDomainItem[]>;
 }
