@@ -18,6 +18,7 @@ export class RequestAuthResolverService {
 		// get all data from payload
 		const userId = payloadJwt.uid ?? payloadJwt.sub;
 		const { acid: accountId, atid: actorId, sid: sessionId } = payloadJwt;
+		const now = Date.now();
 
 		if (!userId || !accountId || !actorId || !sessionId) {
 			throw new UnauthorizedException("Invalid token payload");
@@ -26,6 +27,10 @@ export class RequestAuthResolverService {
 		// get the session data from cache
 		const sessionCache = await this.sessionsCachePort.getSession(sessionId);
 		if (sessionCache) {
+			// check expiration			const now = Date.now();
+			if (sessionCache.expiresAt.getTime() <= now || !sessionCache.refreshTokenHash) {
+				throw new UnauthorizedException("Session expired");
+			}
 			// validate session data with payload
 			if (sessionCache.userId !== userId || sessionCache.accountId !== accountId || sessionCache.actorId !== actorId) {
 				throw new UnauthorizedException("Session data mismatch");
@@ -46,7 +51,6 @@ export class RequestAuthResolverService {
 		}
 
 		// check if session is still valid
-		const now = Date.now();
 		if (sessionDb.revokedAt || sessionDb.expiresAt.getTime() <= now) {
 			throw new UnauthorizedException("Session expired or revoked");
 		}
