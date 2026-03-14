@@ -3,6 +3,7 @@ import { DatabaseSafeAction } from "@apk_infra/database/database-safe-action";
 import { domainsTable } from "@apk_infra/database/schemas/taxonomies/domains.schema";
 import { DomainsRepoPort, IDomainItem } from "@apk_modules/taxonomy/application/ports/domains-repo.port";
 import { Injectable } from "@nestjs/common";
+import { asc } from "drizzle-orm";
 
 @Injectable()
 export class DomainsRepoDrizzleAdapter implements DomainsRepoPort {
@@ -18,8 +19,10 @@ export class DomainsRepoDrizzleAdapter implements DomainsRepoPort {
 				.select({
 					id: domainsTable.id,
 					name: domainsTable.name,
+					slug: domainsTable.slug,
 				})
-				.from(domainsTable);
+				.from(domainsTable)
+				.orderBy(asc(domainsTable.name));
 			return rows;
 		});
 		return result;

@@ -1,6 +1,7 @@
 export interface ISkillItem {
 	id: string;
 	name: string;
+	slug: string;
 	type: string;
 	isGlobal: boolean;
 }

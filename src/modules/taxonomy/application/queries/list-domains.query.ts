@@ -6,6 +6,7 @@ export class ListDomainsQuery {}
 export interface IListDomainsQueryResult {
 	id: string;
 	name: string;
+	slug: string;
 }
 
 @QueryHandler(ListDomainsQuery)
@@ -17,6 +18,7 @@ export class ListDomainsQueryHandler implements IQueryHandler<ListDomainsQuery, 
 		return domains.map((domain) => ({
 			id: domain.id,
 			name: domain.name,
+			slug: domain.slug,
 		}));
 	}
 }

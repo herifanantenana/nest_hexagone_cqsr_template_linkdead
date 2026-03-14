@@ -7,6 +7,7 @@ export class ListGlobalSkillsQuery {}
 export interface IListGlobalSkillsQueryResult {
 	id: string;
 	name: string;
+	slug: string;
 	type: ESkillTypes;
 	isGlobal: boolean;
 }
@@ -22,6 +23,7 @@ export class ListGlobalSkillsQueryHandler implements IQueryHandler<
 		return globalSkills.map((skill) => ({
 			id: skill.id,
 			name: skill.name,
+			slug: skill.slug,
 			type: skill.type as ESkillTypes,
 			isGlobal: skill.isGlobal,
 		}));

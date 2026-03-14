@@ -3,6 +3,7 @@ import { DatabaseSafeAction } from "@apk_infra/database/database-safe-action";
 import { skillsTable } from "@apk_infra/database/schemas/taxonomies/skills.schema";
 import { ISkillItem, SkillsRepoPort } from "@apk_modules/taxonomy/application/ports/skills-repo.port";
 import { Injectable } from "@nestjs/common";
+import { asc } from "drizzle-orm";
 import { eq } from "drizzle-orm/sql/expressions/conditions";
 
 @Injectable()
@@ -19,11 +20,13 @@ export class SkillsRepoDrizzleAdapter implements SkillsRepoPort {
 				.select({
 					id: skillsTable.id,
 					name: skillsTable.name,
+					slug: skillsTable.slug,
 					type: skillsTable.type,
 					isGlobal: skillsTable.isGlobal,
 				})
 				.from(skillsTable)
-				.where(eq(skillsTable.isGlobal, true));
+				.where(eq(skillsTable.isGlobal, true))
+				.orderBy(asc(skillsTable.name));
 			return rows;
 		});
 		return result;
