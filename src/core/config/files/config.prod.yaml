@@ -20,6 +20,7 @@ logger:
   level: "info"
   dir: "logs"
   activeLogFiles: true
+  logstashEnabled: false
 
 database:
   engine: "PostgreSQL"

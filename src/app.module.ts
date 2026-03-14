@@ -4,6 +4,7 @@ import { HttpEnvelopeInterceptor } from "@apk_core/interface/http/interceptors/h
 import { IncomingRequestMiddleware } from "@apk_core/interface/http/middlewares/incoming-request.middleware";
 import { AuthModule } from "@apk_modules/auth/auth.module";
 import { JwtAuthGuard } from "@apk_modules/auth/interface/http/guards/jwt-auth-cookie.guard";
+import { TaxonomyModule } from "@apk_modules/taxonomy/taxonomy.module";
 import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from "@nestjs/core";
@@ -22,6 +23,7 @@ import { InfraModule } from "./core/infra/infra.module";
 		}),
 		InfraModule,
 		AuthModule,
+		TaxonomyModule,
 	],
 	controllers: [AppController],
 	providers: [

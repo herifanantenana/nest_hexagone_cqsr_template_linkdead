@@ -27,6 +27,7 @@ type TYamlConfig = {
 		level: "error" | "warn" | "info" | "debug" | "verbose";
 		dir: string;
 		activeLogFiles: boolean;
+		logstashEnabled: boolean;
 	};
 
 	database: {
@@ -99,6 +100,7 @@ const yamlSchema = Joi.object<TYamlConfig>({
 		level: Joi.string().valid("error", "warn", "info", "debug", "verbose").required(),
 		dir: Joi.string().required(),
 		activeLogFiles: Joi.boolean().required(),
+		logstashEnabled: Joi.boolean().default(false).required(),
 	}).required(),
 
 	database: Joi.object({
@@ -177,6 +179,9 @@ const envSchema = Joi.object({
 
 	JWT_ACCESS_TOKEN_SECRET: Joi.string().required(),
 	JWT_REFRESH_TOKEN_SECRET: Joi.string().required(),
+
+	LOGSTASH_HOST: Joi.string(),
+	LOGSTASH_PORT: Joi.number().port(),
 });
 
 let cachedConfig: TYamlConfig | null = null;
@@ -285,7 +290,15 @@ export type TClientAppConfig = ConfigType<typeof clientAppConfig>;
 
 export const loggerConfig = registerAs("logger", () => {
 	const config = loadConfig();
-	return config.logger;
+	return {
+		engine: config.logger.engine,
+		level: config.logger.level,
+		dir: config.logger.dir,
+		activeLogFiles: config.logger.activeLogFiles,
+		logstashEnabled: config.logger.logstashEnabled,
+		logstashHost: process.env.LOGSTASH_HOST as string,
+		logstashPort: Number(process.env.LOGSTASH_PORT),
+	};
 });
 export type TLoggerConfig = ConfigType<typeof loggerConfig>;
 

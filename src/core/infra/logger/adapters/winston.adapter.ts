@@ -5,6 +5,7 @@ import { pid } from "process";
 import { loggerConfig } from "src/core//config";
 import { inspect } from "util";
 import * as winston from "winston";
+import LogstashTransport from "winston-logstash/lib/winston-logstash-latest";
 
 const levels = {
 	error: 0,
@@ -32,8 +33,8 @@ export class WinstonAdapter {
 		@Inject(loggerConfig.KEY)
 		private readonly loggerCfg: TLoggerConfig,
 	) {
-		const { level, dir, activeLogFiles } = this.loggerCfg;
-		this.initLogger(level, dir, activeLogFiles);
+		const { level, dir, activeLogFiles, logstashEnabled, logstashHost, logstashPort } = this.loggerCfg;
+		this.initLogger(level, dir, activeLogFiles, logstashEnabled, logstashHost, logstashPort);
 	}
 
 	private buildFilePrintFormat(info: winston.Logform.TransformableInfo): string {
@@ -63,6 +64,26 @@ export class WinstonAdapter {
 		});
 	}
 
+	private buildLogstashTransport(host: string, port: number): winston.transport {
+		const transport = new (LogstashTransport as unknown as { new (opts: any): winston.transport })({
+			level: "verbose",
+			host,
+			port,
+			mode: "tcp", // TCP mode for reliable connection
+			node_name: "linkdead-backend", // Identify the source
+			ssl_enable: false, // SSL disabled (set true if Logstash uses SSL)
+			max_connect_retries: 10, // Number of reconnection attempts
+			timeout_connect_retries: 1000, // Delay between attempts (ms)
+			// Structured JSON format for Elasticsearch
+			format: winston.format.combine(
+				winston.format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
+				winston.format.errors({ stack: true }),
+				winston.format.json(), // Send as native JSON
+			),
+		});
+		return transport;
+	}
+
 	private buildConsolePrintFormat(info: winston.Logform.TransformableInfo): string {
 		const { timestamp, level, message, context, ms, stack, ...meta } = info;
 		const color = colors[level] ?? colors.reset;
@@ -80,8 +101,15 @@ export class WinstonAdapter {
 		return `${appName} ${pidStr} - ${timestamp as string}   ${levelStr} ${ctx}${color}${message as string}${reset}${msStr}${extra}${stackStr}`;
 	}
 
-	private initLogger(level: string, dir: string, activeFile: boolean) {
-		if (activeFile && !existsSync(dir)) {
+	private initLogger(
+		level: string,
+		dir: string,
+		activeLogFiles: boolean,
+		logstashEnabled: boolean,
+		logstashHost: string,
+		logstashPort: number,
+	) {
+		if (activeLogFiles && !existsSync(dir)) {
 			mkdirSync(dir, { recursive: true });
 		}
 
@@ -100,12 +128,17 @@ export class WinstonAdapter {
 		);
 
 		// add file transport if enabled
-		if (activeFile) {
+		if (activeLogFiles) {
 			transports.push(this.buildFileTransport("error", dir));
 			transports.push(this.buildFileTransport("warn", dir));
 			transports.push(this.buildFileTransport("info", dir));
 			transports.push(this.buildFileTransport("debug", dir));
 			transports.push(this.buildFileTransport("verbose", dir));
+		}
+
+		// add logstash transport if enabled
+		if (logstashEnabled && logstashHost && logstashPort) {
+			transports.push(this.buildLogstashTransport(logstashHost, logstashPort));
 		}
 
 		// create the logger

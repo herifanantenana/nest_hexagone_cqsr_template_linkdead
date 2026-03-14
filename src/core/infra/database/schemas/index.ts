@@ -10,6 +10,12 @@ import {
 	organizationTypesEnum,
 } from "./organizations/organizations.schema";
 import { organizationsRelations } from "./organizations/relations";
+import { categoriesTable } from "./taxonomies/categories.schema";
+import { categoriesSkillsTable } from "./taxonomies/categoriesSkills.schema";
+import { domainsTable } from "./taxonomies/domains.schema";
+import { domainsSkillsTable } from "./taxonomies/domainsSkills.schema";
+import { categoriesRelations, domainsRelations, skillsRelations } from "./taxonomies/relations";
+import { skillsTable, skillsTypesEnum } from "./taxonomies/skills.schema";
 
 export const enums = [
 	authProvidersEnum,
@@ -18,9 +24,22 @@ export const enums = [
 	organizationStatusEnum,
 	actorsTypesEnum,
 	sessionsStatusEnum,
+	skillsTypesEnum,
 ];
 
-export const schemas = [registrationsTable, usersTable, accountsTable, organizationsTable, actorsTable, sessionsTable];
+export const schemas = [
+	registrationsTable,
+	usersTable,
+	accountsTable,
+	organizationsTable,
+	actorsTable,
+	sessionsTable,
+	domainsTable,
+	categoriesTable,
+	skillsTable,
+	domainsSkillsTable,
+	categoriesSkillsTable,
+];
 
 export const relations = [
 	usersRelations,
@@ -28,4 +47,7 @@ export const relations = [
 	organizationsRelations,
 	actorsRelations,
 	sessionsRelations,
+	domainsRelations,
+	categoriesRelations,
+	skillsRelations,
 ];

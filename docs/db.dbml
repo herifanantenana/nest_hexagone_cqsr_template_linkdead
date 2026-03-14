@@ -27,6 +27,7 @@ Table skills as Skill {
   id uuid [pk]
   name varchar [not null, note: "Skill label (e.g., Python, AWS, SEO, Accounting)."]
   slug varchar [not null, unique, note: "URL identifier (global unique)."]
+	is_global boolean [not null, default: false, note: "Whether the skill is global (can be used across domains) or domain-specific (must be linked to a domain)."]
   created_at timestamp [default: `now()`]
   updated_at timestamp [default: `now()`]
 }
@@ -46,6 +47,23 @@ Ref domain_can_include_skills__mapping_requires_domain {
 
 Ref skill_can_belong_to_many_domains__mapping_requires_skill {
   Skill.id < DomainSkill.skill_id
+}
+
+Table category_skills as CategorySkill {
+	category_id uuid [not null, note: "Category side of the mapping."]
+	skill_id uuid [not null, note: "Skill side of the mapping."]
+	created_at timestamp [default: `now()`]
+	updated_at timestamp [default: `now()`]
+
+	Primary Key (category_id, skill_id)
+}
+
+Ref category_can_include_skills__mapping_requires_category {
+	Category.id < CategorySkill.category_id
+}
+
+Ref skill_can_belong_to_many_categories__mapping_requires_skill {
+	Skill.id < CategorySkill.skill_id
 }
 
 Enum auth_provider {
