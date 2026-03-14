@@ -1,5 +1,6 @@
 import { DrizzleAdapter } from "@apk_infra/database/adapters/drizzle.adapter";
 import { DatabaseSafeAction } from "@apk_infra/database/database-safe-action";
+import { categoriesTable } from "@apk_infra/database/schemas/taxonomies/categories.schema";
 import { categoriesSkillsTable } from "@apk_infra/database/schemas/taxonomies/categoriesSkills.schema";
 import { domainsTable } from "@apk_infra/database/schemas/taxonomies/domains.schema";
 import { domainsSkillsTable } from "@apk_infra/database/schemas/taxonomies/domainsSkills.schema";
@@ -12,7 +13,6 @@ import {
 } from "@apk_modules/taxonomy/application/ports/taxonomies-mixt-repo.port";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { asc, eq } from "drizzle-orm";
-import { categoriesTable } from "./../../../../core/infra/database/schemas/taxonomies/categories.schema";
 
 @Injectable()
 export class TaxonomiesMixtRepoDrizzleAdapter implements TaxonomiesMixtRepoPort {
@@ -30,7 +30,7 @@ export class TaxonomiesMixtRepoDrizzleAdapter implements TaxonomiesMixtRepoPort 
 				.where(eq(domainsTable.id, domainId));
 
 			if (!domain) {
-				throw new NotFoundException(`Domain not found`); // You can customize the error message as needed
+				throw new NotFoundException(`Domain not found in database`);
 			}
 
 			const categories: ICategoryDomainItem[] = await db

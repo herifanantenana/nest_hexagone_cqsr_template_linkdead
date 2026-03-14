@@ -11,10 +11,10 @@ export interface IListDomainsQueryResult {
 
 @QueryHandler(ListDomainsQuery)
 export class ListDomainsQueryHandler implements IQueryHandler<ListDomainsQuery, IListDomainsQueryResult[]> {
-	constructor(private readonly DomainsRepoPort: DomainsRepoPort) {}
+	constructor(private readonly domainsRepoPort: DomainsRepoPort) {}
 
 	async execute(): Promise<IListDomainsQueryResult[]> {
-		const domains = await this.DomainsRepoPort.listDomains();
+		const domains = await this.domainsRepoPort.listDomains();
 		return domains.map((domain) => ({
 			id: domain.id,
 			name: domain.name,

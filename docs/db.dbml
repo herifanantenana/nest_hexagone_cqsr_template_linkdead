@@ -27,7 +27,7 @@ Table skills as Skill {
   id uuid [pk]
   name varchar [not null, note: "Skill label (e.g., Python, AWS, SEO, Accounting)."]
   slug varchar [not null, unique, note: "URL identifier (global unique)."]
-	isGlobal boolean [not null, default: false, note: "Whether the skill is global (can be used across domains) or domain-specific (must be linked to a domain)."]
+	is_global boolean [not null, default: false, note: "Whether the skill is global (can be used across domains) or domain-specific (must be linked to a domain)."]
   created_at timestamp [default: `now()`]
   updated_at timestamp [default: `now()`]
 }

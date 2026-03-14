@@ -180,8 +180,8 @@ const envSchema = Joi.object({
 	JWT_ACCESS_TOKEN_SECRET: Joi.string().required(),
 	JWT_REFRESH_TOKEN_SECRET: Joi.string().required(),
 
-	LOGSTASH_HOST: Joi.string().required(),
-	LOGSTASH_PORT: Joi.number().port().required(),
+	LOGSTASH_HOST: Joi.string(),
+	LOGSTASH_PORT: Joi.number().port(),
 });
 
 let cachedConfig: TYamlConfig | null = null;

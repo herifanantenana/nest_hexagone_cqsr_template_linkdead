@@ -137,7 +137,7 @@ export class WinstonAdapter {
 		}
 
 		// add logstash transport if enabled
-		if (logstashEnabled) {
+		if (logstashEnabled && logstashHost && logstashPort) {
 			transports.push(this.buildLogstashTransport(logstashHost, logstashPort));
 		}
 
