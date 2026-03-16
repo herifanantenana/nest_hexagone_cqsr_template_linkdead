@@ -159,9 +159,8 @@ const envSchema = Joi.object({
 	NODE_ENV: Joi.string().valid("development", "production").required(),
 	APP_RUNTIME: Joi.string().valid("dev", "docker", "prod").required(),
 
-	CLIENT_APP_URL: Joi.string()
-		.uri({ scheme: ["http", "https"] })
-		.required(),
+	CLIENT_APP_URL: Joi.string().required(),
+	PUBLIC_BASE_URL: Joi.string().required(),
 
 	DATABASE_HOST: Joi.string().required(),
 	DATABASE_PORT: Joi.number().port().required(),
@@ -266,6 +265,7 @@ export const serverConfig = registerAs("server", () => {
 		listenHost: resolveListenHost(runtime),
 		port: config.server.port,
 		trustProxy: config.server.trustProxy,
+		publicBaseUrl: process.env.PUBLIC_BASE_URL as string,
 		allowedCorsOrigins: config.server.allowedCorsOrigins,
 		apiPathPrefix: config.server.apiPathPrefix,
 		docsPathPrefix: config.server.docsPathPrefix,

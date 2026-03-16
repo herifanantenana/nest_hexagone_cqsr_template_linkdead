@@ -18,7 +18,7 @@ export const organizationsTable = pgTable(
 		description: text("description"),
 		type: organizationTypesEnum("type").notNull().default(EOrganizationTypes.COMPANY),
 		status: organizationStatusEnum("status").notNull().default(EOrganizationStatus.ACTIVE),
-		logUrl: varchar("log_url", { length: 255 }),
+		logoStoragePath: varchar("logo_storage_path", { length: 255 }),
 		websiteUrl: varchar("website_url", { length: 255 }),
 		location: varchar("location", { length: 100 }),
 		preferences: jsonb("preferences").notNull().default({}),

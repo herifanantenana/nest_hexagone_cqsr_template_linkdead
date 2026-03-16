@@ -1,142 +1,4310 @@
 [
-	{ "key": "communication", "name": "Communication", "skillType": "soft", "isGlobal": true },
-	{ "key": "leadership", "name": "Leadership", "skillType": "soft", "isGlobal": true },
-	{ "key": "teamwork", "name": "Teamwork", "skillType": "soft", "isGlobal": true },
-	{ "key": "problem-solving", "name": "Problem Solving", "skillType": "soft", "isGlobal": true },
-	{ "key": "critical-thinking", "name": "Critical Thinking", "skillType": "soft", "isGlobal": true },
-	{ "key": "time-management", "name": "Time Management", "skillType": "soft", "isGlobal": true },
-	{ "key": "adaptability", "name": "Adaptability", "skillType": "soft", "isGlobal": true },
-	{ "key": "collaboration", "name": "Collaboration", "skillType": "soft", "isGlobal": true },
-
-	{ "key": "git", "name": "Git", "skillType": "hard", "isGlobal": false },
-	{ "key": "testing", "name": "Testing", "skillType": "hard", "isGlobal": false },
-	{ "key": "agile", "name": "Agile", "skillType": "hard", "isGlobal": false },
-	{ "key": "api-design", "name": "API Design", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "react", "name": "React", "skillType": "hard", "isGlobal": false },
-	{ "key": "next-js", "name": "Next.js", "skillType": "hard", "isGlobal": false },
-	{ "key": "css", "name": "CSS", "skillType": "hard", "isGlobal": false },
-	{ "key": "typescript", "name": "TypeScript", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "nestjs", "name": "NestJS", "skillType": "hard", "isGlobal": false },
-	{ "key": "postgresql", "name": "PostgreSQL", "skillType": "hard", "isGlobal": false },
-	{ "key": "redis", "name": "Redis", "skillType": "hard", "isGlobal": false },
-	{ "key": "jwt", "name": "JWT", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "docker", "name": "Docker", "skillType": "hard", "isGlobal": false },
-	{ "key": "kubernetes", "name": "Kubernetes", "skillType": "hard", "isGlobal": false },
-	{ "key": "ci-cd", "name": "CI/CD", "skillType": "hard", "isGlobal": false },
-	{ "key": "cloud-infrastructure", "name": "Cloud Infrastructure", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "network-security", "name": "Network Security", "skillType": "hard", "isGlobal": false },
-	{ "key": "penetration-testing", "name": "Penetration Testing", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "data-analysis", "name": "Data Analysis", "skillType": "hard", "isGlobal": false },
-	{ "key": "machine-learning", "name": "Machine Learning", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "financial-reporting", "name": "Financial Reporting", "skillType": "hard", "isGlobal": false },
-	{ "key": "budgeting", "name": "Budgeting", "skillType": "hard", "isGlobal": false },
-	{ "key": "tax-compliance", "name": "Tax Compliance", "skillType": "hard", "isGlobal": false },
-	{ "key": "audit-management", "name": "Audit Management", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "patient-care", "name": "Patient Care", "skillType": "hard", "isGlobal": false },
-	{ "key": "medical-records-management", "name": "Medical Records Management", "skillType": "hard", "isGlobal": false },
-	{ "key": "laboratory-testing", "name": "Laboratory Testing", "skillType": "hard", "isGlobal": false },
-	{ "key": "dispensing", "name": "Dispensing", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "lesson-planning", "name": "Lesson Planning", "skillType": "hard", "isGlobal": false },
-	{ "key": "classroom-management", "name": "Classroom Management", "skillType": "hard", "isGlobal": false },
-	{ "key": "student-advising", "name": "Student Advising", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "process-control", "name": "Process Control", "skillType": "hard", "isGlobal": false },
-	{ "key": "quality-inspection", "name": "Quality Inspection", "skillType": "hard", "isGlobal": false },
-	{ "key": "preventive-maintenance", "name": "Preventive Maintenance", "skillType": "hard", "isGlobal": false },
-	{ "key": "inventory-planning", "name": "Inventory Planning", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "customer-engagement", "name": "Customer Engagement", "skillType": "hard", "isGlobal": false },
-	{ "key": "visual-merchandising", "name": "Visual Merchandising", "skillType": "hard", "isGlobal": false },
-	{ "key": "stock-control", "name": "Stock Control", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "logistics-planning", "name": "Logistics Planning", "skillType": "hard", "isGlobal": false },
-	{ "key": "fleet-scheduling", "name": "Fleet Scheduling", "skillType": "hard", "isGlobal": false },
-	{ "key": "warehouse-management", "name": "Warehouse Management", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "solar-systems", "name": "Solar Systems", "skillType": "hard", "isGlobal": false },
-	{ "key": "power-distribution", "name": "Power Distribution", "skillType": "hard", "isGlobal": false },
-	{ "key": "energy-maintenance", "name": "Energy Maintenance", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "network-monitoring", "name": "Network Monitoring", "skillType": "hard", "isGlobal": false },
-	{ "key": "telecom-support", "name": "Telecom Support", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "field-observation", "name": "Field Observation", "skillType": "hard", "isGlobal": false },
-	{ "key": "irrigation", "name": "Irrigation", "skillType": "hard", "isGlobal": false },
-	{ "key": "soil-analysis", "name": "Soil Analysis", "skillType": "hard", "isGlobal": false },
-	{ "key": "animal-care", "name": "Animal Care", "skillType": "hard", "isGlobal": false },
-	{ "key": "farm-planning", "name": "Farm Planning", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "guest-service", "name": "Guest Service", "skillType": "hard", "isGlobal": false },
-	{ "key": "reservation-handling", "name": "Reservation Handling", "skillType": "hard", "isGlobal": false },
-	{ "key": "food-preparation", "name": "Food Preparation", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "legal-drafting", "name": "Legal Drafting", "skillType": "hard", "isGlobal": false },
-	{ "key": "regulatory-compliance", "name": "Regulatory Compliance", "skillType": "hard", "isGlobal": false },
-	{ "key": "contract-review", "name": "Contract Review", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "stakeholder-analysis", "name": "Stakeholder Analysis", "skillType": "hard", "isGlobal": false },
-	{ "key": "business-process-analysis", "name": "Business Process Analysis", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "seo", "name": "SEO", "skillType": "hard", "isGlobal": false },
-	{ "key": "content-writing", "name": "Content Writing", "skillType": "hard", "isGlobal": false },
-	{ "key": "brand-strategy", "name": "Brand Strategy", "skillType": "hard", "isGlobal": false },
-	{ "key": "campaign-management", "name": "Campaign Management", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "candidate-sourcing", "name": "Candidate Sourcing", "skillType": "hard", "isGlobal": false },
-	{ "key": "training-design", "name": "Training Design", "skillType": "hard", "isGlobal": false },
-	{ "key": "employee-support", "name": "Employee Support", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "avionics-systems", "name": "Avionics Systems", "skillType": "hard", "isGlobal": false },
-	{ "key": "defense-logistics", "name": "Defense Logistics", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "vehicle-diagnostics", "name": "Vehicle Diagnostics", "skillType": "hard", "isGlobal": false },
-	{ "key": "mechanical-repair", "name": "Mechanical Repair", "skillType": "hard", "isGlobal": false },
-
-	{
-		"key": "good-manufacturing-practices",
-		"name": "Good Manufacturing Practices",
-		"skillType": "hard",
-		"isGlobal": false
-	},
-	{ "key": "clinical-documentation", "name": "Clinical Documentation", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "food-safety", "name": "Food Safety", "skillType": "hard", "isGlobal": false },
-	{ "key": "kitchen-operations", "name": "Kitchen Operations", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "fashion-sketching", "name": "Fashion Sketching", "skillType": "hard", "isGlobal": false },
-	{ "key": "garment-construction", "name": "Garment Construction", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "fitness-program-design", "name": "Fitness Program Design", "skillType": "hard", "isGlobal": false },
-	{ "key": "sports-event-planning", "name": "Sports Event Planning", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "tour-planning", "name": "Tour Planning", "skillType": "hard", "isGlobal": false },
-	{ "key": "booking-management", "name": "Booking Management", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "construction-estimation", "name": "Construction Estimation", "skillType": "hard", "isGlobal": false },
-	{ "key": "site-supervision", "name": "Site Supervision", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "property-leasing", "name": "Property Leasing", "skillType": "hard", "isGlobal": false },
-	{ "key": "real-estate-negotiation", "name": "Real Estate Negotiation", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "video-editing", "name": "Video Editing", "skillType": "hard", "isGlobal": false },
-	{ "key": "media-production", "name": "Media Production", "skillType": "hard", "isGlobal": false },
-
-	{ "key": "policy-execution", "name": "Policy Execution", "skillType": "hard", "isGlobal": false },
-	{
-		"key": "public-program-administration",
-		"name": "Public Program Administration",
-		"skillType": "hard",
-		"isGlobal": false
-	},
-
-	{ "key": "community-outreach", "name": "Community Outreach", "skillType": "hard", "isGlobal": false },
-	{ "key": "fundraising-campaigns", "name": "Fundraising Campaigns", "skillType": "hard", "isGlobal": false }
+  {
+    "key": "adaptability",
+    "name": "Adaptability",
+    "skillType": "soft",
+    "isGlobal": true
+  },
+  {
+    "key": "attention-to-detail",
+    "name": "Attention to Detail",
+    "skillType": "soft",
+    "isGlobal": true
+  },
+  {
+    "key": "collaboration",
+    "name": "Collaboration",
+    "skillType": "soft",
+    "isGlobal": true
+  },
+  {
+    "key": "communication",
+    "name": "Communication",
+    "skillType": "soft",
+    "isGlobal": true
+  },
+  {
+    "key": "conflict-resolution",
+    "name": "Conflict Resolution",
+    "skillType": "soft",
+    "isGlobal": true
+  },
+  {
+    "key": "creativity",
+    "name": "Creativity",
+    "skillType": "soft",
+    "isGlobal": true
+  },
+  {
+    "key": "critical-thinking",
+    "name": "Critical Thinking",
+    "skillType": "soft",
+    "isGlobal": true
+  },
+  {
+    "key": "decision-making",
+    "name": "Decision Making",
+    "skillType": "soft",
+    "isGlobal": true
+  },
+  {
+    "key": "emotional-intelligence",
+    "name": "Emotional Intelligence",
+    "skillType": "soft",
+    "isGlobal": true
+  },
+  {
+    "key": "facilitation",
+    "name": "Facilitation",
+    "skillType": "soft",
+    "isGlobal": true
+  },
+  {
+    "key": "leadership",
+    "name": "Leadership",
+    "skillType": "soft",
+    "isGlobal": true
+  },
+  {
+    "key": "mentoring",
+    "name": "Mentoring",
+    "skillType": "soft",
+    "isGlobal": true
+  },
+  {
+    "key": "negotiation",
+    "name": "Negotiation",
+    "skillType": "soft",
+    "isGlobal": true
+  },
+  {
+    "key": "organization",
+    "name": "Organization",
+    "skillType": "soft",
+    "isGlobal": true
+  },
+  {
+    "key": "presentation-skills",
+    "name": "Presentation Skills",
+    "skillType": "soft",
+    "isGlobal": true
+  },
+  {
+    "key": "problem-solving",
+    "name": "Problem Solving",
+    "skillType": "soft",
+    "isGlobal": true
+  },
+  {
+    "key": "resilience",
+    "name": "Resilience",
+    "skillType": "soft",
+    "isGlobal": true
+  },
+  {
+    "key": "strategic-thinking",
+    "name": "Strategic Thinking",
+    "skillType": "soft",
+    "isGlobal": true
+  },
+  {
+    "key": "teamwork",
+    "name": "Teamwork",
+    "skillType": "soft",
+    "isGlobal": true
+  },
+  {
+    "key": "time-management",
+    "name": "Time Management",
+    "skillType": "soft",
+    "isGlobal": true
+  },
+  {
+    "key": "aircraft-maintenance",
+    "name": "AIrcraft Maintenance",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "aircraft-systems-integration",
+    "name": "AIrcraft Systems Integration",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "airworthiness-compliance",
+    "name": "AIrworthiness Compliance",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "api-design",
+    "name": "API Design",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "academic-reporting",
+    "name": "Academic Reporting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "accessibility-web",
+    "name": "Accessibility Web",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "accounts-payable",
+    "name": "Accounts Payable",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "accounts-receivable",
+    "name": "Accounts Receivable",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "activity-booking",
+    "name": "Activity Booking",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "activity-facilitation",
+    "name": "Activity Facilitation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "activity-planning",
+    "name": "Activity Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "ad-operations",
+    "name": "Ad Operations",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "adverse-event-reporting",
+    "name": "Adverse Event Reporting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "agile",
+    "name": "Agile",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "analytical-testing",
+    "name": "Analytical Testing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "android-development",
+    "name": "Android Development",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "animal-care",
+    "name": "Animal Care",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "appointment-scheduling",
+    "name": "Appointment Scheduling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "artist-relations",
+    "name": "Artist Relations",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "assembly-line-operations",
+    "name": "Assembly Line Operations",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "assessment-design",
+    "name": "Assessment Design",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "asset-lifecycle-management",
+    "name": "Asset Lifecycle Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "asset-management",
+    "name": "Asset Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "assortment-planning",
+    "name": "Assortment Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "athlete-development",
+    "name": "Athlete Development",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "attendee-coordination",
+    "name": "Attendee Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "attribution-modeling",
+    "name": "Attribution Modeling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "audience-targeting",
+    "name": "Audience Targeting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "audio-editing",
+    "name": "Audio Editing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "audit-documentation",
+    "name": "Audit Documentation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "audit-management",
+    "name": "Audit Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "audit-planning",
+    "name": "Audit Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "audit-readiness",
+    "name": "Audit Readiness",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "authentication-authorization",
+    "name": "Authentication Authorization",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "automotive-quality",
+    "name": "Automotive Quality",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "availability-control",
+    "name": "Availability Control",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "avionics-systems",
+    "name": "Avionics Systems",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "backlog-management",
+    "name": "Backlog Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "bank-reconciliation",
+    "name": "Bank Reconciliation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "banquet-coordination",
+    "name": "Banquet Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "basket-analysis",
+    "name": "Basket Analysis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "batch-coding",
+    "name": "Batch Coding",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "batch-documentation",
+    "name": "Batch Documentation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "batch-production",
+    "name": "Batch Production",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "batch-release-coordination",
+    "name": "Batch Release Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "battery-storage",
+    "name": "Battery Storage",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "beneficiary-engagement",
+    "name": "Beneficiary Engagement",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "benefits-administration",
+    "name": "Benefits Administration",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "benefits-design",
+    "name": "Benefits Design",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "bid-preparation",
+    "name": "Bid Preparation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "bill-of-quantities",
+    "name": "Bill of Quantities",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "billing-and-coding",
+    "name": "Billing and Coding",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "biosecurity",
+    "name": "Biosecurity",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "board-documentation",
+    "name": "Board Documentation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "booking-coordination",
+    "name": "Booking Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "booking-management",
+    "name": "Booking Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "bottling-line-operations",
+    "name": "Bottling Line Operations",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "brand-campaigns-fashion",
+    "name": "Brand Campaigns Fashion",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "brand-positioning",
+    "name": "Brand Positioning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "brand-strategy",
+    "name": "Brand Strategy",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "breeding-management",
+    "name": "Breeding Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "brewing-operations",
+    "name": "Brewing Operations",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "broadcast-scheduling",
+    "name": "Broadcast Scheduling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "budget-execution",
+    "name": "Budget Execution",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "budgeting",
+    "name": "Budgeting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "building-maintenance",
+    "name": "Building Maintenance",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "business-analysis",
+    "name": "Business Analysis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "business-intelligence",
+    "name": "Business Intelligence",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "business-process-analysis",
+    "name": "Business Process Analysis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "business-valuation",
+    "name": "Business Valuation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "buyer-qualification",
+    "name": "Buyer Qualification",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "buying",
+    "name": "Buying",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "ci-cd",
+    "name": "CI/CD",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "citation-management",
+    "name": "CItation Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "citizen-support",
+    "name": "CItizen Support",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "css",
+    "name": "CSS",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "cad-modeling",
+    "name": "Cad Modeling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "camera-operations",
+    "name": "Camera Operations",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "campaign-briefing",
+    "name": "Campaign Briefing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "campaign-management",
+    "name": "Campaign Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "campaign-planning",
+    "name": "Campaign Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "campaign-reporting",
+    "name": "Campaign Reporting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "candidate-sourcing",
+    "name": "Candidate Sourcing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "capacity-management",
+    "name": "Capacity Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "capacity-planning",
+    "name": "Capacity Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "capital-markets",
+    "name": "Capital Markets",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "care-documentation",
+    "name": "Care Documentation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "care-planning",
+    "name": "Care Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "case-follow-up",
+    "name": "Case Follow Up",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "case-law-analysis",
+    "name": "Case Law Analysis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "case-management",
+    "name": "Case Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "case-management-public",
+    "name": "Case Management Public",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "case-preparation",
+    "name": "Case Preparation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "case-processing",
+    "name": "Case Processing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "case-tracking",
+    "name": "Case Tracking",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "cash-flow-analysis",
+    "name": "Cash Flow Analysis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "cash-handling",
+    "name": "Cash Handling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "cash-management",
+    "name": "Cash Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "change-communication",
+    "name": "Change Communication",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "change-control",
+    "name": "Change Control",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "change-management",
+    "name": "Change Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "channel-management",
+    "name": "Channel Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "check-in-check-out",
+    "name": "Check in Check Out",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "claims-processing",
+    "name": "Claims Processing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "classroom-management",
+    "name": "Classroom Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "clean-room-operations",
+    "name": "Clean Room Operations",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "cleaning-procedures",
+    "name": "Cleaning Procedures",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "client-assessment",
+    "name": "Client Assessment",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "client-follow-up",
+    "name": "Client Follow Up",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "client-qualification",
+    "name": "Client Qualification",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "clinical-documentation",
+    "name": "Clinical Documentation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "cloud-infrastructure",
+    "name": "Cloud Infrastructure",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "coalition-building",
+    "name": "Coalition Building",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "cold-chain-compliance",
+    "name": "Cold Chain Compliance",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "cold-chain-coordination",
+    "name": "Cold Chain Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "collection-development",
+    "name": "Collection Development",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "color-story",
+    "name": "Color Story",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "commissioning-renewables",
+    "name": "Commissioning Renewables",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "community-engagement",
+    "name": "Community Engagement",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "community-management",
+    "name": "Community Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "community-outreach",
+    "name": "Community Outreach",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "complaint-resolution",
+    "name": "Complaint Resolution",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "compliance-management",
+    "name": "Compliance Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "compliance-reporting",
+    "name": "Compliance Reporting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "configuration-management",
+    "name": "Configuration Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "construction-estimation",
+    "name": "Construction Estimation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "construction-risk-assessment",
+    "name": "Construction Risk Assessment",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "construction-scheduling",
+    "name": "Construction Scheduling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "consumer-insights",
+    "name": "Consumer Insights",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "container-security",
+    "name": "Container Security",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "content-authoring",
+    "name": "Content Authoring",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "content-calendar",
+    "name": "Content Calendar",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "content-development",
+    "name": "Content Development",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "content-scheduling",
+    "name": "Content Scheduling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "content-writing",
+    "name": "Content Writing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "continuous-improvement",
+    "name": "Continuous Improvement",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "contract-delivery",
+    "name": "Contract Delivery",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "contract-lifecycle-management",
+    "name": "Contract Lifecycle Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "contract-negotiation-talent",
+    "name": "Contract Negotiation Talent",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "contract-review",
+    "name": "Contract Review",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "contract-settlement",
+    "name": "Contract Settlement",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "contractor-coordination",
+    "name": "Contractor Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "control-room-operations",
+    "name": "Control Room Operations",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "control-testing",
+    "name": "Control Testing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "conversion-optimization",
+    "name": "Conversion Optimization",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "conversion-rate-optimization",
+    "name": "Conversion Rate Optimization",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "conversion-tracking",
+    "name": "Conversion Tracking",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "copy-editing",
+    "name": "Copy Editing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "corporate-governance",
+    "name": "Corporate Governance",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "corrective-actions",
+    "name": "Corrective Actions",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "cost-control",
+    "name": "Cost Control",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "cost-planning",
+    "name": "Cost Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "counseling-basics",
+    "name": "Counseling Basics",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "courier-management",
+    "name": "Courier Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "course-mapping",
+    "name": "Course Mapping",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "court-filing",
+    "name": "Court Filing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "crm-real-estate",
+    "name": "Crm Real Estate",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "crm-usage",
+    "name": "Crm Usage",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "crop-nutrition",
+    "name": "Crop Nutrition",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "curriculum-alignment",
+    "name": "Curriculum Alignment",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "customer-communication",
+    "name": "Customer Communication",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "customer-engagement",
+    "name": "Customer Engagement",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "customer-follow-up",
+    "name": "Customer Follow Up",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "customer-onboarding",
+    "name": "Customer Onboarding",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "customer-retention",
+    "name": "Customer Retention",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "customer-segmentation",
+    "name": "Customer Segmentation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "customer-support",
+    "name": "Customer Support",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "cycle-counting",
+    "name": "Cycle Counting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "cypress",
+    "name": "Cypress",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "dashboarding",
+    "name": "Dashboarding",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "data-analysis",
+    "name": "Data Analysis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "data-capture",
+    "name": "Data Capture",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "data-collection",
+    "name": "Data Collection",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "data-engineering",
+    "name": "Data Engineering",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "data-governance",
+    "name": "Data Governance",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "data-modeling",
+    "name": "Data Modeling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "database-design",
+    "name": "Database Design",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "deal-closing",
+    "name": "Deal Closing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "deal-closure",
+    "name": "Deal Closure",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "defense-logistics",
+    "name": "Defense Logistics",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "defense-program-management",
+    "name": "Defense Program Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "delivery-coordination",
+    "name": "Delivery Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "delivery-routing",
+    "name": "Delivery Routing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "delivery-tracking",
+    "name": "Delivery Tracking",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "demand-forecasting",
+    "name": "Demand Forecasting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "demand-planning",
+    "name": "Demand Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "destination-knowledge",
+    "name": "Destination Knowledge",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "development-planning",
+    "name": "Development Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "deviation-management",
+    "name": "Deviation Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "device-provisioning",
+    "name": "Device Provisioning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "diagnostic-reporting",
+    "name": "Diagnostic Reporting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "differentiated-instruction",
+    "name": "Differentiated Instruction",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "digital-assessment",
+    "name": "Digital Assessment",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "dispatching",
+    "name": "Dispatching",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "dispensing",
+    "name": "Dispensing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "distribution-maintenance",
+    "name": "Distribution Maintenance",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "docker",
+    "name": "Docker",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "documentation",
+    "name": "Documentation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "donor-compliance",
+    "name": "Donor Compliance",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "donor-stewardship",
+    "name": "Donor Stewardship",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "driver-assignment",
+    "name": "Driver Assignment",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "driver-compliance",
+    "name": "Driver Compliance",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "drug-safety-monitoring",
+    "name": "Drug Safety Monitoring",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "drug-storage",
+    "name": "Drug Storage",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "due-diligence",
+    "name": "Due Diligence",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "e-discovery",
+    "name": "E Discovery",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "editorial-planning",
+    "name": "Editorial Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "editorial-workflow",
+    "name": "Editorial Workflow",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "electrical-diagnostics-aircraft",
+    "name": "Electrical Diagnostics AIrcraft",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "email-marketing",
+    "name": "Email Marketing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "employee-records",
+    "name": "Employee Records",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "employee-support",
+    "name": "Employee Support",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "employee-surveys",
+    "name": "Employee Surveys",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "energy-efficiency",
+    "name": "Energy Efficiency",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "energy-maintenance",
+    "name": "Energy Maintenance",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "energy-market-analysis",
+    "name": "Energy Market Analysis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "engagement-management",
+    "name": "Engagement Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "enrollment-management",
+    "name": "Enrollment Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "entity-management",
+    "name": "Entity Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "epidemiology",
+    "name": "Epidemiology",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "equipment-checks",
+    "name": "Equipment Checks",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "equipment-inspection",
+    "name": "Equipment Inspection",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "equipment-maintenance-agri",
+    "name": "Equipment Maintenance Agri",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "event-budgeting",
+    "name": "Event Budgeting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "event-fundraising",
+    "name": "Event Fundraising",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "event-promotion",
+    "name": "Event Promotion",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "event-readiness",
+    "name": "Event Readiness",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "event-setup",
+    "name": "Event Setup",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "exercise-demonstration",
+    "name": "Exercise Demonstration",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "fabric-sourcing",
+    "name": "Fabric Sourcing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "farm-planning",
+    "name": "Farm Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "fashion-content",
+    "name": "Fashion Content",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "fashion-sketching",
+    "name": "Fashion Sketching",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "fault-diagnosis",
+    "name": "Fault Diagnosis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "feature-engineering",
+    "name": "Feature Engineering",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "feeding-programs",
+    "name": "Feeding Programs",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "fiber-network-management",
+    "name": "Fiber Network Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "fiber-splicing",
+    "name": "Fiber Splicing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "field-mechanization",
+    "name": "Field Mechanization",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "field-observation",
+    "name": "Field Observation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "field-reporting",
+    "name": "Field Reporting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "financial-controls",
+    "name": "Financial Controls",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "financial-modeling",
+    "name": "Financial Modeling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "financial-reporting",
+    "name": "Financial Reporting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "financing-coordination",
+    "name": "Financing Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "fit-approval",
+    "name": "Fit Approval",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "fitness-program-design",
+    "name": "Fitness Program Design",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "fleet-documentation",
+    "name": "Fleet Documentation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "fleet-scheduling",
+    "name": "Fleet Scheduling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "flight-controls",
+    "name": "Flight Controls",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "flutter",
+    "name": "Flutter",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "food-packaging",
+    "name": "Food Packaging",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "food-preparation",
+    "name": "Food Preparation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "food-safety",
+    "name": "Food Safety",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "forecasting",
+    "name": "Forecasting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "foreign-exchange-management",
+    "name": "Foreign Exchange Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "formula-control",
+    "name": "Formula Control",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "freight-coordination",
+    "name": "Freight Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "front-desk-operations",
+    "name": "Front Desk Operations",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "fuel-management",
+    "name": "Fuel Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "fundraising-campaigns",
+    "name": "Fundraising Campaigns",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "garment-construction",
+    "name": "Garment Construction",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "general-ledger",
+    "name": "General Ledger",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "generation-operations",
+    "name": "Generation Operations",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "git",
+    "name": "Git",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "good-manufacturing-practices",
+    "name": "Good Manufacturing Practices",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "gps-tracking",
+    "name": "Gps Tracking",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "grading-strategies",
+    "name": "Grading Strategies",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "grant-management",
+    "name": "Grant Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "grant-reporting",
+    "name": "Grant Reporting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "grid-monitoring",
+    "name": "Grid Monitoring",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "grievance-handling",
+    "name": "Grievance Handling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "group-logistics",
+    "name": "Group Logistics",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "group-management",
+    "name": "Group Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "guest-complaint-handling",
+    "name": "Guest Complaint Handling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "guest-experience",
+    "name": "Guest Experience",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "guest-service",
+    "name": "Guest Service",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "guest-support-travel",
+    "name": "Guest Support Travel",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "guide-coordination",
+    "name": "Guide Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "hr-metrics",
+    "name": "HR Metrics",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "hr-service-delivery",
+    "name": "HR Service Delivery",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "hris",
+    "name": "HRis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "harvest-coordination",
+    "name": "Harvest Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "health-education",
+    "name": "Health Education",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "hospitality-hygiene",
+    "name": "Hospitality Hygiene",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "housekeeping-coordination",
+    "name": "Housekeeping Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "hydraulics",
+    "name": "Hydraulics",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "hygiene-standards",
+    "name": "Hygiene Standards",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "identity-access-management",
+    "name": "Identity Access Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "impact-assessment",
+    "name": "Impact Assessment",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "incident-investigation",
+    "name": "Incident Investigation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "incident-management",
+    "name": "Incident Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "incident-reporting",
+    "name": "Incident Reporting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "incident-response",
+    "name": "Incident Response",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "indicator-tracking",
+    "name": "Indicator Tracking",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "infection-control",
+    "name": "Infection Control",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "influencer-collaboration",
+    "name": "Influencer Collaboration",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "infrastructure-as-code",
+    "name": "Infrastructure As Code",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "infrastructure-upgrades",
+    "name": "Infrastructure Upgrades",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "input-management",
+    "name": "Input Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "insight-communication",
+    "name": "Insight Communication",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "inspection-coordination",
+    "name": "Inspection Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "instructional-design",
+    "name": "Instructional Design",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "instructional-technology",
+    "name": "Instructional Technology",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "inter-agency-coordination",
+    "name": "Inter Agency Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "internal-controls",
+    "name": "Internal Controls",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "interview-coordination",
+    "name": "Interview Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "inventory-analysis",
+    "name": "Inventory Analysis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "inventory-control-pharma",
+    "name": "Inventory Control Pharma",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "inventory-control-pharmacy",
+    "name": "Inventory Control Pharmacy",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "inventory-control-warehouse",
+    "name": "Inventory Control Warehouse",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "inventory-planning",
+    "name": "Inventory Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "investor-reporting",
+    "name": "Investor Reporting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "ios-development",
+    "name": "Ios Development",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "ip-portfolio-management",
+    "name": "Ip Portfolio Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "irrigation",
+    "name": "Irrigation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "itinerary-delivery",
+    "name": "Itinerary Delivery",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "itinerary-design",
+    "name": "Itinerary Design",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "jwt",
+    "name": "JWT",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "kaizen",
+    "name": "Kaizen",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "kitchen-operations",
+    "name": "Kitchen Operations",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "kitchen-supervision",
+    "name": "Kitchen Supervision",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "kpi-design",
+    "name": "Kpi Design",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "kubernetes",
+    "name": "Kubernetes",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "label-compliance",
+    "name": "Label Compliance",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "labeling-compliance",
+    "name": "Labeling Compliance",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "labor-compliance",
+    "name": "Labor Compliance",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "labor-relations",
+    "name": "Labor Relations",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "labor-supervision",
+    "name": "Labor Supervision",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "laboratory-documentation",
+    "name": "Laboratory Documentation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "laboratory-safety",
+    "name": "Laboratory Safety",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "laboratory-testing",
+    "name": "Laboratory Testing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "lead-generation-real-estate",
+    "name": "Lead Generation Real Estate",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "lead-management",
+    "name": "Lead Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "lead-qualification",
+    "name": "Lead Qualification",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "lean-principles",
+    "name": "Lean Principles",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "learning-analytics",
+    "name": "Learning Analytics",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "learning-evaluation",
+    "name": "Learning Evaluation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "learning-management-systems",
+    "name": "Learning Management Systems",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "learning-objectives",
+    "name": "Learning Objectives",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "learning-reviews",
+    "name": "Learning Reviews",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "legal-drafting",
+    "name": "Legal Drafting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "legal-research-tools",
+    "name": "Legal Research Tools",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "lesson-delivery",
+    "name": "Lesson Delivery",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "lesson-planning",
+    "name": "Lesson Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "licensing",
+    "name": "Licensing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "licensing-administration",
+    "name": "Licensing Administration",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "line-balancing",
+    "name": "Line Balancing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "line-monitoring",
+    "name": "Line Monitoring",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "linen-management",
+    "name": "Linen Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "linux-administration",
+    "name": "Linux Administration",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "liquidity-management",
+    "name": "Liquidity Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "listing-management",
+    "name": "Listing Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "listing-presentation",
+    "name": "Listing Presentation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "listing-promotion",
+    "name": "Listing Promotion",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "live-control-room",
+    "name": "Live Control Room",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "load-balancing",
+    "name": "Load Balancing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "local-partner-coordination",
+    "name": "Local Partner Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "logistics-planning",
+    "name": "Logistics Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "loss-prevention",
+    "name": "Loss Prevention",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "machine-learning",
+    "name": "Machine Learning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "maintenance-coordination",
+    "name": "Maintenance Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "maintenance-planning",
+    "name": "Maintenance Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "maintenance-scheduling-fleet",
+    "name": "Maintenance Scheduling Fleet",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "market-analysis",
+    "name": "Market Analysis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "market-linkage",
+    "name": "Market Linkage",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "marketing-automation",
+    "name": "Marketing Automation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "marketplace-operations",
+    "name": "Marketplace Operations",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "material-control",
+    "name": "Material Control",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "material-planning",
+    "name": "Material Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "material-requirements-planning",
+    "name": "Material Requirements Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "mechanical-repair",
+    "name": "Mechanical Repair",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "media-buying",
+    "name": "Media Buying",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "media-production",
+    "name": "Media Production",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "medical-imaging",
+    "name": "Medical Imaging",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "medical-records-management",
+    "name": "Medical Records Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "member-services",
+    "name": "Member Services",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "menu-costing",
+    "name": "Menu Costing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "menu-planning",
+    "name": "Menu Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "message-queues",
+    "name": "Message Queues",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "metering-operations",
+    "name": "Metering Operations",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "method-validation",
+    "name": "Method Validation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "mission-planning",
+    "name": "Mission Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "mission-readiness",
+    "name": "Mission Readiness",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "mixing-and-mastering",
+    "name": "Mixing and Mastering",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "model-deployment",
+    "name": "Model Deployment",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "monitoring-and-reporting",
+    "name": "Monitoring and Reporting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "month-end-close",
+    "name": "Month End Close",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "navigation-systems",
+    "name": "Navigation Systems",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "negotiation-support",
+    "name": "Negotiation Support",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "nestjs",
+    "name": "NestJS",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "network-deployment",
+    "name": "Network Deployment",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "network-diagnostics",
+    "name": "Network Diagnostics",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "network-maintenance",
+    "name": "Network Maintenance",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "network-monitoring",
+    "name": "Network Monitoring",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "network-security",
+    "name": "Network Security",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "network-switching",
+    "name": "Network Switching",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "next-js",
+    "name": "Next.js",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "nonconformance-management",
+    "name": "Nonconformance Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "obligation-tracking",
+    "name": "Obligation Tracking",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "observability",
+    "name": "Observability",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "occupancy-management",
+    "name": "Occupancy Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "offboarding",
+    "name": "Offboarding",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "offer-management",
+    "name": "Offer Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "omnichannel-support",
+    "name": "Omnichannel Support",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "onboarding",
+    "name": "Onboarding",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "online-merchandising",
+    "name": "Online Merchandising",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "operating-model-design",
+    "name": "Operating Model Design",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "operational-briefing",
+    "name": "Operational Briefing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "operations-management",
+    "name": "Operations Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "order-fulfillment",
+    "name": "Order Fulfillment",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "outage-management",
+    "name": "Outage Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "outage-response",
+    "name": "Outage Response",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "packaging-quality",
+    "name": "Packaging Quality",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "paid-social",
+    "name": "Paid Social",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "parent-communication",
+    "name": "Parent Communication",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "participant-engagement",
+    "name": "Participant Engagement",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "participant-safety",
+    "name": "Participant Safety",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "parts-catalog-management",
+    "name": "Parts Catalog Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "parts-ordering",
+    "name": "Parts Ordering",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "patent-research",
+    "name": "Patent Research",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "patient-care",
+    "name": "Patient Care",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "patient-counseling",
+    "name": "Patient Counseling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "patient-navigation",
+    "name": "Patient Navigation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "patient-registration",
+    "name": "Patient Registration",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "pattern-making",
+    "name": "Pattern Making",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "pay-structures",
+    "name": "Pay Structures",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "payroll-processing",
+    "name": "Payroll Processing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "penetration-testing",
+    "name": "Penetration Testing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "performance-evaluation",
+    "name": "Performance Evaluation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "performance-improvement",
+    "name": "Performance Improvement",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "performance-optimization",
+    "name": "Performance Optimization",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "permit-coordination",
+    "name": "Permit Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "permit-to-work",
+    "name": "Permit to Work",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "pest-management",
+    "name": "Pest Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "picking-and-packing",
+    "name": "Picking and Packing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "picture-archiving-and-communication-system",
+    "name": "Picture Archiving and Communication System",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "planograms",
+    "name": "Planograms",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "plant-monitoring",
+    "name": "Plant Monitoring",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "point-of-sale",
+    "name": "Point of Sale",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "policy-advocacy",
+    "name": "Policy Advocacy",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "policy-execution",
+    "name": "Policy Execution",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "policy-guidance",
+    "name": "Policy Guidance",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "policy-implementation",
+    "name": "Policy Implementation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "policy-monitoring",
+    "name": "Policy Monitoring",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "portfolio-analysis",
+    "name": "Portfolio Analysis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "post-harvest-handling",
+    "name": "Post Harvest Handling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "post-production",
+    "name": "Post Production",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "postgresql",
+    "name": "PostgreSQL",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "power-distribution",
+    "name": "Power Distribution",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "powertrain-systems",
+    "name": "Powertrain Systems",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "prescription-processing",
+    "name": "Prescription Processing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "preventive-maintenance",
+    "name": "Preventive Maintenance",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "preventive-maintenance-automotive",
+    "name": "Preventive Maintenance Automotive",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "preventive-maintenance-energy",
+    "name": "Preventive Maintenance Energy",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "price-forecasting",
+    "name": "Price Forecasting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "pricing-strategy",
+    "name": "Pricing Strategy",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "process-control",
+    "name": "Process Control",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "process-improvement",
+    "name": "Process Improvement",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "process-mapping",
+    "name": "Process Mapping",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "process-validation",
+    "name": "Process Validation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "procurement",
+    "name": "Procurement",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "produce-logistics",
+    "name": "Produce Logistics",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "product-roadmapping",
+    "name": "Product Roadmapping",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "production-coordination",
+    "name": "Production Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "production-planning",
+    "name": "Production Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "production-quality",
+    "name": "Production Quality",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "production-scheduling",
+    "name": "Production Scheduling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "program-budgeting",
+    "name": "Program Budgeting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "program-delivery",
+    "name": "Program Delivery",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "program-facilitation",
+    "name": "Program Facilitation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "program-monitoring",
+    "name": "Program Monitoring",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "program-scheduling",
+    "name": "Program Scheduling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "progress-monitoring",
+    "name": "Progress Monitoring",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "progress-tracking",
+    "name": "Progress Tracking",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "project-governance",
+    "name": "Project Governance",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "project-management",
+    "name": "Project Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "proof-of-delivery",
+    "name": "Proof of Delivery",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "property-leasing",
+    "name": "Property Leasing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "proposal-writing",
+    "name": "Proposal Writing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "protocol-compliance",
+    "name": "Protocol Compliance",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "public-engagement",
+    "name": "Public Engagement",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "public-procurement",
+    "name": "Public Procurement",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "public-program-administration",
+    "name": "Public Program Administration",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "quality-assurance-telecom",
+    "name": "Quality Assurance Telecom",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "quality-audits",
+    "name": "Quality Audits",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "quality-checks-food",
+    "name": "Quality Checks Food",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "quality-control-lab",
+    "name": "Quality Control Lab",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "quality-inspection",
+    "name": "Quality Inspection",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "quality-inspection-construction",
+    "name": "Quality Inspection Construction",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "quality-management",
+    "name": "Quality Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "quality-systems",
+    "name": "Quality Systems",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "queue-management",
+    "name": "Queue Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "radiology-workflow",
+    "name": "Radiology Workflow",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "range-planning",
+    "name": "Range Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "react",
+    "name": "React",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "react-native",
+    "name": "React Native",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "real-estate-content",
+    "name": "Real Estate Content",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "real-estate-negotiation",
+    "name": "Real Estate Negotiation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "receiving-and-putaway",
+    "name": "Receiving and Putaway",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "records-management",
+    "name": "Records Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "recreation-safety",
+    "name": "Recreation Safety",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "redis",
+    "name": "Redis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "referral-management",
+    "name": "Referral Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "regulatory-compliance",
+    "name": "Regulatory Compliance",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "regulatory-reporting",
+    "name": "Regulatory Reporting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "remote-support",
+    "name": "Remote Support",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "rent-collection",
+    "name": "Rent Collection",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "replenishment-planning",
+    "name": "Replenishment Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "reporting",
+    "name": "Reporting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "requirements-gathering",
+    "name": "Requirements Gathering",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "requirements-management",
+    "name": "Requirements Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "research-methodology",
+    "name": "Research Methodology",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "reservation-handling",
+    "name": "Reservation Handling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "reservation-systems",
+    "name": "Reservation Systems",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "resource-planning",
+    "name": "Resource Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "responsive-design",
+    "name": "Responsive Design",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "rest-apis",
+    "name": "Rest Apis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "result-validation",
+    "name": "Result Validation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "retention-analysis",
+    "name": "Retention Analysis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "retention-strategy",
+    "name": "Retention Strategy",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "reward-strategy",
+    "name": "Reward Strategy",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "risk-management",
+    "name": "Risk Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "risk-tracking",
+    "name": "Risk Tracking",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "rollout-planning",
+    "name": "Rollout Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "room-inspection",
+    "name": "Room Inspection",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "root-cause-analysis",
+    "name": "Root Cause Analysis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "route-optimization",
+    "name": "Route Optimization",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "rubric-development",
+    "name": "Rubric Development",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "run-of-show",
+    "name": "Run of Show",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "rundown-management",
+    "name": "Rundown Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "seo",
+    "name": "SEO",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "safety-management",
+    "name": "Safety Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "salary-benchmarking",
+    "name": "Salary Benchmarking",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "sales-analysis",
+    "name": "Sales Analysis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "sales-conversion",
+    "name": "Sales Conversion",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "sales-negotiation",
+    "name": "Sales Negotiation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "sample-development",
+    "name": "Sample Development",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "sample-management",
+    "name": "Sample Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "sample-processing",
+    "name": "Sample Processing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "sample-sewing",
+    "name": "Sample Sewing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "sampling-techniques",
+    "name": "Sampling Techniques",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "sanitation",
+    "name": "Sanitation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "scenario-analysis",
+    "name": "Scenario Analysis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "scheduling",
+    "name": "Scheduling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "screening",
+    "name": "Screening",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "scriptwriting",
+    "name": "Scriptwriting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "search-engine-marketing",
+    "name": "Search Engine Marketing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "secure-documentation",
+    "name": "Secure Documentation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "security-monitoring",
+    "name": "Security Monitoring",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "seed-selection",
+    "name": "Seed Selection",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "selenium",
+    "name": "Selenium",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "serialization",
+    "name": "Serialization",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "service-activation",
+    "name": "Service Activation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "service-advising",
+    "name": "Service Advising",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "service-assurance",
+    "name": "Service Assurance",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "service-delivery",
+    "name": "Service Delivery",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "service-digitization",
+    "name": "Service Digitization",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "service-documentation",
+    "name": "Service Documentation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "service-provisioning",
+    "name": "Service Provisioning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "service-quality",
+    "name": "Service Quality",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "service-recovery",
+    "name": "Service Recovery",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "service-standards",
+    "name": "Service Standards",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "shift-scheduling",
+    "name": "Shift Scheduling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "shipment-planning",
+    "name": "Shipment Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "shoot-planning",
+    "name": "Shoot Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "shrinkage-control",
+    "name": "Shrinkage Control",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "siem",
+    "name": "Siem",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "signal-detection",
+    "name": "Signal Detection",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "signal-monitoring",
+    "name": "Signal Monitoring",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "site-assessment-energy",
+    "name": "Site Assessment Energy",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "site-coordination",
+    "name": "Site Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "site-feasibility",
+    "name": "Site Feasibility",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "site-installation",
+    "name": "Site Installation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "site-reporting",
+    "name": "Site Reporting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "site-safety-audits",
+    "name": "Site Safety Audits",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "site-supervision",
+    "name": "Site Supervision",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "sla-management",
+    "name": "Sla Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "snag-list-management",
+    "name": "Snag List Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "social-media-strategy",
+    "name": "Social Media Strategy",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "soil-analysis",
+    "name": "Soil Analysis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "solar-systems",
+    "name": "Solar Systems",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "sound-design",
+    "name": "Sound Design",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "spare-parts-management",
+    "name": "Spare Parts Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "sponsorship-support",
+    "name": "Sponsorship Support",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "sports-communication",
+    "name": "Sports Communication",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "sports-event-planning",
+    "name": "Sports Event Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "sql",
+    "name": "Sql",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "staff-scheduling",
+    "name": "Staff Scheduling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "stakeholder-analysis",
+    "name": "Stakeholder Analysis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "stakeholder-engagement-public",
+    "name": "Stakeholder Engagement Public",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "stakeholder-management",
+    "name": "Stakeholder Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "standard-operating-procedures",
+    "name": "Standard Operating Procedures",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "state-management",
+    "name": "State Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "status-reporting",
+    "name": "Status Reporting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "statutory-interpretation",
+    "name": "Statutory Interpretation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "stock-accuracy",
+    "name": "Stock Accuracy",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "stock-control",
+    "name": "Stock Control",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "store-supervision",
+    "name": "Store Supervision",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "storytelling",
+    "name": "Storytelling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "strategic-planning",
+    "name": "Strategic Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "student-advising",
+    "name": "Student Advising",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "student-engagement",
+    "name": "Student Engagement",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "studio-workflow",
+    "name": "Studio Workflow",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "styling-advice",
+    "name": "Styling Advice",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "submission-preparation",
+    "name": "Submission Preparation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "supplier-coordination",
+    "name": "Supplier Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "supplier-management",
+    "name": "Supplier Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "supplier-negotiation",
+    "name": "Supplier Negotiation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "supplier-negotiation-fashion",
+    "name": "Supplier Negotiation Fashion",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "supply-coordination-defense",
+    "name": "Supply Coordination Defense",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "system-implementation",
+    "name": "System Implementation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "system-integration",
+    "name": "System Integration",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "table-service-coordination",
+    "name": "Table Service Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "takeoff-measurement",
+    "name": "Takeoff Measurement",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "tax-compliance",
+    "name": "Tax Compliance",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "team-coordination",
+    "name": "Team Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "tech-pack-creation",
+    "name": "Tech Pack Creation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "technical-inspection",
+    "name": "Technical Inspection",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "technical-support",
+    "name": "Technical Support",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "telecom-support",
+    "name": "Telecom Support",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "tenant-relations",
+    "name": "Tenant Relations",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "tenant-services",
+    "name": "Tenant Services",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "tender-analysis",
+    "name": "Tender Analysis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "test-automation",
+    "name": "Test Automation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "testing",
+    "name": "Testing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "throughput-optimization",
+    "name": "Throughput Optimization",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "ticket-resolution",
+    "name": "Ticket Resolution",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "timetabling",
+    "name": "Timetabling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "torque-control",
+    "name": "Torque Control",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "tour-planning",
+    "name": "Tour Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "tour-scheduling",
+    "name": "Tour Scheduling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "tower-asset-management",
+    "name": "Tower Asset Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "tractor-operations",
+    "name": "Tractor Operations",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "trademark-management",
+    "name": "Trademark Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "trading-operations",
+    "name": "Trading Operations",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "training-design",
+    "name": "Training Design",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "training-session-planning",
+    "name": "Training Session Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "training-volunteers",
+    "name": "Training Volunteers",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "transaction-support",
+    "name": "Transaction Support",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "transport-documentation",
+    "name": "Transport Documentation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "transport-regulations",
+    "name": "Transport Regulations",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "travel-documentation",
+    "name": "Travel Documentation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "travel-quoting",
+    "name": "Travel Quoting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "trend-research",
+    "name": "Trend Research",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "triage",
+    "name": "Triage",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "trip-monitoring",
+    "name": "Trip Monitoring",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "troubleshooting",
+    "name": "Troubleshooting",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "turbine-operations",
+    "name": "Turbine Operations",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "typescript",
+    "name": "TypeScript",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "ui-design-systems",
+    "name": "Ui Design Systems",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "upselling",
+    "name": "Upselling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "upselling-fashion",
+    "name": "Upselling Fashion",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "user-adoption",
+    "name": "User Adoption",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "user-story-writing",
+    "name": "User Story Writing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "valuation",
+    "name": "Valuation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "value-stream-mapping",
+    "name": "Value Stream Mapping",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "variance-analysis",
+    "name": "Variance Analysis",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "variation-management",
+    "name": "Variation Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "vehicle-demo",
+    "name": "Vehicle Demo",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "vehicle-diagnostics",
+    "name": "Vehicle Diagnostics",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "vehicle-testing",
+    "name": "Vehicle Testing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "vehicle-utilization",
+    "name": "Vehicle Utilization",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "vendor-confirmation",
+    "name": "Vendor Confirmation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "vendor-coordination",
+    "name": "Vendor Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "vendor-liaison",
+    "name": "Vendor Liaison",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "vendor-management",
+    "name": "Vendor Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "vendor-management-events",
+    "name": "Vendor Management Events",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "vendor-ordering",
+    "name": "Vendor Ordering",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "vendor-supervision",
+    "name": "Vendor Supervision",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "venue-operations",
+    "name": "Venue Operations",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "venue-scheduling",
+    "name": "Venue Scheduling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "verification-and-validation",
+    "name": "Verification and Validation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "video-editing",
+    "name": "Video Editing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "vip-management",
+    "name": "Vip Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "virtual-tours",
+    "name": "Virtual Tours",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "visual-merchandising",
+    "name": "Visual Merchandising",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "visual-merchandising-fashion",
+    "name": "Visual Merchandising Fashion",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "visual-storytelling",
+    "name": "Visual Storytelling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "vital-signs-monitoring",
+    "name": "Vital Signs Monitoring",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "volunteer-onboarding",
+    "name": "Volunteer Onboarding",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "voucher-management",
+    "name": "Voucher Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "vulnerability-management",
+    "name": "Vulnerability Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "warehouse-coordination",
+    "name": "Warehouse Coordination",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "warehouse-management",
+    "name": "Warehouse Management",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "warehouse-safety",
+    "name": "Warehouse Safety",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "warranty-processing",
+    "name": "Warranty Processing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "waste-reduction",
+    "name": "Waste Reduction",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "web-analytics",
+    "name": "Web Analytics",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "wiring-inspection",
+    "name": "Wiring Inspection",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "work-instructions",
+    "name": "Work Instructions",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "work-permits",
+    "name": "Work Permits",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "work-sequencing",
+    "name": "Work Sequencing",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "work-study",
+    "name": "Work Study",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "workforce-planning",
+    "name": "Workforce Planning",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "workshop-facilitation",
+    "name": "Workshop Facilitation",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "workshop-scheduling",
+    "name": "Workshop Scheduling",
+    "skillType": "hard",
+    "isGlobal": false
+  },
+  {
+    "key": "yield-optimization",
+    "name": "Yield Optimization",
+    "skillType": "hard",
+    "isGlobal": false
+  }
 ]

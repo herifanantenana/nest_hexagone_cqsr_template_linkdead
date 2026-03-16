@@ -9,7 +9,7 @@ export const usersTable = pgTable("users", {
 	username: varchar("username", { length: 50 }),
 	email: varchar("email", { length: 255 }).notNull().unique(),
 	bio: text("bio"),
-	avatarUrl: varchar("avatar_url", { length: 255 }),
+	avatarStoragePath: varchar("avatar_storage_path", { length: 255 }),
 	websiteUrl: varchar("website_url", { length: 255 }),
 	location: varchar("location", { length: 100 }),
 	preferences: jsonb("preferences").notNull().default({}),

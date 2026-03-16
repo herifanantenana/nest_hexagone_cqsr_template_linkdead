@@ -51,3 +51,11 @@ export enum ESkillTypes {
 	OTHER = "other",
 }
 export const SkillTypes = Object.values(ESkillTypes) as [string, ...string[]];
+
+export enum EEvidenceTypes {
+	IMAGES = "images",
+	VIDEOS = "videos",
+	DOCUMENTS = "documents",
+	OTHER = "other",
+}
+export const EvidenceTypes = Object.values(EEvidenceTypes) as [string, ...string[]];

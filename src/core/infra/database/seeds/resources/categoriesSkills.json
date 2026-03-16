@@ -1,119 +1,3526 @@
 [
-	{ "categoryKey": "frontend-development", "skillKey": "react" },
-	{ "categoryKey": "frontend-development", "skillKey": "next-js" },
-	{ "categoryKey": "frontend-development", "skillKey": "css" },
-	{ "categoryKey": "frontend-development", "skillKey": "typescript" },
-
-	{ "categoryKey": "backend-development", "skillKey": "nestjs" },
-	{ "categoryKey": "backend-development", "skillKey": "postgresql" },
-	{ "categoryKey": "backend-development", "skillKey": "redis" },
-	{ "categoryKey": "backend-development", "skillKey": "jwt" },
-
-	{ "categoryKey": "devops-and-cloud", "skillKey": "docker" },
-	{ "categoryKey": "devops-and-cloud", "skillKey": "kubernetes" },
-	{ "categoryKey": "devops-and-cloud", "skillKey": "ci-cd" },
-	{ "categoryKey": "devops-and-cloud", "skillKey": "cloud-infrastructure" },
-
-	{ "categoryKey": "cybersecurity", "skillKey": "network-security" },
-	{ "categoryKey": "cybersecurity", "skillKey": "penetration-testing" },
-
-	{ "categoryKey": "data-and-ai", "skillKey": "data-analysis" },
-	{ "categoryKey": "data-and-ai", "skillKey": "machine-learning" },
-
-	{ "categoryKey": "accounting", "skillKey": "financial-reporting" },
-	{ "categoryKey": "accounting", "skillKey": "tax-compliance" },
-
-	{ "categoryKey": "financial-analysis", "skillKey": "budgeting" },
-
-	{ "categoryKey": "auditing", "skillKey": "audit-management" },
-
-	{ "categoryKey": "nursing", "skillKey": "patient-care" },
-	{ "categoryKey": "medical-administration", "skillKey": "medical-records-management" },
-	{ "categoryKey": "laboratory-services", "skillKey": "laboratory-testing" },
-	{ "categoryKey": "pharmacy-operations", "skillKey": "dispensing" },
-
-	{ "categoryKey": "teaching-and-instruction", "skillKey": "lesson-planning" },
-	{ "categoryKey": "teaching-and-instruction", "skillKey": "classroom-management" },
-	{ "categoryKey": "student-support", "skillKey": "student-advising" },
-
-	{ "categoryKey": "production-operations", "skillKey": "process-control" },
-	{ "categoryKey": "quality-control", "skillKey": "quality-inspection" },
-	{ "categoryKey": "maintenance", "skillKey": "preventive-maintenance" },
-	{ "categoryKey": "supply-chain", "skillKey": "inventory-planning" },
-
-	{ "categoryKey": "sales", "skillKey": "customer-engagement" },
-	{ "categoryKey": "merchandising", "skillKey": "visual-merchandising" },
-	{ "categoryKey": "inventory-management", "skillKey": "stock-control" },
-
-	{ "categoryKey": "logistics", "skillKey": "logistics-planning" },
-	{ "categoryKey": "fleet-management", "skillKey": "fleet-scheduling" },
-	{ "categoryKey": "warehouse-operations", "skillKey": "warehouse-management" },
-
-	{ "categoryKey": "renewable-energy", "skillKey": "solar-systems" },
-	{ "categoryKey": "energy-distribution", "skillKey": "power-distribution" },
-
-	{ "categoryKey": "network-operations", "skillKey": "network-monitoring" },
-	{ "categoryKey": "telecom-support", "skillKey": "telecom-support" },
-
-	{ "categoryKey": "crop-production", "skillKey": "irrigation" },
-	{ "categoryKey": "crop-production", "skillKey": "soil-analysis" },
-	{ "categoryKey": "livestock-management", "skillKey": "animal-care" },
-	{ "categoryKey": "farm-operations", "skillKey": "farm-planning" },
-
-	{ "categoryKey": "hotel-operations", "skillKey": "guest-service" },
-	{ "categoryKey": "food-service", "skillKey": "food-preparation" },
-	{ "categoryKey": "guest-relations", "skillKey": "reservation-handling" },
-
-	{ "categoryKey": "legal-research", "skillKey": "legal-drafting" },
-	{ "categoryKey": "compliance", "skillKey": "regulatory-compliance" },
-	{ "categoryKey": "contract-management", "skillKey": "contract-review" },
-
-	{ "categoryKey": "business-strategy", "skillKey": "stakeholder-analysis" },
-	{ "categoryKey": "operations-consulting", "skillKey": "business-process-analysis" },
-	{ "categoryKey": "digital-transformation", "skillKey": "cloud-infrastructure" },
-
-	{ "categoryKey": "digital-marketing", "skillKey": "seo" },
-	{ "categoryKey": "content-marketing", "skillKey": "content-writing" },
-	{ "categoryKey": "brand-management", "skillKey": "brand-strategy" },
-	{ "categoryKey": "paid-media", "skillKey": "campaign-management" },
-
-	{ "categoryKey": "recruitment", "skillKey": "candidate-sourcing" },
-	{ "categoryKey": "learning-and-development", "skillKey": "training-design" },
-	{ "categoryKey": "employee-relations", "skillKey": "employee-support" },
-
-	{ "categoryKey": "avionics", "skillKey": "avionics-systems" },
-	{ "categoryKey": "defense-operations", "skillKey": "defense-logistics" },
-
-	{ "categoryKey": "vehicle-maintenance", "skillKey": "vehicle-diagnostics" },
-	{ "categoryKey": "vehicle-maintenance", "skillKey": "mechanical-repair" },
-
-	{ "categoryKey": "drug-production", "skillKey": "good-manufacturing-practices" },
-	{ "categoryKey": "clinical-research", "skillKey": "clinical-documentation" },
-
-	{ "categoryKey": "food-production", "skillKey": "food-safety" },
-	{ "categoryKey": "restaurant-operations", "skillKey": "kitchen-operations" },
-
-	{ "categoryKey": "fashion-design", "skillKey": "fashion-sketching" },
-	{ "categoryKey": "apparel-production", "skillKey": "garment-construction" },
-
-	{ "categoryKey": "fitness-coaching", "skillKey": "fitness-program-design" },
-	{ "categoryKey": "sports-management", "skillKey": "sports-event-planning" },
-
-	{ "categoryKey": "travel-operations", "skillKey": "tour-planning" },
-	{ "categoryKey": "reservation-management", "skillKey": "booking-management" },
-
-	{ "categoryKey": "project-estimation", "skillKey": "construction-estimation" },
-	{ "categoryKey": "building-supervision", "skillKey": "site-supervision" },
-
-	{ "categoryKey": "property-management", "skillKey": "property-leasing" },
-	{ "categoryKey": "real-estate-sales", "skillKey": "real-estate-negotiation" },
-
-	{ "categoryKey": "video-production", "skillKey": "video-editing" },
-	{ "categoryKey": "content-production", "skillKey": "media-production" },
-
-	{ "categoryKey": "policy-implementation", "skillKey": "policy-execution" },
-	{ "categoryKey": "public-administration", "skillKey": "public-program-administration" },
-
-	{ "categoryKey": "community-programs", "skillKey": "community-outreach" },
-	{ "categoryKey": "fundraising", "skillKey": "fundraising-campaigns" }
+  {
+    "categoryKey": "accounting",
+    "skillKey": "accounts-payable"
+  },
+  {
+    "categoryKey": "accounting",
+    "skillKey": "accounts-receivable"
+  },
+  {
+    "categoryKey": "accounting",
+    "skillKey": "financial-reporting"
+  },
+  {
+    "categoryKey": "accounting",
+    "skillKey": "general-ledger"
+  },
+  {
+    "categoryKey": "accounting",
+    "skillKey": "month-end-close"
+  },
+  {
+    "categoryKey": "accounting",
+    "skillKey": "tax-compliance"
+  },
+  {
+    "categoryKey": "advocacy-and-campaigns",
+    "skillKey": "campaign-planning"
+  },
+  {
+    "categoryKey": "advocacy-and-campaigns",
+    "skillKey": "coalition-building"
+  },
+  {
+    "categoryKey": "advocacy-and-campaigns",
+    "skillKey": "facilitation"
+  },
+  {
+    "categoryKey": "advocacy-and-campaigns",
+    "skillKey": "policy-advocacy"
+  },
+  {
+    "categoryKey": "advocacy-and-campaigns",
+    "skillKey": "public-engagement"
+  },
+  {
+    "categoryKey": "advocacy-and-campaigns",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "categoryKey": "after-sales-service",
+    "skillKey": "customer-follow-up"
+  },
+  {
+    "categoryKey": "after-sales-service",
+    "skillKey": "parts-ordering"
+  },
+  {
+    "categoryKey": "after-sales-service",
+    "skillKey": "service-advising"
+  },
+  {
+    "categoryKey": "after-sales-service",
+    "skillKey": "warranty-processing"
+  },
+  {
+    "categoryKey": "agri-supply-chain",
+    "skillKey": "cold-chain-coordination"
+  },
+  {
+    "categoryKey": "agri-supply-chain",
+    "skillKey": "market-linkage"
+  },
+  {
+    "categoryKey": "agri-supply-chain",
+    "skillKey": "post-harvest-handling"
+  },
+  {
+    "categoryKey": "agri-supply-chain",
+    "skillKey": "produce-logistics"
+  },
+  {
+    "categoryKey": "agri-supply-chain",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "agri-supply-chain",
+    "skillKey": "safety-management"
+  },
+  {
+    "categoryKey": "agricultural-equipment",
+    "skillKey": "equipment-maintenance-agri"
+  },
+  {
+    "categoryKey": "agricultural-equipment",
+    "skillKey": "field-mechanization"
+  },
+  {
+    "categoryKey": "agricultural-equipment",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "agricultural-equipment",
+    "skillKey": "safety-management"
+  },
+  {
+    "categoryKey": "agricultural-equipment",
+    "skillKey": "spare-parts-management"
+  },
+  {
+    "categoryKey": "agricultural-equipment",
+    "skillKey": "tractor-operations"
+  },
+  {
+    "categoryKey": "agronomy",
+    "skillKey": "crop-nutrition"
+  },
+  {
+    "categoryKey": "agronomy",
+    "skillKey": "pest-management"
+  },
+  {
+    "categoryKey": "agronomy",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "agronomy",
+    "skillKey": "safety-management"
+  },
+  {
+    "categoryKey": "agronomy",
+    "skillKey": "seed-selection"
+  },
+  {
+    "categoryKey": "agronomy",
+    "skillKey": "yield-optimization"
+  },
+  {
+    "categoryKey": "aircraft-systems",
+    "skillKey": "aircraft-systems-integration"
+  },
+  {
+    "categoryKey": "aircraft-systems",
+    "skillKey": "avionics-systems"
+  },
+  {
+    "categoryKey": "aircraft-systems",
+    "skillKey": "flight-controls"
+  },
+  {
+    "categoryKey": "aircraft-systems",
+    "skillKey": "hydraulics"
+  },
+  {
+    "categoryKey": "analytics-consulting",
+    "skillKey": "business-intelligence"
+  },
+  {
+    "categoryKey": "analytics-consulting",
+    "skillKey": "dashboarding"
+  },
+  {
+    "categoryKey": "analytics-consulting",
+    "skillKey": "data-modeling"
+  },
+  {
+    "categoryKey": "analytics-consulting",
+    "skillKey": "facilitation"
+  },
+  {
+    "categoryKey": "analytics-consulting",
+    "skillKey": "insight-communication"
+  },
+  {
+    "categoryKey": "analytics-consulting",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "categoryKey": "apparel-production",
+    "skillKey": "garment-construction"
+  },
+  {
+    "categoryKey": "apparel-production",
+    "skillKey": "pattern-making"
+  },
+  {
+    "categoryKey": "apparel-production",
+    "skillKey": "production-coordination"
+  },
+  {
+    "categoryKey": "apparel-production",
+    "skillKey": "sample-sewing"
+  },
+  {
+    "categoryKey": "assembly-operations",
+    "skillKey": "assembly-line-operations"
+  },
+  {
+    "categoryKey": "assembly-operations",
+    "skillKey": "production-quality"
+  },
+  {
+    "categoryKey": "assembly-operations",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "assembly-operations",
+    "skillKey": "safety-management"
+  },
+  {
+    "categoryKey": "assembly-operations",
+    "skillKey": "torque-control"
+  },
+  {
+    "categoryKey": "assembly-operations",
+    "skillKey": "work-instructions"
+  },
+  {
+    "categoryKey": "assessment-and-evaluation",
+    "skillKey": "assessment-design"
+  },
+  {
+    "categoryKey": "assessment-and-evaluation",
+    "skillKey": "facilitation"
+  },
+  {
+    "categoryKey": "assessment-and-evaluation",
+    "skillKey": "grading-strategies"
+  },
+  {
+    "categoryKey": "assessment-and-evaluation",
+    "skillKey": "learning-analytics"
+  },
+  {
+    "categoryKey": "assessment-and-evaluation",
+    "skillKey": "rubric-development"
+  },
+  {
+    "categoryKey": "assessment-and-evaluation",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "categoryKey": "audio-production",
+    "skillKey": "audio-editing"
+  },
+  {
+    "categoryKey": "audio-production",
+    "skillKey": "mixing-and-mastering"
+  },
+  {
+    "categoryKey": "audio-production",
+    "skillKey": "project-management"
+  },
+  {
+    "categoryKey": "audio-production",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "audio-production",
+    "skillKey": "sound-design"
+  },
+  {
+    "categoryKey": "audio-production",
+    "skillKey": "studio-workflow"
+  },
+  {
+    "categoryKey": "auditing",
+    "skillKey": "audit-documentation"
+  },
+  {
+    "categoryKey": "auditing",
+    "skillKey": "audit-management"
+  },
+  {
+    "categoryKey": "auditing",
+    "skillKey": "audit-planning"
+  },
+  {
+    "categoryKey": "auditing",
+    "skillKey": "internal-controls"
+  },
+  {
+    "categoryKey": "auditing",
+    "skillKey": "sampling-techniques"
+  },
+  {
+    "categoryKey": "automotive-engineering",
+    "skillKey": "automotive-quality"
+  },
+  {
+    "categoryKey": "automotive-engineering",
+    "skillKey": "cad-modeling"
+  },
+  {
+    "categoryKey": "automotive-engineering",
+    "skillKey": "powertrain-systems"
+  },
+  {
+    "categoryKey": "automotive-engineering",
+    "skillKey": "vehicle-testing"
+  },
+  {
+    "categoryKey": "avionics",
+    "skillKey": "avionics-systems"
+  },
+  {
+    "categoryKey": "avionics",
+    "skillKey": "electrical-diagnostics-aircraft"
+  },
+  {
+    "categoryKey": "avionics",
+    "skillKey": "navigation-systems"
+  },
+  {
+    "categoryKey": "avionics",
+    "skillKey": "wiring-inspection"
+  },
+  {
+    "categoryKey": "backend-development",
+    "skillKey": "authentication-authorization"
+  },
+  {
+    "categoryKey": "backend-development",
+    "skillKey": "database-design"
+  },
+  {
+    "categoryKey": "backend-development",
+    "skillKey": "jwt"
+  },
+  {
+    "categoryKey": "backend-development",
+    "skillKey": "message-queues"
+  },
+  {
+    "categoryKey": "backend-development",
+    "skillKey": "nestjs"
+  },
+  {
+    "categoryKey": "backend-development",
+    "skillKey": "postgresql"
+  },
+  {
+    "categoryKey": "backend-development",
+    "skillKey": "redis"
+  },
+  {
+    "categoryKey": "backend-development",
+    "skillKey": "rest-apis"
+  },
+  {
+    "categoryKey": "beverage-production",
+    "skillKey": "bottling-line-operations"
+  },
+  {
+    "categoryKey": "beverage-production",
+    "skillKey": "brewing-operations"
+  },
+  {
+    "categoryKey": "beverage-production",
+    "skillKey": "formula-control"
+  },
+  {
+    "categoryKey": "beverage-production",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "beverage-production",
+    "skillKey": "safety-management"
+  },
+  {
+    "categoryKey": "beverage-production",
+    "skillKey": "sanitation"
+  },
+  {
+    "categoryKey": "brand-management",
+    "skillKey": "brand-positioning"
+  },
+  {
+    "categoryKey": "brand-management",
+    "skillKey": "brand-strategy"
+  },
+  {
+    "categoryKey": "brand-management",
+    "skillKey": "campaign-briefing"
+  },
+  {
+    "categoryKey": "brand-management",
+    "skillKey": "consumer-insights"
+  },
+  {
+    "categoryKey": "broadcast-operations",
+    "skillKey": "broadcast-scheduling"
+  },
+  {
+    "categoryKey": "broadcast-operations",
+    "skillKey": "live-control-room"
+  },
+  {
+    "categoryKey": "broadcast-operations",
+    "skillKey": "project-management"
+  },
+  {
+    "categoryKey": "broadcast-operations",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "broadcast-operations",
+    "skillKey": "rundown-management"
+  },
+  {
+    "categoryKey": "broadcast-operations",
+    "skillKey": "signal-monitoring"
+  },
+  {
+    "categoryKey": "brokerage-operations",
+    "skillKey": "client-qualification"
+  },
+  {
+    "categoryKey": "brokerage-operations",
+    "skillKey": "crm-real-estate"
+  },
+  {
+    "categoryKey": "brokerage-operations",
+    "skillKey": "customer-support"
+  },
+  {
+    "categoryKey": "brokerage-operations",
+    "skillKey": "deal-closure"
+  },
+  {
+    "categoryKey": "brokerage-operations",
+    "skillKey": "listing-management"
+  },
+  {
+    "categoryKey": "brokerage-operations",
+    "skillKey": "operations-management"
+  },
+  {
+    "categoryKey": "building-supervision",
+    "skillKey": "progress-monitoring"
+  },
+  {
+    "categoryKey": "building-supervision",
+    "skillKey": "quality-inspection-construction"
+  },
+  {
+    "categoryKey": "building-supervision",
+    "skillKey": "site-safety-audits"
+  },
+  {
+    "categoryKey": "building-supervision",
+    "skillKey": "site-supervision"
+  },
+  {
+    "categoryKey": "building-supervision",
+    "skillKey": "snag-list-management"
+  },
+  {
+    "categoryKey": "business-strategy",
+    "skillKey": "kpi-design"
+  },
+  {
+    "categoryKey": "business-strategy",
+    "skillKey": "market-analysis"
+  },
+  {
+    "categoryKey": "business-strategy",
+    "skillKey": "scenario-analysis"
+  },
+  {
+    "categoryKey": "business-strategy",
+    "skillKey": "stakeholder-analysis"
+  },
+  {
+    "categoryKey": "business-strategy",
+    "skillKey": "strategic-planning"
+  },
+  {
+    "categoryKey": "care-coordination",
+    "skillKey": "care-planning"
+  },
+  {
+    "categoryKey": "care-coordination",
+    "skillKey": "case-management"
+  },
+  {
+    "categoryKey": "care-coordination",
+    "skillKey": "patient-navigation"
+  },
+  {
+    "categoryKey": "care-coordination",
+    "skillKey": "project-management"
+  },
+  {
+    "categoryKey": "care-coordination",
+    "skillKey": "referral-management"
+  },
+  {
+    "categoryKey": "care-coordination",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "clinical-research",
+    "skillKey": "clinical-documentation"
+  },
+  {
+    "categoryKey": "clinical-research",
+    "skillKey": "data-capture"
+  },
+  {
+    "categoryKey": "clinical-research",
+    "skillKey": "protocol-compliance"
+  },
+  {
+    "categoryKey": "clinical-research",
+    "skillKey": "site-coordination"
+  },
+  {
+    "categoryKey": "community-programs",
+    "skillKey": "beneficiary-engagement"
+  },
+  {
+    "categoryKey": "community-programs",
+    "skillKey": "community-outreach"
+  },
+  {
+    "categoryKey": "community-programs",
+    "skillKey": "field-reporting"
+  },
+  {
+    "categoryKey": "community-programs",
+    "skillKey": "program-delivery"
+  },
+  {
+    "categoryKey": "community-recreation",
+    "skillKey": "activity-planning"
+  },
+  {
+    "categoryKey": "community-recreation",
+    "skillKey": "customer-support"
+  },
+  {
+    "categoryKey": "community-recreation",
+    "skillKey": "operations-management"
+  },
+  {
+    "categoryKey": "community-recreation",
+    "skillKey": "participant-engagement"
+  },
+  {
+    "categoryKey": "community-recreation",
+    "skillKey": "program-facilitation"
+  },
+  {
+    "categoryKey": "community-recreation",
+    "skillKey": "recreation-safety"
+  },
+  {
+    "categoryKey": "compensation-and-benefits",
+    "skillKey": "benefits-design"
+  },
+  {
+    "categoryKey": "compensation-and-benefits",
+    "skillKey": "facilitation"
+  },
+  {
+    "categoryKey": "compensation-and-benefits",
+    "skillKey": "pay-structures"
+  },
+  {
+    "categoryKey": "compensation-and-benefits",
+    "skillKey": "reward-strategy"
+  },
+  {
+    "categoryKey": "compensation-and-benefits",
+    "skillKey": "salary-benchmarking"
+  },
+  {
+    "categoryKey": "compensation-and-benefits",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "categoryKey": "compliance",
+    "skillKey": "compliance-reporting"
+  },
+  {
+    "categoryKey": "compliance",
+    "skillKey": "control-testing"
+  },
+  {
+    "categoryKey": "compliance",
+    "skillKey": "policy-monitoring"
+  },
+  {
+    "categoryKey": "compliance",
+    "skillKey": "regulatory-compliance"
+  },
+  {
+    "categoryKey": "content-marketing",
+    "skillKey": "content-writing"
+  },
+  {
+    "categoryKey": "content-marketing",
+    "skillKey": "copy-editing"
+  },
+  {
+    "categoryKey": "content-marketing",
+    "skillKey": "editorial-planning"
+  },
+  {
+    "categoryKey": "content-marketing",
+    "skillKey": "storytelling"
+  },
+  {
+    "categoryKey": "content-production",
+    "skillKey": "content-scheduling"
+  },
+  {
+    "categoryKey": "content-production",
+    "skillKey": "editorial-workflow"
+  },
+  {
+    "categoryKey": "content-production",
+    "skillKey": "media-production"
+  },
+  {
+    "categoryKey": "content-production",
+    "skillKey": "scriptwriting"
+  },
+  {
+    "categoryKey": "contract-management",
+    "skillKey": "contract-lifecycle-management"
+  },
+  {
+    "categoryKey": "contract-management",
+    "skillKey": "contract-review"
+  },
+  {
+    "categoryKey": "contract-management",
+    "skillKey": "negotiation-support"
+  },
+  {
+    "categoryKey": "contract-management",
+    "skillKey": "obligation-tracking"
+  },
+  {
+    "categoryKey": "corporate-legal",
+    "skillKey": "board-documentation"
+  },
+  {
+    "categoryKey": "corporate-legal",
+    "skillKey": "compliance-management"
+  },
+  {
+    "categoryKey": "corporate-legal",
+    "skillKey": "corporate-governance"
+  },
+  {
+    "categoryKey": "corporate-legal",
+    "skillKey": "entity-management"
+  },
+  {
+    "categoryKey": "corporate-legal",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "corporate-legal",
+    "skillKey": "transaction-support"
+  },
+  {
+    "categoryKey": "crm-and-lifecycle",
+    "skillKey": "customer-segmentation"
+  },
+  {
+    "categoryKey": "crm-and-lifecycle",
+    "skillKey": "email-marketing"
+  },
+  {
+    "categoryKey": "crm-and-lifecycle",
+    "skillKey": "facilitation"
+  },
+  {
+    "categoryKey": "crm-and-lifecycle",
+    "skillKey": "marketing-automation"
+  },
+  {
+    "categoryKey": "crm-and-lifecycle",
+    "skillKey": "retention-strategy"
+  },
+  {
+    "categoryKey": "crm-and-lifecycle",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "categoryKey": "crop-production",
+    "skillKey": "irrigation"
+  },
+  {
+    "categoryKey": "crop-production",
+    "skillKey": "pest-management"
+  },
+  {
+    "categoryKey": "crop-production",
+    "skillKey": "soil-analysis"
+  },
+  {
+    "categoryKey": "crop-production",
+    "skillKey": "yield-optimization"
+  },
+  {
+    "categoryKey": "curriculum-design",
+    "skillKey": "assessment-design"
+  },
+  {
+    "categoryKey": "curriculum-design",
+    "skillKey": "course-mapping"
+  },
+  {
+    "categoryKey": "curriculum-design",
+    "skillKey": "instructional-design"
+  },
+  {
+    "categoryKey": "curriculum-design",
+    "skillKey": "learning-objectives"
+  },
+  {
+    "categoryKey": "customer-service",
+    "skillKey": "complaint-resolution"
+  },
+  {
+    "categoryKey": "customer-service",
+    "skillKey": "customer-retention"
+  },
+  {
+    "categoryKey": "customer-service",
+    "skillKey": "omnichannel-support"
+  },
+  {
+    "categoryKey": "customer-service",
+    "skillKey": "service-recovery"
+  },
+  {
+    "categoryKey": "cybersecurity",
+    "skillKey": "identity-access-management"
+  },
+  {
+    "categoryKey": "cybersecurity",
+    "skillKey": "network-security"
+  },
+  {
+    "categoryKey": "cybersecurity",
+    "skillKey": "penetration-testing"
+  },
+  {
+    "categoryKey": "cybersecurity",
+    "skillKey": "security-monitoring"
+  },
+  {
+    "categoryKey": "cybersecurity",
+    "skillKey": "siem"
+  },
+  {
+    "categoryKey": "cybersecurity",
+    "skillKey": "vulnerability-management"
+  },
+  {
+    "categoryKey": "data-and-ai",
+    "skillKey": "data-analysis"
+  },
+  {
+    "categoryKey": "data-and-ai",
+    "skillKey": "data-engineering"
+  },
+  {
+    "categoryKey": "data-and-ai",
+    "skillKey": "feature-engineering"
+  },
+  {
+    "categoryKey": "data-and-ai",
+    "skillKey": "machine-learning"
+  },
+  {
+    "categoryKey": "data-and-ai",
+    "skillKey": "model-deployment"
+  },
+  {
+    "categoryKey": "data-and-ai",
+    "skillKey": "sql"
+  },
+  {
+    "categoryKey": "defense-operations",
+    "skillKey": "defense-logistics"
+  },
+  {
+    "categoryKey": "defense-operations",
+    "skillKey": "mission-readiness"
+  },
+  {
+    "categoryKey": "defense-operations",
+    "skillKey": "operational-briefing"
+  },
+  {
+    "categoryKey": "defense-operations",
+    "skillKey": "supply-coordination-defense"
+  },
+  {
+    "categoryKey": "destination-management",
+    "skillKey": "activity-booking"
+  },
+  {
+    "categoryKey": "destination-management",
+    "skillKey": "customer-support"
+  },
+  {
+    "categoryKey": "destination-management",
+    "skillKey": "group-logistics"
+  },
+  {
+    "categoryKey": "destination-management",
+    "skillKey": "guest-support-travel"
+  },
+  {
+    "categoryKey": "destination-management",
+    "skillKey": "local-partner-coordination"
+  },
+  {
+    "categoryKey": "destination-management",
+    "skillKey": "operations-management"
+  },
+  {
+    "categoryKey": "devops-and-cloud",
+    "skillKey": "ci-cd"
+  },
+  {
+    "categoryKey": "devops-and-cloud",
+    "skillKey": "cloud-infrastructure"
+  },
+  {
+    "categoryKey": "devops-and-cloud",
+    "skillKey": "container-security"
+  },
+  {
+    "categoryKey": "devops-and-cloud",
+    "skillKey": "docker"
+  },
+  {
+    "categoryKey": "devops-and-cloud",
+    "skillKey": "infrastructure-as-code"
+  },
+  {
+    "categoryKey": "devops-and-cloud",
+    "skillKey": "kubernetes"
+  },
+  {
+    "categoryKey": "devops-and-cloud",
+    "skillKey": "linux-administration"
+  },
+  {
+    "categoryKey": "devops-and-cloud",
+    "skillKey": "observability"
+  },
+  {
+    "categoryKey": "digital-government",
+    "skillKey": "citizen-support"
+  },
+  {
+    "categoryKey": "digital-government",
+    "skillKey": "compliance-management"
+  },
+  {
+    "categoryKey": "digital-government",
+    "skillKey": "inter-agency-coordination"
+  },
+  {
+    "categoryKey": "digital-government",
+    "skillKey": "records-management"
+  },
+  {
+    "categoryKey": "digital-government",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "digital-government",
+    "skillKey": "service-digitization"
+  },
+  {
+    "categoryKey": "digital-marketing",
+    "skillKey": "campaign-management"
+  },
+  {
+    "categoryKey": "digital-marketing",
+    "skillKey": "conversion-rate-optimization"
+  },
+  {
+    "categoryKey": "digital-marketing",
+    "skillKey": "search-engine-marketing"
+  },
+  {
+    "categoryKey": "digital-marketing",
+    "skillKey": "seo"
+  },
+  {
+    "categoryKey": "digital-transformation",
+    "skillKey": "business-analysis"
+  },
+  {
+    "categoryKey": "digital-transformation",
+    "skillKey": "cloud-infrastructure"
+  },
+  {
+    "categoryKey": "digital-transformation",
+    "skillKey": "requirements-gathering"
+  },
+  {
+    "categoryKey": "digital-transformation",
+    "skillKey": "system-implementation"
+  },
+  {
+    "categoryKey": "digital-transformation",
+    "skillKey": "user-adoption"
+  },
+  {
+    "categoryKey": "drug-production",
+    "skillKey": "batch-documentation"
+  },
+  {
+    "categoryKey": "drug-production",
+    "skillKey": "clean-room-operations"
+  },
+  {
+    "categoryKey": "drug-production",
+    "skillKey": "good-manufacturing-practices"
+  },
+  {
+    "categoryKey": "drug-production",
+    "skillKey": "process-validation"
+  },
+  {
+    "categoryKey": "e-commerce",
+    "skillKey": "conversion-optimization"
+  },
+  {
+    "categoryKey": "e-commerce",
+    "skillKey": "customer-support"
+  },
+  {
+    "categoryKey": "e-commerce",
+    "skillKey": "marketplace-operations"
+  },
+  {
+    "categoryKey": "e-commerce",
+    "skillKey": "online-merchandising"
+  },
+  {
+    "categoryKey": "e-commerce",
+    "skillKey": "operations-management"
+  },
+  {
+    "categoryKey": "e-commerce",
+    "skillKey": "order-fulfillment"
+  },
+  {
+    "categoryKey": "educational-technology",
+    "skillKey": "content-authoring"
+  },
+  {
+    "categoryKey": "educational-technology",
+    "skillKey": "digital-assessment"
+  },
+  {
+    "categoryKey": "educational-technology",
+    "skillKey": "facilitation"
+  },
+  {
+    "categoryKey": "educational-technology",
+    "skillKey": "instructional-technology"
+  },
+  {
+    "categoryKey": "educational-technology",
+    "skillKey": "learning-management-systems"
+  },
+  {
+    "categoryKey": "educational-technology",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "categoryKey": "employee-relations",
+    "skillKey": "employee-support"
+  },
+  {
+    "categoryKey": "employee-relations",
+    "skillKey": "grievance-handling"
+  },
+  {
+    "categoryKey": "employee-relations",
+    "skillKey": "labor-relations"
+  },
+  {
+    "categoryKey": "employee-relations",
+    "skillKey": "policy-guidance"
+  },
+  {
+    "categoryKey": "energy-distribution",
+    "skillKey": "distribution-maintenance"
+  },
+  {
+    "categoryKey": "energy-distribution",
+    "skillKey": "metering-operations"
+  },
+  {
+    "categoryKey": "energy-distribution",
+    "skillKey": "network-switching"
+  },
+  {
+    "categoryKey": "energy-distribution",
+    "skillKey": "outage-response"
+  },
+  {
+    "categoryKey": "energy-distribution",
+    "skillKey": "power-distribution"
+  },
+  {
+    "categoryKey": "energy-trading",
+    "skillKey": "contract-settlement"
+  },
+  {
+    "categoryKey": "energy-trading",
+    "skillKey": "energy-market-analysis"
+  },
+  {
+    "categoryKey": "energy-trading",
+    "skillKey": "price-forecasting"
+  },
+  {
+    "categoryKey": "energy-trading",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "energy-trading",
+    "skillKey": "safety-management"
+  },
+  {
+    "categoryKey": "energy-trading",
+    "skillKey": "trading-operations"
+  },
+  {
+    "categoryKey": "event-management",
+    "skillKey": "attendee-coordination"
+  },
+  {
+    "categoryKey": "event-management",
+    "skillKey": "event-budgeting"
+  },
+  {
+    "categoryKey": "event-management",
+    "skillKey": "run-of-show"
+  },
+  {
+    "categoryKey": "event-management",
+    "skillKey": "vendor-management-events"
+  },
+  {
+    "categoryKey": "events-and-banquet",
+    "skillKey": "banquet-coordination"
+  },
+  {
+    "categoryKey": "events-and-banquet",
+    "skillKey": "customer-support"
+  },
+  {
+    "categoryKey": "events-and-banquet",
+    "skillKey": "event-setup"
+  },
+  {
+    "categoryKey": "events-and-banquet",
+    "skillKey": "guest-experience"
+  },
+  {
+    "categoryKey": "events-and-banquet",
+    "skillKey": "operations-management"
+  },
+  {
+    "categoryKey": "events-and-banquet",
+    "skillKey": "vendor-liaison"
+  },
+  {
+    "categoryKey": "facility-management",
+    "skillKey": "asset-lifecycle-management"
+  },
+  {
+    "categoryKey": "facility-management",
+    "skillKey": "building-maintenance"
+  },
+  {
+    "categoryKey": "facility-management",
+    "skillKey": "customer-support"
+  },
+  {
+    "categoryKey": "facility-management",
+    "skillKey": "operations-management"
+  },
+  {
+    "categoryKey": "facility-management",
+    "skillKey": "tenant-services"
+  },
+  {
+    "categoryKey": "facility-management",
+    "skillKey": "vendor-supervision"
+  },
+  {
+    "categoryKey": "facility-operations",
+    "skillKey": "customer-support"
+  },
+  {
+    "categoryKey": "facility-operations",
+    "skillKey": "equipment-checks"
+  },
+  {
+    "categoryKey": "facility-operations",
+    "skillKey": "event-readiness"
+  },
+  {
+    "categoryKey": "facility-operations",
+    "skillKey": "member-services"
+  },
+  {
+    "categoryKey": "facility-operations",
+    "skillKey": "operations-management"
+  },
+  {
+    "categoryKey": "facility-operations",
+    "skillKey": "venue-scheduling"
+  },
+  {
+    "categoryKey": "farm-operations",
+    "skillKey": "farm-planning"
+  },
+  {
+    "categoryKey": "farm-operations",
+    "skillKey": "harvest-coordination"
+  },
+  {
+    "categoryKey": "farm-operations",
+    "skillKey": "input-management"
+  },
+  {
+    "categoryKey": "farm-operations",
+    "skillKey": "labor-supervision"
+  },
+  {
+    "categoryKey": "fashion-design",
+    "skillKey": "collection-development"
+  },
+  {
+    "categoryKey": "fashion-design",
+    "skillKey": "color-story"
+  },
+  {
+    "categoryKey": "fashion-design",
+    "skillKey": "fashion-sketching"
+  },
+  {
+    "categoryKey": "fashion-design",
+    "skillKey": "trend-research"
+  },
+  {
+    "categoryKey": "fashion-marketing",
+    "skillKey": "brand-campaigns-fashion"
+  },
+  {
+    "categoryKey": "fashion-marketing",
+    "skillKey": "fashion-content"
+  },
+  {
+    "categoryKey": "fashion-marketing",
+    "skillKey": "influencer-collaboration"
+  },
+  {
+    "categoryKey": "fashion-marketing",
+    "skillKey": "project-management"
+  },
+  {
+    "categoryKey": "fashion-marketing",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "fashion-marketing",
+    "skillKey": "visual-storytelling"
+  },
+  {
+    "categoryKey": "field-maintenance-energy",
+    "skillKey": "equipment-inspection"
+  },
+  {
+    "categoryKey": "field-maintenance-energy",
+    "skillKey": "fault-diagnosis"
+  },
+  {
+    "categoryKey": "field-maintenance-energy",
+    "skillKey": "preventive-maintenance-energy"
+  },
+  {
+    "categoryKey": "field-maintenance-energy",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "field-maintenance-energy",
+    "skillKey": "safety-management"
+  },
+  {
+    "categoryKey": "field-maintenance-energy",
+    "skillKey": "work-permits"
+  },
+  {
+    "categoryKey": "field-services",
+    "skillKey": "fiber-splicing"
+  },
+  {
+    "categoryKey": "field-services",
+    "skillKey": "network-maintenance"
+  },
+  {
+    "categoryKey": "field-services",
+    "skillKey": "project-management"
+  },
+  {
+    "categoryKey": "field-services",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "field-services",
+    "skillKey": "service-activation"
+  },
+  {
+    "categoryKey": "field-services",
+    "skillKey": "site-installation"
+  },
+  {
+    "categoryKey": "financial-analysis",
+    "skillKey": "budgeting"
+  },
+  {
+    "categoryKey": "financial-analysis",
+    "skillKey": "business-valuation"
+  },
+  {
+    "categoryKey": "financial-analysis",
+    "skillKey": "cash-flow-analysis"
+  },
+  {
+    "categoryKey": "financial-analysis",
+    "skillKey": "financial-modeling"
+  },
+  {
+    "categoryKey": "financial-analysis",
+    "skillKey": "variance-analysis"
+  },
+  {
+    "categoryKey": "fitness-coaching",
+    "skillKey": "client-assessment"
+  },
+  {
+    "categoryKey": "fitness-coaching",
+    "skillKey": "exercise-demonstration"
+  },
+  {
+    "categoryKey": "fitness-coaching",
+    "skillKey": "fitness-program-design"
+  },
+  {
+    "categoryKey": "fitness-coaching",
+    "skillKey": "progress-tracking"
+  },
+  {
+    "categoryKey": "fleet-management",
+    "skillKey": "driver-assignment"
+  },
+  {
+    "categoryKey": "fleet-management",
+    "skillKey": "fleet-scheduling"
+  },
+  {
+    "categoryKey": "fleet-management",
+    "skillKey": "fuel-management"
+  },
+  {
+    "categoryKey": "fleet-management",
+    "skillKey": "maintenance-scheduling-fleet"
+  },
+  {
+    "categoryKey": "fleet-management",
+    "skillKey": "vehicle-utilization"
+  },
+  {
+    "categoryKey": "food-production",
+    "skillKey": "batch-production"
+  },
+  {
+    "categoryKey": "food-production",
+    "skillKey": "food-safety"
+  },
+  {
+    "categoryKey": "food-production",
+    "skillKey": "quality-checks-food"
+  },
+  {
+    "categoryKey": "food-production",
+    "skillKey": "sanitation"
+  },
+  {
+    "categoryKey": "food-service",
+    "skillKey": "food-preparation"
+  },
+  {
+    "categoryKey": "food-service",
+    "skillKey": "hygiene-standards"
+  },
+  {
+    "categoryKey": "food-service",
+    "skillKey": "kitchen-operations"
+  },
+  {
+    "categoryKey": "food-service",
+    "skillKey": "menu-planning"
+  },
+  {
+    "categoryKey": "food-service-management",
+    "skillKey": "kitchen-supervision"
+  },
+  {
+    "categoryKey": "food-service-management",
+    "skillKey": "menu-costing"
+  },
+  {
+    "categoryKey": "food-service-management",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "food-service-management",
+    "skillKey": "safety-management"
+  },
+  {
+    "categoryKey": "food-service-management",
+    "skillKey": "service-quality"
+  },
+  {
+    "categoryKey": "food-service-management",
+    "skillKey": "supplier-coordination"
+  },
+  {
+    "categoryKey": "fp-and-a",
+    "skillKey": "cash-flow-analysis"
+  },
+  {
+    "categoryKey": "fp-and-a",
+    "skillKey": "compliance-management"
+  },
+  {
+    "categoryKey": "fp-and-a",
+    "skillKey": "financial-modeling"
+  },
+  {
+    "categoryKey": "fp-and-a",
+    "skillKey": "forecasting"
+  },
+  {
+    "categoryKey": "fp-and-a",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "fp-and-a",
+    "skillKey": "variance-analysis"
+  },
+  {
+    "categoryKey": "front-office",
+    "skillKey": "check-in-check-out"
+  },
+  {
+    "categoryKey": "front-office",
+    "skillKey": "customer-support"
+  },
+  {
+    "categoryKey": "front-office",
+    "skillKey": "front-desk-operations"
+  },
+  {
+    "categoryKey": "front-office",
+    "skillKey": "guest-complaint-handling"
+  },
+  {
+    "categoryKey": "front-office",
+    "skillKey": "operations-management"
+  },
+  {
+    "categoryKey": "front-office",
+    "skillKey": "reservation-systems"
+  },
+  {
+    "categoryKey": "frontend-development",
+    "skillKey": "accessibility-web"
+  },
+  {
+    "categoryKey": "frontend-development",
+    "skillKey": "css"
+  },
+  {
+    "categoryKey": "frontend-development",
+    "skillKey": "next-js"
+  },
+  {
+    "categoryKey": "frontend-development",
+    "skillKey": "react"
+  },
+  {
+    "categoryKey": "frontend-development",
+    "skillKey": "responsive-design"
+  },
+  {
+    "categoryKey": "frontend-development",
+    "skillKey": "state-management"
+  },
+  {
+    "categoryKey": "frontend-development",
+    "skillKey": "typescript"
+  },
+  {
+    "categoryKey": "frontend-development",
+    "skillKey": "ui-design-systems"
+  },
+  {
+    "categoryKey": "fundraising",
+    "skillKey": "donor-stewardship"
+  },
+  {
+    "categoryKey": "fundraising",
+    "skillKey": "event-fundraising"
+  },
+  {
+    "categoryKey": "fundraising",
+    "skillKey": "fundraising-campaigns"
+  },
+  {
+    "categoryKey": "fundraising",
+    "skillKey": "proposal-writing"
+  },
+  {
+    "categoryKey": "grant-management",
+    "skillKey": "donor-compliance"
+  },
+  {
+    "categoryKey": "grant-management",
+    "skillKey": "facilitation"
+  },
+  {
+    "categoryKey": "grant-management",
+    "skillKey": "grant-reporting"
+  },
+  {
+    "categoryKey": "grant-management",
+    "skillKey": "program-budgeting"
+  },
+  {
+    "categoryKey": "grant-management",
+    "skillKey": "proposal-writing"
+  },
+  {
+    "categoryKey": "grant-management",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "categoryKey": "grid-operations",
+    "skillKey": "control-room-operations"
+  },
+  {
+    "categoryKey": "grid-operations",
+    "skillKey": "grid-monitoring"
+  },
+  {
+    "categoryKey": "grid-operations",
+    "skillKey": "load-balancing"
+  },
+  {
+    "categoryKey": "grid-operations",
+    "skillKey": "outage-management"
+  },
+  {
+    "categoryKey": "grid-operations",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "grid-operations",
+    "skillKey": "safety-management"
+  },
+  {
+    "categoryKey": "guest-relations",
+    "skillKey": "guest-complaint-handling"
+  },
+  {
+    "categoryKey": "guest-relations",
+    "skillKey": "reservation-handling"
+  },
+  {
+    "categoryKey": "guest-relations",
+    "skillKey": "service-recovery"
+  },
+  {
+    "categoryKey": "guest-relations",
+    "skillKey": "vip-management"
+  },
+  {
+    "categoryKey": "hotel-operations",
+    "skillKey": "guest-service"
+  },
+  {
+    "categoryKey": "hotel-operations",
+    "skillKey": "housekeeping-coordination"
+  },
+  {
+    "categoryKey": "hotel-operations",
+    "skillKey": "occupancy-management"
+  },
+  {
+    "categoryKey": "hotel-operations",
+    "skillKey": "service-standards"
+  },
+  {
+    "categoryKey": "housekeeping",
+    "skillKey": "cleaning-procedures"
+  },
+  {
+    "categoryKey": "housekeeping",
+    "skillKey": "customer-support"
+  },
+  {
+    "categoryKey": "housekeeping",
+    "skillKey": "hospitality-hygiene"
+  },
+  {
+    "categoryKey": "housekeeping",
+    "skillKey": "linen-management"
+  },
+  {
+    "categoryKey": "housekeeping",
+    "skillKey": "operations-management"
+  },
+  {
+    "categoryKey": "housekeeping",
+    "skillKey": "room-inspection"
+  },
+  {
+    "categoryKey": "hr-operations",
+    "skillKey": "employee-records"
+  },
+  {
+    "categoryKey": "hr-operations",
+    "skillKey": "facilitation"
+  },
+  {
+    "categoryKey": "hr-operations",
+    "skillKey": "hr-service-delivery"
+  },
+  {
+    "categoryKey": "hr-operations",
+    "skillKey": "offboarding"
+  },
+  {
+    "categoryKey": "hr-operations",
+    "skillKey": "onboarding"
+  },
+  {
+    "categoryKey": "hr-operations",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "categoryKey": "hse-construction",
+    "skillKey": "construction-risk-assessment"
+  },
+  {
+    "categoryKey": "hse-construction",
+    "skillKey": "incident-investigation"
+  },
+  {
+    "categoryKey": "hse-construction",
+    "skillKey": "permit-to-work"
+  },
+  {
+    "categoryKey": "hse-construction",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "hse-construction",
+    "skillKey": "safety-management"
+  },
+  {
+    "categoryKey": "hse-construction",
+    "skillKey": "site-safety-audits"
+  },
+  {
+    "categoryKey": "industrial-engineering",
+    "skillKey": "capacity-planning"
+  },
+  {
+    "categoryKey": "industrial-engineering",
+    "skillKey": "line-balancing"
+  },
+  {
+    "categoryKey": "industrial-engineering",
+    "skillKey": "production-planning"
+  },
+  {
+    "categoryKey": "industrial-engineering",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "industrial-engineering",
+    "skillKey": "safety-management"
+  },
+  {
+    "categoryKey": "industrial-engineering",
+    "skillKey": "work-study"
+  },
+  {
+    "categoryKey": "infrastructure-management",
+    "skillKey": "capacity-planning"
+  },
+  {
+    "categoryKey": "infrastructure-management",
+    "skillKey": "fiber-network-management"
+  },
+  {
+    "categoryKey": "infrastructure-management",
+    "skillKey": "infrastructure-upgrades"
+  },
+  {
+    "categoryKey": "infrastructure-management",
+    "skillKey": "tower-asset-management"
+  },
+  {
+    "categoryKey": "intellectual-property",
+    "skillKey": "compliance-management"
+  },
+  {
+    "categoryKey": "intellectual-property",
+    "skillKey": "ip-portfolio-management"
+  },
+  {
+    "categoryKey": "intellectual-property",
+    "skillKey": "licensing"
+  },
+  {
+    "categoryKey": "intellectual-property",
+    "skillKey": "patent-research"
+  },
+  {
+    "categoryKey": "intellectual-property",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "intellectual-property",
+    "skillKey": "trademark-management"
+  },
+  {
+    "categoryKey": "inventory-management",
+    "skillKey": "cycle-counting"
+  },
+  {
+    "categoryKey": "inventory-management",
+    "skillKey": "replenishment-planning"
+  },
+  {
+    "categoryKey": "inventory-management",
+    "skillKey": "shrinkage-control"
+  },
+  {
+    "categoryKey": "inventory-management",
+    "skillKey": "stock-accuracy"
+  },
+  {
+    "categoryKey": "inventory-management",
+    "skillKey": "stock-control"
+  },
+  {
+    "categoryKey": "investment-analysis",
+    "skillKey": "capital-markets"
+  },
+  {
+    "categoryKey": "investment-analysis",
+    "skillKey": "compliance-management"
+  },
+  {
+    "categoryKey": "investment-analysis",
+    "skillKey": "due-diligence"
+  },
+  {
+    "categoryKey": "investment-analysis",
+    "skillKey": "portfolio-analysis"
+  },
+  {
+    "categoryKey": "investment-analysis",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "investment-analysis",
+    "skillKey": "valuation"
+  },
+  {
+    "categoryKey": "laboratory-services",
+    "skillKey": "laboratory-safety"
+  },
+  {
+    "categoryKey": "laboratory-services",
+    "skillKey": "laboratory-testing"
+  },
+  {
+    "categoryKey": "laboratory-services",
+    "skillKey": "quality-control-lab"
+  },
+  {
+    "categoryKey": "laboratory-services",
+    "skillKey": "result-validation"
+  },
+  {
+    "categoryKey": "laboratory-services",
+    "skillKey": "sample-processing"
+  },
+  {
+    "categoryKey": "last-mile-operations",
+    "skillKey": "courier-management"
+  },
+  {
+    "categoryKey": "last-mile-operations",
+    "skillKey": "customer-communication"
+  },
+  {
+    "categoryKey": "last-mile-operations",
+    "skillKey": "delivery-routing"
+  },
+  {
+    "categoryKey": "last-mile-operations",
+    "skillKey": "project-management"
+  },
+  {
+    "categoryKey": "last-mile-operations",
+    "skillKey": "proof-of-delivery"
+  },
+  {
+    "categoryKey": "last-mile-operations",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "lean-manufacturing",
+    "skillKey": "kaizen"
+  },
+  {
+    "categoryKey": "lean-manufacturing",
+    "skillKey": "lean-principles"
+  },
+  {
+    "categoryKey": "lean-manufacturing",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "lean-manufacturing",
+    "skillKey": "safety-management"
+  },
+  {
+    "categoryKey": "lean-manufacturing",
+    "skillKey": "value-stream-mapping"
+  },
+  {
+    "categoryKey": "lean-manufacturing",
+    "skillKey": "waste-reduction"
+  },
+  {
+    "categoryKey": "learning-and-development",
+    "skillKey": "content-development"
+  },
+  {
+    "categoryKey": "learning-and-development",
+    "skillKey": "facilitation"
+  },
+  {
+    "categoryKey": "learning-and-development",
+    "skillKey": "learning-evaluation"
+  },
+  {
+    "categoryKey": "learning-and-development",
+    "skillKey": "training-design"
+  },
+  {
+    "categoryKey": "legal-research",
+    "skillKey": "case-law-analysis"
+  },
+  {
+    "categoryKey": "legal-research",
+    "skillKey": "citation-management"
+  },
+  {
+    "categoryKey": "legal-research",
+    "skillKey": "legal-drafting"
+  },
+  {
+    "categoryKey": "legal-research",
+    "skillKey": "statutory-interpretation"
+  },
+  {
+    "categoryKey": "litigation-support",
+    "skillKey": "case-preparation"
+  },
+  {
+    "categoryKey": "litigation-support",
+    "skillKey": "compliance-management"
+  },
+  {
+    "categoryKey": "litigation-support",
+    "skillKey": "court-filing"
+  },
+  {
+    "categoryKey": "litigation-support",
+    "skillKey": "e-discovery"
+  },
+  {
+    "categoryKey": "litigation-support",
+    "skillKey": "legal-research-tools"
+  },
+  {
+    "categoryKey": "litigation-support",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "livestock-management",
+    "skillKey": "animal-care"
+  },
+  {
+    "categoryKey": "livestock-management",
+    "skillKey": "biosecurity"
+  },
+  {
+    "categoryKey": "livestock-management",
+    "skillKey": "breeding-management"
+  },
+  {
+    "categoryKey": "livestock-management",
+    "skillKey": "feeding-programs"
+  },
+  {
+    "categoryKey": "logistics",
+    "skillKey": "delivery-tracking"
+  },
+  {
+    "categoryKey": "logistics",
+    "skillKey": "freight-coordination"
+  },
+  {
+    "categoryKey": "logistics",
+    "skillKey": "logistics-planning"
+  },
+  {
+    "categoryKey": "logistics",
+    "skillKey": "shipment-planning"
+  },
+  {
+    "categoryKey": "logistics",
+    "skillKey": "transport-documentation"
+  },
+  {
+    "categoryKey": "maintenance",
+    "skillKey": "equipment-inspection"
+  },
+  {
+    "categoryKey": "maintenance",
+    "skillKey": "maintenance-planning"
+  },
+  {
+    "categoryKey": "maintenance",
+    "skillKey": "preventive-maintenance"
+  },
+  {
+    "categoryKey": "maintenance",
+    "skillKey": "spare-parts-management"
+  },
+  {
+    "categoryKey": "maintenance",
+    "skillKey": "troubleshooting"
+  },
+  {
+    "categoryKey": "maintenance-repair-overhaul",
+    "skillKey": "aircraft-maintenance"
+  },
+  {
+    "categoryKey": "maintenance-repair-overhaul",
+    "skillKey": "airworthiness-compliance"
+  },
+  {
+    "categoryKey": "maintenance-repair-overhaul",
+    "skillKey": "maintenance-planning"
+  },
+  {
+    "categoryKey": "maintenance-repair-overhaul",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "maintenance-repair-overhaul",
+    "skillKey": "safety-management"
+  },
+  {
+    "categoryKey": "maintenance-repair-overhaul",
+    "skillKey": "technical-inspection"
+  },
+  {
+    "categoryKey": "management-consulting",
+    "skillKey": "change-management"
+  },
+  {
+    "categoryKey": "management-consulting",
+    "skillKey": "facilitation"
+  },
+  {
+    "categoryKey": "management-consulting",
+    "skillKey": "operating-model-design"
+  },
+  {
+    "categoryKey": "management-consulting",
+    "skillKey": "performance-improvement"
+  },
+  {
+    "categoryKey": "management-consulting",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "categoryKey": "management-consulting",
+    "skillKey": "workshop-facilitation"
+  },
+  {
+    "categoryKey": "marketing-analytics",
+    "skillKey": "attribution-modeling"
+  },
+  {
+    "categoryKey": "marketing-analytics",
+    "skillKey": "campaign-reporting"
+  },
+  {
+    "categoryKey": "marketing-analytics",
+    "skillKey": "conversion-tracking"
+  },
+  {
+    "categoryKey": "marketing-analytics",
+    "skillKey": "facilitation"
+  },
+  {
+    "categoryKey": "marketing-analytics",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "categoryKey": "marketing-analytics",
+    "skillKey": "web-analytics"
+  },
+  {
+    "categoryKey": "medical-administration",
+    "skillKey": "appointment-scheduling"
+  },
+  {
+    "categoryKey": "medical-administration",
+    "skillKey": "billing-and-coding"
+  },
+  {
+    "categoryKey": "medical-administration",
+    "skillKey": "claims-processing"
+  },
+  {
+    "categoryKey": "medical-administration",
+    "skillKey": "medical-records-management"
+  },
+  {
+    "categoryKey": "medical-administration",
+    "skillKey": "patient-registration"
+  },
+  {
+    "categoryKey": "merchandising",
+    "skillKey": "assortment-planning"
+  },
+  {
+    "categoryKey": "merchandising",
+    "skillKey": "planograms"
+  },
+  {
+    "categoryKey": "merchandising",
+    "skillKey": "pricing-strategy"
+  },
+  {
+    "categoryKey": "merchandising",
+    "skillKey": "vendor-coordination"
+  },
+  {
+    "categoryKey": "merchandising",
+    "skillKey": "visual-merchandising"
+  },
+  {
+    "categoryKey": "mobile-development",
+    "skillKey": "android-development"
+  },
+  {
+    "categoryKey": "mobile-development",
+    "skillKey": "documentation"
+  },
+  {
+    "categoryKey": "mobile-development",
+    "skillKey": "flutter"
+  },
+  {
+    "categoryKey": "mobile-development",
+    "skillKey": "ios-development"
+  },
+  {
+    "categoryKey": "mobile-development",
+    "skillKey": "project-management"
+  },
+  {
+    "categoryKey": "mobile-development",
+    "skillKey": "react-native"
+  },
+  {
+    "categoryKey": "monitoring-and-evaluation",
+    "skillKey": "data-collection"
+  },
+  {
+    "categoryKey": "monitoring-and-evaluation",
+    "skillKey": "facilitation"
+  },
+  {
+    "categoryKey": "monitoring-and-evaluation",
+    "skillKey": "impact-assessment"
+  },
+  {
+    "categoryKey": "monitoring-and-evaluation",
+    "skillKey": "indicator-tracking"
+  },
+  {
+    "categoryKey": "monitoring-and-evaluation",
+    "skillKey": "learning-reviews"
+  },
+  {
+    "categoryKey": "monitoring-and-evaluation",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "categoryKey": "network-operations",
+    "skillKey": "capacity-management"
+  },
+  {
+    "categoryKey": "network-operations",
+    "skillKey": "incident-response"
+  },
+  {
+    "categoryKey": "network-operations",
+    "skillKey": "network-monitoring"
+  },
+  {
+    "categoryKey": "network-operations",
+    "skillKey": "service-assurance"
+  },
+  {
+    "categoryKey": "nursing",
+    "skillKey": "care-documentation"
+  },
+  {
+    "categoryKey": "nursing",
+    "skillKey": "infection-control"
+  },
+  {
+    "categoryKey": "nursing",
+    "skillKey": "patient-care"
+  },
+  {
+    "categoryKey": "nursing",
+    "skillKey": "triage"
+  },
+  {
+    "categoryKey": "nursing",
+    "skillKey": "vital-signs-monitoring"
+  },
+  {
+    "categoryKey": "operations-consulting",
+    "skillKey": "business-process-analysis"
+  },
+  {
+    "categoryKey": "operations-consulting",
+    "skillKey": "change-management"
+  },
+  {
+    "categoryKey": "operations-consulting",
+    "skillKey": "continuous-improvement"
+  },
+  {
+    "categoryKey": "operations-consulting",
+    "skillKey": "operating-model-design"
+  },
+  {
+    "categoryKey": "operations-consulting",
+    "skillKey": "process-mapping"
+  },
+  {
+    "categoryKey": "packaging-and-labeling",
+    "skillKey": "batch-coding"
+  },
+  {
+    "categoryKey": "packaging-and-labeling",
+    "skillKey": "food-packaging"
+  },
+  {
+    "categoryKey": "packaging-and-labeling",
+    "skillKey": "label-compliance"
+  },
+  {
+    "categoryKey": "packaging-and-labeling",
+    "skillKey": "packaging-quality"
+  },
+  {
+    "categoryKey": "packaging-and-labeling",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "packaging-and-labeling",
+    "skillKey": "safety-management"
+  },
+  {
+    "categoryKey": "paid-media",
+    "skillKey": "ad-operations"
+  },
+  {
+    "categoryKey": "paid-media",
+    "skillKey": "audience-targeting"
+  },
+  {
+    "categoryKey": "paid-media",
+    "skillKey": "campaign-management"
+  },
+  {
+    "categoryKey": "paid-media",
+    "skillKey": "media-buying"
+  },
+  {
+    "categoryKey": "paid-media",
+    "skillKey": "performance-optimization"
+  },
+  {
+    "categoryKey": "parts-and-service",
+    "skillKey": "parts-catalog-management"
+  },
+  {
+    "categoryKey": "parts-and-service",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "parts-and-service",
+    "skillKey": "safety-management"
+  },
+  {
+    "categoryKey": "parts-and-service",
+    "skillKey": "service-advising"
+  },
+  {
+    "categoryKey": "parts-and-service",
+    "skillKey": "warranty-processing"
+  },
+  {
+    "categoryKey": "parts-and-service",
+    "skillKey": "workshop-scheduling"
+  },
+  {
+    "categoryKey": "payroll",
+    "skillKey": "benefits-administration"
+  },
+  {
+    "categoryKey": "payroll",
+    "skillKey": "compliance-management"
+  },
+  {
+    "categoryKey": "payroll",
+    "skillKey": "hris"
+  },
+  {
+    "categoryKey": "payroll",
+    "skillKey": "labor-compliance"
+  },
+  {
+    "categoryKey": "payroll",
+    "skillKey": "payroll-processing"
+  },
+  {
+    "categoryKey": "payroll",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "people-analytics",
+    "skillKey": "employee-surveys"
+  },
+  {
+    "categoryKey": "people-analytics",
+    "skillKey": "facilitation"
+  },
+  {
+    "categoryKey": "people-analytics",
+    "skillKey": "hr-metrics"
+  },
+  {
+    "categoryKey": "people-analytics",
+    "skillKey": "retention-analysis"
+  },
+  {
+    "categoryKey": "people-analytics",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "categoryKey": "people-analytics",
+    "skillKey": "workforce-planning"
+  },
+  {
+    "categoryKey": "pharma-supply-chain",
+    "skillKey": "batch-release-coordination"
+  },
+  {
+    "categoryKey": "pharma-supply-chain",
+    "skillKey": "cold-chain-compliance"
+  },
+  {
+    "categoryKey": "pharma-supply-chain",
+    "skillKey": "compliance-management"
+  },
+  {
+    "categoryKey": "pharma-supply-chain",
+    "skillKey": "inventory-control-pharma"
+  },
+  {
+    "categoryKey": "pharma-supply-chain",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "pharma-supply-chain",
+    "skillKey": "serialization"
+  },
+  {
+    "categoryKey": "pharmacovigilance",
+    "skillKey": "adverse-event-reporting"
+  },
+  {
+    "categoryKey": "pharmacovigilance",
+    "skillKey": "case-processing"
+  },
+  {
+    "categoryKey": "pharmacovigilance",
+    "skillKey": "compliance-management"
+  },
+  {
+    "categoryKey": "pharmacovigilance",
+    "skillKey": "drug-safety-monitoring"
+  },
+  {
+    "categoryKey": "pharmacovigilance",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "pharmacovigilance",
+    "skillKey": "signal-detection"
+  },
+  {
+    "categoryKey": "pharmacy-operations",
+    "skillKey": "dispensing"
+  },
+  {
+    "categoryKey": "pharmacy-operations",
+    "skillKey": "drug-storage"
+  },
+  {
+    "categoryKey": "pharmacy-operations",
+    "skillKey": "inventory-control-pharmacy"
+  },
+  {
+    "categoryKey": "pharmacy-operations",
+    "skillKey": "patient-counseling"
+  },
+  {
+    "categoryKey": "pharmacy-operations",
+    "skillKey": "prescription-processing"
+  },
+  {
+    "categoryKey": "pmo-and-delivery",
+    "skillKey": "facilitation"
+  },
+  {
+    "categoryKey": "pmo-and-delivery",
+    "skillKey": "project-governance"
+  },
+  {
+    "categoryKey": "pmo-and-delivery",
+    "skillKey": "resource-planning"
+  },
+  {
+    "categoryKey": "pmo-and-delivery",
+    "skillKey": "risk-tracking"
+  },
+  {
+    "categoryKey": "pmo-and-delivery",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "categoryKey": "pmo-and-delivery",
+    "skillKey": "status-reporting"
+  },
+  {
+    "categoryKey": "policy-implementation",
+    "skillKey": "change-communication"
+  },
+  {
+    "categoryKey": "policy-implementation",
+    "skillKey": "monitoring-and-reporting"
+  },
+  {
+    "categoryKey": "policy-implementation",
+    "skillKey": "policy-execution"
+  },
+  {
+    "categoryKey": "policy-implementation",
+    "skillKey": "stakeholder-engagement-public"
+  },
+  {
+    "categoryKey": "power-generation",
+    "skillKey": "energy-efficiency"
+  },
+  {
+    "categoryKey": "power-generation",
+    "skillKey": "generation-operations"
+  },
+  {
+    "categoryKey": "power-generation",
+    "skillKey": "plant-monitoring"
+  },
+  {
+    "categoryKey": "power-generation",
+    "skillKey": "turbine-operations"
+  },
+  {
+    "categoryKey": "procurement-and-sourcing",
+    "skillKey": "material-planning"
+  },
+  {
+    "categoryKey": "procurement-and-sourcing",
+    "skillKey": "procurement"
+  },
+  {
+    "categoryKey": "procurement-and-sourcing",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "procurement-and-sourcing",
+    "skillKey": "safety-management"
+  },
+  {
+    "categoryKey": "procurement-and-sourcing",
+    "skillKey": "supplier-negotiation"
+  },
+  {
+    "categoryKey": "procurement-and-sourcing",
+    "skillKey": "vendor-management"
+  },
+  {
+    "categoryKey": "product-development-fashion",
+    "skillKey": "fit-approval"
+  },
+  {
+    "categoryKey": "product-development-fashion",
+    "skillKey": "project-management"
+  },
+  {
+    "categoryKey": "product-development-fashion",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "product-development-fashion",
+    "skillKey": "sample-development"
+  },
+  {
+    "categoryKey": "product-development-fashion",
+    "skillKey": "tech-pack-creation"
+  },
+  {
+    "categoryKey": "product-development-fashion",
+    "skillKey": "trend-research"
+  },
+  {
+    "categoryKey": "product-management-it",
+    "skillKey": "backlog-management"
+  },
+  {
+    "categoryKey": "product-management-it",
+    "skillKey": "documentation"
+  },
+  {
+    "categoryKey": "product-management-it",
+    "skillKey": "product-roadmapping"
+  },
+  {
+    "categoryKey": "product-management-it",
+    "skillKey": "project-management"
+  },
+  {
+    "categoryKey": "product-management-it",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "categoryKey": "product-management-it",
+    "skillKey": "user-story-writing"
+  },
+  {
+    "categoryKey": "production-operations",
+    "skillKey": "line-monitoring"
+  },
+  {
+    "categoryKey": "production-operations",
+    "skillKey": "process-control"
+  },
+  {
+    "categoryKey": "production-operations",
+    "skillKey": "production-scheduling"
+  },
+  {
+    "categoryKey": "production-operations",
+    "skillKey": "standard-operating-procedures"
+  },
+  {
+    "categoryKey": "production-operations",
+    "skillKey": "throughput-optimization"
+  },
+  {
+    "categoryKey": "program-management-ad",
+    "skillKey": "contract-delivery"
+  },
+  {
+    "categoryKey": "program-management-ad",
+    "skillKey": "defense-program-management"
+  },
+  {
+    "categoryKey": "program-management-ad",
+    "skillKey": "mission-planning"
+  },
+  {
+    "categoryKey": "program-management-ad",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "program-management-ad",
+    "skillKey": "safety-management"
+  },
+  {
+    "categoryKey": "program-management-ad",
+    "skillKey": "secure-documentation"
+  },
+  {
+    "categoryKey": "project-estimation",
+    "skillKey": "bid-preparation"
+  },
+  {
+    "categoryKey": "project-estimation",
+    "skillKey": "construction-estimation"
+  },
+  {
+    "categoryKey": "project-estimation",
+    "skillKey": "cost-planning"
+  },
+  {
+    "categoryKey": "project-estimation",
+    "skillKey": "takeoff-measurement"
+  },
+  {
+    "categoryKey": "project-planning-construction",
+    "skillKey": "construction-scheduling"
+  },
+  {
+    "categoryKey": "project-planning-construction",
+    "skillKey": "progress-tracking"
+  },
+  {
+    "categoryKey": "project-planning-construction",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "project-planning-construction",
+    "skillKey": "resource-planning"
+  },
+  {
+    "categoryKey": "project-planning-construction",
+    "skillKey": "safety-management"
+  },
+  {
+    "categoryKey": "project-planning-construction",
+    "skillKey": "site-reporting"
+  },
+  {
+    "categoryKey": "property-management",
+    "skillKey": "maintenance-coordination"
+  },
+  {
+    "categoryKey": "property-management",
+    "skillKey": "property-leasing"
+  },
+  {
+    "categoryKey": "property-management",
+    "skillKey": "rent-collection"
+  },
+  {
+    "categoryKey": "property-management",
+    "skillKey": "tenant-relations"
+  },
+  {
+    "categoryKey": "property-marketing",
+    "skillKey": "customer-support"
+  },
+  {
+    "categoryKey": "property-marketing",
+    "skillKey": "lead-generation-real-estate"
+  },
+  {
+    "categoryKey": "property-marketing",
+    "skillKey": "listing-promotion"
+  },
+  {
+    "categoryKey": "property-marketing",
+    "skillKey": "operations-management"
+  },
+  {
+    "categoryKey": "property-marketing",
+    "skillKey": "real-estate-content"
+  },
+  {
+    "categoryKey": "property-marketing",
+    "skillKey": "virtual-tours"
+  },
+  {
+    "categoryKey": "public-administration",
+    "skillKey": "policy-execution"
+  },
+  {
+    "categoryKey": "public-administration",
+    "skillKey": "public-program-administration"
+  },
+  {
+    "categoryKey": "public-administration",
+    "skillKey": "records-management"
+  },
+  {
+    "categoryKey": "public-administration",
+    "skillKey": "service-delivery"
+  },
+  {
+    "categoryKey": "public-finance-administration",
+    "skillKey": "budget-execution"
+  },
+  {
+    "categoryKey": "public-finance-administration",
+    "skillKey": "compliance-management"
+  },
+  {
+    "categoryKey": "public-finance-administration",
+    "skillKey": "financial-controls"
+  },
+  {
+    "categoryKey": "public-finance-administration",
+    "skillKey": "grant-management"
+  },
+  {
+    "categoryKey": "public-finance-administration",
+    "skillKey": "public-procurement"
+  },
+  {
+    "categoryKey": "public-finance-administration",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "public-health",
+    "skillKey": "community-outreach"
+  },
+  {
+    "categoryKey": "public-health",
+    "skillKey": "epidemiology"
+  },
+  {
+    "categoryKey": "public-health",
+    "skillKey": "health-education"
+  },
+  {
+    "categoryKey": "public-health",
+    "skillKey": "program-monitoring"
+  },
+  {
+    "categoryKey": "public-health",
+    "skillKey": "project-management"
+  },
+  {
+    "categoryKey": "public-health",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "public-service-delivery",
+    "skillKey": "case-management-public"
+  },
+  {
+    "categoryKey": "public-service-delivery",
+    "skillKey": "citizen-support"
+  },
+  {
+    "categoryKey": "public-service-delivery",
+    "skillKey": "queue-management"
+  },
+  {
+    "categoryKey": "public-service-delivery",
+    "skillKey": "service-quality"
+  },
+  {
+    "categoryKey": "qa-automation",
+    "skillKey": "cypress"
+  },
+  {
+    "categoryKey": "qa-automation",
+    "skillKey": "documentation"
+  },
+  {
+    "categoryKey": "qa-automation",
+    "skillKey": "project-management"
+  },
+  {
+    "categoryKey": "qa-automation",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "qa-automation",
+    "skillKey": "selenium"
+  },
+  {
+    "categoryKey": "qa-automation",
+    "skillKey": "test-automation"
+  },
+  {
+    "categoryKey": "quality-assurance",
+    "skillKey": "audit-readiness"
+  },
+  {
+    "categoryKey": "quality-assurance",
+    "skillKey": "corrective-actions"
+  },
+  {
+    "categoryKey": "quality-assurance",
+    "skillKey": "deviation-management"
+  },
+  {
+    "categoryKey": "quality-assurance",
+    "skillKey": "quality-systems"
+  },
+  {
+    "categoryKey": "quality-control",
+    "skillKey": "corrective-actions"
+  },
+  {
+    "categoryKey": "quality-control",
+    "skillKey": "nonconformance-management"
+  },
+  {
+    "categoryKey": "quality-control",
+    "skillKey": "quality-audits"
+  },
+  {
+    "categoryKey": "quality-control",
+    "skillKey": "quality-inspection"
+  },
+  {
+    "categoryKey": "quality-control",
+    "skillKey": "root-cause-analysis"
+  },
+  {
+    "categoryKey": "quality-control-lab",
+    "skillKey": "analytical-testing"
+  },
+  {
+    "categoryKey": "quality-control-lab",
+    "skillKey": "compliance-management"
+  },
+  {
+    "categoryKey": "quality-control-lab",
+    "skillKey": "laboratory-documentation"
+  },
+  {
+    "categoryKey": "quality-control-lab",
+    "skillKey": "method-validation"
+  },
+  {
+    "categoryKey": "quality-control-lab",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "quality-control-lab",
+    "skillKey": "sample-management"
+  },
+  {
+    "categoryKey": "quantity-surveying",
+    "skillKey": "bill-of-quantities"
+  },
+  {
+    "categoryKey": "quantity-surveying",
+    "skillKey": "cost-control"
+  },
+  {
+    "categoryKey": "quantity-surveying",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "quantity-surveying",
+    "skillKey": "safety-management"
+  },
+  {
+    "categoryKey": "quantity-surveying",
+    "skillKey": "tender-analysis"
+  },
+  {
+    "categoryKey": "quantity-surveying",
+    "skillKey": "variation-management"
+  },
+  {
+    "categoryKey": "radiology",
+    "skillKey": "diagnostic-reporting"
+  },
+  {
+    "categoryKey": "radiology",
+    "skillKey": "medical-imaging"
+  },
+  {
+    "categoryKey": "radiology",
+    "skillKey": "picture-archiving-and-communication-system"
+  },
+  {
+    "categoryKey": "radiology",
+    "skillKey": "project-management"
+  },
+  {
+    "categoryKey": "radiology",
+    "skillKey": "radiology-workflow"
+  },
+  {
+    "categoryKey": "radiology",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "real-estate-development",
+    "skillKey": "development-planning"
+  },
+  {
+    "categoryKey": "real-estate-development",
+    "skillKey": "investor-reporting"
+  },
+  {
+    "categoryKey": "real-estate-development",
+    "skillKey": "permit-coordination"
+  },
+  {
+    "categoryKey": "real-estate-development",
+    "skillKey": "site-feasibility"
+  },
+  {
+    "categoryKey": "real-estate-sales",
+    "skillKey": "buyer-qualification"
+  },
+  {
+    "categoryKey": "real-estate-sales",
+    "skillKey": "deal-closing"
+  },
+  {
+    "categoryKey": "real-estate-sales",
+    "skillKey": "listing-presentation"
+  },
+  {
+    "categoryKey": "real-estate-sales",
+    "skillKey": "real-estate-negotiation"
+  },
+  {
+    "categoryKey": "recreation-services",
+    "skillKey": "activity-facilitation"
+  },
+  {
+    "categoryKey": "recreation-services",
+    "skillKey": "community-engagement"
+  },
+  {
+    "categoryKey": "recreation-services",
+    "skillKey": "participant-safety"
+  },
+  {
+    "categoryKey": "recreation-services",
+    "skillKey": "program-scheduling"
+  },
+  {
+    "categoryKey": "recruitment",
+    "skillKey": "candidate-sourcing"
+  },
+  {
+    "categoryKey": "recruitment",
+    "skillKey": "interview-coordination"
+  },
+  {
+    "categoryKey": "recruitment",
+    "skillKey": "offer-management"
+  },
+  {
+    "categoryKey": "recruitment",
+    "skillKey": "screening"
+  },
+  {
+    "categoryKey": "regulatory-affairs",
+    "skillKey": "change-control"
+  },
+  {
+    "categoryKey": "regulatory-affairs",
+    "skillKey": "labeling-compliance"
+  },
+  {
+    "categoryKey": "regulatory-affairs",
+    "skillKey": "regulatory-compliance"
+  },
+  {
+    "categoryKey": "regulatory-affairs",
+    "skillKey": "submission-preparation"
+  },
+  {
+    "categoryKey": "regulatory-services",
+    "skillKey": "case-tracking"
+  },
+  {
+    "categoryKey": "regulatory-services",
+    "skillKey": "compliance-management"
+  },
+  {
+    "categoryKey": "regulatory-services",
+    "skillKey": "inspection-coordination"
+  },
+  {
+    "categoryKey": "regulatory-services",
+    "skillKey": "licensing-administration"
+  },
+  {
+    "categoryKey": "regulatory-services",
+    "skillKey": "regulatory-reporting"
+  },
+  {
+    "categoryKey": "regulatory-services",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "renewable-energy",
+    "skillKey": "battery-storage"
+  },
+  {
+    "categoryKey": "renewable-energy",
+    "skillKey": "commissioning-renewables"
+  },
+  {
+    "categoryKey": "renewable-energy",
+    "skillKey": "site-assessment-energy"
+  },
+  {
+    "categoryKey": "renewable-energy",
+    "skillKey": "solar-systems"
+  },
+  {
+    "categoryKey": "reservation-management",
+    "skillKey": "availability-control"
+  },
+  {
+    "categoryKey": "reservation-management",
+    "skillKey": "booking-management"
+  },
+  {
+    "categoryKey": "reservation-management",
+    "skillKey": "channel-management"
+  },
+  {
+    "categoryKey": "reservation-management",
+    "skillKey": "customer-communication"
+  },
+  {
+    "categoryKey": "restaurant-operations",
+    "skillKey": "kitchen-operations"
+  },
+  {
+    "categoryKey": "restaurant-operations",
+    "skillKey": "staff-scheduling"
+  },
+  {
+    "categoryKey": "restaurant-operations",
+    "skillKey": "table-service-coordination"
+  },
+  {
+    "categoryKey": "restaurant-operations",
+    "skillKey": "vendor-ordering"
+  },
+  {
+    "categoryKey": "retail-analytics",
+    "skillKey": "basket-analysis"
+  },
+  {
+    "categoryKey": "retail-analytics",
+    "skillKey": "customer-support"
+  },
+  {
+    "categoryKey": "retail-analytics",
+    "skillKey": "demand-forecasting"
+  },
+  {
+    "categoryKey": "retail-analytics",
+    "skillKey": "inventory-analysis"
+  },
+  {
+    "categoryKey": "retail-analytics",
+    "skillKey": "operations-management"
+  },
+  {
+    "categoryKey": "retail-analytics",
+    "skillKey": "sales-analysis"
+  },
+  {
+    "categoryKey": "retail-fashion-sales",
+    "skillKey": "customer-engagement"
+  },
+  {
+    "categoryKey": "retail-fashion-sales",
+    "skillKey": "styling-advice"
+  },
+  {
+    "categoryKey": "retail-fashion-sales",
+    "skillKey": "upselling-fashion"
+  },
+  {
+    "categoryKey": "retail-fashion-sales",
+    "skillKey": "visual-merchandising-fashion"
+  },
+  {
+    "categoryKey": "route-planning",
+    "skillKey": "delivery-coordination"
+  },
+  {
+    "categoryKey": "route-planning",
+    "skillKey": "dispatching"
+  },
+  {
+    "categoryKey": "route-planning",
+    "skillKey": "gps-tracking"
+  },
+  {
+    "categoryKey": "route-planning",
+    "skillKey": "project-management"
+  },
+  {
+    "categoryKey": "route-planning",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "route-planning",
+    "skillKey": "route-optimization"
+  },
+  {
+    "categoryKey": "sales",
+    "skillKey": "crm-usage"
+  },
+  {
+    "categoryKey": "sales",
+    "skillKey": "customer-engagement"
+  },
+  {
+    "categoryKey": "sales",
+    "skillKey": "lead-qualification"
+  },
+  {
+    "categoryKey": "sales",
+    "skillKey": "sales-negotiation"
+  },
+  {
+    "categoryKey": "sales",
+    "skillKey": "upselling"
+  },
+  {
+    "categoryKey": "school-administration",
+    "skillKey": "academic-reporting"
+  },
+  {
+    "categoryKey": "school-administration",
+    "skillKey": "enrollment-management"
+  },
+  {
+    "categoryKey": "school-administration",
+    "skillKey": "facilitation"
+  },
+  {
+    "categoryKey": "school-administration",
+    "skillKey": "policy-implementation"
+  },
+  {
+    "categoryKey": "school-administration",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "categoryKey": "school-administration",
+    "skillKey": "timetabling"
+  },
+  {
+    "categoryKey": "service-delivery",
+    "skillKey": "customer-onboarding"
+  },
+  {
+    "categoryKey": "service-delivery",
+    "skillKey": "project-management"
+  },
+  {
+    "categoryKey": "service-delivery",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "service-delivery",
+    "skillKey": "service-provisioning"
+  },
+  {
+    "categoryKey": "service-delivery",
+    "skillKey": "sla-management"
+  },
+  {
+    "categoryKey": "service-delivery",
+    "skillKey": "technical-support"
+  },
+  {
+    "categoryKey": "site-construction",
+    "skillKey": "contractor-coordination"
+  },
+  {
+    "categoryKey": "site-construction",
+    "skillKey": "material-control"
+  },
+  {
+    "categoryKey": "site-construction",
+    "skillKey": "site-supervision"
+  },
+  {
+    "categoryKey": "site-construction",
+    "skillKey": "work-sequencing"
+  },
+  {
+    "categoryKey": "social-media-marketing",
+    "skillKey": "community-management"
+  },
+  {
+    "categoryKey": "social-media-marketing",
+    "skillKey": "content-calendar"
+  },
+  {
+    "categoryKey": "social-media-marketing",
+    "skillKey": "facilitation"
+  },
+  {
+    "categoryKey": "social-media-marketing",
+    "skillKey": "paid-social"
+  },
+  {
+    "categoryKey": "social-media-marketing",
+    "skillKey": "social-media-strategy"
+  },
+  {
+    "categoryKey": "social-media-marketing",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "categoryKey": "sourcing-and-merchandising-fashion",
+    "skillKey": "buying"
+  },
+  {
+    "categoryKey": "sourcing-and-merchandising-fashion",
+    "skillKey": "fabric-sourcing"
+  },
+  {
+    "categoryKey": "sourcing-and-merchandising-fashion",
+    "skillKey": "project-management"
+  },
+  {
+    "categoryKey": "sourcing-and-merchandising-fashion",
+    "skillKey": "range-planning"
+  },
+  {
+    "categoryKey": "sourcing-and-merchandising-fashion",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "sourcing-and-merchandising-fashion",
+    "skillKey": "supplier-negotiation-fashion"
+  },
+  {
+    "categoryKey": "sports-coaching",
+    "skillKey": "athlete-development"
+  },
+  {
+    "categoryKey": "sports-coaching",
+    "skillKey": "customer-support"
+  },
+  {
+    "categoryKey": "sports-coaching",
+    "skillKey": "operations-management"
+  },
+  {
+    "categoryKey": "sports-coaching",
+    "skillKey": "performance-evaluation"
+  },
+  {
+    "categoryKey": "sports-coaching",
+    "skillKey": "sports-communication"
+  },
+  {
+    "categoryKey": "sports-coaching",
+    "skillKey": "training-session-planning"
+  },
+  {
+    "categoryKey": "sports-management",
+    "skillKey": "sponsorship-support"
+  },
+  {
+    "categoryKey": "sports-management",
+    "skillKey": "sports-event-planning"
+  },
+  {
+    "categoryKey": "sports-management",
+    "skillKey": "team-coordination"
+  },
+  {
+    "categoryKey": "sports-management",
+    "skillKey": "venue-operations"
+  },
+  {
+    "categoryKey": "store-operations",
+    "skillKey": "cash-handling"
+  },
+  {
+    "categoryKey": "store-operations",
+    "skillKey": "customer-support"
+  },
+  {
+    "categoryKey": "store-operations",
+    "skillKey": "loss-prevention"
+  },
+  {
+    "categoryKey": "store-operations",
+    "skillKey": "operations-management"
+  },
+  {
+    "categoryKey": "store-operations",
+    "skillKey": "point-of-sale"
+  },
+  {
+    "categoryKey": "store-operations",
+    "skillKey": "store-supervision"
+  },
+  {
+    "categoryKey": "student-support",
+    "skillKey": "case-follow-up"
+  },
+  {
+    "categoryKey": "student-support",
+    "skillKey": "counseling-basics"
+  },
+  {
+    "categoryKey": "student-support",
+    "skillKey": "parent-communication"
+  },
+  {
+    "categoryKey": "student-support",
+    "skillKey": "student-advising"
+  },
+  {
+    "categoryKey": "supply-chain",
+    "skillKey": "demand-planning"
+  },
+  {
+    "categoryKey": "supply-chain",
+    "skillKey": "inventory-planning"
+  },
+  {
+    "categoryKey": "supply-chain",
+    "skillKey": "material-requirements-planning"
+  },
+  {
+    "categoryKey": "supply-chain",
+    "skillKey": "supplier-management"
+  },
+  {
+    "categoryKey": "supply-chain",
+    "skillKey": "warehouse-coordination"
+  },
+  {
+    "categoryKey": "systems-engineering",
+    "skillKey": "configuration-management"
+  },
+  {
+    "categoryKey": "systems-engineering",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "systems-engineering",
+    "skillKey": "requirements-management"
+  },
+  {
+    "categoryKey": "systems-engineering",
+    "skillKey": "safety-management"
+  },
+  {
+    "categoryKey": "systems-engineering",
+    "skillKey": "system-integration"
+  },
+  {
+    "categoryKey": "systems-engineering",
+    "skillKey": "verification-and-validation"
+  },
+  {
+    "categoryKey": "talent-management",
+    "skillKey": "artist-relations"
+  },
+  {
+    "categoryKey": "talent-management",
+    "skillKey": "booking-coordination"
+  },
+  {
+    "categoryKey": "talent-management",
+    "skillKey": "contract-negotiation-talent"
+  },
+  {
+    "categoryKey": "talent-management",
+    "skillKey": "event-promotion"
+  },
+  {
+    "categoryKey": "talent-management",
+    "skillKey": "project-management"
+  },
+  {
+    "categoryKey": "talent-management",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "teaching-and-instruction",
+    "skillKey": "classroom-management"
+  },
+  {
+    "categoryKey": "teaching-and-instruction",
+    "skillKey": "curriculum-alignment"
+  },
+  {
+    "categoryKey": "teaching-and-instruction",
+    "skillKey": "differentiated-instruction"
+  },
+  {
+    "categoryKey": "teaching-and-instruction",
+    "skillKey": "lesson-delivery"
+  },
+  {
+    "categoryKey": "teaching-and-instruction",
+    "skillKey": "lesson-planning"
+  },
+  {
+    "categoryKey": "teaching-and-instruction",
+    "skillKey": "student-engagement"
+  },
+  {
+    "categoryKey": "telecom-projects",
+    "skillKey": "network-deployment"
+  },
+  {
+    "categoryKey": "telecom-projects",
+    "skillKey": "project-management"
+  },
+  {
+    "categoryKey": "telecom-projects",
+    "skillKey": "quality-assurance-telecom"
+  },
+  {
+    "categoryKey": "telecom-projects",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "telecom-projects",
+    "skillKey": "rollout-planning"
+  },
+  {
+    "categoryKey": "telecom-projects",
+    "skillKey": "vendor-coordination"
+  },
+  {
+    "categoryKey": "telecom-support",
+    "skillKey": "device-provisioning"
+  },
+  {
+    "categoryKey": "telecom-support",
+    "skillKey": "network-diagnostics"
+  },
+  {
+    "categoryKey": "telecom-support",
+    "skillKey": "remote-support"
+  },
+  {
+    "categoryKey": "telecom-support",
+    "skillKey": "telecom-support"
+  },
+  {
+    "categoryKey": "telecom-support",
+    "skillKey": "ticket-resolution"
+  },
+  {
+    "categoryKey": "tour-guiding",
+    "skillKey": "destination-knowledge"
+  },
+  {
+    "categoryKey": "tour-guiding",
+    "skillKey": "group-management"
+  },
+  {
+    "categoryKey": "tour-guiding",
+    "skillKey": "guest-support-travel"
+  },
+  {
+    "categoryKey": "tour-guiding",
+    "skillKey": "itinerary-delivery"
+  },
+  {
+    "categoryKey": "tour-operations",
+    "skillKey": "customer-support"
+  },
+  {
+    "categoryKey": "tour-operations",
+    "skillKey": "guide-coordination"
+  },
+  {
+    "categoryKey": "tour-operations",
+    "skillKey": "operations-management"
+  },
+  {
+    "categoryKey": "tour-operations",
+    "skillKey": "tour-scheduling"
+  },
+  {
+    "categoryKey": "tour-operations",
+    "skillKey": "trip-monitoring"
+  },
+  {
+    "categoryKey": "tour-operations",
+    "skillKey": "voucher-management"
+  },
+  {
+    "categoryKey": "transport-compliance",
+    "skillKey": "driver-compliance"
+  },
+  {
+    "categoryKey": "transport-compliance",
+    "skillKey": "fleet-documentation"
+  },
+  {
+    "categoryKey": "transport-compliance",
+    "skillKey": "incident-reporting"
+  },
+  {
+    "categoryKey": "transport-compliance",
+    "skillKey": "project-management"
+  },
+  {
+    "categoryKey": "transport-compliance",
+    "skillKey": "reporting"
+  },
+  {
+    "categoryKey": "transport-compliance",
+    "skillKey": "transport-regulations"
+  },
+  {
+    "categoryKey": "travel-operations",
+    "skillKey": "booking-management"
+  },
+  {
+    "categoryKey": "travel-operations",
+    "skillKey": "tour-planning"
+  },
+  {
+    "categoryKey": "travel-operations",
+    "skillKey": "travel-documentation"
+  },
+  {
+    "categoryKey": "travel-operations",
+    "skillKey": "vendor-confirmation"
+  },
+  {
+    "categoryKey": "travel-sales",
+    "skillKey": "client-follow-up"
+  },
+  {
+    "categoryKey": "travel-sales",
+    "skillKey": "customer-support"
+  },
+  {
+    "categoryKey": "travel-sales",
+    "skillKey": "itinerary-design"
+  },
+  {
+    "categoryKey": "travel-sales",
+    "skillKey": "operations-management"
+  },
+  {
+    "categoryKey": "travel-sales",
+    "skillKey": "sales-conversion"
+  },
+  {
+    "categoryKey": "travel-sales",
+    "skillKey": "travel-quoting"
+  },
+  {
+    "categoryKey": "treasury",
+    "skillKey": "bank-reconciliation"
+  },
+  {
+    "categoryKey": "treasury",
+    "skillKey": "cash-management"
+  },
+  {
+    "categoryKey": "treasury",
+    "skillKey": "foreign-exchange-management"
+  },
+  {
+    "categoryKey": "treasury",
+    "skillKey": "liquidity-management"
+  },
+  {
+    "categoryKey": "vehicle-maintenance",
+    "skillKey": "mechanical-repair"
+  },
+  {
+    "categoryKey": "vehicle-maintenance",
+    "skillKey": "preventive-maintenance-automotive"
+  },
+  {
+    "categoryKey": "vehicle-maintenance",
+    "skillKey": "service-documentation"
+  },
+  {
+    "categoryKey": "vehicle-maintenance",
+    "skillKey": "vehicle-diagnostics"
+  },
+  {
+    "categoryKey": "vehicle-sales",
+    "skillKey": "financing-coordination"
+  },
+  {
+    "categoryKey": "vehicle-sales",
+    "skillKey": "lead-management"
+  },
+  {
+    "categoryKey": "vehicle-sales",
+    "skillKey": "quality-management"
+  },
+  {
+    "categoryKey": "vehicle-sales",
+    "skillKey": "safety-management"
+  },
+  {
+    "categoryKey": "vehicle-sales",
+    "skillKey": "sales-negotiation"
+  },
+  {
+    "categoryKey": "vehicle-sales",
+    "skillKey": "vehicle-demo"
+  },
+  {
+    "categoryKey": "video-production",
+    "skillKey": "camera-operations"
+  },
+  {
+    "categoryKey": "video-production",
+    "skillKey": "post-production"
+  },
+  {
+    "categoryKey": "video-production",
+    "skillKey": "shoot-planning"
+  },
+  {
+    "categoryKey": "video-production",
+    "skillKey": "video-editing"
+  },
+  {
+    "categoryKey": "volunteer-coordination",
+    "skillKey": "engagement-management"
+  },
+  {
+    "categoryKey": "volunteer-coordination",
+    "skillKey": "shift-scheduling"
+  },
+  {
+    "categoryKey": "volunteer-coordination",
+    "skillKey": "training-volunteers"
+  },
+  {
+    "categoryKey": "volunteer-coordination",
+    "skillKey": "volunteer-onboarding"
+  },
+  {
+    "categoryKey": "warehouse-operations",
+    "skillKey": "inventory-control-warehouse"
+  },
+  {
+    "categoryKey": "warehouse-operations",
+    "skillKey": "picking-and-packing"
+  },
+  {
+    "categoryKey": "warehouse-operations",
+    "skillKey": "receiving-and-putaway"
+  },
+  {
+    "categoryKey": "warehouse-operations",
+    "skillKey": "warehouse-management"
+  },
+  {
+    "categoryKey": "warehouse-operations",
+    "skillKey": "warehouse-safety"
+  }
 ]

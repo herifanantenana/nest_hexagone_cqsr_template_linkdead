@@ -2,7 +2,7 @@ import { type TLoggerConfig } from "@apk_core/config/root.config";
 import { Inject, Injectable } from "@nestjs/common";
 import { existsSync, mkdirSync } from "fs";
 import { pid } from "process";
-import { loggerConfig } from "src/core//config";
+import { loggerConfig } from "@apk_core/config";
 import { inspect } from "util";
 import * as winston from "winston";
 import LogstashTransport from "winston-logstash/lib/winston-logstash-latest";
