@@ -39,6 +39,9 @@ export class UploadsService {
 		try {
 			await fs.promises.unlink(filePath);
 		} catch (error) {
+			if (error && typeof error === "object" && (error as NodeJS.ErrnoException).code === "ENOENT") {
+				return;
+			}
 			this.logger.error(
 				`Failed to delete file at path "${filePath}": ${error instanceof Error ? error.message : String(error)}`,
 				error instanceof Error ? error.stack : undefined,
