@@ -1,58 +1,838 @@
 [
-	{ "domainKey": "information-technology", "skillKey": "git" },
-	{ "domainKey": "information-technology", "skillKey": "testing" },
-	{ "domainKey": "information-technology", "skillKey": "agile" },
-	{ "domainKey": "information-technology", "skillKey": "api-design" },
-
-	{ "domainKey": "finance", "skillKey": "financial-reporting" },
-	{ "domainKey": "finance", "skillKey": "budgeting" },
-	{ "domainKey": "finance", "skillKey": "tax-compliance" },
-
-	{ "domainKey": "healthcare", "skillKey": "patient-care" },
-	{ "domainKey": "healthcare", "skillKey": "medical-records-management" },
-
-	{ "domainKey": "education", "skillKey": "lesson-planning" },
-	{ "domainKey": "education", "skillKey": "classroom-management" },
-
-	{ "domainKey": "manufacturing", "skillKey": "process-control" },
-	{ "domainKey": "manufacturing", "skillKey": "quality-inspection" },
-
-	{ "domainKey": "retail", "skillKey": "customer-engagement" },
-	{ "domainKey": "retail", "skillKey": "stock-control" },
-
-	{ "domainKey": "transportation", "skillKey": "logistics-planning" },
-	{ "domainKey": "transportation", "skillKey": "warehouse-management" },
-
-	{ "domainKey": "energy", "skillKey": "power-distribution" },
-	{ "domainKey": "energy", "skillKey": "energy-maintenance" },
-
-	{ "domainKey": "telecommunications", "skillKey": "network-monitoring" },
-	{ "domainKey": "telecommunications", "skillKey": "telecom-support" },
-
-	{ "domainKey": "agriculture", "skillKey": "field-observation" },
-	{ "domainKey": "agriculture", "skillKey": "farm-planning" },
-
-	{ "domainKey": "hospitality", "skillKey": "guest-service" },
-	{ "domainKey": "hospitality", "skillKey": "reservation-handling" },
-
-	{ "domainKey": "legal", "skillKey": "legal-drafting" },
-	{ "domainKey": "legal", "skillKey": "regulatory-compliance" },
-
-	{ "domainKey": "consulting", "skillKey": "stakeholder-analysis" },
-	{ "domainKey": "consulting", "skillKey": "business-process-analysis" },
-
-	{ "domainKey": "marketing-and-advertising", "skillKey": "seo" },
-	{ "domainKey": "marketing-and-advertising", "skillKey": "campaign-management" },
-
-	{ "domainKey": "human-resources", "skillKey": "candidate-sourcing" },
-	{ "domainKey": "human-resources", "skillKey": "training-design" },
-
-	{ "domainKey": "construction", "skillKey": "construction-estimation" },
-	{ "domainKey": "construction", "skillKey": "site-supervision" },
-
-	{ "domainKey": "real-estate", "skillKey": "property-leasing" },
-	{ "domainKey": "real-estate", "skillKey": "real-estate-negotiation" },
-
-	{ "domainKey": "non-profit", "skillKey": "community-outreach" },
-	{ "domainKey": "non-profit", "skillKey": "fundraising-campaigns" }
+  {
+    "domainKey": "aerospace-and-defense",
+    "skillKey": "asset-management"
+  },
+  {
+    "domainKey": "aerospace-and-defense",
+    "skillKey": "compliance-management"
+  },
+  {
+    "domainKey": "aerospace-and-defense",
+    "skillKey": "quality-management"
+  },
+  {
+    "domainKey": "aerospace-and-defense",
+    "skillKey": "risk-management"
+  },
+  {
+    "domainKey": "aerospace-and-defense",
+    "skillKey": "safety-management"
+  },
+  {
+    "domainKey": "agriculture",
+    "skillKey": "asset-management"
+  },
+  {
+    "domainKey": "agriculture",
+    "skillKey": "farm-planning"
+  },
+  {
+    "domainKey": "agriculture",
+    "skillKey": "field-observation"
+  },
+  {
+    "domainKey": "agriculture",
+    "skillKey": "operations-management"
+  },
+  {
+    "domainKey": "agriculture",
+    "skillKey": "reporting"
+  },
+  {
+    "domainKey": "agriculture",
+    "skillKey": "risk-management"
+  },
+  {
+    "domainKey": "agriculture",
+    "skillKey": "safety-management"
+  },
+  {
+    "domainKey": "automotive",
+    "skillKey": "asset-management"
+  },
+  {
+    "domainKey": "automotive",
+    "skillKey": "customer-support"
+  },
+  {
+    "domainKey": "automotive",
+    "skillKey": "process-improvement"
+  },
+  {
+    "domainKey": "automotive",
+    "skillKey": "quality-management"
+  },
+  {
+    "domainKey": "automotive",
+    "skillKey": "safety-management"
+  },
+  {
+    "domainKey": "construction",
+    "skillKey": "construction-estimation"
+  },
+  {
+    "domainKey": "construction",
+    "skillKey": "documentation"
+  },
+  {
+    "domainKey": "construction",
+    "skillKey": "procurement"
+  },
+  {
+    "domainKey": "construction",
+    "skillKey": "project-management"
+  },
+  {
+    "domainKey": "construction",
+    "skillKey": "risk-management"
+  },
+  {
+    "domainKey": "construction",
+    "skillKey": "safety-management"
+  },
+  {
+    "domainKey": "construction",
+    "skillKey": "site-supervision"
+  },
+  {
+    "domainKey": "construction",
+    "skillKey": "vendor-management"
+  },
+  {
+    "domainKey": "consulting",
+    "skillKey": "business-analysis"
+  },
+  {
+    "domainKey": "consulting",
+    "skillKey": "business-process-analysis"
+  },
+  {
+    "domainKey": "consulting",
+    "skillKey": "change-management"
+  },
+  {
+    "domainKey": "consulting",
+    "skillKey": "dashboarding"
+  },
+  {
+    "domainKey": "consulting",
+    "skillKey": "documentation"
+  },
+  {
+    "domainKey": "consulting",
+    "skillKey": "process-improvement"
+  },
+  {
+    "domainKey": "consulting",
+    "skillKey": "project-management"
+  },
+  {
+    "domainKey": "consulting",
+    "skillKey": "proposal-writing"
+  },
+  {
+    "domainKey": "consulting",
+    "skillKey": "reporting"
+  },
+  {
+    "domainKey": "consulting",
+    "skillKey": "sql"
+  },
+  {
+    "domainKey": "consulting",
+    "skillKey": "stakeholder-analysis"
+  },
+  {
+    "domainKey": "consulting",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "domainKey": "education",
+    "skillKey": "change-management"
+  },
+  {
+    "domainKey": "education",
+    "skillKey": "classroom-management"
+  },
+  {
+    "domainKey": "education",
+    "skillKey": "documentation"
+  },
+  {
+    "domainKey": "education",
+    "skillKey": "facilitation"
+  },
+  {
+    "domainKey": "education",
+    "skillKey": "lesson-planning"
+  },
+  {
+    "domainKey": "education",
+    "skillKey": "project-management"
+  },
+  {
+    "domainKey": "education",
+    "skillKey": "reporting"
+  },
+  {
+    "domainKey": "education",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "domainKey": "education",
+    "skillKey": "training-design"
+  },
+  {
+    "domainKey": "energy",
+    "skillKey": "asset-management"
+  },
+  {
+    "domainKey": "energy",
+    "skillKey": "compliance-management"
+  },
+  {
+    "domainKey": "energy",
+    "skillKey": "energy-maintenance"
+  },
+  {
+    "domainKey": "energy",
+    "skillKey": "power-distribution"
+  },
+  {
+    "domainKey": "energy",
+    "skillKey": "reporting"
+  },
+  {
+    "domainKey": "energy",
+    "skillKey": "risk-management"
+  },
+  {
+    "domainKey": "energy",
+    "skillKey": "safety-management"
+  },
+  {
+    "domainKey": "fashion-and-apparel",
+    "skillKey": "customer-engagement"
+  },
+  {
+    "domainKey": "fashion-and-apparel",
+    "skillKey": "forecasting"
+  },
+  {
+    "domainKey": "fashion-and-apparel",
+    "skillKey": "operations-management"
+  },
+  {
+    "domainKey": "fashion-and-apparel",
+    "skillKey": "project-management"
+  },
+  {
+    "domainKey": "fashion-and-apparel",
+    "skillKey": "quality-management"
+  },
+  {
+    "domainKey": "fashion-and-apparel",
+    "skillKey": "vendor-management"
+  },
+  {
+    "domainKey": "finance",
+    "skillKey": "budgeting"
+  },
+  {
+    "domainKey": "finance",
+    "skillKey": "compliance-management"
+  },
+  {
+    "domainKey": "finance",
+    "skillKey": "dashboarding"
+  },
+  {
+    "domainKey": "finance",
+    "skillKey": "financial-reporting"
+  },
+  {
+    "domainKey": "finance",
+    "skillKey": "forecasting"
+  },
+  {
+    "domainKey": "finance",
+    "skillKey": "project-management"
+  },
+  {
+    "domainKey": "finance",
+    "skillKey": "reporting"
+  },
+  {
+    "domainKey": "finance",
+    "skillKey": "risk-management"
+  },
+  {
+    "domainKey": "finance",
+    "skillKey": "sql"
+  },
+  {
+    "domainKey": "finance",
+    "skillKey": "tax-compliance"
+  },
+  {
+    "domainKey": "food-and-beverage",
+    "skillKey": "inventory-analysis"
+  },
+  {
+    "domainKey": "food-and-beverage",
+    "skillKey": "operations-management"
+  },
+  {
+    "domainKey": "food-and-beverage",
+    "skillKey": "quality-management"
+  },
+  {
+    "domainKey": "food-and-beverage",
+    "skillKey": "reporting"
+  },
+  {
+    "domainKey": "food-and-beverage",
+    "skillKey": "safety-management"
+  },
+  {
+    "domainKey": "government",
+    "skillKey": "business-analysis"
+  },
+  {
+    "domainKey": "government",
+    "skillKey": "change-management"
+  },
+  {
+    "domainKey": "government",
+    "skillKey": "compliance-management"
+  },
+  {
+    "domainKey": "government",
+    "skillKey": "dashboarding"
+  },
+  {
+    "domainKey": "government",
+    "skillKey": "documentation"
+  },
+  {
+    "domainKey": "government",
+    "skillKey": "project-management"
+  },
+  {
+    "domainKey": "government",
+    "skillKey": "proposal-writing"
+  },
+  {
+    "domainKey": "government",
+    "skillKey": "reporting"
+  },
+  {
+    "domainKey": "government",
+    "skillKey": "sql"
+  },
+  {
+    "domainKey": "government",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "domainKey": "healthcare",
+    "skillKey": "compliance-management"
+  },
+  {
+    "domainKey": "healthcare",
+    "skillKey": "documentation"
+  },
+  {
+    "domainKey": "healthcare",
+    "skillKey": "medical-records-management"
+  },
+  {
+    "domainKey": "healthcare",
+    "skillKey": "patient-care"
+  },
+  {
+    "domainKey": "healthcare",
+    "skillKey": "quality-management"
+  },
+  {
+    "domainKey": "healthcare",
+    "skillKey": "risk-management"
+  },
+  {
+    "domainKey": "healthcare",
+    "skillKey": "safety-management"
+  },
+  {
+    "domainKey": "hospitality",
+    "skillKey": "customer-engagement"
+  },
+  {
+    "domainKey": "hospitality",
+    "skillKey": "customer-support"
+  },
+  {
+    "domainKey": "hospitality",
+    "skillKey": "guest-service"
+  },
+  {
+    "domainKey": "hospitality",
+    "skillKey": "operations-management"
+  },
+  {
+    "domainKey": "hospitality",
+    "skillKey": "quality-management"
+  },
+  {
+    "domainKey": "hospitality",
+    "skillKey": "reporting"
+  },
+  {
+    "domainKey": "hospitality",
+    "skillKey": "reservation-handling"
+  },
+  {
+    "domainKey": "hospitality",
+    "skillKey": "scheduling"
+  },
+  {
+    "domainKey": "human-resources",
+    "skillKey": "candidate-sourcing"
+  },
+  {
+    "domainKey": "human-resources",
+    "skillKey": "change-management"
+  },
+  {
+    "domainKey": "human-resources",
+    "skillKey": "compliance-management"
+  },
+  {
+    "domainKey": "human-resources",
+    "skillKey": "documentation"
+  },
+  {
+    "domainKey": "human-resources",
+    "skillKey": "facilitation"
+  },
+  {
+    "domainKey": "human-resources",
+    "skillKey": "reporting"
+  },
+  {
+    "domainKey": "human-resources",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "domainKey": "human-resources",
+    "skillKey": "training-design"
+  },
+  {
+    "domainKey": "information-technology",
+    "skillKey": "agile"
+  },
+  {
+    "domainKey": "information-technology",
+    "skillKey": "api-design"
+  },
+  {
+    "domainKey": "information-technology",
+    "skillKey": "business-analysis"
+  },
+  {
+    "domainKey": "information-technology",
+    "skillKey": "data-governance"
+  },
+  {
+    "domainKey": "information-technology",
+    "skillKey": "documentation"
+  },
+  {
+    "domainKey": "information-technology",
+    "skillKey": "git"
+  },
+  {
+    "domainKey": "information-technology",
+    "skillKey": "incident-management"
+  },
+  {
+    "domainKey": "information-technology",
+    "skillKey": "project-management"
+  },
+  {
+    "domainKey": "information-technology",
+    "skillKey": "reporting"
+  },
+  {
+    "domainKey": "information-technology",
+    "skillKey": "risk-management"
+  },
+  {
+    "domainKey": "information-technology",
+    "skillKey": "sql"
+  },
+  {
+    "domainKey": "information-technology",
+    "skillKey": "testing"
+  },
+  {
+    "domainKey": "legal",
+    "skillKey": "compliance-management"
+  },
+  {
+    "domainKey": "legal",
+    "skillKey": "documentation"
+  },
+  {
+    "domainKey": "legal",
+    "skillKey": "legal-drafting"
+  },
+  {
+    "domainKey": "legal",
+    "skillKey": "regulatory-compliance"
+  },
+  {
+    "domainKey": "legal",
+    "skillKey": "reporting"
+  },
+  {
+    "domainKey": "legal",
+    "skillKey": "research-methodology"
+  },
+  {
+    "domainKey": "legal",
+    "skillKey": "risk-management"
+  },
+  {
+    "domainKey": "manufacturing",
+    "skillKey": "asset-management"
+  },
+  {
+    "domainKey": "manufacturing",
+    "skillKey": "operations-management"
+  },
+  {
+    "domainKey": "manufacturing",
+    "skillKey": "process-control"
+  },
+  {
+    "domainKey": "manufacturing",
+    "skillKey": "process-improvement"
+  },
+  {
+    "domainKey": "manufacturing",
+    "skillKey": "quality-inspection"
+  },
+  {
+    "domainKey": "manufacturing",
+    "skillKey": "quality-management"
+  },
+  {
+    "domainKey": "manufacturing",
+    "skillKey": "safety-management"
+  },
+  {
+    "domainKey": "manufacturing",
+    "skillKey": "vendor-management"
+  },
+  {
+    "domainKey": "marketing-and-advertising",
+    "skillKey": "campaign-management"
+  },
+  {
+    "domainKey": "marketing-and-advertising",
+    "skillKey": "customer-support"
+  },
+  {
+    "domainKey": "marketing-and-advertising",
+    "skillKey": "dashboarding"
+  },
+  {
+    "domainKey": "marketing-and-advertising",
+    "skillKey": "data-governance"
+  },
+  {
+    "domainKey": "marketing-and-advertising",
+    "skillKey": "project-management"
+  },
+  {
+    "domainKey": "marketing-and-advertising",
+    "skillKey": "reporting"
+  },
+  {
+    "domainKey": "marketing-and-advertising",
+    "skillKey": "seo"
+  },
+  {
+    "domainKey": "marketing-and-advertising",
+    "skillKey": "sql"
+  },
+  {
+    "domainKey": "marketing-and-advertising",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "domainKey": "media-and-entertainment",
+    "skillKey": "customer-support"
+  },
+  {
+    "domainKey": "media-and-entertainment",
+    "skillKey": "documentation"
+  },
+  {
+    "domainKey": "media-and-entertainment",
+    "skillKey": "project-management"
+  },
+  {
+    "domainKey": "media-and-entertainment",
+    "skillKey": "reporting"
+  },
+  {
+    "domainKey": "media-and-entertainment",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "domainKey": "media-and-entertainment",
+    "skillKey": "vendor-management"
+  },
+  {
+    "domainKey": "non-profit",
+    "skillKey": "community-outreach"
+  },
+  {
+    "domainKey": "non-profit",
+    "skillKey": "compliance-management"
+  },
+  {
+    "domainKey": "non-profit",
+    "skillKey": "dashboarding"
+  },
+  {
+    "domainKey": "non-profit",
+    "skillKey": "facilitation"
+  },
+  {
+    "domainKey": "non-profit",
+    "skillKey": "fundraising-campaigns"
+  },
+  {
+    "domainKey": "non-profit",
+    "skillKey": "project-management"
+  },
+  {
+    "domainKey": "non-profit",
+    "skillKey": "proposal-writing"
+  },
+  {
+    "domainKey": "non-profit",
+    "skillKey": "reporting"
+  },
+  {
+    "domainKey": "non-profit",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "domainKey": "non-profit",
+    "skillKey": "training-design"
+  },
+  {
+    "domainKey": "pharmaceuticals",
+    "skillKey": "compliance-management"
+  },
+  {
+    "domainKey": "pharmaceuticals",
+    "skillKey": "documentation"
+  },
+  {
+    "domainKey": "pharmaceuticals",
+    "skillKey": "quality-management"
+  },
+  {
+    "domainKey": "pharmaceuticals",
+    "skillKey": "research-methodology"
+  },
+  {
+    "domainKey": "pharmaceuticals",
+    "skillKey": "risk-management"
+  },
+  {
+    "domainKey": "real-estate",
+    "skillKey": "business-analysis"
+  },
+  {
+    "domainKey": "real-estate",
+    "skillKey": "compliance-management"
+  },
+  {
+    "domainKey": "real-estate",
+    "skillKey": "customer-support"
+  },
+  {
+    "domainKey": "real-estate",
+    "skillKey": "project-management"
+  },
+  {
+    "domainKey": "real-estate",
+    "skillKey": "property-leasing"
+  },
+  {
+    "domainKey": "real-estate",
+    "skillKey": "proposal-writing"
+  },
+  {
+    "domainKey": "real-estate",
+    "skillKey": "real-estate-negotiation"
+  },
+  {
+    "domainKey": "real-estate",
+    "skillKey": "reporting"
+  },
+  {
+    "domainKey": "real-estate",
+    "skillKey": "stakeholder-management"
+  },
+  {
+    "domainKey": "real-estate",
+    "skillKey": "vendor-management"
+  },
+  {
+    "domainKey": "retail",
+    "skillKey": "customer-engagement"
+  },
+  {
+    "domainKey": "retail",
+    "skillKey": "customer-support"
+  },
+  {
+    "domainKey": "retail",
+    "skillKey": "forecasting"
+  },
+  {
+    "domainKey": "retail",
+    "skillKey": "inventory-analysis"
+  },
+  {
+    "domainKey": "retail",
+    "skillKey": "operations-management"
+  },
+  {
+    "domainKey": "retail",
+    "skillKey": "reporting"
+  },
+  {
+    "domainKey": "retail",
+    "skillKey": "stock-control"
+  },
+  {
+    "domainKey": "retail",
+    "skillKey": "vendor-management"
+  },
+  {
+    "domainKey": "sports-and-recreation",
+    "skillKey": "customer-engagement"
+  },
+  {
+    "domainKey": "sports-and-recreation",
+    "skillKey": "customer-support"
+  },
+  {
+    "domainKey": "sports-and-recreation",
+    "skillKey": "operations-management"
+  },
+  {
+    "domainKey": "sports-and-recreation",
+    "skillKey": "project-management"
+  },
+  {
+    "domainKey": "sports-and-recreation",
+    "skillKey": "safety-management"
+  },
+  {
+    "domainKey": "sports-and-recreation",
+    "skillKey": "scheduling"
+  },
+  {
+    "domainKey": "sports-and-recreation",
+    "skillKey": "training-design"
+  },
+  {
+    "domainKey": "telecommunications",
+    "skillKey": "asset-management"
+  },
+  {
+    "domainKey": "telecommunications",
+    "skillKey": "compliance-management"
+  },
+  {
+    "domainKey": "telecommunications",
+    "skillKey": "customer-support"
+  },
+  {
+    "domainKey": "telecommunications",
+    "skillKey": "incident-management"
+  },
+  {
+    "domainKey": "telecommunications",
+    "skillKey": "network-monitoring"
+  },
+  {
+    "domainKey": "telecommunications",
+    "skillKey": "project-management"
+  },
+  {
+    "domainKey": "telecommunications",
+    "skillKey": "telecom-support"
+  },
+  {
+    "domainKey": "transportation",
+    "skillKey": "asset-management"
+  },
+  {
+    "domainKey": "transportation",
+    "skillKey": "incident-management"
+  },
+  {
+    "domainKey": "transportation",
+    "skillKey": "logistics-planning"
+  },
+  {
+    "domainKey": "transportation",
+    "skillKey": "operations-management"
+  },
+  {
+    "domainKey": "transportation",
+    "skillKey": "safety-management"
+  },
+  {
+    "domainKey": "transportation",
+    "skillKey": "scheduling"
+  },
+  {
+    "domainKey": "transportation",
+    "skillKey": "warehouse-management"
+  },
+  {
+    "domainKey": "travel-and-tourism",
+    "skillKey": "customer-engagement"
+  },
+  {
+    "domainKey": "travel-and-tourism",
+    "skillKey": "customer-support"
+  },
+  {
+    "domainKey": "travel-and-tourism",
+    "skillKey": "operations-management"
+  },
+  {
+    "domainKey": "travel-and-tourism",
+    "skillKey": "reporting"
+  },
+  {
+    "domainKey": "travel-and-tourism",
+    "skillKey": "scheduling"
+  },
+  {
+    "domainKey": "travel-and-tourism",
+    "skillKey": "stakeholder-management"
+  }
 ]

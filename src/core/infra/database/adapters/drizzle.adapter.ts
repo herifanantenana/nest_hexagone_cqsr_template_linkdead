@@ -1,10 +1,10 @@
 import { Inject, Injectable, OnApplicationShutdown, OnModuleDestroy, OnModuleInit } from "@nestjs/common";
 import { drizzle, NodePgDatabase } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
-import { databaseConfig } from "src/core//config";
-import type { TDatabaseConfig } from "src/core//config/root.config";
-import { enums, relations, schemas } from "src/core//infra/database/schemas";
-import { AppLogger } from "src/core//infra/logger/logger.service";
+import { databaseConfig } from "@apk_core/config";
+import type { TDatabaseConfig } from "@apk_core/config/root.config";
+import { enums, relations, schemas } from "@apk_infra/database/schemas";
+import { AppLogger } from "@apk_infra/logger/logger.service";
 
 const allSchemas = schemas.reduce((acc, schema) => ({ ...acc, ...schema }), {});
 const allEnums = enums.reduce((acc, en) => ({ ...acc, ...en }), {});

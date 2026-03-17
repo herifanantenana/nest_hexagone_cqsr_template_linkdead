@@ -1,3 +1,4 @@
+import { BusinessLogicException } from "@apk_shared/exceptions/business-logic.exception";
 import { InfraException } from "@apk_shared/exceptions/infra.exception";
 import { ISafeResponse } from "./safe-response";
 import { toSafeError, toSafeOK } from "./utils";
@@ -9,6 +10,8 @@ export abstract class SafeAction<E extends InfraException = InfraException> {
 		try {
 			return toSafeOK(action());
 		} catch (error) {
+			// Si c'est une exception métier, on la relance
+			if (error instanceof BusinessLogicException) throw error;
 			return toSafeError(this.normalizeError(error, context));
 		}
 	}
@@ -28,6 +31,8 @@ export abstract class SafeAction<E extends InfraException = InfraException> {
 		try {
 			return toSafeOK(await action());
 		} catch (error) {
+			// Si c'est une exception métier, on la relance
+			if (error instanceof BusinessLogicException) throw error;
 			return toSafeError(this.normalizeError(error, context));
 		}
 	}

@@ -2,6 +2,9 @@
 /dist
 /node_modules
 /build
+/uploads/
+/src/core/infra/database/migrations/**/
+!src/core/infra/database/migrations/*.sql
 
 # Logs
 logs

@@ -1,29 +1,110 @@
 [
-	{ "key": "information-technology", "name": "Information Technology" },
-	{ "key": "finance", "name": "Finance" },
-	{ "key": "healthcare", "name": "Healthcare" },
-	{ "key": "education", "name": "Education" },
-	{ "key": "manufacturing", "name": "Manufacturing" },
-	{ "key": "retail", "name": "Retail" },
-	{ "key": "transportation", "name": "Transportation" },
-	{ "key": "energy", "name": "Energy" },
-	{ "key": "telecommunications", "name": "Telecommunications" },
-	{ "key": "agriculture", "name": "Agriculture" },
-	{ "key": "hospitality", "name": "Hospitality" },
-	{ "key": "legal", "name": "Legal" },
-	{ "key": "consulting", "name": "Consulting" },
-	{ "key": "marketing-and-advertising", "name": "Marketing and Advertising" },
-	{ "key": "human-resources", "name": "Human Resources" },
-	{ "key": "aerospace-and-defense", "name": "Aerospace and Defense" },
-	{ "key": "automotive", "name": "Automotive" },
-	{ "key": "pharmaceuticals", "name": "Pharmaceuticals" },
-	{ "key": "food-and-beverage", "name": "Food and Beverage" },
-	{ "key": "fashion-and-apparel", "name": "Fashion and Apparel" },
-	{ "key": "sports-and-recreation", "name": "Sports and Recreation" },
-	{ "key": "travel-and-tourism", "name": "Travel and Tourism" },
-	{ "key": "construction", "name": "Construction" },
-	{ "key": "real-estate", "name": "Real Estate" },
-	{ "key": "media-and-entertainment", "name": "Media and Entertainment" },
-	{ "key": "government", "name": "Government" },
-	{ "key": "non-profit", "name": "Non-Profit" }
+  {
+    "key": "aerospace-and-defense",
+    "name": "Aerospace and Defense"
+  },
+  {
+    "key": "agriculture",
+    "name": "Agriculture"
+  },
+  {
+    "key": "automotive",
+    "name": "Automotive"
+  },
+  {
+    "key": "construction",
+    "name": "Construction"
+  },
+  {
+    "key": "consulting",
+    "name": "Consulting"
+  },
+  {
+    "key": "education",
+    "name": "Education"
+  },
+  {
+    "key": "energy",
+    "name": "Energy"
+  },
+  {
+    "key": "fashion-and-apparel",
+    "name": "Fashion and Apparel"
+  },
+  {
+    "key": "finance",
+    "name": "Finance"
+  },
+  {
+    "key": "food-and-beverage",
+    "name": "Food and Beverage"
+  },
+  {
+    "key": "government",
+    "name": "Government"
+  },
+  {
+    "key": "healthcare",
+    "name": "Healthcare"
+  },
+  {
+    "key": "hospitality",
+    "name": "Hospitality"
+  },
+  {
+    "key": "human-resources",
+    "name": "Human Resources"
+  },
+  {
+    "key": "information-technology",
+    "name": "Information Technology"
+  },
+  {
+    "key": "legal",
+    "name": "Legal"
+  },
+  {
+    "key": "manufacturing",
+    "name": "Manufacturing"
+  },
+  {
+    "key": "marketing-and-advertising",
+    "name": "Marketing and Advertising"
+  },
+  {
+    "key": "media-and-entertainment",
+    "name": "Media and Entertainment"
+  },
+  {
+    "key": "non-profit",
+    "name": "Non-Profit"
+  },
+  {
+    "key": "pharmaceuticals",
+    "name": "Pharmaceuticals"
+  },
+  {
+    "key": "real-estate",
+    "name": "Real Estate"
+  },
+  {
+    "key": "retail",
+    "name": "Retail"
+  },
+  {
+    "key": "sports-and-recreation",
+    "name": "Sports and Recreation"
+  },
+  {
+    "key": "telecommunications",
+    "name": "Telecommunications"
+  },
+  {
+    "key": "transportation",
+    "name": "Transportation"
+  },
+  {
+    "key": "travel-and-tourism",
+    "name": "Travel and Tourism"
+  }
 ]
