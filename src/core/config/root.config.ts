@@ -159,8 +159,8 @@ const envSchema = Joi.object({
 	NODE_ENV: Joi.string().valid("development", "production").required(),
 	APP_RUNTIME: Joi.string().valid("dev", "docker", "prod").required(),
 
-	CLIENT_APP_URL: Joi.string().required(),
-	PUBLIC_BASE_URL: Joi.string().required(),
+	CLIENT_APP_URL: Joi.string().uri().required(),
+	PUBLIC_BASE_URL: Joi.string().uri().required(),
 
 	DATABASE_HOST: Joi.string().required(),
 	DATABASE_PORT: Joi.number().port().required(),

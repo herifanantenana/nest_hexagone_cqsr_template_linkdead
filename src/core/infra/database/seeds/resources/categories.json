@@ -166,7 +166,7 @@
   },
   {
     "key": "school-administration",
-    "name": "School ADministration",
+    "name": "School Administration",
     "domainKey": "education"
   },
   {
@@ -321,7 +321,7 @@
   },
   {
     "key": "public-finance-administration",
-    "name": "Public Finance ADministration",
+    "name": "Public Finance Administration",
     "domainKey": "government"
   },
   {
@@ -601,7 +601,7 @@
   },
   {
     "key": "advocacy-and-campaigns",
-    "name": "ADvocacy and Campaigns",
+    "name": "Advocacy and Campaigns",
     "domainKey": "non-profit"
   },
   {

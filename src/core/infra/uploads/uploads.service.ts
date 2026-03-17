@@ -15,7 +15,7 @@ export class UploadsService {
 		private readonly logger: AppLogger,
 		@Inject(serverConfig.KEY) private readonly serverCfg: TServerConfig,
 	) {
-		this.logger.withContext(UploadsService.name);
+		this.logger = this.logger.withContext(UploadsService.name);
 	}
 
 	// convert absolute file path to relative path from uploads root dir
