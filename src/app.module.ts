@@ -1,5 +1,6 @@
 import * as config from "@apk_core/config/root.config";
 import { LoggerModule } from "@apk_infra/logger/logger.module";
+import { RedisModule } from "@apk_infra/redis/redis.module";
 import { Module } from "@nestjs/common";
 import { ConfigFactory, ConfigModule } from "@nestjs/config";
 import { AppController } from "./app.controller";
@@ -14,6 +15,7 @@ import { AppService } from "./app.service";
 			load: Object.values(config as Record<string, ConfigFactory>),
 		}),
 		LoggerModule,
+		RedisModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
