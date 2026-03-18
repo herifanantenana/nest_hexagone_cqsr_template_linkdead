@@ -1,0 +1,53 @@
+app:
+  name: "Linkdead"
+  version: "v3"
+
+server:
+  host: "10.11.200.229"
+  port: 5000
+  trustProxy: true
+  allowedCorsOrigins:
+    - "http://10.11.200.229:4000"
+    - "http://localhost:4000"
+    - "http://127.0.0.1:4000"
+  apiPathPrefix: "api"
+  docsPathPrefix: "docs"
+
+client:
+  registrationVerificationPath: "auth/register/verify"
+
+logger:
+  engine: "Winston"
+  level: "info"
+  dir: "logs"
+  activeLogFiles: true
+  logstashEnabled: false
+
+database:
+  engine: "PostgreSQL"
+
+redis:
+  engine: "IORedis"
+  appDb: 0
+  appKeyPrefix: "linkdead_prod"
+  jobsDb: 1
+  jobsKeyPrefix: "linkdead_prod_jobs"
+
+mailer:
+  engine: "Nodemailer"
+  host: "smtp.gmail.com"
+  fromSupport: "support@arakotom.com"
+  fromNoReply: "noreply@arakotom.com"
+  templatesDir: "./src/core/infra/mailer/adapters/templates"
+
+auth:
+  registration:
+    tokenTtlSec: 1800
+    verificationLinkTtlSec: 600
+    maxAttempts: 3
+
+jwt:
+  accessTokenKey: "11nkd34d_4cc355_70k3n"
+  refreshTokenKey: "11nkd34d_r3fr35h_70k3n"
+  accessTokenTtlSec: 900
+  refreshTokenTtlSec: 604800
