@@ -17,17 +17,43 @@ import { domainsSkillsTable } from "./taxonomies/domainsSkills.schema";
 import { categoriesRelations, domainsRelations, skillsRelations } from "./taxonomies/relations";
 import { skillsTable, skillsTypesEnum } from "./taxonomies/skills.schema";
 
-export const enums = [
-	authProvidersEnum,
-	accountStatusEnum,
-	organizationTypesEnum,
-	organizationStatusEnum,
-	actorsTypesEnum,
-	sessionsStatusEnum,
-	skillsTypesEnum,
-];
+// export const enums = [
+// 	authProvidersEnum,
+// 	accountStatusEnum,
+// 	organizationTypesEnum,
+// 	organizationStatusEnum,
+// 	actorsTypesEnum,
+// 	sessionsStatusEnum,
+// 	skillsTypesEnum,
+// ];
 
-export const schemas = [
+// export const schemas = [
+// 	registrationsTable,
+// 	usersTable,
+// 	accountsTable,
+// 	organizationsTable,
+// 	actorsTable,
+// 	sessionsTable,
+// 	domainsTable,
+// 	categoriesTable,
+// 	skillsTable,
+// 	domainsSkillsTable,
+// 	categoriesSkillsTable,
+// ];
+
+// export const relations = [
+// 	usersRelations,
+// 	accountsRelations,
+// 	organizationsRelations,
+// 	actorsRelations,
+// 	sessionsRelations,
+// 	domainsRelations,
+// 	categoriesRelations,
+// 	skillsRelations,
+// ];
+
+// Prefer these exports for Drizzle initialization to preserve strong types (db.query.*)
+export const drizzleSchema = {
 	registrationsTable,
 	usersTable,
 	accountsTable,
@@ -39,15 +65,23 @@ export const schemas = [
 	skillsTable,
 	domainsSkillsTable,
 	categoriesSkillsTable,
-];
 
-export const relations = [
-	usersRelations,
-	accountsRelations,
-	organizationsRelations,
-	actorsRelations,
-	sessionsRelations,
-	domainsRelations,
-	categoriesRelations,
-	skillsRelations,
-];
+	authProvidersEnum,
+	accountStatusEnum,
+	organizationTypesEnum,
+	organizationStatusEnum,
+	actorsTypesEnum,
+	sessionsStatusEnum,
+	skillsTypesEnum,
+} as const;
+
+export const drizzleRelations = {
+	...usersRelations,
+	...accountsRelations,
+	...organizationsRelations,
+	...actorsRelations,
+	...sessionsRelations,
+	...domainsRelations,
+	...categoriesRelations,
+	...skillsRelations,
+} as const;

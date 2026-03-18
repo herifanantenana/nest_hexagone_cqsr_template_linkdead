@@ -1,5 +1,6 @@
 import { jwtConfig } from "@apk_core/config";
 import { TJwtConfig } from "@apk_core/config/root.config";
+import { OrganizationModule } from "@apk_modules/organization/organization.module";
 import { ActorsRepoAuthDrizzleAdapter } from "@apk_modules/user/infra/adapters/actors-repo-auth.drizzle.adapter";
 import { UserModule } from "@apk_modules/user/user.module";
 import { Module } from "@nestjs/common";
@@ -29,10 +30,11 @@ import { EncryptionDecryptionCryptoAdapter } from "./infra/adapters/encryption-d
 import { PasswordHasherBcryptAdapter } from "./infra/adapters/password-hasher.bcrypt.adapter";
 import { RegisterCooldownRedisAdapter } from "./infra/adapters/register-cooldown.redis.adapter";
 import { RegistrationsRepoAuthDrizzleAdapter } from "./infra/adapters/registrations-repo-auth.drizzle.adapter";
-import { SessionCacheRedisAdapter } from "./infra/adapters/session-cache.redis.adapter";
+import { SessionsCacheRedisAdapter } from "./infra/adapters/sessions-cache.redis.adapter";
 import { SessionsRepoAuthDrizzleAdapter } from "./infra/adapters/sessions-repo-auth.drizzle.adapter";
 import { TokenizerJwtAdapter } from "./infra/adapters/tokenizer.jwt.adapter";
 import { AuthController } from "./interface/http/controllers/auth.controller";
+import { CsrfOriginGuard } from "./interface/http/guards/csrf-origin.guard";
 import { JwtAuthGuard } from "./interface/http/guards/jwt-auth-cookie.guard";
 import { JwtCookieStrategy } from "./interface/http/strategies/jwt-cookie.strategy";
 
@@ -46,7 +48,7 @@ const adapters = [
 	{ provide: ActorsRepoAuthPort, useClass: ActorsRepoAuthDrizzleAdapter },
 	{ provide: TokenizerPort, useClass: TokenizerJwtAdapter },
 	{ provide: SessionsRepoAuthPort, useClass: SessionsRepoAuthDrizzleAdapter },
-	{ provide: SessionsCachePort, useClass: SessionCacheRedisAdapter },
+	{ provide: SessionsCachePort, useClass: SessionsCacheRedisAdapter },
 ];
 
 const commands = [
@@ -62,6 +64,7 @@ const commands = [
 	imports: [
 		CqrsModule,
 		UserModule,
+		OrganizationModule,
 		JwtModule.registerAsync({
 			inject: [jwtConfig.KEY],
 			useFactory: (jwtCfg: TJwtConfig) => ({
@@ -76,6 +79,7 @@ const commands = [
 		RegisterTokenValidatorService,
 		RequestAuthResolverService,
 		JwtCookieStrategy,
+		CsrfOriginGuard,
 		JwtAuthGuard,
 	],
 	controllers: [AuthController],

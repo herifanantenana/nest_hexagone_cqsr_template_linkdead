@@ -8,7 +8,7 @@ import {
 	SessionsRepoAuthPort,
 } from "@apk_modules/auth/application/ports/sessions-repo-auth.port";
 import { Injectable } from "@nestjs/common";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 
 @Injectable()
 export class SessionsRepoAuthDrizzleAdapter implements SessionsRepoAuthPort {
@@ -29,22 +29,31 @@ export class SessionsRepoAuthDrizzleAdapter implements SessionsRepoAuthPort {
 	async findById(sessionId: string, tx?: unknown): Promise<ISessionDbData | null> {
 		const db = this.drizzleAdapter.getDb(tx);
 		const result = await this.databaseSafeAction.withSafeAsyncOrThrow(async () => {
-			const [row] = await db
-				.select({
-					id: sessionsTable.id,
-					userId: sessionsTable.userId,
-					accountId: sessionsTable.accountId,
-					actorId: sessionsTable.actorId,
-					refreshTokenHash: sessionsTable.refreshTokenHash,
-					deviceId: sessionsTable.deviceId,
-					userAgent: sessionsTable.userAgent,
-					ipAddress: sessionsTable.ipAddress,
-					expiresAt: sessionsTable.expiresAt,
-					revokedAt: sessionsTable.revokedAt,
-				})
-				.from(sessionsTable)
-				.where(eq(sessionsTable.id, sessionId));
-			return row;
+			const row = await db.query.sessionsTable.findFirst({
+				where: { id: sessionId },
+				columns: {
+					id: true,
+					userId: true,
+					accountId: true,
+					actorId: true,
+					refreshTokenHash: true,
+					deviceId: true,
+					userAgent: true,
+					ipAddress: true,
+					expiresAt: true,
+					revokedAt: true,
+				},
+				with: {
+					actor: {
+						columns: {
+							id: true,
+							type: true,
+							organizationId: true,
+						},
+					},
+				},
+			});
+			return row ?? null;
 		});
 		return result;
 	}
@@ -52,22 +61,31 @@ export class SessionsRepoAuthDrizzleAdapter implements SessionsRepoAuthPort {
 	async findByRefreshTokenHash(refreshTokenHash: string, tx?: unknown): Promise<ISessionDbData | null> {
 		const db = this.drizzleAdapter.getDb(tx);
 		const result = await this.databaseSafeAction.withSafeAsyncOrThrow(async () => {
-			const [row] = await db
-				.select({
-					id: sessionsTable.id,
-					userId: sessionsTable.userId,
-					accountId: sessionsTable.accountId,
-					actorId: sessionsTable.actorId,
-					refreshTokenHash: sessionsTable.refreshTokenHash,
-					deviceId: sessionsTable.deviceId,
-					userAgent: sessionsTable.userAgent,
-					ipAddress: sessionsTable.ipAddress,
-					expiresAt: sessionsTable.expiresAt,
-					revokedAt: sessionsTable.revokedAt,
-				})
-				.from(sessionsTable)
-				.where(eq(sessionsTable.refreshTokenHash, refreshTokenHash));
-			return row;
+			const row = await db.query.sessionsTable.findFirst({
+				where: { refreshTokenHash },
+				columns: {
+					id: true,
+					userId: true,
+					accountId: true,
+					actorId: true,
+					refreshTokenHash: true,
+					deviceId: true,
+					userAgent: true,
+					ipAddress: true,
+					expiresAt: true,
+					revokedAt: true,
+				},
+				with: {
+					actor: {
+						columns: {
+							id: true,
+							type: true,
+							organizationId: true,
+						},
+					},
+				},
+			});
+			return row ?? null;
 		});
 		return result;
 	}
@@ -79,14 +97,16 @@ export class SessionsRepoAuthDrizzleAdapter implements SessionsRepoAuthPort {
 		});
 	}
 
-	async rotateRefreshToken(input: IRotateRefreshTokenInput, tx?: unknown): Promise<void> {
+	async rotateRefreshToken(input: IRotateRefreshTokenInput, tx?: unknown): Promise<boolean> {
 		const db = this.drizzleAdapter.getDb(tx);
-		const { sessionId, newRefreshTokenHash, newExpiresAt } = input;
-		await this.databaseSafeAction.withSafeAsyncOrThrow(async () => {
-			await db
+		const { sessionId, oldRefreshTokenHash, newRefreshTokenHash, newExpiresAt } = input;
+		return this.databaseSafeAction.withSafeAsyncOrThrow(async () => {
+			const updated = await db
 				.update(sessionsTable)
 				.set({ refreshTokenHash: newRefreshTokenHash, expiresAt: newExpiresAt })
-				.where(eq(sessionsTable.id, sessionId));
+				.where(and(eq(sessionsTable.id, sessionId), eq(sessionsTable.refreshTokenHash, oldRefreshTokenHash)))
+				.returning({ id: sessionsTable.id });
+			return updated.length === 1;
 		});
 	}
 }

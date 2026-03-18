@@ -20,7 +20,7 @@ export class TokenizerJwtAdapter implements TokenizerPort {
 	}
 
 	async generateAccessToken(payload: IAccessTokenPayload): Promise<{ value: string; expiresAt: Date }> {
-		const { userId, accountId, actorId, sessionId } = payload;
+		const { userId, accountId, actorId, sessionId, contextType, organizationId } = payload;
 		const expiresAt = new Date(Date.now() + this.jwtCfg.accessTokenTtlSec * 1000);
 		const token = await this.jwtService.signAsync({
 			sub: userId,
@@ -28,6 +28,8 @@ export class TokenizerJwtAdapter implements TokenizerPort {
 			acid: accountId,
 			atid: actorId,
 			sid: sessionId,
+			ctx: contextType,
+			oid: organizationId,
 		});
 		return { value: token, expiresAt };
 	}

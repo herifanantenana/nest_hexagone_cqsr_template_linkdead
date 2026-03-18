@@ -1,4 +1,5 @@
 import { jwtConfig, type TJwtConfig } from "@apk_core/config/root.config";
+import { EActorTypes } from "@apk_infra/database/schemas/database.type";
 import { AppLogger } from "@apk_infra/logger/logger.service";
 import { Inject, UnauthorizedException } from "@nestjs/common";
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
@@ -68,11 +69,20 @@ export class RefreshAccessTokenCommandHandler implements ICommandHandler<
 		}
 
 		// rotate the refresh token in the session
-		await this.sessionsRepoAuthPort.rotateRefreshToken({
+		const rotated = await this.sessionsRepoAuthPort.rotateRefreshToken({
 			sessionId: session.id,
+			oldRefreshTokenHash: refreshTokenHash,
 			newRefreshTokenHash,
 			newExpiresAt: newRefreshTokenExpiresAt,
 		});
+		if (!rotated) {
+			await this.sessionsCachePort.deleteSession(session.id);
+			await this.sessionsRepoAuthPort.revokeById(session.id);
+			throw new UnauthorizedException("Refresh token already used");
+		}
+
+		const organizationId =
+			session.actor.type === EActorTypes.ORGANIZATION ? (session.actor.organizationId ?? undefined) : undefined;
 
 		// generate a new access token
 		const { value: newAccessToken, expiresAt: newAccessTokenExpiresAt } = await this.tokenizerPort.generateAccessToken({
@@ -80,6 +90,8 @@ export class RefreshAccessTokenCommandHandler implements ICommandHandler<
 			accountId: session.accountId,
 			actorId: session.actorId,
 			sessionId: session.id,
+			contextType: session.actor.type,
+			organizationId,
 		});
 
 		// rotate the session cache with the new refresh token hash and expiry
@@ -91,6 +103,8 @@ export class RefreshAccessTokenCommandHandler implements ICommandHandler<
 			actorId: session.actorId,
 			refreshTokenHash: newRefreshTokenHash,
 			expiresAt: newRefreshTokenExpiresAt,
+			contextType: session.actor.type,
+			organizationId,
 		});
 
 		return {

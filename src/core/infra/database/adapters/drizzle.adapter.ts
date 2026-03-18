@@ -3,17 +3,10 @@ import { drizzle, NodePgDatabase } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 import { databaseConfig } from "@apk_core/config";
 import type { TDatabaseConfig } from "@apk_core/config/root.config";
-import { enums, relations, schemas } from "@apk_infra/database/schemas";
+import { drizzleRelations, drizzleSchema } from "@apk_infra/database/schemas";
 import { AppLogger } from "@apk_infra/logger/logger.service";
 
-const allSchemas = schemas.reduce((acc, schema) => ({ ...acc, ...schema }), {});
-const allEnums = enums.reduce((acc, en) => ({ ...acc, ...en }), {});
-const allRelations = relations.reduce((acc, relation) => ({ ...acc, ...relation }), {});
-
-// Combine schemas and enums for Drizzle
-const drizzleSchemas = { ...allSchemas, ...allEnums };
-
-export type TDbTx = NodePgDatabase<typeof allSchemas, typeof allRelations>;
+export type TDbTx = NodePgDatabase<typeof drizzleSchema, typeof drizzleRelations>;
 
 @Injectable()
 export class DrizzleAdapter implements OnModuleInit, OnModuleDestroy, OnApplicationShutdown {
@@ -33,7 +26,7 @@ export class DrizzleAdapter implements OnModuleInit, OnModuleDestroy, OnApplicat
 		}
 
 		this.pool = new Pool({ connectionString: `postgresql://${user}:${password}@${host}:${port}/${name}` });
-		this.db = drizzle({ client: this.pool, schema: drizzleSchemas, relations: allRelations });
+		this.db = drizzle({ client: this.pool, schema: drizzleSchema, relations: drizzleRelations });
 	}
 
 	async onModuleInit() {

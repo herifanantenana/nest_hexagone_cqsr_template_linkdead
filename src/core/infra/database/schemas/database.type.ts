@@ -35,7 +35,7 @@ export enum EActorTypes {
 	USER = "user",
 	ORGANIZATION = "organization",
 }
-export const ActorTypes = Object.values(EActorTypes) as [string, ...string[]];
+export const ActorTypes = Object.values(EActorTypes) as [EActorTypes, ...EActorTypes[]];
 
 export enum ESessionStatus {
 	ACTIVE = "active",

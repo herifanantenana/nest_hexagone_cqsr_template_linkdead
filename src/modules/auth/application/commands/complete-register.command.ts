@@ -1,4 +1,5 @@
 import { jwtConfig, type TJwtConfig } from "@apk_core/config/root.config";
+import { EActorTypes } from "@apk_infra/database/schemas/database.type";
 import { AppLogger } from "@apk_infra/logger/logger.service";
 import { type IUnitOfWorkPort, UNIT_OF_WORK } from "@apk_shared/ports/unit-of-work.port";
 import { Inject } from "@nestjs/common";
@@ -114,6 +115,7 @@ export class CompleteRegisterCommandHandler implements ICommandHandler<
 				accountId: accountCreated.id,
 				actorId: actorCreated.id,
 				sessionId: sessionCreated.id,
+				contextType: EActorTypes.USER,
 			});
 
 			return {
@@ -141,6 +143,7 @@ export class CompleteRegisterCommandHandler implements ICommandHandler<
 			actorId: result.actorId,
 			refreshTokenHash: result.refreshTokenHash,
 			expiresAt: result.refreshTokenExpiresAt,
+			contextType: EActorTypes.USER,
 		});
 
 		// No need to delete refreshTokenHash from result

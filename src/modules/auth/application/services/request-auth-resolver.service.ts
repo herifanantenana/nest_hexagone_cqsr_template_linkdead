@@ -1,3 +1,4 @@
+import { EActorTypes } from "@apk_infra/database/schemas/database.type";
 import { AppLogger } from "@apk_infra/logger/logger.service";
 import { TJwtAuthPayload, TReqAuthContext } from "@apk_modules/auth/types/auth.types";
 import { Injectable, UnauthorizedException } from "@nestjs/common";
@@ -59,6 +60,8 @@ export class RequestAuthResolverService {
 		}
 
 		// add session data to cache
+		const organizationId =
+			sessionDb.actor.type === EActorTypes.ORGANIZATION ? (sessionDb.actor.organizationId ?? undefined) : undefined;
 		await this.sessionsCachePort.setSession({
 			sessionId: sessionDb.id,
 			userId: sessionDb.userId,
@@ -66,6 +69,8 @@ export class RequestAuthResolverService {
 			actorId: sessionDb.actorId,
 			refreshTokenHash: sessionDb.refreshTokenHash,
 			expiresAt: sessionDb.expiresAt,
+			contextType: sessionDb.actor.type,
+			organizationId,
 		});
 
 		return {
@@ -73,6 +78,7 @@ export class RequestAuthResolverService {
 			accountId,
 			actorId,
 			sessionId,
+			organizationId,
 		};
 	}
 }

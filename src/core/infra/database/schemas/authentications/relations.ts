@@ -87,18 +87,21 @@ export const sessionsRelations = defineRelationsPart(
 			account: r.one.accountsTable({
 				from: r.sessionsTable.accountId,
 				to: r.accountsTable.id,
+				optional: false,
 			}),
 
 			// one session belongs to one user
 			user: r.one.usersTable({
 				from: r.sessionsTable.userId,
 				to: r.usersTable.id,
+				optional: false,
 			}),
 
 			// one session belongs to one actor
 			actor: r.one.actorsTable({
 				from: r.sessionsTable.actorId,
 				to: r.actorsTable.id,
+				optional: false,
 			}),
 		},
 	}),

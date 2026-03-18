@@ -1,5 +1,6 @@
 import { jwtConfig } from "@apk_core/config";
 import { type TJwtConfig } from "@apk_core/config/root.config";
+import { EActorTypes } from "@apk_infra/database/schemas/database.type";
 import { AppLogger } from "@apk_infra/logger/logger.service";
 import { InvalidCredentialsException } from "@apk_modules/auth/domain/exceptions/auth-business.exception";
 import { Inject } from "@nestjs/common";
@@ -89,6 +90,7 @@ export class LoginCommandHandler implements ICommandHandler<LoginCommand, ILogin
 			accountId: account.id,
 			actorId: actor.id,
 			sessionId: session.id,
+			contextType: EActorTypes.USER,
 		});
 
 		// add token cache
@@ -99,6 +101,7 @@ export class LoginCommandHandler implements ICommandHandler<LoginCommand, ILogin
 			actorId: actor.id,
 			refreshTokenHash,
 			expiresAt: refreshTokenExpiresAt,
+			contextType: EActorTypes.USER,
 		});
 
 		return {

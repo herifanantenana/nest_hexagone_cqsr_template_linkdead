@@ -1,4 +1,4 @@
-import { check, foreignKey, pgEnum, pgTable, uuid } from "drizzle-orm/pg-core";
+import { check, foreignKey, pgEnum, pgTable, uniqueIndex, uuid } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm/sql/sql";
 import { id } from "../_shared/id";
 import { createdAt } from "../_shared/timestamps";
@@ -18,6 +18,8 @@ export const actorsTable = pgTable(
 		createdAt,
 	},
 	(t) => [
+		uniqueIndex("actors_user_id_unique").on(t.userId),
+		uniqueIndex("actors_organization_id_unique").on(t.organizationId),
 		foreignKey({
 			name: "actors_user_id_fk",
 			columns: [t.userId],

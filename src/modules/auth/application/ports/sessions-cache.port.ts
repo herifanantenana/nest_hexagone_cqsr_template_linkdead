@@ -1,3 +1,5 @@
+import { EActorTypes } from "@apk_infra/database/schemas/database.type";
+
 export interface ISessionCacheData {
 	sessionId: string;
 	userId: string;
@@ -5,6 +7,8 @@ export interface ISessionCacheData {
 	actorId: string;
 	refreshTokenHash: string;
 	expiresAt: Date;
+	contextType: EActorTypes;
+	organizationId?: string;
 }
 
 export abstract class SessionsCachePort {

@@ -8,7 +8,7 @@ import Redis from "ioredis";
 const SESSIONS_CACHE_PREFIX = "auth:sessions:cache";
 
 @Injectable()
-export class SessionCacheRedisAdapter implements SessionsCachePort {
+export class SessionsCacheRedisAdapter implements SessionsCachePort {
 	private readonly redisClient: Redis;
 
 	private key(sessionId: string) {
@@ -25,7 +25,7 @@ export class SessionCacheRedisAdapter implements SessionsCachePort {
 		private readonly redisService: RedisService,
 		private readonly redisSafeAction: RedisSafeAction,
 	) {
-		this.logger = this.logger.withContext(SessionCacheRedisAdapter.name);
+		this.logger = this.logger.withContext(SessionsCacheRedisAdapter.name);
 		this.redisClient = this.redisService.getClient();
 	}
 

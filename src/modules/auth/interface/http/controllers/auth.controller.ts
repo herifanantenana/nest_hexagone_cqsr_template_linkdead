@@ -1,4 +1,4 @@
-import { appConfig, jwtConfig, type TAppConfig, type TJwtConfig } from "@apk_core/config/root.config";
+import { jwtConfig, serverConfig, type TJwtConfig, type TServerConfig } from "@apk_core/config/root.config";
 import { NoThrottle, RateLimiter } from "@apk_core/interface/http/guards/rate-limiter/rate-limiter.decorator";
 import {
 	POLICY_AUTH_COMPLETE_REGISTER,
@@ -25,7 +25,7 @@ import {
 	IVerifyTokenEmailRegisterCommandResult,
 	VerifyTokenEmailRegisterCommand,
 } from "@apk_modules/auth/application/commands/verify-token-email-register.command";
-import { Body, Controller, Inject, Post, Req, Res, UnauthorizedException } from "@nestjs/common";
+import { Body, Controller, Inject, Post, Req, Res, UnauthorizedException, UseGuards } from "@nestjs/common";
 import { CommandBus } from "@nestjs/cqrs";
 import { ApiBody, ApiOperation } from "@nestjs/swagger";
 import type { Request, Response } from "express";
@@ -34,22 +34,39 @@ import { LoginDto } from "../dtos/login.dto";
 import { RequestRegisterDto } from "../dtos/request-register.dto";
 import { VerifyTokenEmailRegisterDto } from "../dtos/verify-token-email-register.dto";
 import { AuthOptional, AuthPublic, Cookies, SessionId } from "../guards/auth.decorators";
+import { CsrfOriginGuard } from "../guards/csrf-origin.guard";
 
 @Controller("auth")
 export class AuthController {
 	constructor(
 		private readonly commandBus: CommandBus,
-		@Inject(appConfig.KEY) private readonly appCfg: TAppConfig,
 		@Inject(jwtConfig.KEY) private readonly jwtCfg: TJwtConfig,
+		@Inject(serverConfig.KEY) private readonly serverCfg: TServerConfig,
 	) {}
 
-	private buildCookieOptions() {
+	private buildCookieOptions(path: string) {
+		const baseUrl = new URL(this.serverCfg.publicBaseUrl);
+		const cookieSecure = baseUrl.protocol === "https:";
 		return {
 			httpOnly: true,
-			secure: this.appCfg.isProd,
+			secure: cookieSecure,
 			sameSite: "lax" as const,
-			path: "/",
+			path,
 		};
+	}
+
+	private normalizePathPrefix(value: string): string {
+		return value.replace(/^\/+/, "").replace(/\/+$/, "");
+	}
+
+	private getApiCookiePath(): string {
+		const prefix = this.normalizePathPrefix(this.serverCfg.apiPathPrefix);
+		return prefix ? `/${prefix}` : "/";
+	}
+
+	private getRefreshCookiePath(): string {
+		const apiPath = this.getApiCookiePath();
+		return `${apiPath}/auth/refresh-token`;
 	}
 
 	@RateLimiter(POLICY_AUTH_REGISTER)
@@ -96,11 +113,11 @@ export class AuthController {
 
 		// set the refresh token cookie
 		response.cookie(this.jwtCfg.refreshTokenKey, result.refreshToken, {
-			...this.buildCookieOptions(),
+			...this.buildCookieOptions(this.getRefreshCookiePath()),
 			maxAge: result.refreshTokenExpiresAt.getTime() - Date.now(),
 		});
 		response.cookie(this.jwtCfg.accessTokenKey, result.accessToken, {
-			...this.buildCookieOptions(),
+			...this.buildCookieOptions(this.getApiCookiePath()),
 			maxAge: result.accessTokenExpiresAt.getTime() - Date.now(),
 		});
 
@@ -122,11 +139,11 @@ export class AuthController {
 
 		// set the refresh token cookie
 		response.cookie(this.jwtCfg.refreshTokenKey, result.refreshToken, {
-			...this.buildCookieOptions(),
+			...this.buildCookieOptions(this.getRefreshCookiePath()),
 			maxAge: result.refreshTokenExpiresAt.getTime() - Date.now(),
 		});
 		response.cookie(this.jwtCfg.accessTokenKey, result.accessToken, {
-			...this.buildCookieOptions(),
+			...this.buildCookieOptions(this.getApiCookiePath()),
 			maxAge: result.accessTokenExpiresAt.getTime() - Date.now(),
 		});
 
@@ -145,10 +162,10 @@ export class AuthController {
 
 		// Clear the cookies
 		response.clearCookie(this.jwtCfg.refreshTokenKey, {
-			...this.buildCookieOptions(),
+			...this.buildCookieOptions(this.getRefreshCookiePath()),
 		});
 		response.clearCookie(this.jwtCfg.accessTokenKey, {
-			...this.buildCookieOptions(),
+			...this.buildCookieOptions(this.getApiCookiePath()),
 		});
 
 		return "Logout successful";
@@ -156,6 +173,7 @@ export class AuthController {
 
 	@RateLimiter(POLICY_AUTH_REFRESH_TOKEN)
 	@AuthOptional()
+	@UseGuards(CsrfOriginGuard)
 	@Post("refresh-token")
 	@ApiOperation({ summary: "Refresh access token" })
 	async refreshToken(
@@ -175,11 +193,11 @@ export class AuthController {
 
 		// set the refresh token cookie
 		response.cookie(this.jwtCfg.refreshTokenKey, result.refreshToken, {
-			...this.buildCookieOptions(),
+			...this.buildCookieOptions(this.getRefreshCookiePath()),
 			maxAge: result.refreshTokenExpiresAt.getTime() - Date.now(),
 		});
 		response.cookie(this.jwtCfg.accessTokenKey, result.accessToken, {
-			...this.buildCookieOptions(),
+			...this.buildCookieOptions(this.getApiCookiePath()),
 			maxAge: result.accessTokenExpiresAt.getTime() - Date.now(),
 		});
 
